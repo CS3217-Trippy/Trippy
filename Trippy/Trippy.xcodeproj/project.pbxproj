@@ -1,0 +1,670 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
+		017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89925F7B6E80064EF40 /* ContentView.swift */; };
+		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
+		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
+		017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8A925F7B6E80064EF40 /* TrippyTests.swift */; };
+		017FD8B525F7B6E80064EF40 /* TrippyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */; };
+		017FD8C725F7B9020064EF40 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8C625F7B9020064EF40 /* FirebaseFirestore */; };
+		017FD8C925F7B9020064EF40 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8C825F7B9020064EF40 /* FirebaseFirestoreSwift-Beta */; };
+		017FD8CB25F7B9020064EF40 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8CA25F7B9020064EF40 /* FirebaseAnalytics */; };
+		017FD8CD25F7B9020064EF40 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8CC25F7B9020064EF40 /* FirebaseStorageSwift-Beta */; };
+		017FD8CF25F7B9020064EF40 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8CE25F7B9020064EF40 /* FirebaseStorage */; };
+		017FD8D125F7B9020064EF40 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D025F7B9020064EF40 /* FirebaseFunctions */; };
+		017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */; };
+		017FD8D525F7B9020064EF40 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D425F7B9020064EF40 /* FirebaseMessaging */; };
+		017FD8D725F7B9020064EF40 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D625F7B9020064EF40 /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		017FD8A625F7B6E80064EF40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 017FD88C25F7B6E70064EF40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 017FD89325F7B6E80064EF40;
+			remoteInfo = Trippy;
+		};
+		017FD8B125F7B6E80064EF40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 017FD88C25F7B6E70064EF40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 017FD89325F7B6E80064EF40;
+			remoteInfo = Trippy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		017FD89425F7B6E80064EF40 /* Trippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		017FD89725F7B6E80064EF40 /* TrippyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyApp.swift; sourceTree = "<group>"; };
+		017FD89925F7B6E80064EF40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		017FD89B25F7B6E80064EF40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		017FD8A025F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		017FD8A525F7B6E80064EF40 /* TrippyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		017FD8A925F7B6E80064EF40 /* TrippyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyTests.swift; sourceTree = "<group>"; };
+		017FD8AB25F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyUITests.swift; sourceTree = "<group>"; };
+		017FD8B625F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		017FD89125F7B6E80064EF40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				017FD8D525F7B9020064EF40 /* FirebaseMessaging in Frameworks */,
+				017FD8C725F7B9020064EF40 /* FirebaseFirestore in Frameworks */,
+				017FD8CD25F7B9020064EF40 /* FirebaseStorageSwift-Beta in Frameworks */,
+				017FD8C925F7B9020064EF40 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				017FD8D725F7B9020064EF40 /* FirebaseAuth in Frameworks */,
+				017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */,
+				017FD8D125F7B9020064EF40 /* FirebaseFunctions in Frameworks */,
+				017FD8CF25F7B9020064EF40 /* FirebaseStorage in Frameworks */,
+				017FD8CB25F7B9020064EF40 /* FirebaseAnalytics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		017FD8A225F7B6E80064EF40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		017FD8AD25F7B6E80064EF40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		017FD88B25F7B6E70064EF40 = {
+			isa = PBXGroup;
+			children = (
+				017FD89625F7B6E80064EF40 /* Trippy */,
+				017FD8A825F7B6E80064EF40 /* TrippyTests */,
+				017FD8B325F7B6E80064EF40 /* TrippyUITests */,
+				017FD89525F7B6E80064EF40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		017FD89525F7B6E80064EF40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				017FD89425F7B6E80064EF40 /* Trippy.app */,
+				017FD8A525F7B6E80064EF40 /* TrippyTests.xctest */,
+				017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		017FD89625F7B6E80064EF40 /* Trippy */ = {
+			isa = PBXGroup;
+			children = (
+				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
+				017FD89925F7B6E80064EF40 /* ContentView.swift */,
+				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
+				017FD8A025F7B6E80064EF40 /* Info.plist */,
+				017FD89D25F7B6E80064EF40 /* Preview Content */,
+			);
+			path = Trippy;
+			sourceTree = "<group>";
+		};
+		017FD89D25F7B6E80064EF40 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		017FD8A825F7B6E80064EF40 /* TrippyTests */ = {
+			isa = PBXGroup;
+			children = (
+				017FD8A925F7B6E80064EF40 /* TrippyTests.swift */,
+				017FD8AB25F7B6E80064EF40 /* Info.plist */,
+			);
+			path = TrippyTests;
+			sourceTree = "<group>";
+		};
+		017FD8B325F7B6E80064EF40 /* TrippyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */,
+				017FD8B625F7B6E80064EF40 /* Info.plist */,
+			);
+			path = TrippyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		017FD89325F7B6E80064EF40 /* Trippy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 017FD8B925F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "Trippy" */;
+			buildPhases = (
+				017FD89025F7B6E80064EF40 /* Sources */,
+				017FD89125F7B6E80064EF40 /* Frameworks */,
+				017FD89225F7B6E80064EF40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Trippy;
+			packageProductDependencies = (
+				017FD8C625F7B9020064EF40 /* FirebaseFirestore */,
+				017FD8C825F7B9020064EF40 /* FirebaseFirestoreSwift-Beta */,
+				017FD8CA25F7B9020064EF40 /* FirebaseAnalytics */,
+				017FD8CC25F7B9020064EF40 /* FirebaseStorageSwift-Beta */,
+				017FD8CE25F7B9020064EF40 /* FirebaseStorage */,
+				017FD8D025F7B9020064EF40 /* FirebaseFunctions */,
+				017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */,
+				017FD8D425F7B9020064EF40 /* FirebaseMessaging */,
+				017FD8D625F7B9020064EF40 /* FirebaseAuth */,
+			);
+			productName = Trippy;
+			productReference = 017FD89425F7B6E80064EF40 /* Trippy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		017FD8A425F7B6E80064EF40 /* TrippyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 017FD8BC25F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "TrippyTests" */;
+			buildPhases = (
+				017FD8A125F7B6E80064EF40 /* Sources */,
+				017FD8A225F7B6E80064EF40 /* Frameworks */,
+				017FD8A325F7B6E80064EF40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				017FD8A725F7B6E80064EF40 /* PBXTargetDependency */,
+			);
+			name = TrippyTests;
+			productName = TrippyTests;
+			productReference = 017FD8A525F7B6E80064EF40 /* TrippyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		017FD8AF25F7B6E80064EF40 /* TrippyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 017FD8BF25F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "TrippyUITests" */;
+			buildPhases = (
+				017FD8AC25F7B6E80064EF40 /* Sources */,
+				017FD8AD25F7B6E80064EF40 /* Frameworks */,
+				017FD8AE25F7B6E80064EF40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				017FD8B225F7B6E80064EF40 /* PBXTargetDependency */,
+			);
+			name = TrippyUITests;
+			productName = TrippyUITests;
+			productReference = 017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		017FD88C25F7B6E70064EF40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					017FD89325F7B6E80064EF40 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					017FD8A425F7B6E80064EF40 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 017FD89325F7B6E80064EF40;
+					};
+					017FD8AF25F7B6E80064EF40 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 017FD89325F7B6E80064EF40;
+					};
+				};
+			};
+			buildConfigurationList = 017FD88F25F7B6E70064EF40 /* Build configuration list for PBXProject "Trippy" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 017FD88B25F7B6E70064EF40;
+			packageReferences = (
+				017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = 017FD89525F7B6E80064EF40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				017FD89325F7B6E80064EF40 /* Trippy */,
+				017FD8A425F7B6E80064EF40 /* TrippyTests */,
+				017FD8AF25F7B6E80064EF40 /* TrippyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		017FD89225F7B6E80064EF40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */,
+				017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		017FD8A325F7B6E80064EF40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		017FD8AE25F7B6E80064EF40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		017FD89025F7B6E80064EF40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
+				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		017FD8A125F7B6E80064EF40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		017FD8AC25F7B6E80064EF40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				017FD8B525F7B6E80064EF40 /* TrippyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		017FD8A725F7B6E80064EF40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 017FD89325F7B6E80064EF40 /* Trippy */;
+			targetProxy = 017FD8A625F7B6E80064EF40 /* PBXContainerItemProxy */;
+		};
+		017FD8B225F7B6E80064EF40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 017FD89325F7B6E80064EF40 /* Trippy */;
+			targetProxy = 017FD8B125F7B6E80064EF40 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		017FD8B725F7B6E80064EF40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		017FD8B825F7B6E80064EF40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		017FD8BA25F7B6E80064EF40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Trippy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		017FD8BB25F7B6E80064EF40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Trippy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		017FD8BD25F7B6E80064EF40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TrippyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trippy.app/Trippy";
+			};
+			name = Debug;
+		};
+		017FD8BE25F7B6E80064EF40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TrippyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trippy.app/Trippy";
+			};
+			name = Release;
+		};
+		017FD8C025F7B6E80064EF40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TrippyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Trippy;
+			};
+			name = Debug;
+		};
+		017FD8C125F7B6E80064EF40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TrippyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Trippy;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		017FD88F25F7B6E70064EF40 /* Build configuration list for PBXProject "Trippy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				017FD8B725F7B6E80064EF40 /* Debug */,
+				017FD8B825F7B6E80064EF40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		017FD8B925F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "Trippy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				017FD8BA25F7B6E80064EF40 /* Debug */,
+				017FD8BB25F7B6E80064EF40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		017FD8BC25F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "TrippyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				017FD8BD25F7B6E80064EF40 /* Debug */,
+				017FD8BE25F7B6E80064EF40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		017FD8BF25F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "TrippyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				017FD8C025F7B6E80064EF40 /* Debug */,
+				017FD8C125F7B6E80064EF40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		017FD8C625F7B9020064EF40 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		017FD8C825F7B9020064EF40 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		017FD8CA25F7B9020064EF40 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		017FD8CC25F7B9020064EF40 /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
+		};
+		017FD8CE25F7B9020064EF40 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		017FD8D025F7B9020064EF40 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		017FD8D425F7B9020064EF40 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		017FD8D625F7B9020064EF40 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 017FD88C25F7B6E70064EF40 /* Project object */;
+}
