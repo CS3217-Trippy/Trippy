@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    let vm = BucketListViewModel()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        BucketListView(viewModel: vm)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+

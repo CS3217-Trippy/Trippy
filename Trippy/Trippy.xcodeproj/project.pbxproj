@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0118653825F9C4CE00BAA267 /* BucketItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0118653725F9C4CE00BAA267 /* BucketItemRepository.swift */; };
+		0118653E25F9C54900BAA267 /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0118653D25F9C54900BAA267 /* BucketItem.swift */; };
+		0118654425F9C70900BAA267 /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0118654325F9C70900BAA267 /* BucketListViewModel.swift */; };
+		0118654925F9C75F00BAA267 /* BucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0118654825F9C75F00BAA267 /* BucketItemViewModel.swift */; };
+		0118655725F9CA2700BAA267 /* BucketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0118655625F9CA2700BAA267 /* BucketListView.swift */; };
+		0118655C25F9CB9200BAA267 /* BucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0118655B25F9CB9200BAA267 /* BucketItemView.swift */; };
+		0118656125F9D42700BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118656025F9D42700BAA267 /* GoogleService-Info.plist */; };
 		017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
 		017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89925F7B6E80064EF40 /* ContentView.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
@@ -42,6 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0118653725F9C4CE00BAA267 /* BucketItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemRepository.swift; sourceTree = "<group>"; };
+		0118653D25F9C54900BAA267 /* BucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItem.swift; sourceTree = "<group>"; };
+		0118654325F9C70900BAA267 /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
+		0118654825F9C75F00BAA267 /* BucketItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemViewModel.swift; sourceTree = "<group>"; };
+		0118655625F9CA2700BAA267 /* BucketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListView.swift; sourceTree = "<group>"; };
+		0118655B25F9CB9200BAA267 /* BucketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemView.swift; sourceTree = "<group>"; };
+		0118656025F9D42700BAA267 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		017FD89425F7B6E80064EF40 /* Trippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD89725F7B6E80064EF40 /* TrippyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyApp.swift; sourceTree = "<group>"; };
 		017FD89925F7B6E80064EF40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +104,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0118653325F9C4C000BAA267 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				0118653725F9C4CE00BAA267 /* BucketItemRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		0118653C25F9C53F00BAA267 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0118653D25F9C54900BAA267 /* BucketItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0118654225F9C6FA00BAA267 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0118654325F9C70900BAA267 /* BucketListViewModel.swift */,
+				0118654825F9C75F00BAA267 /* BucketItemViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0118654D25F9C9A300BAA267 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0118655625F9CA2700BAA267 /* BucketListView.swift */,
+				0118655B25F9CB9200BAA267 /* BucketItemView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		017FD88B25F7B6E70064EF40 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +161,11 @@
 		017FD89625F7B6E80064EF40 /* Trippy */ = {
 			isa = PBXGroup;
 			children = (
+				0118656025F9D42700BAA267 /* GoogleService-Info.plist */,
+				0118654D25F9C9A300BAA267 /* View */,
+				0118654225F9C6FA00BAA267 /* ViewModel */,
+				0118653C25F9C53F00BAA267 /* Model */,
+				0118653325F9C4C000BAA267 /* Repository */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
 				017FD89925F7B6E80064EF40 /* ContentView.swift */,
 				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
@@ -267,6 +320,7 @@
 			files = (
 				017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */,
 				017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */,
+				0118656125F9D42700BAA267 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,8 +345,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0118654425F9C70900BAA267 /* BucketListViewModel.swift in Sources */,
+				0118654925F9C75F00BAA267 /* BucketItemViewModel.swift in Sources */,
+				0118653E25F9C54900BAA267 /* BucketItem.swift in Sources */,
+				0118655725F9CA2700BAA267 /* BucketListView.swift in Sources */,
 				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
+				0118653825F9C4CE00BAA267 /* BucketItemRepository.swift in Sources */,
+				0118655C25F9CB9200BAA267 /* BucketItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
