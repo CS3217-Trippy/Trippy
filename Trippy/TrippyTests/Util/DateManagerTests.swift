@@ -1,0 +1,38 @@
+import XCTest
+@testable import Trippy
+class DateManagerTests: XCTestCase {
+    var date: Date?
+    var manager = DateManager.shared
+    
+    override func setUp() {
+        var dateComponents = DateComponents()
+        dateComponents.day = 25
+        dateComponents.month = 12
+        dateComponents.year = 2020
+        dateComponents.hour = 15
+        dateComponents.minute = 30
+        date = Calendar(identifier: Calendar.Identifier.gregorian).date(from: dateComponents)
+    }
+    
+    func testStringFromDate() {
+        guard let dateOpt = date else {
+            fatalError()
+        }
+        XCTAssertEqual(manager.stringFromDate(date: dateOpt, withStyle: .full), "Friday, December 25, 2020")
+    }
+    
+    func testsfdwithformat() {
+        guard let dateOpt = date else {
+            fatalError()
+        }
+        XCTAssertEqual(manager.stringFromDate(date: dateOpt, withFormat: "yyyy-MM-dd"), "2020-12-25")
+        XCTAssertEqual(manager.stringFromDate(date: dateOpt, withFormat: "yyyy-MM-dd HH:mm"), "2020-12-25 15:30")
+    }
+    
+    func testsfromStr() {
+        guard let dateOpt = date else {
+            fatalError()
+        }
+        XCTAssertEqual(manager.dateFromString(dateString: "2020-12-25 15:30", withFormat: "yyyy-MM-dd HH:mm"), dateOpt)
+    }
+}

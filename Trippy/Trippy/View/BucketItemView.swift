@@ -1,9 +1,33 @@
 import SwiftUI
+import URLImage
 
 struct BucketItemView: View {
     @State private var visited = false
     var viewModel: BucketItemViewModel
     var body: some View {
-        Text(viewModel.bucketItem.locationName)
+        let bucketItem = viewModel.bucketItem
+        let url = URL(string: bucketItem.locationImage)
+        RectangularCard(width: UIScreen.main.bounds.width - 10, height: 210, viewBuilder: {
+            HStack(alignment: .top) {
+                if let unwrappedUrl = url {
+                    URLImage(url: unwrappedUrl,
+                             content: { image in
+                                image
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 160, height: 200)
+                                    .cornerRadius(16)
+                             })
+                }
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(bucketItem.locationName)
+                        .bold()
+                        .font(.headline)
+                    Text("Added on " +  bucketItem.dateAdded.dateTimeStringFromDate)
+                        .lineLimit(9)
+                }
+            }
+        })
     }
 }
+

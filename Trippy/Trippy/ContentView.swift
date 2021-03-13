@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     let vm = BucketListViewModel()
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        BucketListView(viewModel: vm)
-    }
+        BucketListView(viewModel: vm).background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
+        }
 }
 
 

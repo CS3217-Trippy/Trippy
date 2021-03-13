@@ -4,6 +4,9 @@ import FirebaseFirestoreSwift
 struct BucketItem: Identifiable, Codable {
     @DocumentID var id: String?
     var locationName: String
+    var locationImage: String
+    var userId: String
     var locationId: String
-    var visited: Bool
+    var dateVisited: Date?
+    var dateAdded: Date
 }

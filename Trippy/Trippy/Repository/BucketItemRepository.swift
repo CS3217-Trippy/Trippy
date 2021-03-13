@@ -10,11 +10,11 @@ final class BucketItemRepository : ObservableObject {
         get()
     }
     func get() {
-        store.collection(path).addSnapshotListener{(snapshot, error) in
-            if let error = error {
+        store.collection(path).getDocuments{(query, error) in
+            if error != nil {
                 return
             }
-            self.bucketItems = snapshot?.documents.compactMap{
+            self.bucketItems = query?.documents.compactMap{
                 try? $0.data(as: BucketItem.self)
             } ?? []
         }
