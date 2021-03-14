@@ -29,6 +29,7 @@
 		7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */; };
 		7694E9E725FE541700AF9E63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E625FE541700AF9E63 /* User.swift */; };
 		7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */; };
+		7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F025FEA73900AF9E63 /* StartUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		7694E9E625FE541700AF9E63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		7694E9F025FEA73900AF9E63 /* StartUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
 				017FD89925F7B6E80064EF40 /* ContentView.swift */,
+				7694E9F025FEA73900AF9E63 /* StartUpView.swift */,
 				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
 				017FD89D25F7B6E80064EF40 /* Preview Content */,
@@ -320,6 +323,7 @@
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */,
+				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

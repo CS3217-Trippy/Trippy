@@ -11,7 +11,7 @@ import Combine
 
 final class SessionStore: ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
-    var session: User? {
+    @Published var session: User? {
         didSet {
             self.didChange.send(self)
         }
@@ -21,7 +21,6 @@ final class SessionStore: ObservableObject {
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
-                print("Got user \(user)")
                 self.session = User(
                     id: user.uid,
                     email: user.email,

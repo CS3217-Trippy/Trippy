@@ -12,10 +12,13 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if (session.session != nil) {
-                Text("Hello User!")
+            if session.session != nil {
+                Text("Welcome!")
+                Button("SIGN OUT") {
+                    self.session.signOut()
+                }
             } else {
-                SignUpView()
+                StartUpView()
             }
         }.onAppear(perform: {
             session.listen()
