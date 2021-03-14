@@ -53,4 +53,3 @@ struct CollectionView<Content: View, Data: Identifiable>: View {
 }
 
 
-

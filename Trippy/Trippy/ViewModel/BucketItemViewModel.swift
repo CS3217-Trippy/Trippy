@@ -1,7 +1,6 @@
 import Combine
 
 final class BucketItemViewModel : ObservableObject, Identifiable {
-    private let bucketItemRepository = BucketItemRepository()
     @Published var bucketItem: BucketItem
     var id = ""
     private var cancellables: Set<AnyCancellable> = []

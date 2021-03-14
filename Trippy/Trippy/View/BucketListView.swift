@@ -5,7 +5,7 @@ struct BucketListView: View {
     var body: some View {
         VStack {
             Text("Bucket List")
-            CollectionView(data: $viewModel.bucketViewModels, cols: 2, spacing: 10) { bucketViewModel in
+            CollectionView(data: $viewModel.bucketViewModels, cols: 1, spacing: 10) { bucketViewModel in
                 BucketItemView(viewModel: bucketViewModel)
             }
         }

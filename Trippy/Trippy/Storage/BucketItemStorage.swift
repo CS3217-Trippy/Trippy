@@ -2,7 +2,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-final class BucketItemRepository : ObservableObject {
+final class BucketItemStorage : ObservableObject {
     private let path = "bucketItems"
     private let store = Firestore.firestore()
     @Published var bucketItems: [BucketItem] = []
@@ -27,5 +27,4 @@ final class BucketItemRepository : ObservableObject {
         }
     }
 }
-
 
