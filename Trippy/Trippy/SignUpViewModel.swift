@@ -14,9 +14,19 @@ final class SignUpViewModel: ObservableObject, Identifiable {
     @Published var password = ""
     @Published var confirmPassword = ""
 
-    func signUp() {
-        if password == confirmPassword {
-            print("Success!")
+    func signUp(session: SessionStore) {
+        if password != confirmPassword {
+            return
+        }
+        session.signUp(email: email, password: password) { (result, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            self.email = ""
+            self.password = ""
+            self.username = ""
+            self.confirmPassword = ""
         }
     }
 }

@@ -15,7 +15,7 @@ struct ContentView: View {
             if (session.session != nil) {
                 Text("Hello User!")
             } else {
-                LoginView()
+                SignUpView()
             }
         }.onAppear(perform: {
             session.listen()

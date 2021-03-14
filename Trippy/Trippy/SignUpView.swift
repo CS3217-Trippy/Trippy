@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     @ObservedObject var signUpViewModel = SignUpViewModel()
+    @EnvironmentObject var session: SessionStore
 
     var body: some View {
         VStack {
@@ -18,7 +19,7 @@ struct SignUpView: View {
             SecureField("Password", text: $signUpViewModel.password)
             SecureField("Confirm Password", text: $signUpViewModel.confirmPassword)
             Button("Sign Up") {
-                self.signUpViewModel.signUp()
+                self.signUpViewModel.signUp(session: session)
             }
         }
         .padding()
