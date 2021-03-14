@@ -9,14 +9,15 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var loginViewModel = LoginViewModel()
+    @EnvironmentObject var session: SessionStore
 
     var body: some View {
         VStack {
             Text("LOGIN")
             TextField("Email", text: $loginViewModel.email)
-            TextField("Password", text: $loginViewModel.password)
+            SecureField("Password", text: $loginViewModel.password)
             Button("Login") {
-                self.loginViewModel.login()
+                self.loginViewModel.login(session: session)
             }
         }
         .padding()

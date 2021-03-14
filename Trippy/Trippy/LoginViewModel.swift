@@ -12,7 +12,14 @@ final class LoginViewModel: ObservableObject, Identifiable {
     @Published var email = ""
     @Published var password = ""
 
-    func login() {
-        print(email,  password)
+    func login(session: SessionStore) {
+        session.signIn(email: email, password: password) { (result, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            self.email = ""
+            self.password = ""
+        }
     }
 }

@@ -15,8 +15,8 @@ struct SignUpView: View {
             Text("CREATE ACCOUNT")
             TextField("Email", text: $signUpViewModel.email)
             TextField("Username", text: $signUpViewModel.username)
-            TextField("Password", text: $signUpViewModel.password)
-            TextField("Confirm Password", text: $signUpViewModel.confirmPassword)
+            SecureField("Password", text: $signUpViewModel.password)
+            SecureField("Confirm Password", text: $signUpViewModel.confirmPassword)
             Button("Sign Up") {
                 self.signUpViewModel.signUp()
             }

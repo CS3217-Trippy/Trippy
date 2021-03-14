@@ -6,10 +6,15 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
 
-struct User: Identifiable, Codable {
+class User {
     var id: String
-    var email: String
-    var username: String
+    var email: String?
+    var username: String?
+    
+    init(id: String, email: String?, username: String?) {
+        self.id = id
+        self.email = email
+        self.username = username
+    }
 }

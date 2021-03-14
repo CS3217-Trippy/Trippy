@@ -17,7 +17,8 @@ struct TrippyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SignUpView()
+            ContentView()
+                .environmentObject(SessionStore())
         }
     }
 }
