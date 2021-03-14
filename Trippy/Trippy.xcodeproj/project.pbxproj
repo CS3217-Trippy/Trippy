@@ -34,9 +34,12 @@
 		01F4638425FD1F5900BBB8E9 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638325FD1F5900BBB8E9 /* DateExtensions.swift */; };
 		01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638925FD1FBE00BBB8E9 /* DateManager.swift */; };
 		01F4639225FD1FCB00BBB8E9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639125FD1FCB00BBB8E9 /* StringExtensions.swift */; };
-		01F4639725FD1FE200BBB8E9 /* BucketItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639625FD1FE200BBB8E9 /* BucketItemStorage.swift */; };
+		01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */; };
 		01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */; };
 		01F8435B25FDC6ED00080ED5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 01F8435A25FDC6ED00080ED5 /* URLImage */; };
+		01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436725FDDF4F00080ED5 /* BucketModel.swift */; };
+		01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */; };
+		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +84,11 @@
 		01F4638325FD1F5900BBB8E9 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		01F4638925FD1FBE00BBB8E9 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		01F4639125FD1FCB00BBB8E9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		01F4639625FD1FE200BBB8E9 /* BucketItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemStorage.swift; sourceTree = "<group>"; };
+		01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketListStorage.swift; sourceTree = "<group>"; };
 		01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
+		01F8436725FDDF4F00080ED5 /* BucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModel.swift; sourceTree = "<group>"; };
+		01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListStorage.swift; sourceTree = "<group>"; };
+		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
+				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,7 +234,9 @@
 		01F4638825FD1F6C00BBB8E9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				01F4639625FD1FE200BBB8E9 /* BucketItemStorage.swift */,
+				01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */,
+				01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */,
+				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -387,14 +396,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
+				01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */,
+				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* ColorExtensions.swift in Sources */,
+				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				01F4638425FD1F5900BBB8E9 /* DateExtensions.swift in Sources */,
 				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
-				01F4639725FD1FE200BBB8E9 /* BucketItemStorage.swift in Sources */,
+				01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */,
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,

@@ -1,23 +1,17 @@
 import Combine
 
 final class BucketListViewModel : ObservableObject {
-    @Published var storage = BucketItemStorage()
-    @Published var bucketViewModels: [BucketItemViewModel] = []
+    @Published var bucketModel: BucketModel
+    @Published var bucketItemViewModels: [BucketItemViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
     
-    init() {
-        mapDbToBucketItem()
-    }
-    
-    func mapDbToBucketItem() {
-        storage.$bucketItems.map{bucket in
-            bucket.map(BucketItemViewModel.init)
-        }.assign(to: \.bucketViewModels, on: self)
+    init(bucketModel: BucketModel) {
+        self.bucketModel = bucketModel
+        bucketModel.$bucketItems.map { bucketItem in
+            bucketItem.map(BucketItemViewModel.init)
+        }
+        .assign(to: \.bucketItemViewModels, on: self)
         .store(in: &cancellables)
-    }
-    
-    func add(bucketItem: BucketItem) {
-        storage.add(item: bucketItem)
     }
     
 }
