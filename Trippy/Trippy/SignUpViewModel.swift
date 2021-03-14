@@ -10,6 +10,7 @@ import Combine
 
 final class SignUpViewModel: ObservableObject, Identifiable {
     @Published var email = ""
+    @Published var username = ""
     @Published var password = ""
     @Published var confirmPassword = ""
 

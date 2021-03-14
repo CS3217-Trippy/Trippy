@@ -27,6 +27,7 @@
 		7694E9D825FDEEA900AF9E63 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D725FDEEA900AF9E63 /* LoginViewModel.swift */; };
 		7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */; };
 		7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */; };
+		7694E9E725FE541700AF9E63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E625FE541700AF9E63 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		7694E9D725FDEEA900AF9E63 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		7694E9E625FE541700AF9E63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
 				017FD89D25F7B6E80064EF40 /* Preview Content */,
 				7694E9D225FDEDC700AF9E63 /* LoginView.swift */,
+				7694E9E625FE541700AF9E63 /* User.swift */,
 				7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
 				7694E9D725FDEEA900AF9E63 /* LoginViewModel.swift */,
@@ -313,6 +316,7 @@
 				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
+				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
