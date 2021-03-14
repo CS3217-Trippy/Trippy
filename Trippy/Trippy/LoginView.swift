@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct LoginView: View {
-    @ObservedObject var loginViewModel: LoginViewModel
+    @ObservedObject var loginViewModel = LoginViewModel()
 
     var body: some View {
-        Text(loginViewModel.email)
-            .padding()
+        VStack {
+            Text("LOGIN")
+            TextField("Email", text: $loginViewModel.email)
+            TextField("Password", text: $loginViewModel.password)
+            Button("Login") {
+                self.loginViewModel.login()
+            }
+        }
+        .padding()
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = LoginViewModel()
-        LoginView(loginViewModel: vm)
+        LoginView()
     }
 }

@@ -9,6 +9,10 @@ import SwiftUI
 import Combine
 
 final class LoginViewModel: ObservableObject, Identifiable {
-    var email = ""
-    var password = ""
+    @Published var email = ""
+    @Published var password = ""
+
+    func login() {
+        print(email,  password)
+    }
 }
