@@ -40,6 +40,8 @@
 		01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436725FDDF4F00080ED5 /* BucketModel.swift */; };
 		01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */; };
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
+		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
+		01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8438525FDED6400080ED5 /* MockBucketStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		01F8436725FDDF4F00080ED5 /* BucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModel.swift; sourceTree = "<group>"; };
 		01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListStorage.swift; sourceTree = "<group>"; };
 		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
+		01F8437D25FDED3800080ED5 /* BucketModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModelTests.swift; sourceTree = "<group>"; };
+		01F8438525FDED6400080ED5 /* MockBucketStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBucketStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,7 @@
 		017FD8A825F7B6E80064EF40 /* TrippyTests */ = {
 			isa = PBXGroup;
 			children = (
+				01F8437C25FDED2200080ED5 /* Model */,
 				01F4639C25FD202900BBB8E9 /* Util */,
 				017FD8A925F7B6E80064EF40 /* TrippyTests.swift */,
 				017FD8AB25F7B6E80064EF40 /* Info.plist */,
@@ -247,6 +252,15 @@
 				01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		01F8437C25FDED2200080ED5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				01F8437D25FDED3800080ED5 /* BucketModelTests.swift */,
+				01F8438525FDED6400080ED5 /* MockBucketStorage.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +434,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */,
+				01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */,
 				01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */,
+				01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

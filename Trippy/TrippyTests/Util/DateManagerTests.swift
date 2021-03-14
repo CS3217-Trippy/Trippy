@@ -21,7 +21,7 @@ class DateManagerTests: XCTestCase {
         XCTAssertEqual(manager.stringFromDate(date: dateOpt, withStyle: .full), "Friday, December 25, 2020")
     }
     
-    func testsfdwithformat() {
+    func testFormatDatewithformat() {
         guard let dateOpt = date else {
             fatalError()
         }
@@ -29,7 +29,7 @@ class DateManagerTests: XCTestCase {
         XCTAssertEqual(manager.stringFromDate(date: dateOpt, withFormat: "yyyy-MM-dd HH:mm"), "2020-12-25 15:30")
     }
     
-    func testsfromStr() {
+    func testFormatDateFromString() {
         guard let dateOpt = date else {
             fatalError()
         }
