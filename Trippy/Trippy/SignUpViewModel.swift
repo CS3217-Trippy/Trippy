@@ -18,7 +18,7 @@ final class SignUpViewModel: ObservableObject, Identifiable {
         if password != confirmPassword {
             return
         }
-        session.signUp(email: email, password: password) { (result, error) in
+        session.signUp(email: email, password: password, username: username) { (result, error) in
             if let error = error {
                 print(error)
                 return
