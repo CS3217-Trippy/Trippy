@@ -20,44 +20,23 @@ final class SessionStore: ObservableObject {
     }
     var username = ""
     var handle: AuthStateDidChangeListenerHandle?
-    let collectionPath = "users"
-    let store = Firestore.firestore()
+    var userStorage = UserStorage()
 
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
-                self.addUserToFirestore(user: user)
+                self.session = self.userStorage.retrieveUserFromFirestore(user: user, username: self.username)
+                self.username = self.session?.username ?? ""
             } else {
                 self.session = nil
+                self.username = ""
             }
-        }
-    }
-
-    private func addUserToFirestore(user: FirebaseAuth.User) {
-        let userRef = store.collection(collectionPath).document(user.uid)
-        userRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                print("here")
-                print(document)
-            } else {
-                return
-            }
-        }
-        guard let email = user.email else {
-            return
-        }
-        let userModel = User(id: user.uid, email: email, username: username)
-        do {
-            try store.collection(collectionPath).document(user.uid).setData(from: userModel)
-            self.session = userModel
-        } catch {
-            return
         }
     }
 
     func signUp(email: String, password: String, username: String, handler: @escaping AuthDataResultCallback) {
-        Auth.auth().createUser(withEmail: email, password: password, completion: handler)
         self.username = username
+        Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
 
     func signIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {

@@ -12,8 +12,8 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if session.session != nil {
-                Text("Welcome!")
+            if let user = session.session {
+                Text("Welcome! \(user.username)")
                 Button("SIGN OUT") {
                     self.session.signOut()
                 }

@@ -30,6 +30,7 @@
 		7694E9E725FE541700AF9E63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E625FE541700AF9E63 /* User.swift */; };
 		7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */; };
 		7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F025FEA73900AF9E63 /* StartUpView.swift */; };
+		7694E9F625FF34AF00AF9E63 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F525FF34AF00AF9E63 /* UserStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		7694E9E625FE541700AF9E63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		7694E9F025FEA73900AF9E63 /* StartUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpView.swift; sourceTree = "<group>"; };
+		7694E9F525FF34AF00AF9E63 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				7694E9E625FE541700AF9E63 /* User.swift */,
 				7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */,
 				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
+				7694E9F525FF34AF00AF9E63 /* UserStorage.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
 				7694E9D725FDEEA900AF9E63 /* LoginViewModel.swift */,
 			);
@@ -320,6 +323,7 @@
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LoginView.swift in Sources */,
 				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
+				7694E9F625FF34AF00AF9E63 /* UserStorage.swift in Sources */,
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */,
