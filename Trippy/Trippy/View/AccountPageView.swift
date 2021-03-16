@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AccountPageView: View {
     @EnvironmentObject var session: SessionStore
+    @ObservedObject var accountPageViewModel: AccountPageViewModel
 
     var body: some View {
         if let user = session.session {
@@ -19,6 +20,12 @@ struct AccountPageView: View {
                     .font(.headline)
                 VStack {
                     Text("USERNAME")
+                    TextField("Enter new username", text: $accountPageViewModel.username)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+                VStack {
+                    Text("EMAIL")
+                    Text(accountPageViewModel.email)
                 }
             }
             .padding()
@@ -35,7 +42,7 @@ struct AccountPageView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        AccountPageView()
+        AccountPageView(accountPageViewModel: AccountPageViewModel(session: setUser()))
             .environmentObject(setUser())
     }
 }

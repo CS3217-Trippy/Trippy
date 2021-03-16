@@ -28,8 +28,12 @@ struct ContentView: View {
                         NavigationLink(destination: FollowersListView(viewModel: FollowersListViewModel(user: user))) {
                             Text("FOLLOWERS")
                         }
+                        NavigationLink(destination: AccountPageView(
+                                        accountPageViewModel: AccountPageViewModel(session: session))) {
+                            Text("ACCOUNT PAGE")
+                        }
                         Button("SIGN OUT") {
-                            self.session.signOut()
+                            _ = self.session.signOut()
                         }
                     }
                 }.navigationViewStyle(StackNavigationViewStyle())

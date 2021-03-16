@@ -52,6 +52,7 @@
 		7694E9F625FF34AF00AF9E63 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F525FF34AF00AF9E63 /* UserStorage.swift */; };
 		7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA3726015AB700AF9E63 /* AccountPageView.swift */; };
 		7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA3C26015C1300AF9E63 /* CircleImageView.swift */; };
+		7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA412601608800AF9E63 /* AccountPageViewModel.swift */; };
 		DB927371260019A400B898AE /* FollowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FollowersListView.swift */; };
 		DB92737626001AEA00B898AE /* FollowersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FollowersListViewModel.swift */; };
 		DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */; };
@@ -118,6 +119,7 @@
 		7694E9F525FF34AF00AF9E63 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		7694EA3726015AB700AF9E63 /* AccountPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageView.swift; sourceTree = "<group>"; };
 		7694EA3C26015C1300AF9E63 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		7694EA412601608800AF9E63 /* AccountPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageViewModel.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FollowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListView.swift; sourceTree = "<group>"; };
 		DB92737526001AEA00B898AE /* FollowersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewModel.swift; sourceTree = "<group>"; };
 		DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersItemViewModel.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				DB92737526001AEA00B898AE /* FollowersListViewModel.swift */,
 				DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */,
 				7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */,
+				7694EA412601608800AF9E63 /* AccountPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
+				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
