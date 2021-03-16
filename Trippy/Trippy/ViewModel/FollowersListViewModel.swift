@@ -20,5 +20,6 @@ final class FollowersListViewModel: ObservableObject {
     func updateFollowersList() {
         self.followersList = followersListModel.followersList.map {
             FollowersItemViewModel(username: $0.username)
-        }    }
+        }
+    }
 }
