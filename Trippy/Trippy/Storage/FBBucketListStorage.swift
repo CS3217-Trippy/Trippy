@@ -30,7 +30,7 @@ final class FBBucketListStorage: BucketListStorage, ObservableObject {
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {
-        try store.collection(path).addDocument(from: bucketItem)
+        _ = try store.collection(path).addDocument(from: bucketItem)
     }
 
     func updateBucketItem(bucketItem: BucketItem) throws {

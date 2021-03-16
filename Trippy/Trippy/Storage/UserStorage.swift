@@ -8,46 +8,39 @@
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Combine
 
 final class UserStorage: ObservableObject {
+    @Published var user: User?
     let collectionPath = "users"
     let store = Firestore.firestore()
 
-    func retrieveUserFromFirestore(user: FirebaseAuth.User, username: String) -> User? {
+    func retrieveUserFromFirestore(user: FirebaseAuth.User, username: String) {
         let userRef = store.collection(collectionPath).document(user.uid)
         guard let email = user.email else {
-            return nil
+            return
         }
-        var userModel: User?
-        var documentExists = false
 
         // Checks if user already in database and retrieve
         userRef.getDocument { document, _ in
             if let document = document, document.exists {
-                documentExists = true
-                userModel = try? document.data(as: User.self)
+                self.user = try? document.data(as: User.self)
+            } else {
+                // Create user on database
+                let userModel = User(
+                    id: user.uid,
+                    email: email,
+                    username: username,
+                    followersId: [],
+                    followingId: []
+                )
+                do {
+                    try self.store.collection(self.collectionPath).document(user.uid).setData(from: userModel)
+                    self.user = userModel
+                } catch {
+                    return
+                }
             }
-        }
-        if documentExists {
-            return userModel
-        }
-
-        let followersId: [String] = ["o2ZQSwHWHiUePYxIBAq3mjSVp5m1"]
-        let followingId: [String] = []
-
-        // Create new user entry in database
-        userModel = User(
-            id: user.uid,
-            email: email,
-            username: username,
-            followersId: followersId,
-            followingId: followingId
-        )
-        do {
-            try store.collection(collectionPath).document(user.uid).setData(from: userModel)
-            return userModel
-        } catch {
-            return nil
         }
     }
 
