@@ -23,7 +23,6 @@
 		017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */; };
 		017FD8D525F7B9020064EF40 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D425F7B9020064EF40 /* FirebaseMessaging */; };
 		017FD8D725F7B9020064EF40 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D625F7B9020064EF40 /* FirebaseAuth */; };
-<<<<<<< HEAD
 		7694E9D325FDEDC700AF9E63 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D225FDEDC700AF9E63 /* LoginView.swift */; };
 		7694E9D825FDEEA900AF9E63 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D725FDEEA900AF9E63 /* LoginViewModel.swift */; };
 		7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */; };
@@ -39,7 +38,6 @@
 		DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */; };
 		DB927380260027F800B898AE /* FollowersListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737F260027F800B898AE /* FollowersListModel.swift */; };
 		DB92738526002AE300B898AE /* FollowersItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92738426002AE300B898AE /* FollowersItemView.swift */; };
-=======
 		01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */; };
 		01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */; };
 		01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4635225FD1E6200BBB8E9 /* CollectionView.swift */; };
@@ -59,7 +57,6 @@
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
 		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
 		01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8438525FDED6400080ED5 /* MockBucketStorage.swift */; };
->>>>>>> main
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -457,7 +454,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				7694E9D825FDEEA900AF9E63 /* LoginViewModel.swift in Sources */,
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LoginView.swift in Sources */,
@@ -475,7 +471,6 @@
 				DB9273672600190D00B898AE /* CollectionView.swift in Sources */,
 				DB92738526002AE300B898AE /* FollowersItemView.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
-=======
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
 				01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
@@ -493,7 +488,6 @@
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				01F4639225FD1FCB00BBB8E9 /* StringExtensions.swift in Sources */,
 				01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */,
->>>>>>> main
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
