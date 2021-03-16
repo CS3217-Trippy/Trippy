@@ -27,6 +27,9 @@ struct AccountPageView: View {
                     Text("EMAIL")
                     Text(accountPageViewModel.email)
                 }
+                Button("UPDATE ACCOUNT") {
+                    accountPageViewModel.updateUserData()
+                }
             }
             .padding()
         }

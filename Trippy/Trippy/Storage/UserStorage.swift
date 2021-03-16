@@ -44,6 +44,15 @@ final class UserStorage: ObservableObject {
         }
     }
 
+    func updateUserData(user: User) {
+        do {
+            try store.collection(collectionPath).document(user.id).setData(from: user)
+            self.user = user
+        } catch {
+            return
+        }
+    }
+
     func getFollowersList(user: User, handler: @escaping (User) -> Void) {
         user.followersId.forEach {id in
             var userModel: User?
