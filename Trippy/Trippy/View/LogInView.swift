@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-struct LoginView: View {
-    @ObservedObject var loginViewModel = LoginViewModel()
+struct LogInView: View {
+    @ObservedObject var logInViewModel = LogInViewModel()
     @EnvironmentObject var session: SessionStore
 
     var body: some View {
         VStack {
             Text("LOGIN")
-            TextField("Email", text: $loginViewModel.email)
-            SecureField("Password", text: $loginViewModel.password)
+            TextField("Email", text: $logInViewModel.email)
+            SecureField("Password", text: $logInViewModel.password)
             Button("Login") {
-                self.loginViewModel.login(session: session)
+                self.logInViewModel.login(session: session)
             }
         }
         .padding()
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LogInView()
     }
 }

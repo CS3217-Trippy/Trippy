@@ -40,7 +40,7 @@ final class SessionStore: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
 
-    func signIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+    func logIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
 

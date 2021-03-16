@@ -13,7 +13,7 @@ struct StartUpView: View {
             VStack(spacing: 10) {
                 Text("Trippy")
                     .font(.largeTitle)
-                NavigationLink(destination: LoginView()) {
+                NavigationLink(destination: LogInView()) {
                     Text("LOG IN")
                 }
                 NavigationLink(destination: SignUpView()) {
