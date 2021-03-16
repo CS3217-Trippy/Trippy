@@ -9,10 +9,10 @@ import Foundation
 
 final class FollowersListModel {
     var followersList: [User] = []
-    var storage: UserStorage = UserStorage()
-    var updateViewModel: () -> () = {}
+    var storage = UserStorage()
+    var updateViewModel: () -> Void = {}
 
-    func setUpdate(updateViewModel: @escaping () -> ()) {
+    func setUpdate(updateViewModel: @escaping () -> Void) {
         self.updateViewModel = updateViewModel
     }
 

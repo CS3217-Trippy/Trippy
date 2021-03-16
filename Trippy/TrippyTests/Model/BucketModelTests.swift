@@ -3,14 +3,13 @@ import XCTest
 
 class BucketModelTests: XCTestCase {
 
-    
     func testGet() {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 1)
     }
-    
+
     func testAdd() {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
@@ -20,10 +19,10 @@ class BucketModelTests: XCTestCase {
             let items = model.bucketItems
             XCTAssertEqual(items.count, 2)
         } catch {
-            fatalError()
+            fatalError("Should be able to add bucket item")
         }
     }
-    
+
     func testUpdate() {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
@@ -37,10 +36,10 @@ class BucketModelTests: XCTestCase {
             let items = model.bucketItems
             XCTAssertEqual(items.count, 2)
         } catch {
-            fatalError()
+            fatalError("Should be able to update bucket item")
         }
     }
-    
+
     func testRemove() {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
@@ -49,7 +48,7 @@ class BucketModelTests: XCTestCase {
         let items = model.bucketItems
         XCTAssertEqual(items.count, 0)
     }
-    
+
     private func constructBucketItem(id: String) -> BucketItem {
         let locationName = "location"
         let locationImage = "image"
@@ -63,6 +62,5 @@ class BucketModelTests: XCTestCase {
                           locationId: locationId,
                           dateAdded: dateAdded)
     }
-    
-    
+
 }

@@ -13,7 +13,7 @@ class User: Identifiable, Codable {
     var username: String
     var followersId: [String]
     var followingId: [String]
-    
+
     init(id: String, email: String, username: String, followersId: [String], followingId: [String]) {
         self.id = id
         self.email = email

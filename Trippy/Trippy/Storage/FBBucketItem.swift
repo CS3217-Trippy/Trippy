@@ -1,5 +1,5 @@
 import FirebaseFirestoreSwift
-import Foundation 
+import Foundation
 
 struct FBBucketItem: Identifiable, Codable {
     @DocumentID var id: String?

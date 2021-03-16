@@ -11,7 +11,11 @@ struct FollowersItemView: View {
     @ObservedObject var followersItemViewModel: FollowersItemViewModel
 
     var body: some View {
-        RectangularCard(width: UIScreen.main.bounds.width - 10, height: 210, viewBuilder: {Text(followersItemViewModel.username)})
+        RectangularCard(
+            width: UIScreen.main.bounds.width - 10,
+            height: 210,
+            viewBuilder: { Text(followersItemViewModel.username) }
+        )
     }
 }
 

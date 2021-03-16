@@ -23,7 +23,7 @@ final class SessionStore: ObservableObject {
     var userStorage = UserStorage()
 
     func listen() {
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
                 self.session = self.userStorage.retrieveUserFromFirestore(user: user, username: self.username)
                 self.username = self.session?.username ?? ""

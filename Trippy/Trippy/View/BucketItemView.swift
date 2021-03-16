@@ -24,7 +24,7 @@ struct BucketItemView: View {
                     Text(bucketItem.locationName)
                         .bold()
                         .font(.headline)
-                    Text("Added on " +  bucketItem.dateAdded.dateTimeStringFromDate)
+                    Text("Added on " + bucketItem.dateAdded.dateTimeStringFromDate)
                         .lineLimit(9)
                 }
                 Spacer()

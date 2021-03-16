@@ -22,10 +22,10 @@ final class UserStorage: ObservableObject {
         var documentExists = false
 
         // Checks if user already in database and retrieve
-        userRef.getDocument { (document, error) in
+        userRef.getDocument { document, _ in
             if let document = document, document.exists {
                 documentExists = true
-                userModel = try? document.data(as: User.self) ?? nil
+                userModel = try? document.data(as: User.self)
             }
         }
         if documentExists {
@@ -36,7 +36,13 @@ final class UserStorage: ObservableObject {
         let followingId: [String] = []
 
         // Create new user entry in database
-        userModel = User(id: user.uid, email: email, username: username, followersId: followersId, followingId: followingId)
+        userModel = User(
+            id: user.uid,
+            email: email,
+            username: username,
+            followersId: followersId,
+            followingId: followingId
+        )
         do {
             try store.collection(collectionPath).document(user.uid).setData(from: userModel)
             return userModel
@@ -45,14 +51,14 @@ final class UserStorage: ObservableObject {
         }
     }
 
-    func getFollowersList(user: User, handler: @escaping (User) -> ()) {
+    func getFollowersList(user: User, handler: @escaping (User) -> Void) {
         user.followersId.forEach {id in
             var userModel: User?
             store.collection(collectionPath)
             .document(id)
-            .getDocument { (document, error) in
+            .getDocument { document, _ in
                 if let document = document, document.exists {
-                    userModel = try? document.data(as: User.self) ?? nil
+                    userModel = try? document.data(as: User.self)
                     if let newUser = userModel {
                         handler(newUser)
                     }
