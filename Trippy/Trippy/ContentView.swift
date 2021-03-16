@@ -32,3 +32,11 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(SessionStore())
     }
 }
+//     @Environment(\.colorScheme) var colorScheme
+//     var body: some View {
+//         let storage = FBBucketListStorage()
+//         let model = BucketModel(storage: storage)
+//         let vm = BucketListViewModel(bucketModel: model)
+//         BucketListView(viewModel: vm).background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
+//         }
+// }
