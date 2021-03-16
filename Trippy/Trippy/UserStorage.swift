@@ -32,13 +32,33 @@ final class UserStorage: ObservableObject {
             return userModel
         }
 
+        let followersId: [String] = ["o2ZQSwHWHiUePYxIBAq3mjSVp5m1"]
+        let followingId: [String] = []
+
         // Create new user entry in database
-        userModel = User(id: user.uid, email: email, username: username)
+        userModel = User(id: user.uid, email: email, username: username, followersId: followersId, followingId: followingId)
         do {
             try store.collection(collectionPath).document(user.uid).setData(from: userModel)
             return userModel
         } catch {
             return nil
+        }
+    }
+
+    func getFollowersList(user: User, handler: @escaping (User) -> ()) {
+        user.followersId.forEach {id in
+            var userModel: User?
+            store.collection(collectionPath)
+            .document(id)
+            .getDocument { (document, error) in
+                if let document = document, document.exists {
+                    userModel = try? document.data(as: User.self) ?? nil
+                    if let newUser = userModel {
+                        handler(newUser)
+                    }
+                }
+            }
+
         }
     }
 }

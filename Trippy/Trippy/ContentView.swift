@@ -17,7 +17,7 @@ struct ContentView: View {
                 Button("SIGN OUT") {
                     self.session.signOut()
                 }
-            } else {
+                FollowersListView(viewModel: FollowersListViewModel(user: user))            } else {
                 StartUpView()
             }
         }.onAppear(perform: {
