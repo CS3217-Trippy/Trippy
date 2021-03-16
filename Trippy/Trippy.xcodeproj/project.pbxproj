@@ -187,22 +187,9 @@
 				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
 				017FD89925F7B6E80064EF40 /* ContentView.swift */,
-				7694E9F025FEA73900AF9E63 /* StartUpView.swift */,
 				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
 				017FD89D25F7B6E80064EF40 /* Preview Content */,
-				7694E9D225FDEDC700AF9E63 /* LoginView.swift */,
-				7694E9E625FE541700AF9E63 /* User.swift */,
-				7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */,
-				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
-				DB927370260019A400B898AE /* FollowersListView.swift */,
-				DB92738426002AE300B898AE /* FollowersItemView.swift */,
-				7694E9F525FF34AF00AF9E63 /* UserStorage.swift */,
-				DB92737F260027F800B898AE /* FollowersListModel.swift */,
-				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
-				DB92737526001AEA00B898AE /* FollowersListViewModel.swift */,
-				DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */,
-				7694E9D725FDEEA900AF9E63 /* LoginViewModel.swift */,
 			);
 			path = Trippy;
 			sourceTree = "<group>";
@@ -242,6 +229,11 @@
 				01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */,
 				01F4635225FD1E6200BBB8E9 /* CollectionView.swift */,
 				01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */,
+				7694E9D225FDEDC700AF9E63 /* LoginView.swift */,
+				7694E9F025FEA73900AF9E63 /* StartUpView.swift */,
+				7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */,
+				DB927370260019A400B898AE /* FollowersListView.swift */,
+				DB92738426002AE300B898AE /* FollowersItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,6 +243,8 @@
 			children = (
 				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
 				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
+				7694E9E625FE541700AF9E63 /* User.swift */,
+				DB92737F260027F800B898AE /* FollowersListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,6 +254,11 @@
 			children = (
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
+				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
+				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
+				DB92737526001AEA00B898AE /* FollowersListViewModel.swift */,
+				DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */,
+				7694E9D725FDEEA900AF9E63 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -278,6 +277,7 @@
 		01F4638825FD1F6C00BBB8E9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				7694E9F525FF34AF00AF9E63 /* UserStorage.swift */,
 				01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */,
 				01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */,
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
