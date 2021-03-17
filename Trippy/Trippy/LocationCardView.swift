@@ -9,12 +9,34 @@ import SwiftUI
 import CoreLocation
 
 struct LocationCardView: View {
-    var locationCardViewModel: LocationCardViewModel
+    @ObservedObject var viewModel: LocationCardViewModel
     
     var body: some View {
-        VStack {
-            Image("Placeholder")
-            Text(locationCardViewModel.location.name)
+        NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location))) {
+            LocationRectangularCard {
+                VStack {
+                    Image("Placeholder")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Sample Category Name")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                            Text(viewModel.title)
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundColor(.primary)
+                            Text(viewModel.caption)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .layoutPriority(100)
+                        Spacer()
+                    }
+                    .padding()
+                }
+            }
         }
     }
 }
@@ -23,6 +45,6 @@ struct LocationCardView_Previews: PreviewProvider {
     static var previews: some View {
         let testLocation = PreviewLocations.locations[0]
         let locationCardViewModel = LocationCardViewModel(location: testLocation)
-        LocationCardView(locationCardViewModel: locationCardViewModel)
+        LocationCardView(viewModel: locationCardViewModel)
     }
 }

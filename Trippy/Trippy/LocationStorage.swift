@@ -13,5 +13,4 @@ protocol LocationStorage {
     func updateLocation(_ location: Location) throws
     
     func removeLocation(_ location: Location)
-    
 }

@@ -11,7 +11,7 @@ import CoreLocation
 
 final class FirebaseLocationStorage: LocationStorage {
     
-    private let path = "Locations"
+    private let path = "locations"
     private let store = Firestore.firestore()
     
     func getLocations() -> [Location] {

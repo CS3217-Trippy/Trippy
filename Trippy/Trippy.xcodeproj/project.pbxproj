@@ -23,7 +23,19 @@
 		017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */; };
 		017FD8D525F7B9020064EF40 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D425F7B9020064EF40 /* FirebaseMessaging */; };
 		017FD8D725F7B9020064EF40 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D625F7B9020064EF40 /* FirebaseAuth */; };
+		714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */; };
+		714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */; };
+		714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */; };
+		714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */; };
 		714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */; };
+		714AF4FC25FD1F4100C0EFFA /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF4FB25FD1F4100C0EFFA /* CollectionView.swift */; };
+		714AF50125FD205400C0EFFA /* LocationRectangularCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF50025FD205400C0EFFA /* LocationRectangularCard.swift */; };
+		714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */; };
+		714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B74902600FD8700ADF2FE /* AddLocationMapView.swift */; };
+		714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */; };
+		714BA80926019D9000E69470 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80826019D9000E69470 /* AddLocationView.swift */; };
+		714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80D2601A61500E69470 /* AddLocationViewModel.swift */; };
+		714DFD4B26006CF800711204 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714DFD4A26006CF800711204 /* LocationPin.swift */; };
 		7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152017325FCB5D300F0ABAC /* LocationListView.swift */; };
 		7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152017825FCB91D00F0ABAC /* LocationModel.swift */; };
 		7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */; };
@@ -35,7 +47,7 @@
 		71565A8925FA12500070256A /* FBLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A8825FA12500070256A /* FBLocation.swift */; };
 		71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972725F879680083C6F5 /* LocationStorage.swift */; };
 		71FB972D25F87C420083C6F5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972C25F87C420083C6F5 /* Location.swift */; };
-		71FB973225F893750083C6F5 /* MapInterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB973125F893750083C6F5 /* MapInterfaceView.swift */; };
+		71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB973125F893750083C6F5 /* LocationMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +81,19 @@
 		017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyUITests.swift; sourceTree = "<group>"; };
 		017FD8B625F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
+		714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
+		714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapView.swift; sourceTree = "<group>"; };
+		714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
 		714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocations.swift; sourceTree = "<group>"; };
+		714AF4FB25FD1F4100C0EFFA /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		714AF50025FD205400C0EFFA /* LocationRectangularCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRectangularCard.swift; sourceTree = "<group>"; };
+		714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapCoordinator.swift; sourceTree = "<group>"; };
+		714B74902600FD8700ADF2FE /* AddLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapView.swift; sourceTree = "<group>"; };
+		714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapCoordinator.swift; sourceTree = "<group>"; };
+		714BA80826019D9000E69470 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
+		714BA80D2601A61500E69470 /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
+		714DFD4A26006CF800711204 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
 		7152017325FCB5D300F0ABAC /* LocationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListView.swift; sourceTree = "<group>"; };
 		7152017825FCB91D00F0ABAC /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
@@ -81,7 +105,7 @@
 		71565A8825FA12500070256A /* FBLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocation.swift; sourceTree = "<group>"; };
 		71FB972725F879680083C6F5 /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
 		71FB972C25F87C420083C6F5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		71FB973125F893750083C6F5 /* MapInterfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInterfaceView.swift; sourceTree = "<group>"; };
+		71FB973125F893750083C6F5 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,16 +169,28 @@
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
 				017FD89925F7B6E80064EF40 /* ContentView.swift */,
 				71FB972725F879680083C6F5 /* LocationStorage.swift */,
+				71565A7E25F9EF3D0070256A /* FirebaseLocationStorage.swift */,
 				71565A8825FA12500070256A /* FBLocation.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
-				71565A7E25F9EF3D0070256A /* FirebaseLocationStorage.swift */,
 				71FB972C25F87C420083C6F5 /* Location.swift */,
 				7152017825FCB91D00F0ABAC /* LocationModel.swift */,
 				7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */,
-				7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */,
-				71FB973125F893750083C6F5 /* MapInterfaceView.swift */,
-				7152018725FCD4EB00F0ABAC /* LocationCardView.swift */,
 				7152017325FCB5D300F0ABAC /* LocationListView.swift */,
+				7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */,
+				7152018725FCD4EB00F0ABAC /* LocationCardView.swift */,
+				714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */,
+				714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */,
+				714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */,
+				71FB973125F893750083C6F5 /* LocationMapView.swift */,
+				714BA80D2601A61500E69470 /* AddLocationViewModel.swift */,
+				714BA80826019D9000E69470 /* AddLocationView.swift */,
+				714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */,
+				714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */,
+				714B74902600FD8700ADF2FE /* AddLocationMapView.swift */,
+				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
+				714DFD4A26006CF800711204 /* LocationPin.swift */,
+				714AF4FB25FD1F4100C0EFFA /* CollectionView.swift */,
+				714AF50025FD205400C0EFFA /* LocationRectangularCard.swift */,
 				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
 				017FD89D25F7B6E80064EF40 /* Preview Content */,
@@ -335,18 +371,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
+				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				71565A8925FA12500070256A /* FBLocation.swift in Sources */,
 				71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
+				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
 				7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */,
+				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
+				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
+				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
 				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
-				71FB973225F893750083C6F5 /* MapInterfaceView.swift in Sources */,
+				714AF4FC25FD1F4100C0EFFA /* CollectionView.swift in Sources */,
+				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
+				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
 				71565A7F25F9EF3D0070256A /* FirebaseLocationStorage.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
+				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
+				714AF50125FD205400C0EFFA /* LocationRectangularCard.swift in Sources */,
+				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
+				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
+				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */,
 			);

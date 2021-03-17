@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct LocationListView: View {
-    @ObservedObject var locationListViewModel: LocationListViewModel
-    
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    @ObservedObject var viewModel: LocationListViewModel
+    let viewTitle = "Locations"
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(locationListViewModel.locationCardViewModels) { locationCardViewModel in
-                    LocationCardView(locationCardViewModel: locationCardViewModel)
-                    
+        NavigationView {
+            VStack(alignment: .leading) {
+                HStack {
+                    NavigationLink(
+                        destination: LocationMapView(viewModel: .init(locationModel: viewModel.locationModel))) {
+                        Text("Map")
+                    }
                 }
+                .padding()
+                CollectionView(data:$viewModel.locationCardViewModels ,cols: 2, spacing: 20) {
+                    locationCardViewModel in
+                        LocationCardView(viewModel: locationCardViewModel)
+                        
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            .navigationBarTitle(viewTitle)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -31,6 +37,6 @@ struct LocationListView_Previews: PreviewProvider {
     static var previews: some View {
         let previewModel = LocationModel(storage: PreviewLocationStorage())
         let locationListViewModel = LocationListViewModel(locationModel: previewModel)
-        LocationListView(locationListViewModel: locationListViewModel)
+        return LocationListView(viewModel: locationListViewModel)
     }
 }

@@ -31,4 +31,5 @@ class LocationModel: ObservableObject {
         locations.removeAll { $0.id == updatedLocation.id }
         locations.append(updatedLocation)
     }
+    
 }
