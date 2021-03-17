@@ -15,6 +15,7 @@ class DisplayLocationsMapCoordinator: NSObject, MKMapViewDelegate, CLLocationMan
         self.parent = parent
         super.init()
         loadPins()
+        self.parent.map.removeAnnotations(self.parent.map.annotations)
         self.parent.map.addAnnotations(locationPins)
     }
     

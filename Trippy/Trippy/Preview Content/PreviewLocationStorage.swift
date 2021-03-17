@@ -6,10 +6,17 @@
 //
 
 import CoreLocation
+import Combine
 
 class PreviewLocationStorage: LocationStorage {
-    func getLocations() -> [Location] {
-        return PreviewLocations.locations
+    var locations: Published<[Location]>.Publisher {
+        $_locations
+    }
+    
+    @Published private var _locations:[Location] = []
+    
+    func fetchLocations() {
+        _locations = PreviewLocations.locations
     }
     
     func addLocation(_ location: Location) throws {

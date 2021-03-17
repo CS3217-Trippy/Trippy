@@ -18,6 +18,8 @@ struct AddLocationMapView: UIViewRepresentable {
         map.delegate = context.coordinator
         locationManager.delegate = context.coordinator
         map.showsUserLocation = true
+        let tapWithinMap = UITapGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.addPin(sender:)))
+        map.addGestureRecognizer(tapWithinMap)
         return map
     }
     

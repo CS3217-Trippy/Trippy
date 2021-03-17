@@ -10,26 +10,26 @@ import FirebaseFirestoreSwift
 import CoreLocation
 
 final class FirebaseLocationStorage: LocationStorage {
-    
+    var locations: Published<[Location]>.Publisher {
+        $_locations
+    }
+    @Published private var _locations: [Location] = []
     private let path = "locations"
     private let store = Firestore.firestore()
     
-    func getLocations() -> [Location] {
-        var locations: [Location] = []
+    func fetchLocations() {
         store.collection(path).getDocuments { (snapshot, error) in
             if let error = error {
                 print(error)
                 return
             }
-            locations = snapshot?.documents.compactMap {
+            self._locations = snapshot?.documents.compactMap {
                 guard let fbLocation = try? $0.data(as: FBLocation.self) else {
                     return nil
                 }
                 return self.convertFBLocationToLocation(fbLocation)
             } ?? []
         }
-        
-        return locations
     }
     
     func addLocation(_ location: Location) throws {
@@ -39,6 +39,7 @@ final class FirebaseLocationStorage: LocationStorage {
         } catch {
             throw StorageError.saveFailure
         }
+        _locations.append(location)
     }
     
     func updateLocation(_ location: Location) throws {
@@ -49,6 +50,8 @@ final class FirebaseLocationStorage: LocationStorage {
         } catch {
             throw StorageError.saveFailure
         }
+        _locations.removeAll { $0.id == location.id }
+        _locations.append(location)
     }
     
     func removeLocation(_ location: Location) {
@@ -59,6 +62,7 @@ final class FirebaseLocationStorage: LocationStorage {
                 print("Unable to remove location: \(error.localizedDescription)")
             }
         }
+        _locations.removeAll { $0.id == location.id }
     }
     
     private func convertLocationToFBLocation(_ location: Location) -> FBLocation {

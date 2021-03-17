@@ -32,6 +32,7 @@ struct LocationDetailView: View {
                         .font(.body)
                         .foregroundColor(.primary)
                 }
+                Spacer()
             }
             .padding()
         }

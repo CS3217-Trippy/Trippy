@@ -18,6 +18,11 @@ struct LocationListView: View {
                         destination: LocationMapView(viewModel: .init(locationModel: viewModel.locationModel))) {
                         Text("Map")
                     }
+                    Spacer()
+                    NavigationLink(
+                        destination: AddLocationView(viewModel: .init(locationModel: viewModel.locationModel))) {
+                        Text("Submit new location")
+                    }
                 }
                 .padding()
                 CollectionView(data:$viewModel.locationCardViewModels ,cols: 2, spacing: 20) {

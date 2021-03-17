@@ -5,8 +5,12 @@
 //  Created by QL on 10/3/21.
 //
 
+import Combine
+
 protocol LocationStorage {
-    func getLocations() -> [Location]
+    var locations: Published<[Location]>.Publisher { get }
+    
+    func fetchLocations()
     
     func addLocation(_ location: Location) throws
     

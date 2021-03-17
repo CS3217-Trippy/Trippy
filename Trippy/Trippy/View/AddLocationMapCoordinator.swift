@@ -13,8 +13,7 @@ class AddLocationMapCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerD
     init(parent: AddLocationMapView) {
         self.parent = parent
         super.init()
-        let tapWithinMap = UITapGestureRecognizer(target: parent.map, action: #selector(addPin(sender:)))
-        self.parent.map.addGestureRecognizer(tapWithinMap)
+        self.parent.map.removeAnnotations(self.parent.map.annotations)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

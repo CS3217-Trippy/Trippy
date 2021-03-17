@@ -15,7 +15,8 @@ struct AddLocationView: View {
     @State private var showLocationAlert = false
     @State private var locationName: String = ""
     @State private var locationDescription: String = ""
-    let viewModel = AddLocationViewModel()
+    @State private var showStorageError = false
+    let viewModel: AddLocationViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -43,8 +44,17 @@ struct AddLocationView: View {
                     guard let coordinate = map.annotations.first?.coordinate else {
                         return
                     }
-                    viewModel.saveForm(name: locationName, description: locationDescription, coordinates: coordinate)
+                    do {
+                        try viewModel.saveForm(name: locationName, description: locationDescription, coordinates: coordinate)
+                    } catch {
+                        showStorageError = true
+                    }
                     presentationMode.wrappedValue.dismiss()
+                }
+                .alert(isPresented: $showStorageError) {
+                    Alert(
+                        title: Text("An error occurred while attempting to save the information.")
+                    )
                 }
             }
             .disabled(map.annotations.isEmpty || !viewModel.isValidName(name: locationName) || !viewModel.isValidDescription(description: locationDescription))
@@ -54,6 +64,7 @@ struct AddLocationView: View {
 
 struct AddLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationView()
+        let locationModel = LocationModel(storage: PreviewLocationStorage())
+        AddLocationView(viewModel: .init(locationModel: locationModel))
     }
 }

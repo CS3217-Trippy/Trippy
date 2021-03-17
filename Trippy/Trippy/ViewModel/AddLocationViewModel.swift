@@ -9,7 +9,11 @@
 import CoreLocation
 
 class AddLocationViewModel {
-
+    let locationModel: LocationModel
+    
+    init(locationModel: LocationModel) {
+        self.locationModel=locationModel
+    }
     
     func isValidName(name: String) -> Bool {
         return !name.isEmpty && name.count < 50
@@ -19,7 +23,7 @@ class AddLocationViewModel {
         return !description.isEmpty && description.count < 500
     }
     
-    func saveForm(name: String, description: String, coordinates: CLLocationCoordinate2D) {
-        
+    func saveForm(name: String, description: String, coordinates: CLLocationCoordinate2D) throws {
+        try locationModel.addLocation(location: .init(id: nil, coordinates: coordinates, name: name, description: description))
     }
 }
