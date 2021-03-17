@@ -15,7 +15,7 @@ struct TrippyApp: App {
     let locationListViewModel: LocationListViewModel
     init() {
         FirebaseApp.configure()
-        locationStorage = FirebaseLocationStorage()
+        locationStorage = FBLocationStorage()
         locationModel = LocationModel(storage: locationStorage)
         locationListViewModel = LocationListViewModel(locationModel: locationModel)
     }

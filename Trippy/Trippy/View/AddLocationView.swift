@@ -31,6 +31,7 @@ struct AddLocationView: View {
                 .onAppear {
                     self.locationManager.requestAlwaysAuthorization()
                 }
+                .padding()
                 .alert(isPresented: $showLocationAlert) {
                     Alert(
                         title: Text("Unable to retrieve current location"),

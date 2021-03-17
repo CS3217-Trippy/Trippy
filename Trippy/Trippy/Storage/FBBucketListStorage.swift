@@ -8,13 +8,9 @@ final class FBBucketListStorage : BucketListStorage, ObservableObject {
     }
     private let path = "bucketItems"
     private let store = Firestore.firestore()
-    @Published var bucketItems: [BucketItem] = []
+    @Published private var bucketItems: [BucketItem] = []
     
-    init() {
-        getBucketItems()
-    }
-    
-    func getBucketItems() {
+    func fetchBucketItems() {
         store.collection(path).getDocuments{(query, error) in
             if error != nil {
                 return
@@ -30,18 +26,22 @@ final class FBBucketListStorage : BucketListStorage, ObservableObject {
     }
     
     func addBucketItem(bucketItem: BucketItem) throws {
-        try store.collection(path).addDocument(from:bucketItem)
+        _ = try store.collection(path).addDocument(from:bucketItem)
+        bucketItems.append(bucketItem)
     }
     
     func updateBucketItem(bucketItem: BucketItem) throws {
         let fbLocation = convertBucketItemToFBBucketItem(bucketItem: bucketItem)
         let locationId = bucketItem.id
         try store.collection(path).document(locationId).setData(from: fbLocation)
+        bucketItems.removeAll { $0.id == bucketItem.id }
+        bucketItems.append(bucketItem)
     }
     
     func removeBucketItem(bucketItem: BucketItem) {
         let locationId = bucketItem.id
         store.collection(path).document(locationId).delete()
+        bucketItems.removeAll { $0.id == bucketItem.id }
     }
     
     private func convertBucketItemToFBBucketItem(bucketItem: BucketItem) -> FBBucketItem {

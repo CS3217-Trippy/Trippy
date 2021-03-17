@@ -1,5 +1,5 @@
 //
-//  LocationStorageManager.swift
+//  FBLocationStorage.swift
 //  Trippy
 //
 //  Created by QL on 11/3/21.
@@ -9,7 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import CoreLocation
 
-final class FirebaseLocationStorage: LocationStorage {
+final class FBLocationStorage: LocationStorage {
     var locations: Published<[Location]>.Publisher {
         $_locations
     }

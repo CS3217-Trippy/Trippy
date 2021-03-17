@@ -16,6 +16,10 @@ class LocationModel: ObservableObject {
         self.storage = storage
         storage.locations.assign(to: \.locations, on: self)
             .store(in: &cancellables)
+        fetchLocations()
+    }
+    
+    func fetchLocations() {
         storage.fetchLocations()
     }
     

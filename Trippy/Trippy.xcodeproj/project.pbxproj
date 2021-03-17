@@ -60,7 +60,7 @@
 		7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */; };
 		7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018725FCD4EB00F0ABAC /* LocationCardView.swift */; };
 		7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018C25FCEE6700F0ABAC /* PreviewLocationStorage.swift */; };
-		71565A7F25F9EF3D0070256A /* FirebaseLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A7E25F9EF3D0070256A /* FirebaseLocationStorage.swift */; };
+		71565A7F25F9EF3D0070256A /* FBLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A7E25F9EF3D0070256A /* FBLocationStorage.swift */; };
 		71565A8425F9F4F40070256A /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A8325F9F4F40070256A /* StorageError.swift */; };
 		71565A8925FA12500070256A /* FBLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A8825FA12500070256A /* FBLocation.swift */; };
 		71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972725F879680083C6F5 /* LocationStorage.swift */; };
@@ -135,7 +135,7 @@
 		7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardViewModel.swift; sourceTree = "<group>"; };
 		7152018725FCD4EB00F0ABAC /* LocationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardView.swift; sourceTree = "<group>"; };
 		7152018C25FCEE6700F0ABAC /* PreviewLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocationStorage.swift; sourceTree = "<group>"; };
-		71565A7E25F9EF3D0070256A /* FirebaseLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLocationStorage.swift; sourceTree = "<group>"; };
+		71565A7E25F9EF3D0070256A /* FBLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocationStorage.swift; sourceTree = "<group>"; };
 		71565A8325F9F4F40070256A /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 		71565A8825FA12500070256A /* FBLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocation.swift; sourceTree = "<group>"; };
 		71FB972725F879680083C6F5 /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 				01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */,
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
 				71FB972725F879680083C6F5 /* LocationStorage.swift */,
-				71565A7E25F9EF3D0070256A /* FirebaseLocationStorage.swift */,
+				71565A7E25F9EF3D0070256A /* FBLocationStorage.swift */,
 				71565A8825FA12500070256A /* FBLocation.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
 			);
@@ -509,7 +509,7 @@
 				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
-				71565A7F25F9EF3D0070256A /* FirebaseLocationStorage.swift in Sources */,
+				71565A7F25F9EF3D0070256A /* FBLocationStorage.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,

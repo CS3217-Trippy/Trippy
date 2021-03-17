@@ -6,12 +6,13 @@ class BucketModel : ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     init(storage: BucketListStorage) {
         self.storage = storage
-        getBucketItems()
-    }
-
-    func getBucketItems() {
         storage.bucketList.assign(to: \.bucketItems, on: self)
             .store(in: &cancellables)
+        fetchBucketItems()
+    }
+
+    func fetchBucketItems() {
+        storage.fetchBucketItems()
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {
