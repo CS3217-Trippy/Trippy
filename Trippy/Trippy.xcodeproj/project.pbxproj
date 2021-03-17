@@ -23,6 +23,25 @@
 		017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */; };
 		017FD8D525F7B9020064EF40 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D425F7B9020064EF40 /* FirebaseMessaging */; };
 		017FD8D725F7B9020064EF40 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D625F7B9020064EF40 /* FirebaseAuth */; };
+		01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */; };
+		01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */; };
+		01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4635225FD1E6200BBB8E9 /* CollectionView.swift */; };
+		01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */; };
+		01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4636025FD1EA200BBB8E9 /* BucketItem.swift */; };
+		01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */; };
+		01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */; };
+		01F4637C25FD1F4900BBB8E9 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637B25FD1F4900BBB8E9 /* ColorExtensions.swift */; };
+		01F4638425FD1F5900BBB8E9 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638325FD1F5900BBB8E9 /* DateExtensions.swift */; };
+		01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638925FD1FBE00BBB8E9 /* DateManager.swift */; };
+		01F4639225FD1FCB00BBB8E9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639125FD1FCB00BBB8E9 /* StringExtensions.swift */; };
+		01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */; };
+		01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */; };
+		01F8435B25FDC6ED00080ED5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 01F8435A25FDC6ED00080ED5 /* URLImage */; };
+		01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436725FDDF4F00080ED5 /* BucketModel.swift */; };
+		01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */; };
+		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
+		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
+		01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8438525FDED6400080ED5 /* MockBucketStorage.swift */; };
 		714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */; };
 		714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */; };
 		714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */; };
@@ -81,6 +100,24 @@
 		017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyUITests.swift; sourceTree = "<group>"; };
 		017FD8B625F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemView.swift; sourceTree = "<group>"; };
+		01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListView.swift; sourceTree = "<group>"; };
+		01F4635225FD1E6200BBB8E9 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularCard.swift; sourceTree = "<group>"; };
+		01F4636025FD1EA200BBB8E9 /* BucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItem.swift; sourceTree = "<group>"; };
+		01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemViewModel.swift; sourceTree = "<group>"; };
+		01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
+		01F4637B25FD1F4900BBB8E9 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		01F4638325FD1F5900BBB8E9 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		01F4638925FD1FBE00BBB8E9 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		01F4639125FD1FCB00BBB8E9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketListStorage.swift; sourceTree = "<group>"; };
+		01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
+		01F8436725FDDF4F00080ED5 /* BucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModel.swift; sourceTree = "<group>"; };
+		01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListStorage.swift; sourceTree = "<group>"; };
+		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
+		01F8437D25FDED3800080ED5 /* BucketModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModelTests.swift; sourceTree = "<group>"; };
+		01F8438525FDED6400080ED5 /* MockBucketStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBucketStorage.swift; sourceTree = "<group>"; };
 		714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapView.swift; sourceTree = "<group>"; };
@@ -121,6 +158,7 @@
 				017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */,
 				017FD8D125F7B9020064EF40 /* FirebaseFunctions in Frameworks */,
 				017FD8CF25F7B9020064EF40 /* FirebaseStorage in Frameworks */,
+				01F8435B25FDC6ED00080ED5 /* URLImage in Frameworks */,
 				017FD8CB25F7B9020064EF40 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +203,11 @@
 		017FD89625F7B6E80064EF40 /* Trippy */ = {
 			isa = PBXGroup;
 			children = (
+				01F4634425FD1E3400BBB8E9 /* View */,
+				01F4636F25FD1ECB00BBB8E9 /* ViewModel */,
+				01F4635F25FD1E9300BBB8E9 /* Model */,
+				01F4638825FD1F6C00BBB8E9 /* Storage */,
+				01F4637A25FD1F3C00BBB8E9 /* Util */,
 				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
 				017FD89925F7B6E80064EF40 /* ContentView.swift */,
@@ -211,6 +254,8 @@
 		017FD8A825F7B6E80064EF40 /* TrippyTests */ = {
 			isa = PBXGroup;
 			children = (
+				01F8437C25FDED2200080ED5 /* Model */,
+				01F4639C25FD202900BBB8E9 /* Util */,
 				017FD8A925F7B6E80064EF40 /* TrippyTests.swift */,
 				017FD8AB25F7B6E80064EF40 /* Info.plist */,
 			);
@@ -224,6 +269,73 @@
 				017FD8B625F7B6E80064EF40 /* Info.plist */,
 			);
 			path = TrippyUITests;
+			sourceTree = "<group>";
+		};
+		01F4634425FD1E3400BBB8E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */,
+				01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */,
+				01F4635225FD1E6200BBB8E9 /* CollectionView.swift */,
+				01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01F4635F25FD1E9300BBB8E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
+				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		01F4636F25FD1ECB00BBB8E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
+				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01F4637A25FD1F3C00BBB8E9 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				01F4637B25FD1F4900BBB8E9 /* ColorExtensions.swift */,
+				01F4638325FD1F5900BBB8E9 /* DateExtensions.swift */,
+				01F4638925FD1FBE00BBB8E9 /* DateManager.swift */,
+				01F4639125FD1FCB00BBB8E9 /* StringExtensions.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		01F4638825FD1F6C00BBB8E9 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */,
+				01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */,
+				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		01F4639C25FD202900BBB8E9 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		01F8437C25FDED2200080ED5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				01F8437D25FDED3800080ED5 /* BucketModelTests.swift */,
+				01F8438525FDED6400080ED5 /* MockBucketStorage.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +364,7 @@
 				017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */,
 				017FD8D425F7B9020064EF40 /* FirebaseMessaging */,
 				017FD8D625F7B9020064EF40 /* FirebaseAuth */,
+				01F8435A25FDC6ED00080ED5 /* URLImage */,
 			);
 			productName = Trippy;
 			productReference = 017FD89425F7B6E80064EF40 /* Trippy.app */;
@@ -326,6 +439,7 @@
 			mainGroup = 017FD88B25F7B6E70064EF40;
 			packageReferences = (
 				017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				01F8435925FDC6ED00080ED5 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 017FD89525F7B6E80064EF40 /* Products */;
 			projectDirPath = "";
@@ -370,6 +484,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
+				01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */,
+				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
+				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
+				01F4637C25FD1F4900BBB8E9 /* ColorExtensions.swift in Sources */,
+				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
+				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
+				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
+				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
+				01F4638425FD1F5900BBB8E9 /* DateExtensions.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				71565A8925FA12500070256A /* FBLocation.swift in Sources */,
@@ -381,6 +505,9 @@
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
 				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
 				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
+				01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */,
+				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
+				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
 				714AF4FC25FD1F4100C0EFFA /* CollectionView.swift in Sources */,
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
 				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
@@ -396,6 +523,8 @@
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
 				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
+				01F4639225FD1FCB00BBB8E9 /* StringExtensions.swift in Sources */,
+				01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */,
 				7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +534,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */,
+				01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */,
+				01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */,
+				01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +852,14 @@
 				minimumVersion = 7.7.0;
 			};
 		};
+		01F8435925FDC6ED00080ED5 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -767,6 +907,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		01F8435A25FDC6ED00080ED5 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01F8435925FDC6ED00080ED5 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

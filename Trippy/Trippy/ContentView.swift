@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
+        let storage = FBBucketListStorage()
+        let model = BucketModel(storage: storage)
+        let vm = BucketListViewModel(bucketModel: model)
+        BucketListView(viewModel: vm).background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
+        }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+

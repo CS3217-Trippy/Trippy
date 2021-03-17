@@ -1,0 +1,71 @@
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import Combine
+
+final class FBBucketListStorage : BucketListStorage, ObservableObject {
+    var bucketList: Published<[BucketItem]>.Publisher {
+        $bucketItems
+    }
+    private let path = "bucketItems"
+    private let store = Firestore.firestore()
+    @Published var bucketItems: [BucketItem] = []
+    
+    init() {
+        getBucketItems()
+    }
+    
+    func getBucketItems() {
+        store.collection(path).getDocuments{(query, error) in
+            if error != nil {
+                return
+            }
+            self.bucketItems = query?.documents.compactMap{
+                let fbBucket =  try? $0.data(as: FBBucketItem.self) ?? nil
+                guard let bucket = fbBucket else {
+                    return nil
+                }
+                return self.convertFBBucketListToBucketList(bucketItem: bucket)
+            } ?? []
+        }
+    }
+    
+    func addBucketItem(bucketItem: BucketItem) throws {
+        try store.collection(path).addDocument(from:bucketItem)
+    }
+    
+    func updateBucketItem(bucketItem: BucketItem) throws {
+        let fbLocation = convertBucketItemToFBBucketItem(bucketItem: bucketItem)
+        let locationId = bucketItem.id
+        try store.collection(path).document(locationId).setData(from: fbLocation)
+    }
+    
+    func removeBucketItem(bucketItem: BucketItem) {
+        let locationId = bucketItem.id
+        store.collection(path).document(locationId).delete()
+    }
+    
+    private func convertBucketItemToFBBucketItem(bucketItem: BucketItem) -> FBBucketItem {
+        return FBBucketItem(id: bucketItem.id,
+                          locationName: bucketItem.locationName,
+                          locationImage: bucketItem.locationImage,
+                          userId: bucketItem.userId,
+                          locationId: bucketItem.locationId,
+                          dateVisited: bucketItem.dateVisited,
+                          dateAdded: bucketItem.dateAdded)
+    }
+    
+    private func convertFBBucketListToBucketList(bucketItem: FBBucketItem) -> BucketItem {
+        guard let id = bucketItem.id else {
+            fatalError()
+        }
+        return BucketItem(id: id,
+                          locationName: bucketItem.locationName,
+                          locationImage: bucketItem.locationImage,
+                          userId: bucketItem.userId,
+                          locationId: bucketItem.locationId,
+                          dateVisited: bucketItem.dateVisited,
+                          dateAdded: bucketItem.dateAdded)
+    }
+}
+
+
