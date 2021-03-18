@@ -7,9 +7,9 @@
 
 import MapKit
 
-class LocationPin:NSObject, MKAnnotation {
+class LocationPin: NSObject, MKAnnotation {
     var location: Location
-    
+
     var coordinate: CLLocationCoordinate2D {
         location.coordinates
     }
@@ -19,7 +19,7 @@ class LocationPin:NSObject, MKAnnotation {
     var subtitle: String? {
         location.placemark?.thoroughfare
     }
-    
+
     init(location: Location) {
         self.location = location
         super.init()

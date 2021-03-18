@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var session: SessionStore
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        let storage = FBBucketListStorage()
-        let model = BucketModel(storage: storage)
-        let vm = BucketListViewModel(bucketModel: model)
-        BucketListView(viewModel: vm).background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
-        }
+        Group {
+            if let user = session.session {
+                HomepageView(homepageViewModel: HomepageViewModel(), user: user)
+            } else {
+                StartUpView()
+            }
+        }.onAppear(perform: {
+            session.listen()
+        })
+    }
 }
 
-
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(SessionStore())
+    }
+}

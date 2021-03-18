@@ -18,14 +18,14 @@ struct AddLocationView: View {
     @State private var showStorageError = false
     let viewModel: AddLocationViewModel
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
         Form {
             Section {
                 TextField("Name of Location", text: $locationName)
                 TextField("Description of Location", text: $locationDescription)
             }
-            
+
             Section {
                 AddLocationMapView(map: $map, locationManager: $locationManager, showLocationAlert: $showLocationAlert)
                 .onAppear {
@@ -39,14 +39,15 @@ struct AddLocationView: View {
                 }
             }
             .aspectRatio(contentMode: .fill)
-            
+
             Section {
                 Button("Submit") {
                     guard let coordinate = map.annotations.first?.coordinate else {
                         return
                     }
                     do {
-                        try viewModel.saveForm(name: locationName, description: locationDescription, coordinates: coordinate)
+                        try viewModel.saveForm(
+                            name: locationName, description: locationDescription, coordinates: coordinate)
                     } catch {
                         showStorageError = true
                     }
@@ -58,7 +59,9 @@ struct AddLocationView: View {
                     )
                 }
             }
-            .disabled(map.annotations.isEmpty || !viewModel.isValidName(name: locationName) || !viewModel.isValidDescription(description: locationDescription))
+            .disabled(map.annotations.isEmpty ||
+                        !viewModel.isValidName(name: locationName) ||
+                        !viewModel.isValidDescription(description: locationDescription))
         }.navigationBarTitle("Submit new location")
     }
 }

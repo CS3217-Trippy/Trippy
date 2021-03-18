@@ -16,18 +16,18 @@ struct DisplayLocationsMapView: UIViewRepresentable {
     @Binding var showDetailView: Bool
     @Binding var selectedLocation: Location?
     @ObservedObject var viewModel: LocationMapViewModel
-    
+
     func makeUIView(context: Context) -> MKMapView {
         map.delegate = context.coordinator
         locationManager.delegate = context.coordinator
         map.showsUserLocation = true
         return map
     }
-    
+
     func updateUIView(_ uiView: UIViewType, context: Context) {
         // Do nothing
     }
-    
+
     func makeCoordinator() -> DisplayLocationsMapCoordinator {
         DisplayLocationsMapCoordinator(parent: self)
     }

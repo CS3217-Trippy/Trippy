@@ -13,8 +13,7 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     @Published var location: Location
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
-    
-    
+
     var title: String {
         location.name
     }
@@ -26,10 +25,10 @@ class LocationCardViewModel: Identifiable, ObservableObject {
             formattedStreet = street + ", "
         }
         let city = location.placemark?.locality ?? ""
-        
+
         return formattedStreet + city
     }
-    
+
     init(location: Location) {
         self.location = location
         $location

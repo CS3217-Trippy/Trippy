@@ -9,29 +9,28 @@ import MapKit
 
 class AddLocationMapCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
     var parent: AddLocationMapView
-    
+
     init(parent: AddLocationMapView) {
         self.parent = parent
         super.init()
         self.parent.map.removeAnnotations(self.parent.map.annotations)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .denied{
+        if status == .denied {
             self.parent.showLocationAlert.toggle()
-        }
-        else{
+        } else {
             self.parent.locationManager.startUpdatingLocation()
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last?.coordinate else {
             return
         }
         self.parent.map.setCenter(currentLocation, animated: true)
     }
-    
+
     func mapView(
         _ mapView: MKMapView,
         viewFor annotation: MKAnnotation
@@ -53,7 +52,7 @@ class AddLocationMapCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerD
         }
         return view
       }
-    
+
     @objc func addPin(sender: UITapGestureRecognizer) {
         let location = sender.location(in: parent.map)
         let coordinate = parent.map.convert(location, toCoordinateFrom:

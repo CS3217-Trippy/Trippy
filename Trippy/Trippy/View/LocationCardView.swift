@@ -10,7 +10,7 @@ import CoreLocation
 
 struct LocationCardView: View {
     @ObservedObject var viewModel: LocationCardViewModel
-    
+
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location))) {
             LocationRectangularCard {

@@ -11,7 +11,7 @@ class LocationMapViewModel: ObservableObject {
     @Published var locationModel: LocationModel
     @Published var locations: [Location] = []
     private var cancellables: Set<AnyCancellable> = []
-    
+
     init(locationModel: LocationModel) {
         self.locationModel = locationModel
         $locationModel

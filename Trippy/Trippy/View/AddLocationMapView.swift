@@ -13,20 +13,21 @@ struct AddLocationMapView: UIViewRepresentable {
     @Binding var map: MKMapView
     @Binding var locationManager: CLLocationManager
     @Binding var showLocationAlert: Bool
-    
+
     func makeUIView(context: Context) -> MKMapView {
         map.delegate = context.coordinator
         locationManager.delegate = context.coordinator
         map.showsUserLocation = true
-        let tapWithinMap = UITapGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.addPin(sender:)))
+        let tapWithinMap = UITapGestureRecognizer(
+            target: context.coordinator, action: #selector(context.coordinator.addPin(sender:)))
         map.addGestureRecognizer(tapWithinMap)
         return map
     }
-    
+
     func updateUIView(_ uiView: UIViewType, context: Context) {
         // Do nothing
     }
-    
+
     func makeCoordinator() -> AddLocationMapCoordinator {
         AddLocationMapCoordinator(parent: self)
     }

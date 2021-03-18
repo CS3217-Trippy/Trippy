@@ -8,9 +8,9 @@ import SwiftUI
         self.viewBuilder()
             .cornerRadius(25)
             .overlay(
-                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                RoundedRectangle(cornerRadius: 25.0/*@END_MENU_TOKEN@*/)
                     .stroke(Color(.gray))
             )
-            .padding([.top,.horizontal])
+            .padding([.top, .horizontal])
      }
  }

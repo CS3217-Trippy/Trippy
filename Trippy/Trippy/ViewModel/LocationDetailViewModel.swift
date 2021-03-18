@@ -11,11 +11,11 @@ import Contacts
 class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
     private var cancellables: Set<AnyCancellable> = []
-    
+
     var title: String {
         location.name
     }
-    
+
     var address: String {
         let postalAddressFormatter = CNPostalAddressFormatter()
         postalAddressFormatter.style = .mailingAddress
@@ -25,11 +25,11 @@ class LocationDetailViewModel: ObservableObject {
         }
         return addressString ?? ""
     }
-    
+
     var description: String {
         location.description
     }
-    
+
     init(location: Location) {
         self.location = location
     }

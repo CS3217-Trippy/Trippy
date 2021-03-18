@@ -4,12 +4,12 @@ import Foundation
 final class MockBucketStorage: BucketListStorage, ObservableObject {
     @Published var bucketItems: [BucketItem] = []
     private var databaseItems: [BucketItem] = []
-    
+
     init() {
-        getBucketItems()
+        fetchBucketItems()
     }
-    
-    func getBucketItems() {
+
+    func fetchBucketItems() {
         let id = "mockId"
         let locationName = "location"
         let locationImage = "image"
@@ -25,26 +25,25 @@ final class MockBucketStorage: BucketListStorage, ObservableObject {
         databaseItems = [bucketItem]
         bucketItems = databaseItems
     }
-    
+
     func addBucketItem(bucketItem: BucketItem) throws {
         databaseItems.append(bucketItem)
     }
-    
+
     func updateBucketItem(bucketItem: BucketItem) throws {
-        databaseItems = bucketItems.map{item in
+        databaseItems = bucketItems.map {item in
             if item.id == bucketItem.id {
                 return bucketItem
             }
             return item
         }
     }
-    
+
     func removeBucketItem(bucketItem: BucketItem) {
-        databaseItems.removeAll{$0.id == bucketItem.id}
+        databaseItems.removeAll { $0.id == bucketItem.id }
     }
-    
+
     var bucketList: Published<[BucketItem]>.Publisher {
         $bucketItems
     }
 }
-

@@ -14,9 +14,9 @@ struct LocationMapView: View {
     @State private var locationManager = CLLocationManager()
     @State private var showLocationAlert = false
     @State private var showDetailView = false
-    @State private var selectedLocation: Location? = nil
+    @State private var selectedLocation: Location?
     @ObservedObject var viewModel: LocationMapViewModel
-    
+
     var body: some View {
         VStack {
             DisplayLocationsMapView(
@@ -30,7 +30,7 @@ struct LocationMapView: View {
             .onAppear {
                 self.locationManager.requestAlwaysAuthorization()
             }
-            
+
             if let selectedLocation = selectedLocation {
                 NavigationLink(
                     destination: LocationDetailView(viewModel: .init(location: selectedLocation)),

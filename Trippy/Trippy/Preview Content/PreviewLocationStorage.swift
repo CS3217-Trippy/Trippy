@@ -12,23 +12,23 @@ class PreviewLocationStorage: LocationStorage {
     var locations: Published<[Location]>.Publisher {
         $_locations
     }
-    
-    @Published private var _locations:[Location] = []
-    
+
+    @Published private var _locations: [Location] = []
+
     func fetchLocations() {
         _locations = PreviewLocations.locations
     }
-    
+
     func addLocation(_ location: Location) throws {
         // Does Nothing
         return
     }
-    
+
     func updateLocation(_ location: Location) throws {
         // Does Nothing
         return
     }
-    
+
     func removeLocation(_ location: Location) {
         // Does Nothing
         return

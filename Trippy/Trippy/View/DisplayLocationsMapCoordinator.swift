@@ -10,7 +10,7 @@ import MapKit
 class DisplayLocationsMapCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
     var parent: DisplayLocationsMapView
     var locationPins: [LocationPin] = []
-    
+
     init(parent: DisplayLocationsMapView) {
         self.parent = parent
         super.init()
@@ -18,23 +18,22 @@ class DisplayLocationsMapCoordinator: NSObject, MKMapViewDelegate, CLLocationMan
         self.parent.map.removeAnnotations(self.parent.map.annotations)
         self.parent.map.addAnnotations(locationPins)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .denied{
+        if status == .denied {
             self.parent.showLocationAlert.toggle()
-        }
-        else{
+        } else {
             self.parent.locationManager.startUpdatingLocation()
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last?.coordinate else {
             return
         }
         self.parent.map.setCenter(currentLocation, animated: true)
     }
-    
+
     func mapView(
         _ mapView: MKMapView,
         viewFor annotation: MKAnnotation
@@ -58,7 +57,7 @@ class DisplayLocationsMapCoordinator: NSObject, MKMapViewDelegate, CLLocationMan
         }
         return view
       }
-    
+
     func mapView(
       _ mapView: MKMapView,
       annotationView view: MKAnnotationView,
@@ -70,7 +69,7 @@ class DisplayLocationsMapCoordinator: NSObject, MKMapViewDelegate, CLLocationMan
         parent.selectedLocation = locationPin.location
         parent.showDetailView.toggle()
     }
-    
+
     private func loadPins() {
         parent.viewModel.locations.forEach { locationPins.append(.init(location: $0)) }
     }

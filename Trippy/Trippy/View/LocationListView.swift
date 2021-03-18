@@ -25,10 +25,9 @@ struct LocationListView: View {
                     }
                 }
                 .padding()
-                CollectionView(data:$viewModel.locationCardViewModels ,cols: 2, spacing: 20) {
-                    locationCardViewModel in
+                CollectionView(data: $viewModel.locationCardViewModels, cols: 2, spacing: 20) { locationCardViewModel in
                         LocationCardView(viewModel: locationCardViewModel)
-                        
+
                 }
                 .padding(.horizontal)
             }
