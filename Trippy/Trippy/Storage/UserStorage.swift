@@ -53,6 +53,10 @@ final class UserStorage: ObservableObject {
         }
     }
 
+    func deleteUserFromFirestore(user: User) {
+        store.collection(collectionPath).document(user.id).delete()
+    }
+
     func getFollowersList(user: User, handler: @escaping (User) -> Void) {
         user.followersId.forEach {id in
             var userModel: User?

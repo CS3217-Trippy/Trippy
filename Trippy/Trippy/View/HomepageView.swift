@@ -22,6 +22,8 @@ struct HomepageView: View {
                     .background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
                 let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel)
                 let locationListView = LocationListView(viewModel: locationViewModel)
+                let accountPageView = AccountPageView(
+                    accountPageViewModel: AccountPageViewModel(session: session), user: user)
                 NavigationLink(destination: bucketListView) {
                     Text("BUCKET LIST")
                 }
@@ -31,8 +33,7 @@ struct HomepageView: View {
                 NavigationLink(destination: FollowersListView(viewModel: FollowersListViewModel(user: user))) {
                     Text("FOLLOWERS")
                 }
-                NavigationLink(destination: AccountPageView(
-                                accountPageViewModel: AccountPageViewModel(session: session))) {
+                NavigationLink(destination: accountPageView) {
                     Text("ACCOUNT PAGE")
                 }
                 Button("SIGN OUT") {

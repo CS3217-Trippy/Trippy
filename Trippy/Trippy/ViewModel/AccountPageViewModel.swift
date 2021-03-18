@@ -18,7 +18,9 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
         self.session = session
         self.userStorage = session.userStorage
         guard let user = session.session else {
-            fatalError("User should have logged in")
+            self.email = ""
+            self.username = ""
+            return
         }
         self.email = user.email
         self.username = user.username
@@ -30,5 +32,13 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
         }
         oldUser.username = username
         userStorage.updateUserData(user: oldUser)
+    }
+
+    func deleteUser() {
+        guard let userToDelete = session.session else {
+            fatalError("User should exist")
+        }
+        session.deleteUser()
+        userStorage.deleteUserFromFirestore(user: userToDelete)
     }
 }

@@ -54,6 +54,16 @@ final class SessionStore: ObservableObject {
         }
     }
 
+    func deleteUser() {
+        Auth.auth().currentUser?.delete { error in
+            if error != nil {
+                print("Deleting user failed")
+            } else {
+                self.session = nil
+            }
+        }
+    }
+
     func unbind() {
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)

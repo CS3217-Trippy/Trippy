@@ -8,44 +8,50 @@
 import SwiftUI
 
 struct AccountPageView: View {
-    @EnvironmentObject var session: SessionStore
     @ObservedObject var accountPageViewModel: AccountPageViewModel
+    var user: User
 
     var body: some View {
-        if let user = session.session {
-            VStack(spacing: 10) {
-                CircleImageView()
-                Text("\(user.username)")
-                    .bold()
-                    .font(.headline)
-                VStack {
-                    Text("USERNAME")
-                    TextField("Enter new username", text: $accountPageViewModel.username)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
-                VStack {
-                    Text("EMAIL")
-                    Text(accountPageViewModel.email)
-                }
-                Button("UPDATE ACCOUNT") {
-                    accountPageViewModel.updateUserData()
-                }
+        VStack(spacing: 10) {
+            CircleImageView()
+            Text("\(user.username)")
+                .bold()
+                .font(.headline)
+            VStack {
+                Text("USERNAME")
+                TextField("Enter new username", text: $accountPageViewModel.username)
+                    .frame(width: 400, height: nil, alignment: .center)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            .padding()
+            VStack {
+                Text("EMAIL")
+                Text(accountPageViewModel.email)
+            }
+            Button("UPDATE ACCOUNT") {
+                accountPageViewModel.updateUserData()
+            }
+            Button("DELETE ACCOUNT") {
+                accountPageViewModel.deleteUser()
+            }.foregroundColor(.red)
         }
+        .padding()
     }
 }
 
 struct AccountPageView_Previews: PreviewProvider {
-    static func setUser() -> SessionStore {
+    static func setSession() -> SessionStore {
         let sessionStore = SessionStore()
         sessionStore.session = User(
             id: "1", email: "1", username: "CAT", followersId: [], followingId: [])
         return sessionStore
     }
 
+    static func setUser() -> User {
+        User(
+            id: "1", email: "1", username: "CAT", followersId: [], followingId: [])
+    }
+
     static var previews: some View {
-        AccountPageView(accountPageViewModel: AccountPageViewModel(session: setUser()))
-            .environmentObject(setUser())
+        AccountPageView(accountPageViewModel: AccountPageViewModel(session: setSession()), user: setUser())
     }
 }
