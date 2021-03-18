@@ -6,10 +6,10 @@ final class MockBucketStorage: BucketListStorage, ObservableObject {
     private var databaseItems: [BucketItem] = []
 
     init() {
-        getBucketItems()
+        fetchBucketItems()
     }
 
-    func getBucketItems() {
+    func fetchBucketItems() {
         let id = "mockId"
         let locationName = "location"
         let locationImage = "image"

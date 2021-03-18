@@ -1,7 +1,7 @@
 import Combine
 
 protocol BucketListStorage {
-    func getBucketItems()
+    func fetchBucketItems()
 
     func addBucketItem(bucketItem: BucketItem) throws
 
@@ -10,5 +10,4 @@ protocol BucketListStorage {
     func removeBucketItem(bucketItem: BucketItem)
 
     var bucketList: Published<[BucketItem]>.Publisher { get }
-
 }
