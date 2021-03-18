@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         let storage = FBBucketListStorage()
         let model = BucketModel(storage: storage)
