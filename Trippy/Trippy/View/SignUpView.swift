@@ -14,15 +14,21 @@ struct SignUpView: View {
     var body: some View {
         VStack {
             Text("CREATE ACCOUNT")
-            TextField("Email", text: $signUpViewModel.email)
-            TextField("Username", text: $signUpViewModel.username)
-            SecureField("Password", text: $signUpViewModel.password)
-            SecureField("Confirm Password", text: $signUpViewModel.confirmPassword)
-            Button("Sign Up") {
+                .font(.title)
+            TextField("EMAIL", text: $signUpViewModel.email)
+                .frame(width: 400, height: nil, alignment: .center)
+            TextField("USERNAME", text: $signUpViewModel.username)
+                .frame(width: 400, height: nil, alignment: .center)
+            SecureField("PASSWORD", text: $signUpViewModel.password)
+                .frame(width: 400, height: nil, alignment: .center)
+            SecureField("CONFIRM PASSSWORD", text: $signUpViewModel.confirmPassword)
+                .frame(width: 400, height: nil, alignment: .center)
+            Button("SIGN UP") {
                 self.signUpViewModel.signUp(session: session)
             }
         }
         .padding()
+        .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 

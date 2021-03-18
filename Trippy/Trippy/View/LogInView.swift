@@ -14,13 +14,17 @@ struct LogInView: View {
     var body: some View {
         VStack {
             Text("LOGIN")
-            TextField("Email", text: $logInViewModel.email)
-            SecureField("Password", text: $logInViewModel.password)
-            Button("Login") {
+                .font(.title)
+            TextField("EMAIL", text: $logInViewModel.email)
+                .frame(width: 400, height: nil, alignment: .center)
+            SecureField("PASSWORD", text: $logInViewModel.password)
+                .frame(width: 400, height: nil, alignment: .center)
+            Button("LOGIN") {
                 self.logInViewModel.login(session: session)
             }
         }
         .padding()
+        .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 

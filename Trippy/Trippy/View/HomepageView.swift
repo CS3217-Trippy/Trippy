@@ -16,7 +16,8 @@ struct HomepageView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
-                Text("Welcome! \(user.username)")
+                Text("Welcome, \(user.username)")
+                    .font(.title)
                 let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel)
                 let bucketListView = BucketListView(viewModel: bucketListVM)
                     .background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
