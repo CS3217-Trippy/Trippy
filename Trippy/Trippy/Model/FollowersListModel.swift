@@ -9,7 +9,7 @@ import Foundation
 
 final class FollowersListModel {
     var followersList: [User] = []
-    var storage = UserStorage()
+    var storage = FBUserStorage()
     var updateViewModel: () -> Void = {}
 
     func setUpdate(updateViewModel: @escaping () -> Void) {

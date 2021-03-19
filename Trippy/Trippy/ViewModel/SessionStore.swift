@@ -20,13 +20,13 @@ final class SessionStore: ObservableObject {
     }
     var username = ""
     var handle: AuthStateDidChangeListenerHandle?
-    var userStorage = UserStorage()
+    var userStorage = FBUserStorage()
     private var cancellables: Set<AnyCancellable> = []
 
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
-                self.userStorage.$user.assign(to: \.session, on: self).store(in: &self.cancellables)
+                self.userStorage.user.assign(to: \.session, on: self).store(in: &self.cancellables)
                 self.userStorage.retrieveUserFromFirestore(user: user, username: self.username)
             } else {
                 self.session = nil
