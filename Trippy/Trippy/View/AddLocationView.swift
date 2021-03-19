@@ -19,52 +19,62 @@ struct AddLocationView: View {
     let viewModel: AddLocationViewModel
     @Environment(\.presentationMode) var presentationMode
 
+    var locationDetailsSection: some View {
+        Section {
+            Text("Please enter the name of the location.")
+            TextField("Name of Location", text: $locationName)
+            Text("Please enter a description of the location.")
+            TextEditor(text: $locationDescription)
+        }
+    }
+
+    var locationMapSection: some View {
+        Section {
+            Text("Please select the location on the map.")
+            AddLocationMapView(map: $map, locationManager: $locationManager, showLocationAlert: $showLocationAlert)
+            .onAppear {
+                self.locationManager.requestAlwaysAuthorization()
+            }
+            .padding()
+            .alert(isPresented: $showLocationAlert) {
+                Alert(
+                    title: Text("Unable to retrieve current location"),
+                    message: Text("Please check that you have enabled the location permissions."))
+            }
+            .aspectRatio(contentMode: .fill)
+        }
+    }
+
+    var submitSection: some View {
+        Section {
+            Button("Submit") {
+                guard let coordinate = map.annotations.first?.coordinate else {
+                    return
+                }
+                do {
+                    try viewModel.saveForm(
+                        name: locationName, description: locationDescription, coordinates: coordinate)
+                } catch {
+                    showStorageError = true
+                }
+                presentationMode.wrappedValue.dismiss()
+            }
+            .alert(isPresented: $showStorageError) {
+                Alert(
+                    title: Text("An error occurred while attempting to save the information.")
+                )
+            }
+        }
+    }
+
     var body: some View {
         Form {
-            Section {
-                Text("Please enter the name of the location.")
-                TextField("Name of Location", text: $locationName)
-                Text("Please enter a description of the location.")
-                TextEditor(text: $locationDescription)
-            }
-
-            Section {
-                Text("Please select the location on the map.")
-                AddLocationMapView(map: $map, locationManager: $locationManager, showLocationAlert: $showLocationAlert)
-                .onAppear {
-                    self.locationManager.requestAlwaysAuthorization()
-                }
-                .padding()
-                .alert(isPresented: $showLocationAlert) {
-                    Alert(
-                        title: Text("Unable to retrieve current location"),
-                        message: Text("Please check that you have enabled the location permissions."))
-                }
-                .aspectRatio(contentMode: .fill)
-            }
-
-            Section {
-                Button("Submit") {
-                    guard let coordinate = map.annotations.first?.coordinate else {
-                        return
-                    }
-                    do {
-                        try viewModel.saveForm(
-                            name: locationName, description: locationDescription, coordinates: coordinate)
-                    } catch {
-                        showStorageError = true
-                    }
-                    presentationMode.wrappedValue.dismiss()
-                }
-                .alert(isPresented: $showStorageError) {
-                    Alert(
-                        title: Text("An error occurred while attempting to save the information.")
-                    )
-                }
-            }
-            .disabled(map.annotations.isEmpty ||
-                        !viewModel.isValidName(name: locationName) ||
-                        !viewModel.isValidDescription(description: locationDescription))
+            locationDetailsSection
+            locationMapSection
+            submitSection
+            .disabled(map.annotations.isEmpty
+                        || !viewModel.isValidName(name: locationName)
+                        || !viewModel.isValidDescription(description: locationDescription))
         }.navigationBarTitle("Submit new location")
     }
 }
