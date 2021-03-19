@@ -13,6 +13,7 @@ final class SignUpViewModel: ObservableObject, Identifiable {
     @Published var username = ""
     @Published var password = ""
     @Published var confirmPassword = ""
+    @Published var errorMessage = ""
 
     func signUp(session: SessionStore) {
         if password != confirmPassword {
@@ -20,13 +21,14 @@ final class SignUpViewModel: ObservableObject, Identifiable {
         }
         session.signUp(email: email, password: password, username: username) { _, error in
             if let error = error {
-                print(error)
+                self.errorMessage = error.localizedDescription
                 return
             }
             self.email = ""
             self.password = ""
             self.username = ""
             self.confirmPassword = ""
+            self.errorMessage = ""
         }
     }
 }

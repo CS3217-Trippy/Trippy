@@ -26,6 +26,8 @@ struct SignUpView: View {
             Button("SIGN UP") {
                 self.signUpViewModel.signUp(session: session)
             }
+            Text(signUpViewModel.errorMessage)
+                .foregroundColor(.red)
         }
         .padding()
         .textFieldStyle(RoundedBorderTextFieldStyle())

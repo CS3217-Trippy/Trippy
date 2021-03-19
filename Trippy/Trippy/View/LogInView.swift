@@ -22,6 +22,8 @@ struct LogInView: View {
             Button("LOGIN") {
                 self.logInViewModel.login(session: session)
             }
+            Text(logInViewModel.errorMessage)
+                .foregroundColor(.red)
         }
         .padding()
         .textFieldStyle(RoundedBorderTextFieldStyle())
