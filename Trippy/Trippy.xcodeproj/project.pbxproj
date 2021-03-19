@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0118657B25F9D8BA00BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */; };
-		017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
-		017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89925F7B6E80064EF40 /* ContentView.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
 		017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8A925F7B6E80064EF40 /* TrippyTests.swift */; };
@@ -31,7 +29,6 @@
 		01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */; };
 		01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */; };
 		01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637B25FD1F4900BBB8E9 /* Color+Extensions.swift */; };
-		01F4638425FD1F5900BBB8E9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */; };
 		01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638925FD1FBE00BBB8E9 /* DateManager.swift */; };
 		01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */; };
 		01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */; };
@@ -563,13 +560,11 @@
 				7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */,
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */,
-				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
 				7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */,
 				7694E9F625FF34AF00AF9E63 /* UserStorage.swift in Sources */,
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
 				DB92737626001AEA00B898AE /* FollowersListViewModel.swift in Sources */,
 				7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */,
-				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FollowersListView.swift in Sources */,
@@ -587,8 +582,6 @@
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
-				01F4638425FD1F5900BBB8E9 /* Date+Extensions.swift in Sources */,
-				01F4638425FD1F5900BBB8E9 /* Date+Extensions.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				71565A8925FA12500070256A /* FBLocation.swift in Sources */,
@@ -599,7 +592,6 @@
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
 				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
-				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
 				01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */,
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
@@ -617,7 +609,6 @@
 				7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */,
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
-				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */,
 				01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */,
 				7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */,

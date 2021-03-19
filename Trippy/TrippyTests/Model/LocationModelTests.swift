@@ -26,7 +26,7 @@ class LocationModelTests: XCTestCase {
         XCTAssertEqual(model.locations.count, originalCount - 1)
     }
 
-    func testAdd() throws {
+    func testAdd_valid() throws {
         let storage = MockLocationStorage()
         let model = LocationModel(storage: storage)
         let originalCount = model.locations.count
@@ -36,12 +36,27 @@ class LocationModelTests: XCTestCase {
             name: "lorem",
             description: "ipsum"
         )
-        try storage.addLocation(newLocation)
+        try model.addLocation(location: newLocation)
         XCTAssertEqual(model.locations.count, originalCount + 1)
         XCTAssertTrue(model.locations.contains(where: { $0 === newLocation }))
     }
 
-    func testRemove() {
+    func testAdd_duplicateId() throws {
+        let storage = MockLocationStorage()
+        let model = LocationModel(storage: storage)
+        let originalCount = model.locations.count
+        let duplicatedId = model.locations[0].id
+        let newLocation = Location(
+            id: duplicatedId,
+            coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
+            name: "lorem",
+            description: "ipsum"
+        )
+        try model.addLocation(location: newLocation)
+        XCTAssertEqual(model.locations.count, originalCount)
+    }
+
+    func testRemove_valid() {
         let storage = MockLocationStorage()
         let model = LocationModel(storage: storage)
         let originalCount = model.locations.count
@@ -51,7 +66,21 @@ class LocationModelTests: XCTestCase {
         XCTAssertFalse(model.locations.contains(where: { $0 === toBeRemoved }))
     }
 
-    func testUpdate() throws {
+    func testRemove_locationDoesNotExist() {
+        let storage = MockLocationStorage()
+        let model = LocationModel(storage: storage)
+        let originalCount = model.locations.count
+        let newLocation = Location(
+            id: "12414ABC",
+            coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
+            name: "lorem",
+            description: "ipsum"
+        )
+        model.removeLocation(location: newLocation)
+        XCTAssertEqual(model.locations.count, originalCount)
+    }
+
+    func testUpdate_valid() throws {
         let storage = MockLocationStorage()
         let model = LocationModel(storage: storage)
         let originalCount = model.locations.count
@@ -65,5 +94,20 @@ class LocationModelTests: XCTestCase {
             return
         }
         XCTAssertEqual(updatedLocation.description, newDescription)
+    }
+
+    func testUpdate_locationDoesNotExist() {
+        let storage = MockLocationStorage()
+        let model = LocationModel(storage: storage)
+        let originalCount = model.locations.count
+        let newLocation = Location(
+            id: "12414ABC",
+            coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
+            name: "lorem",
+            description: "ipsum"
+        )
+        model.removeLocation(location: newLocation)
+        XCTAssertEqual(model.locations.count, originalCount)
+        XCTAssertFalse(model.locations.contains(where: { $0.id == newLocation.id }))
     }
 }

@@ -24,14 +24,26 @@ class LocationModel: ObservableObject {
     }
 
     func addLocation(location: Location) throws {
+        guard !locations.contains(where: { $0.id == location.id }) else {
+            return
+        }
+
         try storage.addLocation(location)
     }
 
     func removeLocation(location: Location) {
+        guard locations.contains(where: { $0.id == location.id }) else {
+            return
+        }
+
         storage.removeLocation(location)
     }
 
     func updateLocation(updatedLocation: Location) throws {
+        guard locations.contains(where: { $0.id == updatedLocation.id }) else {
+            return
+        }
+
         try storage.updateLocation(updatedLocation)
     }
 
