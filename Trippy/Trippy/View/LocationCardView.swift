@@ -11,32 +11,39 @@ import CoreLocation
 struct LocationCardView: View {
     @ObservedObject var viewModel: LocationCardViewModel
 
+    var locationCardText: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Sample Category Name")
+                .font(.headline)
+                .foregroundColor(.secondary)
+
+                Text(viewModel.title)
+                .font(.title)
+                .fontWeight(.black)
+                .foregroundColor(.primary)
+
+                Text(viewModel.caption)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            }
+            Spacer()
+        }
+    }
+
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location))) {
-            LocationRectangularCard {
-                VStack {
-                    Image("Placeholder")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Sample Category Name")
-                                .font(.headline)
-                                .foregroundColor(.secondary)
-                            Text(viewModel.title)
-                                .font(.title)
-                                .fontWeight(.black)
-                                .foregroundColor(.primary)
-                            Text(viewModel.caption)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        .layoutPriority(100)
-                        Spacer()
-                    }
-                    .padding()
-                }
+            VStack {
+                Image("Placeholder")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(
+                    RoundedRectangle(cornerRadius: 25.0)
+                )
+                locationCardText
+                .padding()
             }
+            .padding([.top, .horizontal])
         }
     }
 }

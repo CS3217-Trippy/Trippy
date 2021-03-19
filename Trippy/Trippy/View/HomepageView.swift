@@ -14,17 +14,19 @@ struct HomepageView: View {
     var user: User
 
     var body: some View {
+        let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel)
+        let bucketListView = BucketListView(viewModel: bucketListVM)
+            .background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
+        let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel)
+        let locationListView = LocationListView(viewModel: locationViewModel)
+        let accountPageView = AccountPageView(
+            accountPageViewModel: AccountPageViewModel(session: session), user: user)
+
         NavigationView {
             VStack(spacing: 10) {
                 Text("Welcome, \(user.username)")
                     .font(.title)
-                let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel)
-                let bucketListView = BucketListView(viewModel: bucketListVM)
-                    .background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
-                let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel)
-                let locationListView = LocationListView(viewModel: locationViewModel)
-                let accountPageView = AccountPageView(
-                    accountPageViewModel: AccountPageViewModel(session: session), user: user)
+
                 NavigationLink(destination: bucketListView) {
                     Text("BUCKET LIST")
                 }

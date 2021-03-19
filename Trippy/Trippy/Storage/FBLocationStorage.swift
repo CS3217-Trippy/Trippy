@@ -8,8 +8,9 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import CoreLocation
+import Combine
 
-final class FBLocationStorage: LocationStorage {
+final class FBLocationStorage: LocationStorage, ObservableObject {
     var locations: Published<[Location]>.Publisher {
         $_locations
     }

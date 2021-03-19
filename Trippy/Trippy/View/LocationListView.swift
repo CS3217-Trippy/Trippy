@@ -11,29 +11,25 @@ struct LocationListView: View {
     @ObservedObject var viewModel: LocationListViewModel
     let viewTitle = "Locations"
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                HStack {
-                    NavigationLink(
-                        destination: LocationMapView(viewModel: .init(locationModel: viewModel.locationModel))) {
-                        Text("Map")
-                    }
-                    Spacer()
-                    NavigationLink(
-                        destination: AddLocationView(viewModel: .init(locationModel: viewModel.locationModel))) {
-                        Text("Submit new location")
-                    }
+        VStack(alignment: .leading) {
+            HStack {
+                NavigationLink(
+                    destination: LocationMapView(viewModel: .init(locationModel: viewModel.locationModel))) {
+                    Text("Map")
                 }
-                .padding()
-                CollectionView(data: $viewModel.locationCardViewModels, cols: 2, spacing: 20) { locationCardViewModel in
-                        LocationCardView(viewModel: locationCardViewModel)
-
+                Spacer()
+                NavigationLink(
+                    destination: AddLocationView(viewModel: .init(locationModel: viewModel.locationModel))) {
+                    Text("Submit new location")
                 }
-                .padding(.horizontal)
             }
-            .navigationBarTitle(viewTitle)
+            .padding()
+            CollectionView(data: $viewModel.locationCardViewModels, cols: 2, spacing: 20) { locationCardViewModel in
+                    LocationCardView(viewModel: locationCardViewModel)
+            }
+            .padding(.horizontal)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarTitle(viewTitle)
     }
 }
 
