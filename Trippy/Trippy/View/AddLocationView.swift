@@ -22,11 +22,14 @@ struct AddLocationView: View {
     var body: some View {
         Form {
             Section {
+                Text("Please enter the name of the location.")
                 TextField("Name of Location", text: $locationName)
-                TextField("Description of Location", text: $locationDescription)
+                Text("Please enter a description of the location.")
+                TextEditor(text: $locationDescription)
             }
 
             Section {
+                Text("Please select the location on the map.")
                 AddLocationMapView(map: $map, locationManager: $locationManager, showLocationAlert: $showLocationAlert)
                 .onAppear {
                     self.locationManager.requestAlwaysAuthorization()
@@ -37,8 +40,8 @@ struct AddLocationView: View {
                         title: Text("Unable to retrieve current location"),
                         message: Text("Please check that you have enabled the location permissions."))
                 }
+                .aspectRatio(contentMode: .fill)
             }
-            .aspectRatio(contentMode: .fill)
 
             Section {
                 Button("Submit") {

@@ -13,30 +13,31 @@ struct LocationCardView: View {
 
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location))) {
-            LocationRectangularCard {
-                VStack {
-                    Image("Placeholder")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Sample Category Name")
-                                .font(.headline)
-                                .foregroundColor(.secondary)
-                            Text(viewModel.title)
-                                .font(.title)
-                                .fontWeight(.black)
-                                .foregroundColor(.primary)
-                            Text(viewModel.caption)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        .layoutPriority(100)
-                        Spacer()
+            VStack {
+                Image("Placeholder")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 25.0)
+                    )
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Sample Category Name")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        Text(viewModel.title)
+                            .font(.title)
+                            .fontWeight(.black)
+                            .foregroundColor(.primary)
+                        Text(viewModel.caption)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
-                    .padding()
+                    Spacer()
                 }
+                .padding()
             }
+            .padding([.top, .horizontal])
         }
     }
 }

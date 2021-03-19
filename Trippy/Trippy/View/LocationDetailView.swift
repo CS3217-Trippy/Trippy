@@ -13,23 +13,32 @@ struct LocationDetailView: View {
     var body: some View {
         VStack {
             Image("Placeholder")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             HStack {
                 VStack(alignment: .leading) {
                     Text("Sample Category Name")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+
                     Text(viewModel.title)
-                        .font(.title)
-                        .fontWeight(.black)
-                        .foregroundColor(.primary)
+                    .font(.title)
+                    .fontWeight(.black)
+                    .foregroundColor(.primary)
+
                     Text(viewModel.address)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                    Divider()
+
+                    Text("About")
+                    .font(.title2)
+                    .fontWeight(.bold)
+
                     Text(viewModel.description)
-                        .font(.body)
-                        .foregroundColor(.primary)
+                    .font(.body)
+                    .foregroundColor(.primary)
                 }
                 Spacer()
             }

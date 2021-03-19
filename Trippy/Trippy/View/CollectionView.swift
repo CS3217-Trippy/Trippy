@@ -32,7 +32,7 @@ struct CollectionView<Content: View, Data: Identifiable>: View {
 
         return VStack(alignment: .leading, spacing: spacing) {
             ForEach(0...loopRow, id: \.self) { row in
-                HStack(spacing: self.spacing) {
+                HStack(alignment: .top, spacing: self.spacing) {
                     ForEach(0...self.cols - 1, id: \.self) { col in
                         self.cell(colIndex: col, rowIndex: row)
                         .frame(maxWidth: cellWidth)
