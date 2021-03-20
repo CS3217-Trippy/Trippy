@@ -42,13 +42,13 @@ struct AccountPageView_Previews: PreviewProvider {
     static func setSession() -> SessionStore {
         let sessionStore = SessionStore()
         sessionStore.session = User(
-            id: "1", email: "1", username: "CAT", followersId: [], followingId: [])
+            id: "1", email: "1", username: "CAT", friendsId: [])
         return sessionStore
     }
 
     static func setUser() -> User {
         User(
-            id: "1", email: "1", username: "CAT", followersId: [], followingId: [])
+            id: "1", email: "1", username: "CAT", friendsId: [])
     }
 
     static var previews: some View {

@@ -80,11 +80,13 @@
 		7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA412601608800AF9E63 /* AccountPageViewModel.swift */; };
 		7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA492602ED1300AF9E63 /* HomepageView.swift */; };
 		7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */; };
-		DB927371260019A400B898AE /* FollowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FollowersListView.swift */; };
-		DB92737626001AEA00B898AE /* FollowersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FollowersListViewModel.swift */; };
-		DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */; };
-		DB927380260027F800B898AE /* FollowersListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737F260027F800B898AE /* FollowersListModel.swift */; };
-		DB92738526002AE300B898AE /* FollowersItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92738426002AE300B898AE /* FollowersItemView.swift */; };
+		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
+		DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FriendsListViewModel.swift */; };
+		DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */; };
+		DB927380260027F800B898AE /* FriendsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737F260027F800B898AE /* FriendsListModel.swift */; };
+		DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92738426002AE300B898AE /* FriendsItemView.swift */; };
+		DB9273A22604487600B898AE /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9273A12604487600B898AE /* AddFriendView.swift */; };
+		DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,11 +176,13 @@
 		7694EA412601608800AF9E63 /* AccountPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageViewModel.swift; sourceTree = "<group>"; };
 		7694EA492602ED1300AF9E63 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewModel.swift; sourceTree = "<group>"; };
-		DB927370260019A400B898AE /* FollowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListView.swift; sourceTree = "<group>"; };
-		DB92737526001AEA00B898AE /* FollowersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewModel.swift; sourceTree = "<group>"; };
-		DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersItemViewModel.swift; sourceTree = "<group>"; };
-		DB92737F260027F800B898AE /* FollowersListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListModel.swift; sourceTree = "<group>"; };
-		DB92738426002AE300B898AE /* FollowersItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersItemView.swift; sourceTree = "<group>"; };
+		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
+		DB92737526001AEA00B898AE /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
+		DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemViewModel.swift; sourceTree = "<group>"; };
+		DB92737F260027F800B898AE /* FriendsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListModel.swift; sourceTree = "<group>"; };
+		DB92738426002AE300B898AE /* FriendsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemView.swift; sourceTree = "<group>"; };
+		DB9273A12604487600B898AE /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,8 +300,8 @@
 				7694EA3C26015C1300AF9E63 /* CircleImageView.swift */,
 				7694E9F025FEA73900AF9E63 /* StartUpView.swift */,
 				7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */,
-				DB927370260019A400B898AE /* FollowersListView.swift */,
-				DB92738426002AE300B898AE /* FollowersItemView.swift */,
+				DB927370260019A400B898AE /* FriendsListView.swift */,
+				DB92738426002AE300B898AE /* FriendsItemView.swift */,
 				7152017325FCB5D300F0ABAC /* LocationListView.swift */,
 				7152018725FCD4EB00F0ABAC /* LocationCardView.swift */,
 				714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */,
@@ -308,6 +312,7 @@
 				714B74902600FD8700ADF2FE /* AddLocationMapView.swift */,
 				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
+				DB9273A12604487600B898AE /* AddFriendView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,7 +323,7 @@
 				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
 				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
 				7694E9E625FE541700AF9E63 /* User.swift */,
-				DB92737F260027F800B898AE /* FollowersListModel.swift */,
+				DB92737F260027F800B898AE /* FriendsListModel.swift */,
 				71FB972C25F87C420083C6F5 /* Location.swift */,
 				714DFD4A26006CF800711204 /* LocationPin.swift */,
 				7152017825FCB91D00F0ABAC /* LocationModel.swift */,
@@ -333,8 +338,9 @@
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
 				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
-				DB92737526001AEA00B898AE /* FollowersListViewModel.swift */,
-				DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */,
+				DB92737526001AEA00B898AE /* FriendsListViewModel.swift */,
+				DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */,
+				DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */,
 				7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */,
 				7694EA412601608800AF9E63 /* AccountPageViewModel.swift */,
 				7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */,
@@ -569,16 +575,17 @@
 				7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */,
 				7694E9F625FF34AF00AF9E63 /* UserStorage.swift in Sources */,
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
-				DB92737626001AEA00B898AE /* FollowersListViewModel.swift in Sources */,
+				DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */,
 				7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */,
 				7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */,
-				DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */,
-				DB927371260019A400B898AE /* FollowersListView.swift in Sources */,
+				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
+				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
-				DB927380260027F800B898AE /* FollowersListModel.swift in Sources */,
-				DB92738526002AE300B898AE /* FollowersItemView.swift in Sources */,
+				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
+				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
+				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
 				01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
@@ -590,6 +597,7 @@
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
+				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				71565A8925FA12500070256A /* FBLocation.swift in Sources */,
 				71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
@@ -781,6 +789,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
+				DEVELOPMENT_TEAM = D4DDSVK277;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -802,6 +811,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
+				DEVELOPMENT_TEAM = D4DDSVK277;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
