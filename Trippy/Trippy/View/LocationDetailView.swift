@@ -9,6 +9,19 @@ import SwiftUI
 
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
+    @EnvironmentObject var session: SessionStore
+
+    var addBucketView: some View {
+        HStack {
+            NavigationLink(
+            destination: AddBucketItemView(viewModel: .init(bucketModel: .init(
+                                                                storage: FBBucketListStorage(user: session.session)),
+                                                            location: viewModel.location, user: session.session))) {
+            Text("Add to bucketlist")
+            }
+            Spacer()
+        }.padding(10)
+    }
 
     var pageContent: some View {
         VStack(alignment: .leading) {
@@ -39,6 +52,7 @@ struct LocationDetailView: View {
 
     var body: some View {
         VStack {
+            addBucketView
             Image("Placeholder")
             .resizable()
             .aspectRatio(contentMode: .fit)

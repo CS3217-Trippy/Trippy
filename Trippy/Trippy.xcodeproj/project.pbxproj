@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01088F5C2606442F00579707 /* BucketListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01088F5B2606442F00579707 /* BucketListError.swift */; };
+		011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */; };
+		011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C82605BBCE0028F971 /* AddBucketItemView.swift */; };
 		0118657B25F9D8BA00BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
@@ -105,6 +108,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01088F5B2606442F00579707 /* BucketListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListError.swift; sourceTree = "<group>"; };
+		011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBucketItemViewModel.swift; sourceTree = "<group>"; };
+		011172C82605BBCE0028F971 /* AddBucketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBucketItemView.swift; sourceTree = "<group>"; };
 		0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		017FD89425F7B6E80064EF40 /* Trippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD89725F7B6E80064EF40 /* TrippyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyApp.swift; sourceTree = "<group>"; };
@@ -289,6 +295,7 @@
 				017FD89925F7B6E80064EF40 /* ContentView.swift */,
 				01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */,
 				01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */,
+				011172C82605BBCE0028F971 /* AddBucketItemView.swift */,
 				01F4635225FD1E6200BBB8E9 /* CollectionView.swift */,
 				01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */,
 				7694E9D225FDEDC700AF9E63 /* LogInView.swift */,
@@ -322,6 +329,7 @@
 				71FB972C25F87C420083C6F5 /* Location.swift */,
 				714DFD4A26006CF800711204 /* LocationPin.swift */,
 				7152017825FCB91D00F0ABAC /* LocationModel.swift */,
+				01088F5B2606442F00579707 /* BucketListError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,6 +339,7 @@
 			children = (
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
+				011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */,
 				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
 				DB92737526001AEA00B898AE /* FollowersListViewModel.swift */,
@@ -572,6 +581,7 @@
 				DB92737626001AEA00B898AE /* FollowersListViewModel.swift in Sources */,
 				7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */,
 				7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */,
+				01088F5C2606442F00579707 /* BucketListError.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FollowersListView.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
@@ -587,6 +597,7 @@
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
+				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
@@ -604,6 +615,7 @@
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
 				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
+				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
 				71565A7F25F9EF3D0070256A /* FBLocationStorage.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,

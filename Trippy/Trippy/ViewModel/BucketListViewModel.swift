@@ -4,6 +4,9 @@ final class BucketListViewModel: ObservableObject {
     @Published var bucketModel: BucketModel
     @Published var bucketItemViewModels: [BucketItemViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
+    var isEmpty: Bool {
+        bucketItemViewModels.isEmpty
+    }
 
     init(bucketModel: BucketModel) {
         self.bucketModel = bucketModel

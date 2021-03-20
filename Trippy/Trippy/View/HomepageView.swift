@@ -9,14 +9,13 @@ import SwiftUI
 
 struct HomepageView: View {
     @EnvironmentObject var session: SessionStore
-    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var homepageViewModel: HomepageViewModel
     var user: User
 
     var body: some View {
         let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel)
         let bucketListView = BucketListView(viewModel: bucketListVM)
-            .background(colorScheme == .dark ? Color.darkBackground : Color.lightBackground)
+
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel)
         let locationListView = LocationListView(viewModel: locationViewModel)
         let accountPageView = AccountPageView(
@@ -44,13 +43,5 @@ struct HomepageView: View {
                 }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
-    }
-}
-
-struct HomepageView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomepageView(
-            homepageViewModel: HomepageViewModel(),
-            user: User(id: "1", email: "a@b.c", username: "abc", followersId: [], followingId: []))
     }
 }

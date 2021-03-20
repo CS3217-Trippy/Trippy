@@ -5,8 +5,7 @@ struct BucketItemView: View {
     @State private var visited = false
     var viewModel: BucketItemViewModel
     var body: some View {
-        let bucketItem = viewModel.bucketItem
-        let url = URL(string: bucketItem.locationImage)
+        let url = URL(string: viewModel.locationImage)
         RectangularCard(width: UIScreen.main.bounds.width - 10, height: 210, viewBuilder: {
             HStack(alignment: .center) {
                 if let unwrappedUrl = url {
@@ -20,11 +19,12 @@ struct BucketItemView: View {
                                     .padding(10)
                              })
                 }
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(bucketItem.locationName)
+                VStack(alignment: .leading, spacing: 15) {
+                    Text(viewModel.locationName)
                         .bold()
                         .font(.headline)
-                    Text("Added on " + bucketItem.dateAdded.dateTimeStringFromDate)
+                    Text(viewModel.userDescription).fontWeight(.light)
+                    Text("Added on " + viewModel.dateAdded.dateTimeStringFromDate)
                         .lineLimit(9)
                 }
                 Spacer()

@@ -13,6 +13,7 @@ class Location: Identifiable {
     var name: String
     var description: String
     var placemark: CLPlacemark?
+    var image = "https://www.erikastravels.com/wp-content/uploads/2015/11/Lake-Moraine-in-Banff-Canada.jpg"
 
     init(id: String?, coordinates: CLLocationCoordinate2D, name: String, description: String) {
         self.id = id

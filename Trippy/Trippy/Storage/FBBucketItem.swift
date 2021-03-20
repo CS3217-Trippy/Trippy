@@ -9,4 +9,5 @@ struct FBBucketItem: Identifiable, Codable {
     var locationId: String
     var dateVisited: Date?
     var dateAdded: Date
+    var userDescription: String
 }
