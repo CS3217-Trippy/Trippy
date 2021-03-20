@@ -6,6 +6,7 @@
 //
 
 import CoreLocation
+import UIKit
 
 class AddLocationViewModel {
     let locationModel: LocationModel
@@ -22,8 +23,8 @@ class AddLocationViewModel {
         !description.isEmpty && description.count < 500
     }
 
-    func saveForm(name: String, description: String, coordinates: CLLocationCoordinate2D) throws {
+    func saveForm(name: String, description: String, coordinates: CLLocationCoordinate2D, image: UIImage?) throws {
         try locationModel.addLocation(
-            location: .init(id: nil, coordinates: coordinates, name: name, description: description))
+            location: .init(id: nil, coordinates: coordinates, name: name, description: description), image: image)
     }
 }

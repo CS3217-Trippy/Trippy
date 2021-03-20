@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import Combine
 
 struct AddLocationView: View {
     @State private var map = MKMapView()
@@ -16,6 +17,11 @@ struct AddLocationView: View {
     @State private var locationName: String = ""
     @State private var locationDescription: String = ""
     @State private var showStorageError = false
+    @State private var showPhotoLibrary = false
+    @State private var showCamera = false
+    @State private var selectedImage: UIImage?
+    @State private var showCameraError = false
+    @State private var imageSource: UIImagePickerController.SourceType?
     let viewModel: AddLocationViewModel
     @Environment(\.presentationMode) var presentationMode
 
@@ -45,6 +51,53 @@ struct AddLocationView: View {
         }
     }
 
+    var photoSection: some View {
+        Section {
+            Text("Please submit a photo of the location if you have one! (optional)")
+            if let selectedImage = selectedImage {
+                Image(uiImage: selectedImage)
+                .resizable()
+                .aspectRatio(1, contentMode: .fit)
+            }
+            imagePickerButtons
+            .buttonStyle(BorderlessButtonStyle())
+        }
+    }
+
+    var imagePickerButtons: some View {
+        HStack {
+            Button(action: {
+                self.willLaunchCamera()
+            }) {
+                Text("Launch Camera")
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray)
+                )
+            }
+
+            Button(action: {
+                self.imageSource = .photoLibrary
+            }) {
+                Text("Launch Photo Library")
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray)
+                )
+            }
+        }
+    }
+
+    private func willLaunchCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            showCameraError = true
+            return
+        }
+        imageSource = .camera
+    }
+
     var submitSection: some View {
         Section {
             Button("Submit") {
@@ -53,7 +106,11 @@ struct AddLocationView: View {
                 }
                 do {
                     try viewModel.saveForm(
-                        name: locationName, description: locationDescription, coordinates: coordinate)
+                        name: locationName,
+                        description: locationDescription,
+                        coordinates: coordinate,
+                        image: selectedImage
+                    )
                 } catch {
                     showStorageError = true
                 }
@@ -71,11 +128,24 @@ struct AddLocationView: View {
         Form {
             locationDetailsSection
             locationMapSection
+            photoSection
+            .fullScreenCover(item: $imageSource) { item in
+                ImagePicker(sourceType: item, selectedImage: $selectedImage)
+            }
+            .alert(isPresented: $showCameraError, content: {
+                Alert(title: Text("If only you had a camera"))
+            })
             submitSection
             .disabled(map.annotations.isEmpty
                         || !viewModel.isValidName(name: locationName)
                         || !viewModel.isValidDescription(description: locationDescription))
         }.navigationBarTitle("Submit new location")
+    }
+}
+
+extension UIImagePickerController.SourceType: Identifiable {
+    public var id: Int {
+        hashValue
     }
 }
 

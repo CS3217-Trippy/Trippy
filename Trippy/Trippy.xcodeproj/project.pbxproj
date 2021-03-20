@@ -44,6 +44,8 @@
 		714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */; };
 		714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */; };
 		714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */; };
+		714B10C826060D6C0040FAA1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B10C726060D6C0040FAA1 /* ImagePicker.swift */; };
+		714B10D026066D190040FAA1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */; };
 		714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */; };
 		714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B74902600FD8700ADF2FE /* AddLocationMapView.swift */; };
 		714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */; };
@@ -141,6 +143,8 @@
 		714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapView.swift; sourceTree = "<group>"; };
 		714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
 		714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocations.swift; sourceTree = "<group>"; };
+		714B10C726060D6C0040FAA1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapCoordinator.swift; sourceTree = "<group>"; };
 		714B74902600FD8700ADF2FE /* AddLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapView.swift; sourceTree = "<group>"; };
 		714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapCoordinator.swift; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 				714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */,
 				71FB973125F893750083C6F5 /* LocationMapView.swift */,
 				714BA80826019D9000E69470 /* AddLocationView.swift */,
+				714B10C726060D6C0040FAA1 /* ImagePicker.swift */,
 				714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */,
 				714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */,
 				714B74902600FD8700ADF2FE /* AddLocationMapView.swift */,
@@ -354,6 +359,7 @@
 				01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */,
 				01F4638925FD1FBE00BBB8E9 /* DateManager.swift */,
 				01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */,
+				714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -563,6 +569,7 @@
 				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
 				71FFCE012604BA6300309D80 /* ContentView.swift in Sources */,
 				71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */,
+				714B10C826060D6C0040FAA1 /* ImagePicker.swift in Sources */,
 				7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */,
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */,
@@ -586,6 +593,7 @@
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
+				714B10D026066D190040FAA1 /* UIImage+Extensions.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,

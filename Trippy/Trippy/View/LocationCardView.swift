@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import URLImage
 
 struct LocationCardView: View {
     @ObservedObject var viewModel: LocationCardViewModel
@@ -34,17 +35,31 @@ struct LocationCardView: View {
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location))) {
             VStack {
-                Image("Placeholder")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 25.0)
-                )
+                if let url = viewModel.location.imageURL {
+                    URLImage(url: url) { image in
+                        image
+                        .locationImageModifier()
+                    }
+                } else {
+                    Image("Placeholder")
+                    .locationImageModifier()
+                }
                 locationCardText
                 .padding()
             }
             .padding([.top, .horizontal])
         }
+    }
+}
+
+extension Image {
+    func locationImageModifier() -> some View {
+        self
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .clipShape(
+            RoundedRectangle(cornerRadius: 25.0)
+        )
     }
 }
 
