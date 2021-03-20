@@ -11,14 +11,12 @@ class User: Identifiable, Codable {
     var id: String
     var email: String
     var username: String
-    var followersId: [String]
-    var followingId: [String]
+    var friendsId: [String]
 
-    init(id: String, email: String, username: String, followersId: [String], followingId: [String]) {
+    init(id: String, email: String, username: String, friendsId: [String]) {
         self.id = id
         self.email = email
         self.username = username
-        self.followersId = followersId
-        self.followingId = followingId
+        self.friendsId = friendsId
     }
 }
