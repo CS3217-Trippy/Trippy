@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 
 final class SignUpViewModel: ObservableObject, Identifiable {
+    private let passwordNotEqualError = "Password is different from confirm password"
     @Published var email = ""
     @Published var username = ""
     @Published var password = ""
@@ -17,6 +18,7 @@ final class SignUpViewModel: ObservableObject, Identifiable {
 
     func signUp(session: SessionStore) {
         if password != confirmPassword {
+            self.errorMessage = passwordNotEqualError
             return
         }
         session.signUp(email: email, password: password, username: username) { _, error in

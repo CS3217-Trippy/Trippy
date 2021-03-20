@@ -55,13 +55,21 @@ final class SessionStore: ObservableObject {
     }
 
     func deleteUser() {
+        guard let currentUser = self.session else {
+            return
+        }
         Auth.auth().currentUser?.delete { error in
-            if error != nil {
-                print("Deleting user failed")
+            if let error = error {
+                print(error.localizedDescription)
             } else {
+                self.userStorage.deleteUserFromFirestore(user: currentUser)
                 self.session = nil
             }
         }
+    }
+
+    func updateUser(updatedUser: User) {
+        userStorage.updateUserData(user: updatedUser)
     }
 
     func unbind() {
