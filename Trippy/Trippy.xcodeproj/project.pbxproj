@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0118657B25F9D8BA00BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */; };
-		017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
-		017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89925F7B6E80064EF40 /* ContentView.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
 		017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8A925F7B6E80064EF40 /* TrippyTests.swift */; };
@@ -31,7 +29,6 @@
 		01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */; };
 		01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */; };
 		01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637B25FD1F4900BBB8E9 /* Color+Extensions.swift */; };
-		01F4638425FD1F5900BBB8E9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */; };
 		01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638925FD1FBE00BBB8E9 /* DateManager.swift */; };
 		01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */; };
 		01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */; };
@@ -47,12 +44,13 @@
 		714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */; };
 		714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */; };
 		714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */; };
-		714AF50125FD205400C0EFFA /* LocationRectangularCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF50025FD205400C0EFFA /* LocationRectangularCard.swift */; };
 		714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */; };
 		714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B74902600FD8700ADF2FE /* AddLocationMapView.swift */; };
 		714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */; };
 		714BA80926019D9000E69470 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80826019D9000E69470 /* AddLocationView.swift */; };
 		714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80D2601A61500E69470 /* AddLocationViewModel.swift */; };
+		714BFD512604785F001E369F /* MockLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD502604785F001E369F /* MockLocationStorage.swift */; };
+		714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD5826047C41001E369F /* LocationModelTests.swift */; };
 		714DFD4B26006CF800711204 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714DFD4A26006CF800711204 /* LocationPin.swift */; };
 		7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152017325FCB5D300F0ABAC /* LocationListView.swift */; };
 		7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152017825FCB91D00F0ABAC /* LocationModel.swift */; };
@@ -66,6 +64,9 @@
 		71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972725F879680083C6F5 /* LocationStorage.swift */; };
 		71FB972D25F87C420083C6F5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972C25F87C420083C6F5 /* Location.swift */; };
 		71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB973125F893750083C6F5 /* LocationMapView.swift */; };
+		71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
+		71FFCE012604BA6300309D80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89925F7B6E80064EF40 /* ContentView.swift */; };
+		71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */; };
 		7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D225FDEDC700AF9E63 /* LogInView.swift */; };
 		7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */; };
 		7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */; };
@@ -80,11 +81,13 @@
 		7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA492602ED1300AF9E63 /* HomepageView.swift */; };
 		7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */; };
 		7694EA5A260458EA00AF9E63 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA59260458EA00AF9E63 /* UserStorage.swift */; };
-		DB927371260019A400B898AE /* FollowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FollowersListView.swift */; };
-		DB92737626001AEA00B898AE /* FollowersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FollowersListViewModel.swift */; };
-		DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */; };
-		DB927380260027F800B898AE /* FollowersListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737F260027F800B898AE /* FollowersListModel.swift */; };
-		DB92738526002AE300B898AE /* FollowersItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92738426002AE300B898AE /* FollowersItemView.swift */; };
+		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
+		DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FriendsListViewModel.swift */; };
+		DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */; };
+		DB927380260027F800B898AE /* FriendsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737F260027F800B898AE /* FriendsListModel.swift */; };
+		DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92738426002AE300B898AE /* FriendsItemView.swift */; };
+		DB9273A22604487600B898AE /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9273A12604487600B898AE /* AddFriendView.swift */; };
+		DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,12 +144,13 @@
 		714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapView.swift; sourceTree = "<group>"; };
 		714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
 		714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocations.swift; sourceTree = "<group>"; };
-		714AF50025FD205400C0EFFA /* LocationRectangularCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRectangularCard.swift; sourceTree = "<group>"; };
 		714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapCoordinator.swift; sourceTree = "<group>"; };
 		714B74902600FD8700ADF2FE /* AddLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapView.swift; sourceTree = "<group>"; };
 		714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapCoordinator.swift; sourceTree = "<group>"; };
 		714BA80826019D9000E69470 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
 		714BA80D2601A61500E69470 /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
+		714BFD502604785F001E369F /* MockLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationStorage.swift; sourceTree = "<group>"; };
+		714BFD5826047C41001E369F /* LocationModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelTests.swift; sourceTree = "<group>"; };
 		714DFD4A26006CF800711204 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
 		7152017325FCB5D300F0ABAC /* LocationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListView.swift; sourceTree = "<group>"; };
 		7152017825FCB91D00F0ABAC /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
@@ -174,11 +178,13 @@
 		7694EA492602ED1300AF9E63 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewModel.swift; sourceTree = "<group>"; };
 		7694EA59260458EA00AF9E63 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
-		DB927370260019A400B898AE /* FollowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListView.swift; sourceTree = "<group>"; };
-		DB92737526001AEA00B898AE /* FollowersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewModel.swift; sourceTree = "<group>"; };
-		DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersItemViewModel.swift; sourceTree = "<group>"; };
-		DB92737F260027F800B898AE /* FollowersListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListModel.swift; sourceTree = "<group>"; };
-		DB92738426002AE300B898AE /* FollowersItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersItemView.swift; sourceTree = "<group>"; };
+		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
+		DB92737526001AEA00B898AE /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
+		DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemViewModel.swift; sourceTree = "<group>"; };
+		DB92737F260027F800B898AE /* FriendsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListModel.swift; sourceTree = "<group>"; };
+		DB92738426002AE300B898AE /* FriendsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemView.swift; sourceTree = "<group>"; };
+		DB9273A12604487600B898AE /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,10 +250,10 @@
 				01F4635F25FD1E9300BBB8E9 /* Model */,
 				01F4638825FD1F6C00BBB8E9 /* Storage */,
 				01F4637A25FD1F3C00BBB8E9 /* Util */,
-				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
-				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
+				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
+				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
 				017FD89D25F7B6E80064EF40 /* Preview Content */,
 			);
 			path = Trippy;
@@ -296,8 +302,8 @@
 				7694EA3C26015C1300AF9E63 /* CircleImageView.swift */,
 				7694E9F025FEA73900AF9E63 /* StartUpView.swift */,
 				7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */,
-				DB927370260019A400B898AE /* FollowersListView.swift */,
-				DB92738426002AE300B898AE /* FollowersItemView.swift */,
+				DB927370260019A400B898AE /* FriendsListView.swift */,
+				DB92738426002AE300B898AE /* FriendsItemView.swift */,
 				7152017325FCB5D300F0ABAC /* LocationListView.swift */,
 				7152018725FCD4EB00F0ABAC /* LocationCardView.swift */,
 				714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */,
@@ -307,8 +313,8 @@
 				714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */,
 				714B74902600FD8700ADF2FE /* AddLocationMapView.swift */,
 				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
-				714AF50025FD205400C0EFFA /* LocationRectangularCard.swift */,
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
+				DB9273A12604487600B898AE /* AddFriendView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,7 +325,7 @@
 				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
 				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
 				7694E9E625FE541700AF9E63 /* User.swift */,
-				DB92737F260027F800B898AE /* FollowersListModel.swift */,
+				DB92737F260027F800B898AE /* FriendsListModel.swift */,
 				71FB972C25F87C420083C6F5 /* Location.swift */,
 				714DFD4A26006CF800711204 /* LocationPin.swift */,
 				7152017825FCB91D00F0ABAC /* LocationModel.swift */,
@@ -334,8 +340,9 @@
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
 				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
-				DB92737526001AEA00B898AE /* FollowersListViewModel.swift */,
-				DB92737A26001BCE00B898AE /* FollowersItemViewModel.swift */,
+				DB92737526001AEA00B898AE /* FriendsListViewModel.swift */,
+				DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */,
+				DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */,
 				7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */,
 				7694EA412601608800AF9E63 /* AccountPageViewModel.swift */,
 				7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */,
@@ -387,7 +394,9 @@
 			isa = PBXGroup;
 			children = (
 				01F8437D25FDED3800080ED5 /* BucketModelTests.swift */,
+				714BFD5826047C41001E369F /* LocationModelTests.swift */,
 				01F8438525FDED6400080ED5 /* MockBucketStorage.swift */,
+				714BFD502604785F001E369F /* MockLocationStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -560,24 +569,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
+				71FFCE012604BA6300309D80 /* ContentView.swift in Sources */,
+				71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */,
 				7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */,
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */,
-				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
 				7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */,
 				7694E9F625FF34AF00AF9E63 /* FBUserStorage.swift in Sources */,
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
-				DB92737626001AEA00B898AE /* FollowersListViewModel.swift in Sources */,
+				DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */,
 				7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */,
-				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */,
-				DB92737B26001BCE00B898AE /* FollowersItemViewModel.swift in Sources */,
-				DB927371260019A400B898AE /* FollowersListView.swift in Sources */,
+				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
+				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
-				DB927380260027F800B898AE /* FollowersListModel.swift in Sources */,
-				DB92738526002AE300B898AE /* FollowersItemView.swift in Sources */,
+				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
+				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
+				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
 				01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
@@ -587,10 +598,9 @@
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
-				01F4638425FD1F5900BBB8E9 /* Date+Extensions.swift in Sources */,
-				01F4638425FD1F5900BBB8E9 /* Date+Extensions.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
+				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				71565A8925FA12500070256A /* FBLocation.swift in Sources */,
 				7694EA5A260458EA00AF9E63 /* UserStorage.swift in Sources */,
 				71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */,
@@ -600,7 +610,6 @@
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
 				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
-				017FD89A25F7B6E80064EF40 /* ContentView.swift in Sources */,
 				01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */,
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
@@ -614,12 +623,10 @@
 				7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */,
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
-				714AF50125FD205400C0EFFA /* LocationRectangularCard.swift in Sources */,
 				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
 				7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */,
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
-				017FD89825F7B6E80064EF40 /* TrippyApp.swift in Sources */,
 				01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */,
 				01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */,
 				7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */,
@@ -633,6 +640,8 @@
 				017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */,
 				01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */,
 				01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */,
+				714BFD512604785F001E369F /* MockLocationStorage.swift in Sources */,
+				714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */,
 				01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +793,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
+				DEVELOPMENT_TEAM = D4DDSVK277;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -805,6 +815,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
+				DEVELOPMENT_TEAM = D4DDSVK277;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

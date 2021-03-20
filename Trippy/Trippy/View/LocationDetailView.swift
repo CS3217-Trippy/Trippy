@@ -10,27 +10,40 @@ import SwiftUI
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
 
+    var pageContent: some View {
+        VStack(alignment: .leading) {
+            Text("Sample Category Name")
+            .font(.headline)
+            .foregroundColor(.secondary)
+
+            Text(viewModel.title)
+            .font(.title)
+            .fontWeight(.black)
+            .foregroundColor(.primary)
+
+            Text(viewModel.address)
+            .font(.caption)
+            .foregroundColor(.secondary)
+
+            Divider()
+
+            Text("About")
+            .font(.title2)
+            .fontWeight(.bold)
+
+            Text(viewModel.description)
+            .font(.body)
+            .foregroundColor(.primary)
+        }
+    }
+
     var body: some View {
         VStack {
             Image("Placeholder")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             HStack {
-                VStack(alignment: .leading) {
-                    Text("Sample Category Name")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                    Text(viewModel.title)
-                        .font(.title)
-                        .fontWeight(.black)
-                        .foregroundColor(.primary)
-                    Text(viewModel.address)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text(viewModel.description)
-                        .font(.body)
-                        .foregroundColor(.primary)
-                }
+                pageContent
                 Spacer()
             }
             .padding()

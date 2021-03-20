@@ -11,11 +11,19 @@ import Firebase
 protocol UserStorage {
     var user: Published<User?>.Publisher { get }
 
+    var usersList: Published<[User]>.Publisher { get }
+
+    var friendsList: Published<[User]>.Publisher { get }
+
     func retrieveUserFromFirestore(user: FirebaseAuth.User, username: String)
 
     func updateUserData(user: User)
 
     func deleteUserFromFirestore(user: User)
 
-    func getFollowersList(user: User, handler: @escaping (User) -> Void)
+    func getFriendsList(user: User)
+
+    func getUsers()
+
+    func addFriend(currentUser: User, user: User)
 }
