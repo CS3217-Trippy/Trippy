@@ -17,22 +17,23 @@ class BucketModel: ObservableObject {
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {
+        guard !bucketItems.contains(where: { $0.id == bucketItem.id }) else {
+            return
+        }
         try storage.addBucketItem(bucketItem: bucketItem)
-        bucketItems.append(bucketItem)
     }
 
     func removeBucketItem(bucketItem: BucketItem) {
+        guard bucketItems.contains(where: { $0.id == bucketItem.id }) else {
+            return
+        }
         storage.removeBucketItem(bucketItem: bucketItem)
-        bucketItems.removeAll { $0.id == bucketItem.id }
     }
 
     func updateBucketItem(bucketItem: BucketItem) throws {
-        try storage.updateBucketItem(bucketItem: bucketItem)
-        bucketItems = bucketItems.map {item in
-            if item.id == bucketItem.id {
-                return bucketItem
-            }
-            return item
+        guard bucketItems.contains(where: { $0.id == bucketItem.id }) else {
+            return
         }
+        try storage.updateBucketItem(bucketItem: bucketItem)
     }
 }

@@ -10,6 +10,19 @@ import URLImage
 
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
+    @EnvironmentObject var session: SessionStore
+
+    var addBucketView: some View {
+        HStack {
+            NavigationLink(
+            destination: AddBucketItemView(viewModel: .init(bucketModel: .init(
+                                                                storage: FBBucketListStorage(user: session.session)),
+                                                            location: viewModel.location, user: session.session))) {
+            Text("Add to bucketlist")
+            }
+            Spacer()
+        }.padding(10)
+    }
 
     var pageContent: some View {
         VStack(alignment: .leading) {
@@ -41,6 +54,7 @@ struct LocationDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
+               addBucketView
                 if let url = viewModel.location.imageURL {
                     URLImage(url: url) { image in
                         image

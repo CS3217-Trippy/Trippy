@@ -10,24 +10,24 @@ final class MockBucketStorage: BucketListStorage, ObservableObject {
     }
 
     func fetchBucketItems() {
-        let id = "mockId"
         let locationName = "location"
-        let locationImage = "image"
         let userId = "userId"
         let locationId = "locationId"
+        let description = "description"
         let dateAdded = Date()
-        let bucketItem = BucketItem(id: id,
-                                    locationName: locationName,
-                                    locationImage: locationImage,
+        let bucketItem = BucketItem(locationName: locationName,
+                                    locationImage: nil,
                                     userId: userId,
-                                    locationId: locationId,
-                                    dateAdded: dateAdded)
+                                    locationId: locationId, dateVisited: nil,
+                                    dateAdded: dateAdded,
+                                    userDescription: description)
         databaseItems = [bucketItem]
         bucketItems = databaseItems
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {
         databaseItems.append(bucketItem)
+        bucketItems = databaseItems
     }
 
     func updateBucketItem(bucketItem: BucketItem) throws {
@@ -37,10 +37,12 @@ final class MockBucketStorage: BucketListStorage, ObservableObject {
             }
             return item
         }
+        bucketItems = databaseItems
     }
 
     func removeBucketItem(bucketItem: BucketItem) {
         databaseItems.removeAll { $0.id == bucketItem.id }
+        bucketItems = databaseItems
     }
 
     var bucketList: Published<[BucketItem]>.Publisher {
