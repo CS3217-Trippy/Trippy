@@ -27,9 +27,9 @@ struct AddLocationView: View {
 
     var locationDetailsSection: some View {
         Section {
-            Text("Please enter the name of the location.")
+            Text("Please enter the name of the location. (Up to 50 characters)")
             TextField("Name of Location", text: $locationName)
-            Text("Please enter a description of the location.")
+            Text("Please enter a description of the location. (Up to 500 characters.)")
             TextEditor(text: $locationDescription)
         }
     }
