@@ -6,7 +6,7 @@ extension Date {
     }
 
     var dateTimeStringFromDate: String {
-        DateManager.shared.stringFromDate(date: self, withFormat: "d MMM hh:mm a")
+        DateManager.shared.stringFromDate(date: self, withFormat: "d MMM h:mm a")
     }
 
     func stringFromDateWithFormat(format: String) -> String {

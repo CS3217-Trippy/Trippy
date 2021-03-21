@@ -7,6 +7,7 @@
 
 import CoreLocation
 import Combine
+import UIKit
 @testable import Trippy
 
 final class MockLocationStorage: LocationStorage, ObservableObject {
@@ -22,7 +23,7 @@ final class MockLocationStorage: LocationStorage, ObservableObject {
         }
     }
 
-    func addLocation(_ location: Location) throws {
+    func addLocation(_ location: Location, with image: UIImage?) throws {
         _locations.append(location)
     }
 

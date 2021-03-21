@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         Group {
             if let user = session.session {
-                HomepageView(homepageViewModel: HomepageViewModel(), user: user)
+                HomepageView(homepageViewModel: HomepageViewModel(session: session), user: user)
             } else {
                 StartUpView()
             }

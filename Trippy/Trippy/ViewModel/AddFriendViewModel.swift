@@ -18,7 +18,7 @@ final class AddFriendViewModel: ObservableObject {
         userStorage.usersList.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
-    func getUsers( ) {
+    func getUsers() {
         userStorage.getUsers()
     }
 

@@ -96,7 +96,7 @@ class LocationModelTests: XCTestCase {
         XCTAssertEqual(updatedLocation.description, newDescription)
     }
 
-    func testUpdate_locationDoesNotExist() {
+    func testUpdate_locationDoesNotExist() throws {
         let storage = MockLocationStorage()
         let model = LocationModel(storage: storage)
         let originalCount = model.locations.count
@@ -106,7 +106,7 @@ class LocationModelTests: XCTestCase {
             name: "lorem",
             description: "ipsum"
         )
-        model.removeLocation(location: newLocation)
+        try model.updateLocation(updatedLocation: newLocation)
         XCTAssertEqual(model.locations.count, originalCount)
         XCTAssertFalse(model.locations.contains(where: { $0.id == newLocation.id }))
     }

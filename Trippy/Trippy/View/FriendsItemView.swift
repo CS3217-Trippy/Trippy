@@ -16,8 +16,15 @@ struct FriendsItemView: View {
             width: UIScreen.main.bounds.width - 10,
             height: 210,
             viewBuilder: { HStack {
-                CircleImageView()
+                Image("cat")
+                    .resizable()
+                    .frame(width: 150, height: 150, alignment: .center)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 7)
+                Spacer()
                 Text(friendsItemViewModel.user.username)
+                Spacer()
                 Button(action: {
                         friendsItemViewModel.deleteFriend(session: session) }) {
                     Text("Delete")

@@ -13,12 +13,12 @@ final class HomepageViewModel: ObservableObject {
     @Published var bucketStorage: BucketListStorage
     @Published var bucketModel: BucketModel
 
-    init() {
+    init(session: SessionStore) {
         let locationStorage = FBLocationStorage()
         self.locationStorage = locationStorage
         let locationModel = LocationModel(storage: locationStorage)
         self.locationModel = locationModel
-        let bucketStorage = FBBucketListStorage()
+        let bucketStorage = FBBucketListStorage(user: session.session)
         self.bucketStorage = bucketStorage
         let bucketModel = BucketModel(storage: bucketStorage)
         self.bucketModel = bucketModel
