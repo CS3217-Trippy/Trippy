@@ -11,6 +11,7 @@ import Combine
 final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var email = ""
     @Published var username = ""
+    @Published var errorMessage = ""
     private var session: SessionStore
 
     init(session: SessionStore) {
@@ -33,6 +34,10 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     }
 
     func deleteUser() {
-        session.deleteUser()
+        session.deleteUser(handler: updateErrorMessage)
+    }
+
+    func updateErrorMessage(errorMessage: String) {
+        self.errorMessage = errorMessage
     }
 }

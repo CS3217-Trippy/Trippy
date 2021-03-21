@@ -33,6 +33,8 @@ struct AccountPageView: View {
             Button("DELETE ACCOUNT") {
                 accountPageViewModel.deleteUser()
             }.foregroundColor(.red)
+            Text(accountPageViewModel.errorMessage)
+                .foregroundColor(.red)
         }
         .padding()
     }
