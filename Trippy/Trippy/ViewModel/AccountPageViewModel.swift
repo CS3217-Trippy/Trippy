@@ -11,12 +11,11 @@ import Combine
 final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var email = ""
     @Published var username = ""
+    @Published var errorMessage = ""
     private var session: SessionStore
-    private var userStorage: UserStorage
 
     init(session: SessionStore) {
         self.session = session
-        self.userStorage = session.userStorage
         guard let user = session.session else {
             self.email = ""
             self.username = ""
@@ -31,14 +30,14 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
             fatalError("User should have logged in")
         }
         oldUser.username = username
-        userStorage.updateUserData(user: oldUser)
+        session.updateUser(updatedUser: oldUser)
     }
 
     func deleteUser() {
-        guard let userToDelete = session.session else {
-            fatalError("User should exist")
-        }
-        session.deleteUser()
-        userStorage.deleteUserFromFirestore(user: userToDelete)
+        session.deleteUser(handler: updateErrorMessage)
+    }
+
+    func updateErrorMessage(errorMessage: String) {
+        self.errorMessage = errorMessage
     }
 }

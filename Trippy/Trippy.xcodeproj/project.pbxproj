@@ -72,6 +72,7 @@
 		71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
 		71FFCE012604BA6300309D80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89925F7B6E80064EF40 /* ContentView.swift */; };
 		71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */; };
+		768A9CAF26074A4C004EF22C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A9CAE26074A4C004EF22C /* UserTests.swift */; };
 		7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D225FDEDC700AF9E63 /* LogInView.swift */; };
 		7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */; };
 		7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */; };
@@ -79,12 +80,13 @@
 		7694E9E725FE541700AF9E63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E625FE541700AF9E63 /* User.swift */; };
 		7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */; };
 		7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F025FEA73900AF9E63 /* StartUpView.swift */; };
-		7694E9F625FF34AF00AF9E63 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F525FF34AF00AF9E63 /* UserStorage.swift */; };
+		7694E9F625FF34AF00AF9E63 /* FBUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */; };
 		7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA3726015AB700AF9E63 /* AccountPageView.swift */; };
 		7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA3C26015C1300AF9E63 /* CircleImageView.swift */; };
 		7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA412601608800AF9E63 /* AccountPageViewModel.swift */; };
 		7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA492602ED1300AF9E63 /* HomepageView.swift */; };
 		7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */; };
+		7694EA5A260458EA00AF9E63 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA59260458EA00AF9E63 /* UserStorage.swift */; };
 		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
 		DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FriendsListViewModel.swift */; };
 		DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */; };
@@ -173,6 +175,7 @@
 		71FB972725F879680083C6F5 /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
 		71FB972C25F87C420083C6F5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		71FB973125F893750083C6F5 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
+		768A9CAE26074A4C004EF22C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7694E9D225FDEDC700AF9E63 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -180,12 +183,13 @@
 		7694E9E625FE541700AF9E63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		7694E9F025FEA73900AF9E63 /* StartUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpView.swift; sourceTree = "<group>"; };
-		7694E9F525FF34AF00AF9E63 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserStorage.swift; sourceTree = "<group>"; };
 		7694EA3726015AB700AF9E63 /* AccountPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageView.swift; sourceTree = "<group>"; };
 		7694EA3C26015C1300AF9E63 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		7694EA412601608800AF9E63 /* AccountPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageViewModel.swift; sourceTree = "<group>"; };
 		7694EA492602ED1300AF9E63 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewModel.swift; sourceTree = "<group>"; };
+		7694EA59260458EA00AF9E63 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
 		DB92737526001AEA00B898AE /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
 		DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemViewModel.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				01F4638825FD1F6C00BBB8E9 /* Storage */,
 				01F4637A25FD1F3C00BBB8E9 /* Util */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
+				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
 				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
 				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
@@ -350,7 +355,6 @@
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
 				011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */,
-				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
 				DB92737526001AEA00B898AE /* FriendsListViewModel.swift */,
 				DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */,
@@ -382,7 +386,7 @@
 		01F4638825FD1F6C00BBB8E9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				7694E9F525FF34AF00AF9E63 /* UserStorage.swift */,
+				7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */,
 				01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */,
 				01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */,
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
@@ -390,6 +394,7 @@
 				71565A7E25F9EF3D0070256A /* FBLocationStorage.swift */,
 				71565A8825FA12500070256A /* FBLocation.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
+				7694EA59260458EA00AF9E63 /* UserStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				714BFD5826047C41001E369F /* LocationModelTests.swift */,
 				01F8438525FDED6400080ED5 /* MockBucketStorage.swift */,
 				714BFD502604785F001E369F /* MockLocationStorage.swift */,
+				768A9CAE26074A4C004EF22C /* UserTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -589,7 +595,7 @@
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */,
 				7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */,
-				7694E9F625FF34AF00AF9E63 /* UserStorage.swift in Sources */,
+				7694E9F625FF34AF00AF9E63 /* FBUserStorage.swift in Sources */,
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
 				DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */,
 				7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */,
@@ -620,6 +626,7 @@
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				71565A8925FA12500070256A /* FBLocation.swift in Sources */,
+				7694EA5A260458EA00AF9E63 /* UserStorage.swift in Sources */,
 				71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
 				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
@@ -658,6 +665,7 @@
 				017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */,
 				01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */,
 				01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */,
+				768A9CAF26074A4C004EF22C /* UserTests.swift in Sources */,
 				714BFD512604785F001E369F /* MockLocationStorage.swift in Sources */,
 				714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */,
 				01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */,

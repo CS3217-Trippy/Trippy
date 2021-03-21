@@ -24,18 +24,18 @@ struct AddFriendView: View {
                     $0.id != session.session?.id
                         && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
             }) { user in
-                    HStack {
-                        CircleImageView()
-                        Spacer()
-                        Text(user.username)
-                        Spacer()
-                        Button(action: {
-                            if let curUser = session.session {
-                                viewModel.addFriend(curUser: curUser, user: user) }}) {
-                            Text("Add")
-                                .foregroundColor(.blue)
-                        }
+                HStack {
+                    CircleImageView()
+                    Spacer()
+                    Text(user.username)
+                    Spacer()
+                    Button(action: {
+                        if let currentUser = session.session {
+                            viewModel.addFriend(currentUser: currentUser, user: user) }}) {
+                        Text("Add")
+                            .foregroundColor(.blue)
                     }
+                }
             }
         }
     }

@@ -20,13 +20,13 @@ final class SessionStore: ObservableObject {
     }
     var username = ""
     var handle: AuthStateDidChangeListenerHandle?
-    var userStorage = UserStorage()
+    var userStorage: UserStorage = FBUserStorage()
     private var cancellables: Set<AnyCancellable> = []
 
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
-                self.userStorage.$user.assign(to: \.session, on: self).store(in: &self.cancellables)
+                self.userStorage.user.assign(to: \.session, on: self).store(in: &self.cancellables)
                 self.userStorage.retrieveUserFromFirestore(user: user, username: self.username)
             } else {
                 self.session = nil
@@ -54,14 +54,22 @@ final class SessionStore: ObservableObject {
         }
     }
 
-    func deleteUser() {
+    func deleteUser(handler: @escaping ((String) -> Void)) {
+        guard let currentUser = self.session else {
+            return
+        }
         Auth.auth().currentUser?.delete { error in
-            if error != nil {
-                print("Deleting user failed")
+            if let error = error {
+                handler(error.localizedDescription)
             } else {
+                self.userStorage.deleteUserFromFirestore(user: currentUser)
                 self.session = nil
             }
         }
+    }
+
+    func updateUser(updatedUser: User) {
+        userStorage.updateUserData(user: updatedUser)
     }
 
     func unbind() {

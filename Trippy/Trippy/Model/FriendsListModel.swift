@@ -17,7 +17,7 @@ final class FriendsListModel {
     init(session: SessionStore) {
         storage = session.userStorage
         user = session.session
-        storage.$friendsList.assign(to: \.friendsList, on: self).store(in: &cancellables)
+        storage.friendsList.assign(to: \.friendsList, on: self).store(in: &cancellables)
     }
 
     func getFriendsList() {

@@ -15,14 +15,14 @@ final class AddFriendViewModel: ObservableObject {
 
     init(session: SessionStore) {
         userStorage = session.userStorage
-        userStorage.$usersList.assign(to: \.usersList, on: self).store(in: &cancellables)
+        userStorage.usersList.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
-    func getUsers( ) {
+    func getUsers() {
         userStorage.getUsers()
     }
 
-    func addFriend(curUser: User, user: User) {
-        userStorage.addFriend(curUser: curUser, user: user)
+    func addFriend(currentUser: User, user: User) {
+        userStorage.addFriend(currentUser: currentUser, user: user)
     }
 }

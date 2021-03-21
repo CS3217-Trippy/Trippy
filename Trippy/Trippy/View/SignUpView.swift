@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @ObservedObject var signUpViewModel = SignUpViewModel()
+    @ObservedObject var signUpViewModel: SignUpViewModel
     @EnvironmentObject var session: SessionStore
 
     var body: some View {
@@ -24,8 +24,10 @@ struct SignUpView: View {
             SecureField("CONFIRM PASSSWORD", text: $signUpViewModel.confirmPassword)
                 .frame(width: 400, height: nil, alignment: .center)
             Button("SIGN UP") {
-                self.signUpViewModel.signUp(session: session)
+                self.signUpViewModel.signUp()
             }
+            Text(signUpViewModel.errorMessage)
+                .foregroundColor(.red)
         }
         .padding()
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -34,6 +36,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        SignUpView(signUpViewModel: SignUpViewModel(session: SessionStore()))
     }
 }
