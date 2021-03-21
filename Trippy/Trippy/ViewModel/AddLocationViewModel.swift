@@ -16,11 +16,11 @@ class AddLocationViewModel {
     }
 
     func isValidName(name: String) -> Bool {
-        !name.isEmpty && name.count < 50
+        !name.isEmpty && name.count <= 50
     }
 
     func isValidDescription(description: String) -> Bool {
-        !description.isEmpty && description.count < 500
+        !description.isEmpty && description.count <= 500
     }
 
     func saveForm(name: String, description: String, coordinates: CLLocationCoordinate2D, image: UIImage?) throws {
