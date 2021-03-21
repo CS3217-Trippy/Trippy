@@ -24,7 +24,7 @@ final class FBBucketListStorage: BucketListStorage, ObservableObject {
         let field = "userId"
         let sortField = "dateAdded"
         store.collection(path).whereField(field, isEqualTo: userId)
-            .order(by: sortField).addSnapshotListener {query, error in
+            .order(by: sortField).getDocuments {query, error in
             if error != nil {
                 return
             }

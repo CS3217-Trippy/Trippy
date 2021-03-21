@@ -19,4 +19,8 @@ final class BucketListViewModel: ObservableObject {
         .store(in: &cancellables)
     }
 
+    func fetch() {
+        bucketModel.fetchBucketItems()
+    }
+
 }
