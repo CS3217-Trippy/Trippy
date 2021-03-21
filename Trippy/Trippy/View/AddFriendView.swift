@@ -21,7 +21,8 @@ struct AddFriendView: View {
                 }
             }
             List(viewModel.usersList.filter {
-                    $0.id != session.session?.id && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
+                    $0.id != session.session?.id
+                        && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
             }) { user in
                     HStack {
                         CircleImageView()
