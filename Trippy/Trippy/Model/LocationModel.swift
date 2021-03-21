@@ -6,6 +6,7 @@
 //
 
 import Combine
+import UIKit
 
 class LocationModel: ObservableObject {
     @Published private(set) var locations: [Location] = []
@@ -23,12 +24,12 @@ class LocationModel: ObservableObject {
         storage.fetchLocations()
     }
 
-    func addLocation(location: Location) throws {
+    func addLocation(location: Location, image: UIImage? = nil) throws {
         guard !locations.contains(where: { $0.id == location.id }) else {
             return
         }
 
-        try storage.addLocation(location)
+        try storage.addLocation(location, with: image)
     }
 
     func removeLocation(location: Location) {

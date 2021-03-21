@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
@@ -51,16 +52,27 @@ struct LocationDetailView: View {
     }
 
     var body: some View {
-        VStack {
-            addBucketView
-            Image("Placeholder")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            HStack {
-                pageContent
-                Spacer()
+        ScrollView {
+            VStack {
+               addBucketView
+                if let url = viewModel.location.imageURL {
+                    URLImage(url: url) { image in
+                        image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    }
+                } else {
+                    Image("Placeholder")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                }
+
+                HStack {
+                    pageContent
+                    Spacer()
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }

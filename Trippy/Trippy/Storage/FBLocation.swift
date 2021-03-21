@@ -14,4 +14,5 @@ struct FBLocation: Identifiable, Codable {
     var longitude: Double
     var name: String
     var description: String
+    var imageURL: String?
 }
