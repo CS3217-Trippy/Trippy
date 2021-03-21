@@ -31,7 +31,7 @@ class AddBucketItemViewModel {
             throw BucketListError.invalidUser
         }
         let bucketItem = BucketItem(locationName: location.name,
-                                    locationImage: location.image,
+                                    locationImage: location.imageURL,
                                     userId: userUnwrapped.id,
                                     locationId: locationId,
                                     dateVisited: nil,

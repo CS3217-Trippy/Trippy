@@ -10,34 +10,26 @@ class BucketModelTests: XCTestCase {
         XCTAssertEqual(items.count, 1)
     }
 
-    func testAdd() {
+    func testAdd() throws {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
         let locationId = "tokyo"
         let item = constructBucketItem(locationId: locationId)
-        do {
-            try model.addBucketItem(bucketItem: item)
-        } catch {
-            fatalError("should be able to add bucket item")
-        }
+        try model.addBucketItem(bucketItem: item)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 2)
     }
 
-    func testAdd_duplicate_shouldFail() {
+    func testAdd_duplicate_shouldFail() throws {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
         let item = model.bucketItems[0]
-        do {
-            try model.addBucketItem(bucketItem: item)
-        } catch {
-            fatalError("should be able to add bucket item")
-        }
+        try model.addBucketItem(bucketItem: item)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 1)
     }
 
-    func testUpdate() {
+    func testUpdate() throws {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
         let locationId = "location1"
@@ -45,17 +37,13 @@ class BucketModelTests: XCTestCase {
         let newItem = item
         let newLocation = "New location"
         newItem.locationName = newLocation
-        do {
-            try model.addBucketItem(bucketItem: item)
-            try model.updateBucketItem(bucketItem: newItem)
-            let items = model.bucketItems
-            XCTAssertEqual(items.count, 2)
-        } catch {
-            fatalError("Should be able to update bucket item")
-        }
+        try model.addBucketItem(bucketItem: item)
+        try model.updateBucketItem(bucketItem: newItem)
+        let items = model.bucketItems
+        XCTAssertEqual(items.count, 2)
     }
 
-    func testUpdate_itemDoesNotExist_shouldFail() {
+    func testUpdate_itemDoesNotExist_shouldFail() throws {
         let storage = MockBucketStorage()
         let model = BucketModel(storage: storage)
         let locationId = "location1"
@@ -65,12 +53,8 @@ class BucketModelTests: XCTestCase {
         let oldLocation = item.locationName
         let newLocation = "New location"
         newItem.locationName = newLocation
-        do {
-            try model.addBucketItem(bucketItem: item)
-            try model.updateBucketItem(bucketItem: newItem)
-        } catch {
-            fatalError("Should be able to update bucket item")
-        }
+        try model.addBucketItem(bucketItem: item)
+        try model.updateBucketItem(bucketItem: newItem)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 2)
         XCTAssertEqual(model.bucketItems[1].locationName, oldLocation)
@@ -99,12 +83,11 @@ class BucketModelTests: XCTestCase {
 
     private func constructBucketItem(locationId: String) -> BucketItem {
         let locationName = "location"
-        let locationImage = "image"
         let userId = "userId"
         let description = "description"
         let dateAdded = Date()
         return BucketItem(locationName: locationName,
-                          locationImage: locationImage,
+                          locationImage: nil,
                           userId: userId,
                           locationId: locationId, dateVisited: nil,
                           dateAdded: dateAdded,

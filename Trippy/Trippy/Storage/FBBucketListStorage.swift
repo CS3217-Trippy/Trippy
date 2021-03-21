@@ -69,7 +69,7 @@ final class FBBucketListStorage: BucketListStorage, ObservableObject {
     private func convertBucketItemToFBBucketItem(bucketItem: BucketItem) -> FBBucketItem {
         FBBucketItem(id: bucketItem.id,
                      locationName: bucketItem.locationName,
-                     locationImage: bucketItem.locationImage,
+                     locationImage: bucketItem.locationImage?.absoluteString,
                      userId: bucketItem.userId,
                      locationId: bucketItem.locationId,
                      dateVisited: bucketItem.dateVisited,
@@ -79,14 +79,17 @@ final class FBBucketListStorage: BucketListStorage, ObservableObject {
     }
 
     private func convertFBBucketListToBucketList(bucketItem: FBBucketItem) -> BucketItem {
-        BucketItem(
-                          locationName: bucketItem.locationName,
-                          locationImage: bucketItem.locationImage,
+        var image: URL?
+        if let url = bucketItem.locationImage {
+            image = URL(string: url)
+        }
+        return BucketItem(locationName: bucketItem.locationName,
+                          locationImage: image,
                           userId: bucketItem.userId,
                           locationId: bucketItem.locationId,
                           dateVisited: bucketItem.dateVisited,
                           dateAdded: bucketItem.dateAdded,
                           userDescription: bucketItem.userDescription
-                          )
+        )
     }
 }

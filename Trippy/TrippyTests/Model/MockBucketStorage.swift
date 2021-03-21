@@ -10,15 +10,13 @@ final class MockBucketStorage: BucketListStorage, ObservableObject {
     }
 
     func fetchBucketItems() {
-        let id = "mockId"
         let locationName = "location"
-        let locationImage = "image"
         let userId = "userId"
         let locationId = "locationId"
         let description = "description"
         let dateAdded = Date()
         let bucketItem = BucketItem(locationName: locationName,
-                                    locationImage: locationImage,
+                                    locationImage: nil,
                                     userId: userId,
                                     locationId: locationId, dateVisited: nil,
                                     dateAdded: dateAdded,

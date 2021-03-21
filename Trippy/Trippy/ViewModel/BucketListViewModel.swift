@@ -11,7 +11,9 @@ final class BucketListViewModel: ObservableObject {
     init(bucketModel: BucketModel) {
         self.bucketModel = bucketModel
         bucketModel.$bucketItems.map { bucketItem in
-            bucketItem.map(BucketItemViewModel.init)
+            bucketItem.map { bucketItem in
+                BucketItemViewModel(bucketItem: bucketItem, bucketModel: bucketModel)
+            }
         }
         .assign(to: \.bucketItemViewModels, on: self)
         .store(in: &cancellables)
