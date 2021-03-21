@@ -7,6 +7,7 @@
 
 import CoreLocation
 import Combine
+import UIKit
 
 class PreviewLocationStorage: LocationStorage {
     var locations: Published<[Location]>.Publisher {
@@ -19,7 +20,7 @@ class PreviewLocationStorage: LocationStorage {
         _locations = PreviewLocations.locations
     }
 
-    func addLocation(_ location: Location) throws {
+    func addLocation(_ location: Location, with image: UIImage?) throws {
         // Does Nothing
         return
     }

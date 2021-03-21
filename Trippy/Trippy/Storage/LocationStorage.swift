@@ -6,13 +6,14 @@
 //
 
 import Combine
+import UIKit
 
 protocol LocationStorage {
     var locations: Published<[Location]>.Publisher { get }
 
     func fetchLocations()
 
-    func addLocation(_ location: Location) throws
+    func addLocation(_ location: Location, with image: UIImage?) throws
 
     func updateLocation(_ location: Location) throws
 
