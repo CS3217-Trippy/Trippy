@@ -38,15 +38,17 @@ struct LocationDetailView: View {
     }
 
     var body: some View {
-        VStack {
-            Image("Placeholder")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            HStack {
-                pageContent
-                Spacer()
+        ScrollView {
+            VStack {
+                Image("Placeholder")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                HStack {
+                    pageContent
+                    Spacer()
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }
