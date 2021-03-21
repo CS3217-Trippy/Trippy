@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct StartUpView: View {
+    @EnvironmentObject var session: SessionStore
+
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
                 Text("Trippy")
                     .font(.largeTitle)
-                NavigationLink(destination: LogInView()) {
+                NavigationLink(destination: LogInView(logInViewModel: LogInViewModel(session: session))) {
                     Text("LOG IN")
                 }
-                NavigationLink(destination: SignUpView()) {
+                NavigationLink(destination: SignUpView(signUpViewModel: SignUpViewModel(session: session))) {
                     Text("SIGN UP")
                 }
             }

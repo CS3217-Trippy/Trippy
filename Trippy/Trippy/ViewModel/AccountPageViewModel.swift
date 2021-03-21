@@ -12,11 +12,9 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var email = ""
     @Published var username = ""
     private var session: SessionStore
-    private var userStorage: UserStorage
 
     init(session: SessionStore) {
         self.session = session
-        self.userStorage = session.userStorage
         guard let user = session.session else {
             self.email = ""
             self.username = ""

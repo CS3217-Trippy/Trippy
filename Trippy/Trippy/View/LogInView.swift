@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LogInView: View {
-    @ObservedObject var logInViewModel = LogInViewModel()
+    @ObservedObject var logInViewModel: LogInViewModel
     @EnvironmentObject var session: SessionStore
 
     var body: some View {
@@ -20,7 +20,7 @@ struct LogInView: View {
             SecureField("PASSWORD", text: $logInViewModel.password)
                 .frame(width: 400, height: nil, alignment: .center)
             Button("LOGIN") {
-                self.logInViewModel.login(session: session)
+                self.logInViewModel.login()
             }
             Text(logInViewModel.errorMessage)
                 .foregroundColor(.red)
@@ -32,6 +32,6 @@ struct LogInView: View {
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView()
+        LogInView(logInViewModel: LogInViewModel(session: SessionStore()))
     }
 }

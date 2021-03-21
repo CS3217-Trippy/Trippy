@@ -15,8 +15,13 @@ final class SignUpViewModel: ObservableObject, Identifiable {
     @Published var password = ""
     @Published var confirmPassword = ""
     @Published var errorMessage = ""
+    private var session: SessionStore
 
-    func signUp(session: SessionStore) {
+    init(session: SessionStore) {
+        self.session = session
+    }
+
+    func signUp() {
         if password != confirmPassword {
             self.errorMessage = passwordNotEqualError
             return

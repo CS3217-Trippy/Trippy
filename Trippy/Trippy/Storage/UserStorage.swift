@@ -26,4 +26,6 @@ protocol UserStorage {
     func getUsers()
 
     func addFriend(currentUser: User, user: User)
+
+    func deleteFriend(currentUser: User, user: User)
 }

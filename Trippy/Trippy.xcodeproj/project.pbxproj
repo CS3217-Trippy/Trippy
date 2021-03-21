@@ -251,6 +251,7 @@
 				01F4638825FD1F6C00BBB8E9 /* Storage */,
 				01F4637A25FD1F3C00BBB8E9 /* Util */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
+				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
 				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
 				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
@@ -338,7 +339,6 @@
 			children = (
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
-				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
 				DB92737526001AEA00B898AE /* FriendsListViewModel.swift */,
 				DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */,

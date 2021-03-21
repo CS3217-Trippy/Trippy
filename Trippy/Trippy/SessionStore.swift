@@ -20,7 +20,7 @@ final class SessionStore: ObservableObject {
     }
     var username = ""
     var handle: AuthStateDidChangeListenerHandle?
-    var userStorage = FBUserStorage()
+    var userStorage: UserStorage = FBUserStorage()
     private var cancellables: Set<AnyCancellable> = []
 
     func listen() {
