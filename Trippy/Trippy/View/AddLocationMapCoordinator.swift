@@ -60,6 +60,7 @@ class AddLocationMapCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerD
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = "Selected"
+        parent.selectedLocation = coordinate
         parent.map.removeAnnotations(parent.map.annotations)
         parent.map.addAnnotation(annotation)
     }

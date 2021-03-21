@@ -20,6 +20,7 @@ struct AddLocationView: View {
     @State private var showPhotoLibrary = false
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
+    @State private var selectedLocation = CLLocationCoordinate2D()
     @State private var showCameraError = false
     @State private var imageSource: UIImagePickerController.SourceType?
     let viewModel: AddLocationViewModel
@@ -37,7 +38,8 @@ struct AddLocationView: View {
     var locationMapSection: some View {
         Section {
             Text("Please select the location on the map.")
-            AddLocationMapView(map: $map, locationManager: $locationManager, showLocationAlert: $showLocationAlert)
+            AddLocationMapView(map: $map, locationManager: $locationManager,
+                               showLocationAlert: $showLocationAlert, selectedLocation: $selectedLocation)
             .onAppear {
                 self.locationManager.requestAlwaysAuthorization()
             }
@@ -101,14 +103,11 @@ struct AddLocationView: View {
     var submitSection: some View {
         Section {
             Button("Submit") {
-                guard let coordinate = map.annotations.first?.coordinate else {
-                    return
-                }
                 do {
                     try viewModel.saveForm(
                         name: locationName,
                         description: locationDescription,
-                        coordinates: coordinate,
+                        coordinates: selectedLocation,
                         image: selectedImage
                     )
                 } catch {
