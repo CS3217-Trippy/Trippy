@@ -147,10 +147,3 @@ extension UIImagePickerController.SourceType: Identifiable {
         hashValue
     }
 }
-
-struct AddLocationView_Previews: PreviewProvider {
-    static var previews: some View {
-        let locationModel = LocationModel(storage: PreviewLocationStorage())
-        AddLocationView(viewModel: .init(locationModel: locationModel))
-    }
-}

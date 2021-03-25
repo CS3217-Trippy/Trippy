@@ -8,11 +8,11 @@
 import Combine
 
 class LocationMapViewModel: ObservableObject {
-    @Published var locationModel: LocationModel
+    @Published var locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
     @Published var locations: [Location] = []
     private var cancellables: Set<AnyCancellable> = []
 
-    init(locationModel: LocationModel) {
+    init(locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>) {
         self.locationModel = locationModel
         $locationModel
           .compactMap { $0.locations }

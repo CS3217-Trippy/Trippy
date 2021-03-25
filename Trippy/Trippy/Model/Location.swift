@@ -8,7 +8,7 @@
 import CoreLocation
 import UIKit
 
-class Location: Identifiable {
+class Location: ImageSupportedModel {
     let coordinates: CLLocationCoordinate2D
     var id: String?
     var name: String
