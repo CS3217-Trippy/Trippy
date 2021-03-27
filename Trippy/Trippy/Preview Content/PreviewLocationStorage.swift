@@ -9,28 +9,28 @@ import CoreLocation
 import Combine
 import UIKit
 
-class PreviewLocationStorage: LocationStorage {
-    var locations: Published<[Location]>.Publisher {
-        $_locations
+class PreviewLocationStorage: ImageSupportedStorage {
+    var storedItems: Published<[Location]>.Publisher {
+        $_storedItems
     }
 
-    @Published private var _locations: [Location] = []
+    @Published private var _storedItems: [Location] = []
 
-    func fetchLocations() {
-        _locations = PreviewLocations.locations
+    func fetch() {
+        _storedItems = PreviewLocations.locations
     }
 
-    func addLocation(_ location: Location, with image: UIImage?) throws {
+    func add(_ item: Location, with image: UIImage?) throws {
         // Does Nothing
         return
     }
 
-    func updateLocation(_ location: Location) throws {
+    func update(_ item: Location, with image: UIImage?) throws {
         // Does Nothing
         return
     }
 
-    func removeLocation(_ location: Location) {
+    func remove(_ item: Location) {
         // Does Nothing
         return
     }

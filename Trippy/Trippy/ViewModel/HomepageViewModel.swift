@@ -8,15 +8,15 @@
 import Combine
 
 final class HomepageViewModel: ObservableObject {
-    @Published var locationStorage: LocationStorage
-    @Published var locationModel: LocationModel
+    @Published var locationStorage: FBImageSupportedStorage<FBLocation>
+    @Published var locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
     @Published var bucketStorage: BucketListStorage
     @Published var bucketModel: BucketModel
 
     init(session: SessionStore) {
-        let locationStorage = FBLocationStorage()
+        let locationStorage = FBImageSupportedStorage<FBLocation>()
         self.locationStorage = locationStorage
-        let locationModel = LocationModel(storage: locationStorage)
+        let locationModel = LocationModel<FBImageSupportedStorage<FBLocation>>(storage: locationStorage)
         self.locationModel = locationModel
         let bucketStorage = FBBucketListStorage(user: session.session)
         self.bucketStorage = bucketStorage

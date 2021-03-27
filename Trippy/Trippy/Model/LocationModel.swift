@@ -8,20 +8,20 @@
 import Combine
 import UIKit
 
-class LocationModel: ObservableObject {
+class LocationModel<Storage: ImageSupportedStorage>: ObservableObject where Storage.StoredType == Location {
     @Published private(set) var locations: [Location] = []
-    private let storage: LocationStorage
+    private let storage: Storage
     private var cancellables: Set<AnyCancellable> = []
 
-    init(storage: LocationStorage) {
+    init(storage: Storage) {
         self.storage = storage
-        storage.locations.assign(to: \.locations, on: self)
+        storage.storedItems.assign(to: \.locations, on: self)
             .store(in: &cancellables)
         fetchLocations()
     }
 
     func fetchLocations() {
-        storage.fetchLocations()
+        storage.fetch()
     }
 
     func addLocation(location: Location, image: UIImage? = nil) throws {
@@ -29,7 +29,7 @@ class LocationModel: ObservableObject {
             return
         }
 
-        try storage.addLocation(location, with: image)
+        try storage.add(location, with: image)
     }
 
     func removeLocation(location: Location) {
@@ -37,15 +37,15 @@ class LocationModel: ObservableObject {
             return
         }
 
-        storage.removeLocation(location)
+        storage.remove(location)
     }
 
-    func updateLocation(updatedLocation: Location) throws {
+    func updateLocation(updatedLocation: Location, image: UIImage? = nil) throws {
         guard locations.contains(where: { $0.id == updatedLocation.id }) else {
             return
         }
 
-        try storage.updateLocation(updatedLocation)
+        try storage.update(updatedLocation, with: image)
     }
 
 }

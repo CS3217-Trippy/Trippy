@@ -32,11 +32,3 @@ struct LocationListView: View {
         .navigationBarTitle(viewTitle)
     }
 }
-
-struct LocationListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let previewModel = LocationModel(storage: PreviewLocationStorage())
-        let locationListViewModel = LocationListViewModel(locationModel: previewModel)
-        return LocationListView(viewModel: locationListViewModel)
-    }
-}

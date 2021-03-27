@@ -46,10 +46,3 @@ struct LocationMapView: View {
         }
     }
 }
-
-struct MapInterfaceView_Previews: PreviewProvider {
-    static var previews: some View {
-        let model = LocationModel(storage: PreviewLocationStorage())
-        LocationMapView(viewModel: .init(locationModel: model))
-    }
-}

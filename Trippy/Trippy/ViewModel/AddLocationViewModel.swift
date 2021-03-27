@@ -9,9 +9,9 @@ import CoreLocation
 import UIKit
 
 class AddLocationViewModel {
-    let locationModel: LocationModel
+    let locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
 
-    init(locationModel: LocationModel) {
+    init(locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>) {
         self.locationModel = locationModel
     }
 
