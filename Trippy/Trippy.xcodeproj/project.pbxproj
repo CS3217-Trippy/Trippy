@@ -87,7 +87,7 @@
 		7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */; };
 		7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */; };
 		7694E9E725FE541700AF9E63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9E625FE541700AF9E63 /* User.swift */; };
-		7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */; };
+		7694E9EC25FE5C6700AF9E63 /* FBSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9EB25FE5C6700AF9E63 /* FBSessionStore.swift */; };
 		7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F025FEA73900AF9E63 /* StartUpView.swift */; };
 		7694E9F625FF34AF00AF9E63 /* FBUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */; };
 		7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA3726015AB700AF9E63 /* AccountPageView.swift */; };
@@ -97,6 +97,7 @@
 		7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */; };
 		7694EA5A260458EA00AF9E63 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA59260458EA00AF9E63 /* UserStorage.swift */; };
 		76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE0E2610D8F000393AF7 /* FBUser.swift */; };
+		76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE192611105700393AF7 /* SessionStore.swift */; };
 		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
 		DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FriendsListViewModel.swift */; };
 		DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */; };
@@ -200,7 +201,7 @@
 		7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		7694E9E625FE541700AF9E63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		7694E9EB25FE5C6700AF9E63 /* FBSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSessionStore.swift; sourceTree = "<group>"; };
 		7694E9F025FEA73900AF9E63 /* StartUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpView.swift; sourceTree = "<group>"; };
 		7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserStorage.swift; sourceTree = "<group>"; };
 		7694EA3726015AB700AF9E63 /* AccountPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageView.swift; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 		7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewModel.swift; sourceTree = "<group>"; };
 		7694EA59260458EA00AF9E63 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		76F8BE0E2610D8F000393AF7 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
+		76F8BE192611105700393AF7 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
 		DB92737526001AEA00B898AE /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
 		DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemViewModel.swift; sourceTree = "<group>"; };
@@ -303,7 +305,8 @@
 				01F4638825FD1F6C00BBB8E9 /* Storage */,
 				01F4637A25FD1F3C00BBB8E9 /* Util */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
-				7694E9EB25FE5C6700AF9E63 /* SessionStore.swift */,
+				7694E9EB25FE5C6700AF9E63 /* FBSessionStore.swift */,
+				76F8BE192611105700393AF7 /* SessionStore.swift */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
 				0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */,
 				017FD89B25F7B6E80064EF40 /* Assets.xcassets */,
@@ -436,7 +439,6 @@
 				7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */,
 				714AF261260B85C20034269C /* FBLocation.swift */,
 				76F8BE0E2610D8F000393AF7 /* FBUser.swift */,
-				01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */,
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
 				01483A4926107AA400D840EA /* FBFriend.swift */,
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
@@ -649,7 +651,7 @@
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
 				DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */,
 				7694EA3D26015C1300AF9E63 /* CircleImageView.swift in Sources */,
-				7694E9EC25FE5C6700AF9E63 /* SessionStore.swift in Sources */,
+				7694E9EC25FE5C6700AF9E63 /* FBSessionStore.swift in Sources */,
 				01088F5C2606442F00579707 /* BucketListError.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
@@ -675,6 +677,7 @@
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				714B10D026066D190040FAA1 /* UIImage+Extensions.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
+				76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */,
 				01483A262610388700D840EA /* FBUserRelatedStorage.swift in Sources */,
 				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
