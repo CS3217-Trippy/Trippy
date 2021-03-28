@@ -16,6 +16,7 @@ struct FBBucketItem: FBUserRelatedStorable {
     init(item: ModelType) {
         id = item.id
         locationName = item.locationName
+        locationImage = item.locationImage?.absoluteString
         userId = item.userId
         locationId = item.locationId
         dateVisited = item.dateVisited

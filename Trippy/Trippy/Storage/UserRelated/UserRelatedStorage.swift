@@ -8,11 +8,13 @@
 import Combine
 
 protocol UserRelatedStorage: ObservableObject {
+    var userId: String? { get }
+
     associatedtype StoredType
 
     var storedItems: Published<[StoredType]>.Publisher { get }
 
-    func fetch(userId: String)
+    func fetch()
 
     func add(item: StoredType) throws
 

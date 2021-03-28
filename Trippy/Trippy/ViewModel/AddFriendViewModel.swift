@@ -11,10 +11,14 @@ import Combine
 final class AddFriendViewModel: ObservableObject {
     @Published var usersList: [User] = []
     private var cancellables: Set<AnyCancellable> = []
+    private var friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
     private var userStorage: UserStorage
 
     init(session: SessionStore) {
         userStorage = session.userStorage
+        let user = session.session
+        let storage = FBUserRelatedStorage<FBFriend>(userId: user?.id)
+        self.friendsListModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(storage: storage, userId: user?.id)
         userStorage.usersList.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
@@ -22,7 +26,19 @@ final class AddFriendViewModel: ObservableObject {
         userStorage.getUsers()
     }
 
-    func addFriend(currentUser: User, user: User) {
-        userStorage.addFriend(currentUser: currentUser, user: user)
+    func addFriend(currentUser: User, user: User) throws {
+        let friend = createFriendRequest(from: currentUser, to: user)
+        try friendsListModel.addFriend(friend: friend)
     }
+
+    private func createFriendRequest(from: User, to: User) -> Friend {
+        Friend(userId: to.id,
+               username: to.username,
+               userProfilePhoto: URL(string: to.profilePhoto),
+               friendId: from.id,
+               friendUsername: from.username,
+               friendProfilePhoto: URL(string: from.profilePhoto),
+               hasAccepted: false)
+    }
+
 }

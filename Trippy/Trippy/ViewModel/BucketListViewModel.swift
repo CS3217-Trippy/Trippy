@@ -1,7 +1,7 @@
 import Combine
 
 final class BucketListViewModel: ObservableObject {
-    @Published var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
+    private var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
     @Published var bucketItemViewModels: [BucketItemViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
     var isEmpty: Bool {

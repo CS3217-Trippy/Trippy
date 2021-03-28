@@ -11,32 +11,57 @@ struct AddFriendView: View {
     @State var username: String = ""
     @EnvironmentObject var session: SessionStore
     @ObservedObject var viewModel: AddFriendViewModel
-    var body: some View {
-        VStack {
-            HStack {
-                TextField("Enter username...", text: $username)
-                Button("Search") {
-                    viewModel.getUsers()
+    @State private var showStorageError = false
+    @Environment(\.presentationMode) var presentationMode
 
-                }
+    var search: some View {
+        HStack {
+            TextField("Enter username...", text: $username)
+            Button("Search") {
+                viewModel.getUsers()
+
             }
-            List(viewModel.usersList.filter {
-                    $0.id != session.session?.id
-                        && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
-            }) { user in
-                HStack {
-                    CircleImageView()
-                    Spacer()
-                    Text(user.username)
-                    Spacer()
-                    Button(action: {
-                        if let currentUser = session.session {
-                            viewModel.addFriend(currentUser: currentUser, user: user) }}) {
-                        Text("Add")
-                            .foregroundColor(.blue)
+        }
+    }
+
+    var listView: some View {
+        List(viewModel.usersList.filter {
+                $0.id != session.session?.id
+                    && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
+        }) { user in
+            HStack {
+                CircleImageView()
+                Spacer()
+                Text(user.username)
+                Spacer()
+                Button(action: {
+                    if let currentUser = session.session {
+                        do {
+                            try viewModel.addFriend(currentUser: currentUser, user: user)
+                        } catch {
+                            showStorageError = true
+                        }
+                        if !showStorageError {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
+                ) {
+                    Text("Add")
+                        .foregroundColor(.blue)
+                }
             }
+        }
+    }
+
+    var body: some View {
+        VStack {
+            search
+            listView
+        }.alert(isPresented: $showStorageError) {
+            Alert(
+                title: Text("An error occurred while attempting to add friend.")
+            )
         }
     }
 }

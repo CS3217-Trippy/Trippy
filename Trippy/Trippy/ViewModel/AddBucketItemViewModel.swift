@@ -13,7 +13,7 @@ class AddBucketItemViewModel {
     let user: User?
 
     init(location: Location, user: User?) {
-        let storage = FBUserRelatedStorage<FBBucketItem>()
+        let storage = FBUserRelatedStorage<FBBucketItem>(userId: user?.id)
         self.bucketModel = BucketModel<FBUserRelatedStorage<FBBucketItem>>(storage: storage, userId: user?.id)
         self.location = location
         self.user = user

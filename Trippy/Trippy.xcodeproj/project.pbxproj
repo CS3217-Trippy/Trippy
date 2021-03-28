@@ -16,6 +16,9 @@
 		01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A1B261034A800D840EA /* FBUserRelatedStorable.swift */; };
 		01483A21261034DC00D840EA /* UserRelatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A20261034DC00D840EA /* UserRelatedModel.swift */; };
 		01483A262610388700D840EA /* FBUserRelatedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A252610388700D840EA /* FBUserRelatedStorage.swift */; };
+		01483A452610728D00D840EA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A442610728D00D840EA /* Friend.swift */; };
+		01483A4A26107AA400D840EA /* FBFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A4926107AA400D840EA /* FBFriend.swift */; };
+		01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A5126108D1500D840EA /* Image+Extensions.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
 		017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8A925F7B6E80064EF40 /* TrippyTests.swift */; };
@@ -129,6 +132,9 @@
 		01483A1B261034A800D840EA /* FBUserRelatedStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserRelatedStorable.swift; sourceTree = "<group>"; };
 		01483A20261034DC00D840EA /* UserRelatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelatedModel.swift; sourceTree = "<group>"; };
 		01483A252610388700D840EA /* FBUserRelatedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserRelatedStorage.swift; sourceTree = "<group>"; };
+		01483A442610728D00D840EA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		01483A4926107AA400D840EA /* FBFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFriend.swift; sourceTree = "<group>"; };
+		01483A5126108D1500D840EA /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		017FD89425F7B6E80064EF40 /* Trippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD89725F7B6E80064EF40 /* TrippyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyApp.swift; sourceTree = "<group>"; };
 		017FD89925F7B6E80064EF40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -380,6 +386,7 @@
 				01088F5B2606442F00579707 /* BucketListError.swift */,
 				01483A0E2610341A00D840EA /* ImageSupportedModel.swift */,
 				01483A20261034DC00D840EA /* UserRelatedModel.swift */,
+				01483A442610728D00D840EA /* Friend.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -414,6 +421,7 @@
 				01F4638925FD1FBE00BBB8E9 /* DateManager.swift */,
 				01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */,
 				714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */,
+				01483A5126108D1500D840EA /* Image+Extensions.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -426,6 +434,7 @@
 				7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */,
 				714AF261260B85C20034269C /* FBLocation.swift */,
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
+				01483A4926107AA400D840EA /* FBFriend.swift */,
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
 				7694EA59260458EA00AF9E63 /* UserStorage.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
@@ -648,11 +657,14 @@
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
+				01483A452610728D00D840EA /* Friend.swift in Sources */,
 				714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */,
 				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
+				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
+				01483A4A26107AA400D840EA /* FBFriend.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,

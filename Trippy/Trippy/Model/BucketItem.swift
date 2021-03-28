@@ -1,6 +1,4 @@
 import Foundation
-import FirebaseFirestoreSwift
-
 class BucketItem: UserRelatedModel {
     var id: String?
     var locationName: String

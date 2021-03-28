@@ -11,13 +11,21 @@ import Firebase
 import Combine
 
 class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserRelatedStorable {
+    var userId: String?
     var storedItems: Published<[Storable.ModelType]>.Publisher {
         $_storedItems
     }
     @Published private var _storedItems: [Storable.ModelType] = []
     private let store = Firestore.firestore()
 
-    func fetch(userId: String) {
+    init(userId: String?) {
+        self.userId = userId
+    }
+
+    func fetch() {
+        guard let userId = userId else {
+            return
+        }
         let field = "userId"
         store.collection(Storable.path).whereField(field, isEqualTo: userId).getDocuments { snapshot, error in
             if let error = error {
@@ -44,7 +52,9 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
         } catch {
             print(error.localizedDescription)
         }
-        _storedItems.append(item)
+        if item.userId == userId {
+            _storedItems.append(item)
+        }
     }
 
     func update(item: Storable.ModelType) throws {

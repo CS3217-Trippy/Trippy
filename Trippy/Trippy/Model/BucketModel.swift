@@ -15,9 +15,7 @@ class BucketModel<Storage: UserRelatedStorage>: ObservableObject where Storage.S
     }
 
     func fetchBucketItems() {
-        if let userId = userId {
-            storage.fetch(userId: userId)
-        }
+        storage.fetch()
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {
