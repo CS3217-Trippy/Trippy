@@ -13,23 +13,23 @@ import Combine
 
 final class SessionStore: ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
-    @Published var session: User? {
+    @Published var session: [User] = [] {
         didSet {
             self.didChange.send(self)
         }
     }
     var username = ""
     var handle: AuthStateDidChangeListenerHandle?
-    var userStorage: UserStorage = FBUserStorage()
+    var userStorage = FBImageSupportedStorage<FBUser>()
     private var cancellables: Set<AnyCancellable> = []
 
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
-                self.userStorage.user.assign(to: \.session, on: self).store(in: &self.cancellables)
-                self.userStorage.retrieveUserFromFirestore(user: user, username: self.username)
+                self.userStorage.storedItems.assign(to: \.session, on: self).store(in: &self.cancellables)
+//                self.userStorage.retrieveUserFromFirestore(user: user, username: self.username)
             } else {
-                self.session = nil
+                self.session = []
                 self.username = ""
             }
         }
@@ -47,7 +47,7 @@ final class SessionStore: ObservableObject {
     func signOut() -> Bool {
         do {
             try Auth.auth().signOut()
-            self.session = nil
+            self.session = []
             return true
         } catch {
             return false
@@ -55,21 +55,18 @@ final class SessionStore: ObservableObject {
     }
 
     func deleteUser(handler: @escaping ((String) -> Void)) {
-        guard let currentUser = self.session else {
-            return
-        }
         Auth.auth().currentUser?.delete { error in
             if let error = error {
                 handler(error.localizedDescription)
             } else {
-                self.userStorage.deleteUserFromFirestore(user: currentUser)
-                self.session = nil
+//                self.userStorage.deleteUserFromFirestore(user: currentUser)
+                self.session = []
             }
         }
     }
 
     func updateUser(updatedUser: User) {
-        userStorage.updateUserData(user: updatedUser)
+//        userStorage.updateUserData(user: updatedUser)
     }
 
     func unbind() {
