@@ -1,39 +1,43 @@
 import Combine
 
-class BucketModel: ObservableObject {
+class BucketModel<Storage: UserRelatedStorage>: ObservableObject where Storage.StoredType == BucketItem {
     @Published private(set) var bucketItems: [BucketItem] = []
-    private let storage: BucketListStorage
+    private let storage: Storage
     private var cancellables: Set<AnyCancellable> = []
+    private let userId: String?
 
-    init(storage: BucketListStorage) {
+    init(storage: Storage, userId: String?) {
         self.storage = storage
-        storage.bucketList.assign(to: \.bucketItems, on: self)
+        self.userId = userId
+        storage.storedItems.assign(to: \.bucketItems, on: self)
             .store(in: &cancellables)
         fetchBucketItems()
     }
 
     func fetchBucketItems() {
-        storage.fetchBucketItems()
+        if let userId = userId {
+            storage.fetch(userId: userId)
+        }
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {
         guard !bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return
         }
-        try storage.addBucketItem(bucketItem: bucketItem)
+        try storage.add(item: bucketItem)
     }
 
     func removeBucketItem(bucketItem: BucketItem) {
         guard bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return
         }
-        storage.removeBucketItem(bucketItem: bucketItem)
+        storage.remove(item: bucketItem)
     }
 
     func updateBucketItem(bucketItem: BucketItem) throws {
         guard bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return
         }
-        try storage.updateBucketItem(bucketItem: bucketItem)
+        try storage.update(item: bucketItem)
     }
 }

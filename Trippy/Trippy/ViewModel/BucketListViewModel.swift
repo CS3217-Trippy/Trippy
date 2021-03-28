@@ -1,14 +1,14 @@
 import Combine
 
 final class BucketListViewModel: ObservableObject {
-    @Published var bucketModel: BucketModel
+    @Published var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
     @Published var bucketItemViewModels: [BucketItemViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
     var isEmpty: Bool {
         bucketItemViewModels.isEmpty
     }
 
-    init(bucketModel: BucketModel) {
+    init(bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>) {
         self.bucketModel = bucketModel
         bucketModel.$bucketItems.map { bucketItem in
             bucketItem.map { bucketItem in
