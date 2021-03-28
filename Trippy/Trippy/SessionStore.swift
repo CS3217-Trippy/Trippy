@@ -23,11 +23,29 @@ final class SessionStore: ObservableObject {
     var userStorage = FBImageSupportedStorage<FBUser>()
     private var cancellables: Set<AnyCancellable> = []
 
+    private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
+        return User(
+            id: user.uid,
+            email: user.email ?? "",
+            username: username,
+            friendsId: []
+        )
+    }
+
+    private func retrieveCurrentLoggedInUser() -> User {
+        if session.count != 1 {
+            fatalError("Only one user should be logged in")
+        }
+
+        return session[0]
+    }
+
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
                 self.userStorage.storedItems.assign(to: \.session, on: self).store(in: &self.cancellables)
-//                self.userStorage.retrieveUserFromFirestore(user: user, username: self.username)
+                let user = self.translateFromFirebaseAuthToUser(user: user)
+                self.userStorage.add(user, with: nil)
             } else {
                 self.session = []
                 self.username = ""
@@ -59,14 +77,18 @@ final class SessionStore: ObservableObject {
             if let error = error {
                 handler(error.localizedDescription)
             } else {
-//                self.userStorage.deleteUserFromFirestore(user: currentUser)
+                self.userStorage.remove(self.retrieveCurrentLoggedInUser())
                 self.session = []
             }
         }
     }
 
     func updateUser(updatedUser: User) {
-//        userStorage.updateUserData(user: updatedUser)
+        do {
+            try self.userStorage.update(retrieveCurrentLoggedInUser())
+        } catch {
+            print("Updating user failed")
+        }
     }
 
     func unbind() {
