@@ -11,17 +11,10 @@ struct BucketItemView: View {
                                     content: { image in
                                         image
                                             .renderingMode(.original)
-                                            .resizable()
-                                            .frame(width: 200, height: 200)
-                                            .cornerRadius(16)
-                                            .padding(10)
+                                            .cardImageModifier()
                                     }))
         } else {
-            return AnyView(Image("Placeholder")
-                            .resizable()
-                            .frame(width: 200, height: 200)
-                            .cornerRadius(16)
-                            .padding(10))
+            return AnyView(Image("Placeholder").cardImageModifier())
         }
     }
 

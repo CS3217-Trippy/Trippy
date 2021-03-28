@@ -32,6 +32,7 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
                 return fbItem.convertToModelType()
             } ?? []
         }
+
     }
 
     func add(_ item: Storable.ModelType, with image: UIImage?) {

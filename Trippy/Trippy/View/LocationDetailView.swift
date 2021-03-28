@@ -15,9 +15,7 @@ struct LocationDetailView: View {
     var addBucketView: some View {
         HStack {
             NavigationLink(
-            destination: AddBucketItemView(viewModel: .init(bucketModel: .init(
-                                                                storage: FBBucketListStorage(user: session.session)),
-                                                            location: viewModel.location, user: session.session))) {
+            destination: AddBucketItemView(viewModel: .init(location: viewModel.location, user: session.session))) {
             Text("Add to bucketlist")
             }
             Spacer()

@@ -8,21 +8,38 @@
 import Foundation
 import Combine
 
-final class FriendsListModel {
-    @Published var friendsList: [User] = []
+final class FriendsListModel<Storage: UserRelatedStorage> where Storage.StoredType == Friend {
+    @Published var friendsList: [Friend] = []
     private var cancellables: Set<AnyCancellable> = []
-    var storage: UserStorage
-    var user: User?
+    var storage: Storage
+    var userId: String?
 
-    init(session: SessionStore) {
-        storage = session.userStorage
-        user = session.session
-        storage.friendsList.assign(to: \.friendsList, on: self).store(in: &cancellables)
+    init(storage: Storage, userId: String?) {
+        self.storage = storage
+        self.userId = userId
+        storage.storedItems.assign(to: \.friendsList, on: self).store(in: &cancellables)
+        getFriendsList()
     }
 
     func getFriendsList() {
-        if let user = self.user {
-            self.storage.getFriendsList(user: user)
+        storage.fetch()
+    }
+
+    func addFriend(friend: Friend) throws {
+        try storage.add(item: friend)
+    }
+
+    func updateFriend(friend: Friend) throws {
+        guard friendsList.contains(where: { $0.id == friend.id }) else {
+            return
         }
+        try storage.update(item: friend)
+    }
+
+    func removeFriend(friend: Friend) {
+        guard friendsList.contains(where: { $0.id == friend.id }) else {
+            return
+        }
+        storage.remove(item: friend)
     }
 }

@@ -6,29 +6,42 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct FriendsItemView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject var friendsItemViewModel: FriendsItemViewModel
 
+    var profilePhoto: some View {
+        if let url = friendsItemViewModel.friendProfilePhoto {
+            return AnyView(URLImage(url: url) {image in
+                image.cardImageModifier()
+            })
+        } else {
+            return AnyView(Image("Placeholder").cardImageModifier())
+        }
+    }
+
     var body: some View {
+        let isFriendRequest = !friendsItemViewModel.hasAccepted
         RectangularCard(
             width: UIScreen.main.bounds.width - 10,
             height: 210,
             viewBuilder: { HStack {
-                Image("cat")
-                    .resizable()
-                    .frame(width: 150, height: 150, alignment: .center)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                    .shadow(radius: 7)
+                profilePhoto
+                Text(friendsItemViewModel.username).padding(10)
                 Spacer()
-                Text(friendsItemViewModel.user.username)
-                Spacer()
-                Button(action: {
-                        friendsItemViewModel.deleteFriend(session: session) }) {
-                    Text("Delete")
-                        .foregroundColor(.blue)
+                if isFriendRequest {
+                    Button(action: {
+                        do {
+                            try friendsItemViewModel.acceptFriend()
+                        } catch {
+
+                        }
+                    }) {
+                        Text("Accept").padding(10)
+                            .foregroundColor(.blue)
+                    }
                 }
             }
             }
