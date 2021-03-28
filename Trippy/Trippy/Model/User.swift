@@ -7,13 +7,14 @@
 
 import Foundation
 
-class User: Identifiable, Codable {
-    var id: String
+class User: ImageSupportedModel {
+    var imageURL: URL?
+    var id: String?
     var email: String
     var username: String
     var friendsId: [String]
 
-    init(id: String, email: String, username: String, friendsId: [String]) {
+    init(id: String?, email: String, username: String, friendsId: [String]) {
         self.id = id
         self.email = email
         self.username = username
