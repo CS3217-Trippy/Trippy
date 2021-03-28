@@ -24,7 +24,7 @@ final class SessionStore: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
-        return User(
+        User(
             id: user.uid,
             email: user.email ?? "",
             username: username,
@@ -32,11 +32,10 @@ final class SessionStore: ObservableObject {
         )
     }
 
-    private func retrieveCurrentLoggedInUser() -> User {
+    func retrieveCurrentLoggedInUser() -> User? {
         if session.count != 1 {
-            fatalError("Only one user should be logged in")
+            return nil
         }
-
         return session[0]
     }
 
@@ -45,7 +44,7 @@ final class SessionStore: ObservableObject {
             if let user = user {
                 self.userStorage.storedItems.assign(to: \.session, on: self).store(in: &self.cancellables)
                 let user = self.translateFromFirebaseAuthToUser(user: user)
-                self.userStorage.add(user, with: nil)
+                self.userStorage.add(user, with: nil, id: user.id)
             } else {
                 self.session = []
                 self.username = ""
@@ -77,7 +76,10 @@ final class SessionStore: ObservableObject {
             if let error = error {
                 handler(error.localizedDescription)
             } else {
-                self.userStorage.remove(self.retrieveCurrentLoggedInUser())
+                guard let user = self.retrieveCurrentLoggedInUser() else {
+                    fatalError("User should exist prior to be deleted")
+                }
+                self.userStorage.remove(user)
                 self.session = []
             }
         }
@@ -85,7 +87,7 @@ final class SessionStore: ObservableObject {
 
     func updateUser(updatedUser: User) {
         do {
-            try self.userStorage.update(retrieveCurrentLoggedInUser())
+            try self.userStorage.update(updatedUser)
         } catch {
             print("Updating user failed")
         }

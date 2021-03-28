@@ -11,18 +11,18 @@ import Combine
 final class AddFriendViewModel: ObservableObject {
     @Published var usersList: [User] = []
     private var cancellables: Set<AnyCancellable> = []
-    private var userStorage: UserStorage
+//    private var userStorage: UserStorage
 
-    init(session: SessionStore) {
-        userStorage = session.userStorage
-        userStorage.usersList.assign(to: \.usersList, on: self).store(in: &cancellables)
-    }
+//    init(session: SessionStore) {
+//        userStorage = session.userStorage
+//        userStorage.usersList.assign(to: \.usersList, on: self).store(in: &cancellables)
+//    }
 
     func getUsers() {
-        userStorage.getUsers()
+//        userStorage.getUsers()
     }
 
     func addFriend(currentUser: User, user: User) {
-        userStorage.addFriend(currentUser: currentUser, user: user)
+//        userStorage.addFriend(currentUser: currentUser, user: user)
     }
 }

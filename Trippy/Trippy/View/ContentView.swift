@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if let user = session.session {
+            if let user = session.retrieveCurrentLoggedInUser() {
                 HomepageView(homepageViewModel: HomepageViewModel(session: session), user: user)
             } else {
                 StartUpView()

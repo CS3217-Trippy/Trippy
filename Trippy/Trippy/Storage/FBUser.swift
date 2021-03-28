@@ -10,8 +10,8 @@ import Foundation
 struct FBUser: FBImageSupportedStorable {
     typealias ModelType = User
     static var path = "users"
-    var imageURL: String?
     var id: String?
+    var imageURL: String?
     var email: String
     var username: String
     var friendsId: [String]
@@ -24,7 +24,7 @@ struct FBUser: FBImageSupportedStorable {
     }
 
     func convertToModelType() -> User {
-        return User(
+        User(
             id: id,
             email: email,
             username: username,

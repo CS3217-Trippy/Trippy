@@ -15,7 +15,7 @@ protocol ImageSupportedStorage: ObservableObject {
 
     func fetch()
 
-    func add(_ item: StoredType, with image: UIImage?) throws
+    func add(_ item: StoredType, with image: UIImage?, id: String?) throws
 
     func update(_ item: StoredType, with image: UIImage?) throws
 

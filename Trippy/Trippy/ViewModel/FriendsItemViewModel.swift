@@ -15,8 +15,8 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     }
 
     func deleteFriend(session: SessionStore) {
-        if let currentUser = session.session {
-            session.userStorage.deleteFriend(currentUser: currentUser, user: user)
-        }
+//        if let currentUser = session.session {
+//            session.userStorage.deleteFriend(currentUser: currentUser, user: user)
+//        }
     }
 }

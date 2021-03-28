@@ -32,7 +32,7 @@ class AddBucketItemViewModel {
         }
         let bucketItem = BucketItem(locationName: location.name,
                                     locationImage: location.imageURL,
-                                    userId: userUnwrapped.id,
+                                    userId: userUnwrapped.id ?? "",
                                     locationId: locationId,
                                     dateVisited: nil,
                                     dateAdded: Date(),

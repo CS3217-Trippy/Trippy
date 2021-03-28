@@ -20,23 +20,23 @@ struct AddFriendView: View {
 
                 }
             }
-            List(viewModel.usersList.filter {
-                    $0.id != session.session?.id
-                        && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
-            }) { user in
-                HStack {
-                    CircleImageView()
-                    Spacer()
-                    Text(user.username)
-                    Spacer()
-                    Button(action: {
-                        if let currentUser = session.session {
-                            viewModel.addFriend(currentUser: currentUser, user: user) }}) {
-                        Text("Add")
-                            .foregroundColor(.blue)
-                    }
-                }
-            }
+//            List(viewModel.usersList.filter {
+//                    $0.id != session.session?.id
+//                        && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
+//            }) { user in
+//                HStack {
+//                    CircleImageView()
+//                    Spacer()
+//                    Text(user.username)
+//                    Spacer()
+//                    Button(action: {
+//                        if let currentUser = session.session {
+//                            viewModel.addFriend(currentUser: currentUser, user: user) }}) {
+//                        Text("Add")
+//                            .foregroundColor(.blue)
+//                    }
+//                }
+//            }
         }
     }
 }

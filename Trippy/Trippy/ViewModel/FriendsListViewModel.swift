@@ -14,7 +14,8 @@ final class FriendsListViewModel: ObservableObject {
     var friendsListModel: FriendsListModel
 
     init(session: SessionStore) {
-        friendsListModel = FriendsListModel(session: session)
+//        friendsListModel = FriendsListModel(session: session)
+        friendsListModel = FriendsListModel()
         friendsListModel.$friendsList.map {
             $0.map {
                 FriendsItemViewModel(user: $0)

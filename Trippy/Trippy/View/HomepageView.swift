@@ -38,9 +38,9 @@ struct HomepageView: View {
                 NavigationLink(destination: accountPageView) {
                     Text("ACCOUNT PAGE")
                 }
-                NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-                    Text("ADD FRIEND")
-                }
+//                NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
+//                    Text("ADD FRIEND")
+//                }
                 Button("SIGN OUT") {
                     _ = self.session.signOut()
                 }
