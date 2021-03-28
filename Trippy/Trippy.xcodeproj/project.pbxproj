@@ -11,6 +11,14 @@
 		011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */; };
 		011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C82605BBCE0028F971 /* AddBucketItemView.swift */; };
 		0118657B25F9D8BA00BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */; };
+		01483A072610330100D840EA /* UserRelatedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A062610330100D840EA /* UserRelatedStorage.swift */; };
+		01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A0E2610341A00D840EA /* ImageSupportedModel.swift */; };
+		01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A1B261034A800D840EA /* FBUserRelatedStorable.swift */; };
+		01483A21261034DC00D840EA /* UserRelatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A20261034DC00D840EA /* UserRelatedModel.swift */; };
+		01483A262610388700D840EA /* FBUserRelatedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A252610388700D840EA /* FBUserRelatedStorage.swift */; };
+		01483A452610728D00D840EA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A442610728D00D840EA /* Friend.swift */; };
+		01483A4A26107AA400D840EA /* FBFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A4926107AA400D840EA /* FBFriend.swift */; };
+		01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A5126108D1500D840EA /* Image+Extensions.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
 		017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8A925F7B6E80064EF40 /* TrippyTests.swift */; };
@@ -34,11 +42,9 @@
 		01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637B25FD1F4900BBB8E9 /* Color+Extensions.swift */; };
 		01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638925FD1FBE00BBB8E9 /* DateManager.swift */; };
 		01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */; };
-		01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */; };
 		01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */; };
 		01F8435B25FDC6ED00080ED5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 01F8435A25FDC6ED00080ED5 /* URLImage */; };
 		01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436725FDDF4F00080ED5 /* BucketModel.swift */; };
-		01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */; };
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
 		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
 		01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8438525FDED6400080ED5 /* MockBucketStorage.swift */; };
@@ -60,7 +66,6 @@
 		714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80D2601A61500E69470 /* AddLocationViewModel.swift */; };
 		714BFD512604785F001E369F /* MockLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD502604785F001E369F /* MockLocationStorage.swift */; };
 		714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD5826047C41001E369F /* LocationModelTests.swift */; };
-		714C54E4260C6C4500C75D92 /* ImageSupportedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C54E3260C6C4500C75D92 /* ImageSupportedModel.swift */; };
 		714C54E9260C6C9D00C75D92 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C54E8260C6C9D00C75D92 /* Model.swift */; };
 		714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C54F0260C7F8000C75D92 /* FBStorable.swift */; };
 		714DFD4B26006CF800711204 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714DFD4A26006CF800711204 /* LocationPin.swift */; };
@@ -71,7 +76,6 @@
 		7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018725FCD4EB00F0ABAC /* LocationCardView.swift */; };
 		7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018C25FCEE6700F0ABAC /* PreviewLocationStorage.swift */; };
 		71565A8425F9F4F40070256A /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A8325F9F4F40070256A /* StorageError.swift */; };
-		71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972725F879680083C6F5 /* LocationStorage.swift */; };
 		71FB972D25F87C420083C6F5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972C25F87C420083C6F5 /* Location.swift */; };
 		71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB973125F893750083C6F5 /* LocationMapView.swift */; };
 		71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
@@ -124,6 +128,14 @@
 		011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBucketItemViewModel.swift; sourceTree = "<group>"; };
 		011172C82605BBCE0028F971 /* AddBucketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBucketItemView.swift; sourceTree = "<group>"; };
 		0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		01483A062610330100D840EA /* UserRelatedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelatedStorage.swift; sourceTree = "<group>"; };
+		01483A0E2610341A00D840EA /* ImageSupportedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSupportedModel.swift; sourceTree = "<group>"; };
+		01483A1B261034A800D840EA /* FBUserRelatedStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserRelatedStorable.swift; sourceTree = "<group>"; };
+		01483A20261034DC00D840EA /* UserRelatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelatedModel.swift; sourceTree = "<group>"; };
+		01483A252610388700D840EA /* FBUserRelatedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserRelatedStorage.swift; sourceTree = "<group>"; };
+		01483A442610728D00D840EA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		01483A4926107AA400D840EA /* FBFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFriend.swift; sourceTree = "<group>"; };
+		01483A5126108D1500D840EA /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		017FD89425F7B6E80064EF40 /* Trippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD89725F7B6E80064EF40 /* TrippyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyApp.swift; sourceTree = "<group>"; };
 		017FD89925F7B6E80064EF40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -147,10 +159,8 @@
 		01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		01F4638925FD1FBE00BBB8E9 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketListStorage.swift; sourceTree = "<group>"; };
 		01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
 		01F8436725FDDF4F00080ED5 /* BucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModel.swift; sourceTree = "<group>"; };
-		01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListStorage.swift; sourceTree = "<group>"; };
 		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
 		01F8437D25FDED3800080ED5 /* BucketModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModelTests.swift; sourceTree = "<group>"; };
 		01F8438525FDED6400080ED5 /* MockBucketStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBucketStorage.swift; sourceTree = "<group>"; };
@@ -172,7 +182,6 @@
 		714BA80D2601A61500E69470 /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
 		714BFD502604785F001E369F /* MockLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationStorage.swift; sourceTree = "<group>"; };
 		714BFD5826047C41001E369F /* LocationModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelTests.swift; sourceTree = "<group>"; };
-		714C54E3260C6C4500C75D92 /* ImageSupportedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSupportedModel.swift; sourceTree = "<group>"; };
 		714C54E8260C6C9D00C75D92 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		714C54F0260C7F8000C75D92 /* FBStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBStorable.swift; sourceTree = "<group>"; };
 		714DFD4A26006CF800711204 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
@@ -183,7 +192,6 @@
 		7152018725FCD4EB00F0ABAC /* LocationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardView.swift; sourceTree = "<group>"; };
 		7152018C25FCEE6700F0ABAC /* PreviewLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocationStorage.swift; sourceTree = "<group>"; };
 		71565A8325F9F4F40070256A /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
-		71FB972725F879680083C6F5 /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
 		71FB972C25F87C420083C6F5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		71FB973125F893750083C6F5 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
 		768A9CAE26074A4C004EF22C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
@@ -246,6 +254,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01483A2D26103BAF00D840EA /* UserRelated */ = {
+			isa = PBXGroup;
+			children = (
+				01483A1B261034A800D840EA /* FBUserRelatedStorable.swift */,
+				01483A062610330100D840EA /* UserRelatedStorage.swift */,
+				01483A252610388700D840EA /* FBUserRelatedStorage.swift */,
+			);
+			path = UserRelated;
+			sourceTree = "<group>";
+		};
+		01483A3A26103DB600D840EA /* ImageSupported */ = {
+			isa = PBXGroup;
+			children = (
+				714AF252260B34A30034269C /* ImageSupportedStorage.swift */,
+				714AF25C260B736F0034269C /* FBImageSupportedStorage.swift */,
+				714AF257260B70790034269C /* FBImageSupportedStorable.swift */,
+			);
+			path = ImageSupported;
+			sourceTree = "<group>";
+		};
 		017FD88B25F7B6E70064EF40 = {
 			isa = PBXGroup;
 			children = (
@@ -354,11 +382,13 @@
 				7694E9E625FE541700AF9E63 /* User.swift */,
 				DB92737F260027F800B898AE /* FriendsListModel.swift */,
 				71FB972C25F87C420083C6F5 /* Location.swift */,
-				714C54E3260C6C4500C75D92 /* ImageSupportedModel.swift */,
 				714C54E8260C6C9D00C75D92 /* Model.swift */,
 				714DFD4A26006CF800711204 /* LocationPin.swift */,
 				7152017825FCB91D00F0ABAC /* LocationModel.swift */,
 				01088F5B2606442F00579707 /* BucketListError.swift */,
+				01483A0E2610341A00D840EA /* ImageSupportedModel.swift */,
+				01483A20261034DC00D840EA /* UserRelatedModel.swift */,
+				01483A442610728D00D840EA /* Friend.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,6 +423,7 @@
 				01F4638925FD1FBE00BBB8E9 /* DateManager.swift */,
 				01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */,
 				714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */,
+				01483A5126108D1500D840EA /* Image+Extensions.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -400,17 +431,15 @@
 		01F4638825FD1F6C00BBB8E9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				01483A3A26103DB600D840EA /* ImageSupported */,
+				01483A2D26103BAF00D840EA /* UserRelated */,
 				7694E9F525FF34AF00AF9E63 /* FBUserStorage.swift */,
-				714AF252260B34A30034269C /* ImageSupportedStorage.swift */,
-				714AF25C260B736F0034269C /* FBImageSupportedStorage.swift */,
-				714AF257260B70790034269C /* FBImageSupportedStorable.swift */,
 				714AF261260B85C20034269C /* FBLocation.swift */,
 				76F8BE0E2610D8F000393AF7 /* FBUser.swift */,
-				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
 				01F4639625FD1FE200BBB8E9 /* FBBucketListStorage.swift */,
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
-				01F8436C25FDDFB500080ED5 /* BucketListStorage.swift */,
-				71FB972725F879680083C6F5 /* LocationStorage.swift */,
+				01483A4926107AA400D840EA /* FBFriend.swift */,
+				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
 				7694EA59260458EA00AF9E63 /* UserStorage.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
 			);
@@ -605,7 +634,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714C54E4260C6C4500C75D92 /* ImageSupportedModel.swift in Sources */,
 				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
 				76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */,
 				714AF258260B70790034269C /* FBImageSupportedStorable.swift in Sources */,
@@ -629,29 +657,33 @@
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
+				01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
+				01483A452610728D00D840EA /* Friend.swift in Sources */,
 				714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */,
 				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
-				01F8436D25FDDFB500080ED5 /* BucketListStorage.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
+				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
+				01483A4A26107AA400D840EA /* FBFriend.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				714B10D026066D190040FAA1 /* UIImage+Extensions.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
+				01483A262610388700D840EA /* FBUserRelatedStorage.swift in Sources */,
 				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
+				01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				714AF253260B34A30034269C /* ImageSupportedStorage.swift in Sources */,
 				7694EA5A260458EA00AF9E63 /* UserStorage.swift in Sources */,
-				71FB972825F879680083C6F5 /* LocationStorage.swift in Sources */,
 				714AF25D260B736F0034269C /* FBImageSupportedStorage.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
 				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
@@ -659,11 +691,12 @@
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
 				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
-				01F4639725FD1FE200BBB8E9 /* FBBucketListStorage.swift in Sources */,
+				01483A21261034DC00D840EA /* UserRelatedModel.swift in Sources */,
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
 				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
+				01483A072610330100D840EA /* UserRelatedStorage.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,

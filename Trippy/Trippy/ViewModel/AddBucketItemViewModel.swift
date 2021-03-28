@@ -8,12 +8,13 @@
 import Foundation
 
 class AddBucketItemViewModel {
-    let bucketModel: BucketModel
+    let bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
     let location: Location
     let user: User?
 
-    init(bucketModel: BucketModel, location: Location, user: User?) {
-        self.bucketModel = bucketModel
+    init(location: Location, user: User?) {
+        let storage = FBUserRelatedStorage<FBBucketItem>(userId: user?.id)
+        self.bucketModel = BucketModel<FBUserRelatedStorage<FBBucketItem>>(storage: storage, userId: user?.id)
         self.location = location
         self.user = user
     }

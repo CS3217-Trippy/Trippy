@@ -11,16 +11,18 @@ import Combine
 final class FriendsListViewModel: ObservableObject {
     @Published var friendsList: [FriendsItemViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
-    var friendsListModel: FriendsListModel
+    private var friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
 
-    init(session: SessionStore) {
-//        friendsListModel = FriendsListModel(session: session)
-        friendsListModel = FriendsListModel()
+    init(friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>) {
+        self.friendsListModel = friendsListModel
         friendsListModel.$friendsList.map {
             $0.map {
-                FriendsItemViewModel(user: $0)
+                FriendsItemViewModel(friend: $0, model: friendsListModel)
             }
         }.assign(to: \.friendsList, on: self).store(in: &cancellables)
+    }
+
+    func fetch() {
         friendsListModel.getFriendsList()
     }
 }

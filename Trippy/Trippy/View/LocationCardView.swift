@@ -52,17 +52,6 @@ struct LocationCardView: View {
     }
 }
 
-extension Image {
-    func locationImageModifier() -> some View {
-        self
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .clipShape(
-            RoundedRectangle(cornerRadius: 25.0)
-        )
-    }
-}
-
 struct LocationCardView_Previews: PreviewProvider {
     static var previews: some View {
         let testLocation = PreviewLocations.locations[0]

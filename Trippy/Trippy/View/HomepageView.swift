@@ -21,6 +21,9 @@ struct HomepageView: View {
         let accountPageView = AccountPageView(
             accountPageViewModel: AccountPageViewModel(session: session), user: user)
 
+        let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel)
+        let friendListView = FriendsListView(viewModel: friendListVM)
+
         NavigationView {
             VStack(spacing: 10) {
                 Text("Welcome, \(user.username)")
@@ -32,15 +35,15 @@ struct HomepageView: View {
                 NavigationLink(destination: locationListView) {
                     Text("LOCATIONS")
                 }
-                NavigationLink(destination: FriendsListView(viewModel: FriendsListViewModel(session: session))) {
+                NavigationLink(destination: friendListView) {
                     Text("FRIENDS")
                 }
                 NavigationLink(destination: accountPageView) {
                     Text("ACCOUNT PAGE")
                 }
-//                NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-//                    Text("ADD FRIEND")
-//                }
+                NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
+                    Text("ADD FRIEND")
+                }
                 Button("SIGN OUT") {
                     _ = self.session.signOut()
                 }
