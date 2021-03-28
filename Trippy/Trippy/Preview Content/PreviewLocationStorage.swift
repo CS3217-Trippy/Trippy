@@ -20,6 +20,11 @@ class PreviewLocationStorage: ImageSupportedStorage {
         _storedItems = PreviewLocations.locations
     }
 
+    func fetchWithId(id: String) {
+        // Does Nothing
+        return
+    }
+
     func add(_ item: Location, with image: UIImage?, id: String?) throws {
         // Does Nothing
         return

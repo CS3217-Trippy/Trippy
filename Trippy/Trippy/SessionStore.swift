@@ -12,6 +12,10 @@ import FirebaseFirestoreSwift
 import Combine
 
 final class SessionStore: ObservableObject {
+    private enum AuthStates {
+        case SignUp, LogIn, NoUser
+    }
+
     var didChange = PassthroughSubject<SessionStore, Never>()
     @Published var session: [User] = [] {
         didSet {
@@ -22,6 +26,7 @@ final class SessionStore: ObservableObject {
     var handle: AuthStateDidChangeListenerHandle?
     var userStorage = FBImageSupportedStorage<FBUser>()
     private var cancellables: Set<AnyCancellable> = []
+    private var authState: AuthStates = .NoUser
 
     private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
         User(
@@ -44,7 +49,17 @@ final class SessionStore: ObservableObject {
             if let user = user {
                 self.userStorage.storedItems.assign(to: \.session, on: self).store(in: &self.cancellables)
                 let user = self.translateFromFirebaseAuthToUser(user: user)
-                self.userStorage.add(user, with: nil, id: user.id)
+                guard let id = user.id else {
+                    fatalError("User should have id generated from firebase auth")
+                }
+                switch self.authState {
+                case .SignUp:
+                    self.userStorage.add(user, with: nil, id: user.id)
+                case .LogIn:
+                    self.userStorage.fetchWithId(id: id)
+                case .NoUser:
+                    print("no user")
+                }
             } else {
                 self.session = []
                 self.username = ""
@@ -54,16 +69,19 @@ final class SessionStore: ObservableObject {
 
     func signUp(email: String, password: String, username: String, handler: @escaping AuthDataResultCallback) {
         self.username = username
+        self.authState = .SignUp
         Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
 
     func logIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+        self.authState = .LogIn
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
 
     func signOut() -> Bool {
         do {
             try Auth.auth().signOut()
+            self.authState = .NoUser
             self.session = []
             return true
         } catch {
@@ -72,14 +90,15 @@ final class SessionStore: ObservableObject {
     }
 
     func deleteUser(handler: @escaping ((String) -> Void)) {
+        guard let user = self.retrieveCurrentLoggedInUser() else {
+            fatalError("User should exist prior to be deleted")
+        }
         Auth.auth().currentUser?.delete { error in
             if let error = error {
                 handler(error.localizedDescription)
             } else {
-                guard let user = self.retrieveCurrentLoggedInUser() else {
-                    fatalError("User should exist prior to be deleted")
-                }
                 self.userStorage.remove(user)
+                self.authState = .NoUser
                 self.session = []
             }
         }
