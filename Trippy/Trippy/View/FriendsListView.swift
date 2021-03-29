@@ -11,10 +11,10 @@ struct FriendsListView: View {
     @ObservedObject var viewModel: FriendsListViewModel
     var body: some View {
         VStack {
-                Text("Friends List")
-                CollectionView(data: $viewModel.friendsList, cols: 1, spacing: 10) { friendsItemViewModel in
-                    FriendsItemView(friendsItemViewModel: friendsItemViewModel)
-                }
+            Text("Friends List")
+            CollectionView(data: $viewModel.friendsList, cols: 1, spacing: 10) { friendsItemViewModel in
+                FriendsItemView(friendsItemViewModel: friendsItemViewModel)
+            }
         }
     }
 }

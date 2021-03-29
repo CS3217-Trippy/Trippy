@@ -17,6 +17,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
     }
 
     var didChange = PassthroughSubject<FBSessionStore, Never>()
+    var currentLoggedInUser: User?
     @Published var session: [User] = [] {
         didSet {
             self.didChange.send(self)
@@ -38,10 +39,15 @@ final class FBSessionStore: ObservableObject, SessionStore {
     }
 
     func retrieveCurrentLoggedInUser() -> User? {
-        if session.count != 1 {
+        if session.count == 1 {
+            currentLoggedInUser = session[0]
+            return currentLoggedInUser
+        }
+        guard let user = currentLoggedInUser else {
             return nil
         }
-        return session[0]
+        self.session = [user]
+        return currentLoggedInUser
     }
 
     func listen() {
@@ -87,8 +93,10 @@ final class FBSessionStore: ObservableObject, SessionStore {
             try Auth.auth().signOut()
             self.authState = .NoUser
             self.session = []
+            self.currentLoggedInUser = nil
             return true
         } catch {
+            print(error.localizedDescription)
             return false
         }
     }
@@ -104,6 +112,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 self.userStorage.remove(user)
                 self.authState = .NoUser
                 self.session = []
+                self.currentLoggedInUser = nil
             }
         }
     }
