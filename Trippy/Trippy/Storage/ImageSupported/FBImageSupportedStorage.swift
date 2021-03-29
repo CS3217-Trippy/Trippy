@@ -32,10 +32,28 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
                 return fbItem.convertToModelType()
             } ?? []
         }
-
     }
 
-    func add(_ item: Storable.ModelType, with image: UIImage?) {
+    func fetchWithId(id: String) {
+        store.collection(Storable.path).document(id).getDocument { document, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let fbItem = try? document?.data(as: Storable.self) else {
+                return
+            }
+            self._storedItems = []
+            self._storedItems.append(fbItem.convertToModelType())
+        }
+    }
+
+    func add(_ item: Storable.ModelType, with image: UIImage?, id: String?) {
+        if let id = id {
+            self.addDocumentWithId(from: item, id: id)
+            return
+        }
+
         guard let image = image else {
             self.addDocument(from: item)
             return
@@ -55,6 +73,16 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
                 self.addDocument(from: item)
             }
         }
+    }
+
+    private func addDocumentWithId(from item: Storable.ModelType, id: String) {
+        let fbItem = Storable(item: item)
+        do {
+            try store.collection(Storable.path).document(id).setData(from: fbItem)
+        } catch {
+            print(error.localizedDescription)
+        }
+        _storedItems.append(item)
     }
 
     private func addDocument(from item: Storable.ModelType) {

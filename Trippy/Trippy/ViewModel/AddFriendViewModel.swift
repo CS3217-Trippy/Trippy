@@ -12,18 +12,18 @@ final class AddFriendViewModel: ObservableObject {
     @Published var usersList: [User] = []
     private var cancellables: Set<AnyCancellable> = []
     private var friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
-    private var userStorage: UserStorage
+    private var userStorage: FBImageSupportedStorage<FBUser>
 
     init(session: SessionStore) {
         userStorage = session.userStorage
-        let user = session.session
+        let user = session.retrieveCurrentLoggedInUser()
         let storage = FBUserRelatedStorage<FBFriend>(userId: user?.id)
         self.friendsListModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(storage: storage, userId: user?.id)
-        userStorage.usersList.assign(to: \.usersList, on: self).store(in: &cancellables)
+        userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
     func getUsers() {
-        userStorage.getUsers()
+        userStorage.fetch()
     }
 
     func addFriend(currentUser: User, user: User) throws {
@@ -32,13 +32,20 @@ final class AddFriendViewModel: ObservableObject {
     }
 
     private func createFriendRequest(from: User, to: User) -> Friend {
-        Friend(userId: to.id,
-               username: to.username,
-               userProfilePhoto: URL(string: to.profilePhoto),
-               friendId: from.id,
-               friendUsername: from.username,
-               friendProfilePhoto: URL(string: from.profilePhoto),
-               hasAccepted: false)
+        guard
+            let userId = to.id,
+            let friendId = from.id
+        else {
+            fatalError("Users should have id")
+        }
+        return Friend(
+            userId: userId,
+            username: to.username,
+            userProfilePhoto: URL(string: to.profilePhoto),
+            friendId: friendId,
+            friendUsername: from.username,
+            friendProfilePhoto: URL(string: from.profilePhoto),
+            hasAccepted: false
+        )
     }
-
 }

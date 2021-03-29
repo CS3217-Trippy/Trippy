@@ -35,24 +35,28 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     }
 
     private func buildNewFriend() throws {
-        let newFriend = Friend(userId: friend.friendId,
-                               username: friend.friendUsername,
-                               userProfilePhoto: friend.friendProfilePhoto,
-                               friendId: friend.userId,
-                               friendUsername: friend.username,
-                               friendProfilePhoto: friend.userProfilePhoto,
-                               hasAccepted: true)
+        let newFriend = Friend(
+            userId: friend.friendId,
+            username: friend.friendUsername,
+            userProfilePhoto: friend.friendProfilePhoto,
+            friendId: friend.userId,
+            friendUsername: friend.username,
+            friendProfilePhoto: friend.userProfilePhoto,
+            hasAccepted: true
+        )
         try model.addFriend(friend: newFriend)
     }
 
     private func updateFriendToAccepted() throws {
-        let newFriend = Friend(userId: friend.userId,
-                               username: friend.username,
-                               userProfilePhoto: friend.userProfilePhoto,
-                               friendId: friend.friendId,
-                               friendUsername: friend.friendUsername,
-                               friendProfilePhoto: friend.friendProfilePhoto,
-                               hasAccepted: true)
+        let newFriend = Friend(
+            userId: friend.userId,
+            username: friend.username,
+            userProfilePhoto: friend.userProfilePhoto,
+            friendId: friend.friendId,
+            friendUsername: friend.friendUsername,
+            friendProfilePhoto: friend.friendProfilePhoto,
+            hasAccepted: true
+        )
         try model.updateFriend(friend: newFriend)
     }
 }

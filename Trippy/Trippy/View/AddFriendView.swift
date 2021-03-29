@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddFriendView: View {
     @State var username: String = ""
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
     @ObservedObject var viewModel: AddFriendViewModel
     @State private var showStorageError = false
     @Environment(\.presentationMode) var presentationMode
@@ -19,15 +19,15 @@ struct AddFriendView: View {
             TextField("Enter username...", text: $username)
             Button("Search") {
                 viewModel.getUsers()
-
             }
         }
     }
 
     var listView: some View {
         List(viewModel.usersList.filter {
-                $0.id != session.session?.id
-                    && !(session.session?.friendsId.contains($0.id) ?? false) && $0.username.contains(username)
+            $0.id != session.retrieveCurrentLoggedInUser()?.id
+                && !(session.retrieveCurrentLoggedInUser()?.friendsId.contains($0.id ?? "") ?? false)
+                && $0.username.contains(username)
         }) { user in
             HStack {
                 CircleImageView()
@@ -35,7 +35,7 @@ struct AddFriendView: View {
                 Text(user.username)
                 Spacer()
                 Button(action: {
-                    if let currentUser = session.session {
+                    if let currentUser = session.retrieveCurrentLoggedInUser() {
                         do {
                             try viewModel.addFriend(currentUser: currentUser, user: user)
                         } catch {

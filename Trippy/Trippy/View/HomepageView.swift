@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomepageView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
     @ObservedObject var homepageViewModel: HomepageViewModel
     var user: User
 
