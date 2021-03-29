@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddFriendView: View {
     @State var username: String = ""
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
     @ObservedObject var viewModel: AddFriendViewModel
     @State private var showStorageError = false
     @Environment(\.presentationMode) var presentationMode

@@ -9,7 +9,7 @@ import SwiftUI
 import URLImage
 
 struct FriendsItemView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
     @ObservedObject var friendsItemViewModel: FriendsItemViewModel
 
     var profilePhoto: some View {

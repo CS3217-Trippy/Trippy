@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-final class FBSessionStore: ObservableObject {
+final class FBSessionStore: ObservableObject, SessionStore {
     private enum AuthStates {
         case SignUp, LogIn, NoUser
     }
@@ -22,9 +22,9 @@ final class FBSessionStore: ObservableObject {
             self.didChange.send(self)
         }
     }
-    var username = ""
-    var handle: AuthStateDidChangeListenerHandle?
     var userStorage = FBImageSupportedStorage<FBUser>()
+    private var username = ""
+    private var handle: AuthStateDidChangeListenerHandle?
     private var cancellables: Set<AnyCancellable> = []
     private var authState: AuthStates = .NoUser
 
@@ -67,15 +67,19 @@ final class FBSessionStore: ObservableObject {
         }
     }
 
-    func signUp(email: String, password: String, username: String, handler: @escaping AuthDataResultCallback) {
+    func signUp(email: String, password: String, username: String, handler: @escaping (Error?) -> Void) {
         self.username = username
         self.authState = .SignUp
-        Auth.auth().createUser(withEmail: email, password: password, completion: handler)
+        Auth.auth().createUser(withEmail: email, password: password) { _, error in
+            handler(error)
+        }
     }
 
-    func logIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+    func logIn(email: String, password: String, handler: @escaping (Error?) -> Void) {
         self.authState = .LogIn
-        Auth.auth().signIn(withEmail: email, password: password, completion: handler)
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+            handler(error)
+        }
     }
 
     func signOut() -> Bool {
@@ -89,7 +93,7 @@ final class FBSessionStore: ObservableObject {
         }
     }
 
-    func deleteUser(handler: @escaping ((String) -> Void)) {
+    func deleteUser(handler: @escaping (String) -> Void) {
         guard let user = self.retrieveCurrentLoggedInUser() else {
             fatalError("User should exist prior to be deleted")
         }

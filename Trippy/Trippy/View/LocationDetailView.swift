@@ -10,12 +10,14 @@ import URLImage
 
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
 
     var addBucketView: some View {
         HStack {
             NavigationLink(
-                destination: AddBucketItemView(viewModel: .init(location: viewModel.location, user: session.retrieveCurrentLoggedInUser()))) {
+                destination: AddBucketItemView(
+                    viewModel: .init(location: viewModel.location, user: session.retrieveCurrentLoggedInUser()))
+            ) {
                 Text("Add to bucketlist")
             }
             Spacer()

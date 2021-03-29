@@ -20,11 +20,17 @@ final class HomepageViewModel: ObservableObject {
         self.locationModel = locationModel
         let bucketStorage = FBUserRelatedStorage<FBBucketItem>(userId: session.retrieveCurrentLoggedInUser()?.id)
 
-        let bucketModel = BucketModel<FBUserRelatedStorage<FBBucketItem>>(storage: bucketStorage, userId: session.retrieveCurrentLoggedInUser()?.id)
+        let bucketModel = BucketModel<FBUserRelatedStorage<FBBucketItem>>(
+            storage: bucketStorage,
+            userId: session.retrieveCurrentLoggedInUser()?.id
+        )
         self.bucketModel = bucketModel
 
         let friendStorage = FBUserRelatedStorage<FBFriend>(userId: session.retrieveCurrentLoggedInUser()?.id)
-        let friendsModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(storage: friendStorage, userId: session.retrieveCurrentLoggedInUser()?.id)
+        let friendsModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(
+            storage: friendStorage,
+            userId: session.retrieveCurrentLoggedInUser()?.id
+        )
         self.friendsModel = friendsModel
     }
 }

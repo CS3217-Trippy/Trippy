@@ -23,13 +23,15 @@ struct FBFriend: FBUserRelatedStorable {
             userPhoto = URL(string: url)
         }
 
-        return Friend(userId: userId,
-               username: username,
-               userProfilePhoto: userPhoto,
-               friendId: friendId,
-               friendUsername: friendUsername,
-               friendProfilePhoto: friendPhoto,
-               hasAccepted: hasAccepted)
+        return Friend(
+            userId: userId,
+            username: username,
+            userProfilePhoto: userPhoto,
+            friendId: friendId,
+            friendUsername: friendUsername,
+            friendProfilePhoto: friendPhoto,
+            hasAccepted: hasAccepted
+        )
     }
 
     init(item: Friend) {

@@ -8,13 +8,17 @@
 import Foundation
 
 protocol SessionStore {
-    func retrieveCurrentLoggedInUser() -> User
+    var session: [User] { get set }
+
+    var userStorage: FBImageSupportedStorage<FBUser> { get set }
+
+    func retrieveCurrentLoggedInUser() -> User?
 
     func listen()
-    
-    func signUp(email: String, password: String, username: String, handler: @escaping () -> ())
 
-    func logIn(email: String, password: String, handler: @escaping () -> ())
+    func signUp(email: String, password: String, username: String, handler: @escaping (Error?) -> Void)
+
+    func logIn(email: String, password: String, handler: @escaping (Error?) -> Void)
 
     func signOut() -> Bool
 

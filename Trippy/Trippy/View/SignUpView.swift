@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     @ObservedObject var signUpViewModel: SignUpViewModel
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
 
     var body: some View {
         VStack {
@@ -36,6 +36,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(signUpViewModel: SignUpViewModel(session: SessionStore()))
+        SignUpView(signUpViewModel: SignUpViewModel(session: FBSessionStore()))
     }
 }

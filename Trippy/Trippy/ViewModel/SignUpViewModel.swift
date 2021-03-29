@@ -26,7 +26,7 @@ final class SignUpViewModel: ObservableObject, Identifiable {
             self.errorMessage = passwordNotEqualError
             return
         }
-        session.signUp(email: email, password: password, username: username) { _, error in
+        session.signUp(email: email, password: password, username: username) { error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 return

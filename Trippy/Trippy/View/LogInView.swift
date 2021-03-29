@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LogInView: View {
     @ObservedObject var logInViewModel: LogInViewModel
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
 
     var body: some View {
         VStack {
@@ -32,6 +32,6 @@ struct LogInView: View {
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView(logInViewModel: LogInViewModel(session: SessionStore()))
+        LogInView(logInViewModel: LogInViewModel(session: FBSessionStore()))
     }
 }
