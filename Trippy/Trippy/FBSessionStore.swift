@@ -68,6 +68,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 case .LogIn:
                     self.userStorage.fetchWithId(id: id)
                     self.levelSystemService = FBLevelSystemService(userId: id)
+                    self.levelSystemService?.retrieveLevelSystem()
                 case .NoUser:
                     print("no user")
                 }
@@ -97,8 +98,8 @@ final class FBSessionStore: ObservableObject, SessionStore {
         do {
             try Auth.auth().signOut()
             self.authState = .NoUser
-            self.session = []
             self.currentLoggedInUser = nil
+            self.session = []
             return true
         } catch {
             print(error.localizedDescription)
@@ -116,8 +117,8 @@ final class FBSessionStore: ObservableObject, SessionStore {
             } else {
                 self.userStorage.remove(user)
                 self.authState = .NoUser
-                self.session = []
                 self.currentLoggedInUser = nil
+                self.session = []
             }
         }
     }

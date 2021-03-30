@@ -9,4 +9,12 @@ import Foundation
 
 protocol LevelSystemService {
     func createLevelSystem()
+
+    func getUserLevelSystem() -> LevelSystem
+
+    func retrieveLevelSystem()
+
+    func updateLevelSystem()
+
+    func addExperience(action: ExperienceAction)
 }
