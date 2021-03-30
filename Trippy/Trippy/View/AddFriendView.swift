@@ -38,7 +38,6 @@ struct AddFriendView: View {
                     if let currentUser = session.retrieveCurrentLoggedInUser() {
                         do {
                             try viewModel.addFriend(currentUser: currentUser, user: user)
-                            session.levelSystemService?.addExperience(action: .AddFriend)
                         } catch {
                             showStorageError = true
                         }

@@ -69,4 +69,14 @@ final class FBLevelSystemService: LevelSystemService {
         }
         updateLevelSystem()
     }
+
+    func generateExperienceFromAddingFriend(friend: Friend) {
+        let userLevelSystem = getUserLevelSystem()
+        let userAddedFriends = userLevelSystem.friendsIdAddedBefore
+        if userAddedFriends.contains(friend.friendId) {
+            return
+        }
+        userLevelSystem.friendsIdAddedBefore.append(friend.friendId)
+        addExperience(action: .AddFriend)
+    }
 }

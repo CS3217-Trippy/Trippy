@@ -35,8 +35,10 @@ struct FriendsItemView: View {
                     Button(action: {
                         do {
                             try friendsItemViewModel.acceptFriend()
+                            session.levelSystemService?
+                                .generateExperienceFromAddingFriend(friend: friendsItemViewModel.friend)
                         } catch {
-
+                            print(error)
                         }
                     }) {
                         Text("Accept").padding(10)
