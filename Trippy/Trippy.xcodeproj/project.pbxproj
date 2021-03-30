@@ -95,6 +95,7 @@
 		7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA492602ED1300AF9E63 /* HomepageView.swift */; };
 		7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */; };
 		76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BC32613607C004BA414 /* LevelSystem.swift */; };
+		76E74BC92613617C004BA414 /* FBLevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BC82613617C004BA414 /* FBLevelSystem.swift */; };
 		76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE0E2610D8F000393AF7 /* FBUser.swift */; };
 		76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE192611105700393AF7 /* SessionStore.swift */; };
 		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
@@ -208,6 +209,7 @@
 		7694EA492602ED1300AF9E63 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewModel.swift; sourceTree = "<group>"; };
 		76E74BC32613607C004BA414 /* LevelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystem.swift; sourceTree = "<group>"; };
+		76E74BC82613617C004BA414 /* FBLevelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLevelSystem.swift; sourceTree = "<group>"; };
 		76F8BE0E2610D8F000393AF7 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		76F8BE192611105700393AF7 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				01483A4926107AA400D840EA /* FBFriend.swift */,
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
+				76E74BC82613617C004BA414 /* FBLevelSystem.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
 				01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */,
+				76E74BC92613617C004BA414 /* FBLevelSystem.swift in Sources */,
 				01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */,
 				7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */,
 			);
