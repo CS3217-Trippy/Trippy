@@ -14,9 +14,12 @@ final class HomepageViewModel: ObservableObject {
     @Published var bucketModel: BucketModel
 
     init(session: SessionStore) {
+        let userId = session.session?.id
         let locationStorage = FBImageSupportedStorage<FBLocation>()
         self.locationStorage = locationStorage
-        let locationModel = LocationModel<FBImageSupportedStorage<FBLocation>>(storage: locationStorage)
+        let locationModel = LocationModel<FBImageSupportedStorage<FBLocation>>(
+            storage: locationStorage,
+            recommender: FBLocationRecommender(userId: userId))
         self.locationModel = locationModel
         let bucketStorage = FBBucketListStorage(user: session.session)
         self.bucketStorage = bucketStorage

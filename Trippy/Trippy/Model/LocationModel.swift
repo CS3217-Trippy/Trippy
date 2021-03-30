@@ -10,14 +10,22 @@ import UIKit
 
 class LocationModel<Storage: ImageSupportedStorage>: ObservableObject where Storage.StoredType == Location {
     @Published private(set) var locations: [Location] = []
+    @Published private(set) var recommendedLocations: [Location] = []
+    private var recommender: LocationRecommender
     private let storage: Storage
     private var cancellables: Set<AnyCancellable> = []
 
-    init(storage: Storage) {
+    init(storage: Storage, recommender: LocationRecommender) {
         self.storage = storage
+        self.recommender = recommender
+        recommender.recommendedItems.assign(to: \.recommendedLocations, on: self).store(in: &cancellables)
         storage.storedItems.assign(to: \.locations, on: self)
             .store(in: &cancellables)
         fetchLocations()
+    }
+
+    func fetchRecommendedLocations() {
+        recommender.fetch()
     }
 
     func fetchLocations() {

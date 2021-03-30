@@ -22,6 +22,7 @@ struct AddLocationView: View {
     @State private var selectedImage: UIImage?
     @State private var selectedLocation = CLLocationCoordinate2D()
     @State private var showCameraError = false
+    @State private var selectedCategory: String = ""
     @State private var imageSource: UIImagePickerController.SourceType?
     let viewModel: AddLocationViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -100,6 +101,16 @@ struct AddLocationView: View {
         imageSource = .camera
     }
 
+    var categorySelector: some View {
+        Section {
+            Picker("Category", selection: $selectedCategory) {
+                ForEach(viewModel.categories, id: \.self) {
+                    Text($0.capitalized)
+                }
+            }
+        }
+    }
+
     var submitSection: some View {
         Section {
             Button("Submit") {
@@ -107,6 +118,7 @@ struct AddLocationView: View {
                     try viewModel.saveForm(
                         name: locationName,
                         description: locationDescription,
+                        category: selectedCategory,
                         coordinates: selectedLocation,
                         image: selectedImage
                     )
@@ -134,10 +146,13 @@ struct AddLocationView: View {
             .alert(isPresented: $showCameraError, content: {
                 Alert(title: Text("If only you had a camera"))
             })
+            categorySelector
             submitSection
             .disabled(map.annotations.isEmpty
                         || !viewModel.isValidName(name: locationName)
-                        || !viewModel.isValidDescription(description: locationDescription))
+                        || !viewModel.isValidDescription(description: locationDescription)
+                        || !viewModel.isValidCategory(category: selectedCategory)
+                     )
         }.navigationBarTitle("Submit new location")
     }
 }

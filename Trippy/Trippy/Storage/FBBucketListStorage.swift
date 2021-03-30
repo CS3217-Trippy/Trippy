@@ -74,7 +74,8 @@ final class FBBucketListStorage: BucketListStorage, ObservableObject {
                      locationId: bucketItem.locationId,
                      dateVisited: bucketItem.dateVisited,
                      dateAdded: bucketItem.dateAdded,
-                     userDescription: bucketItem.userDescription
+                     userDescription: bucketItem.userDescription,
+                     locationCategory: bucketItem.locationCategory
                      )
     }
 
@@ -84,6 +85,7 @@ final class FBBucketListStorage: BucketListStorage, ObservableObject {
             image = URL(string: url)
         }
         return BucketItem(locationName: bucketItem.locationName,
+                          locationCategory: bucketItem.locationCategory,
                           locationImage: image,
                           userId: bucketItem.userId,
                           locationId: bucketItem.locationId,
