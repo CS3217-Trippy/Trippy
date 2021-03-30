@@ -47,8 +47,7 @@ final class FBLevelSystemService: LevelSystemService {
         self.levelSystemStorage.fetch()
     }
 
-    func updateLevelSystem() {
-        let userLevelSystem = getUserLevelSystem()
+    private func updateLevelSystem(userLevelSystem: LevelSystem) {
         do {
             try levelSystemStorage.update(item: userLevelSystem)
         } catch {
@@ -56,8 +55,7 @@ final class FBLevelSystemService: LevelSystemService {
         }
     }
 
-    func addExperience(action: ExperienceAction) {
-        let userLevelSystem = getUserLevelSystem()
+    private func addExperience(action: ExperienceAction, userLevelSystem: LevelSystem) {
         let currentExperience = userLevelSystem.experience
         let expToAdd = LevelSystemUtil.getExperienceFrom(action: action)
         let experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
@@ -67,16 +65,25 @@ final class FBLevelSystemService: LevelSystemService {
         } else {
             userLevelSystem.experience += expToAdd
         }
-        updateLevelSystem()
     }
 
     func generateExperienceFromAddingFriend(friend: Friend) {
+        levelSystemStorage.fetchWithId(id: friend.friendId) { friendLevelSystem in
+            let friendAddedFriends = friendLevelSystem.friendsIdAddedBefore
+            if friendAddedFriends.contains(friend.userId) {
+                return
+            }
+            friendLevelSystem.friendsIdAddedBefore.append(friend.userId)
+            self.addExperience(action: .AddFriend, userLevelSystem: friendLevelSystem)
+            self.updateLevelSystem(userLevelSystem: friendLevelSystem)
+        }
         let userLevelSystem = getUserLevelSystem()
         let userAddedFriends = userLevelSystem.friendsIdAddedBefore
         if userAddedFriends.contains(friend.friendId) {
             return
         }
         userLevelSystem.friendsIdAddedBefore.append(friend.friendId)
-        addExperience(action: .AddFriend)
+        addExperience(action: .AddFriend, userLevelSystem: userLevelSystem)
+        updateLevelSystem(userLevelSystem: userLevelSystem)
     }
 }

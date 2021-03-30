@@ -14,9 +14,5 @@ protocol LevelSystemService {
 
     func retrieveLevelSystem()
 
-    func updateLevelSystem()
-
-    func addExperience(action: ExperienceAction)
-
     func generateExperienceFromAddingFriend(friend: Friend)
 }
