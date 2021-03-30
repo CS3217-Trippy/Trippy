@@ -15,12 +15,14 @@ struct FBUser: FBImageSupportedStorable {
     var email: String
     var username: String
     var friendsId: [String]
+    var levelSystemId: String
 
     init(item: ModelType) {
         id = item.id
         email = item.email
         username = item.username
         friendsId = item.friendsId
+        levelSystemId = item.levelSystemId
     }
 
     func convertToModelType() -> User {
@@ -28,7 +30,8 @@ struct FBUser: FBImageSupportedStorable {
             id: id,
             email: email,
             username: username,
-            friendsId: friendsId
+            friendsId: friendsId,
+            levelSystemId: levelSystemId
         )
     }
 }

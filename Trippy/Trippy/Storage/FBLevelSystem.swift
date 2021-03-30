@@ -26,7 +26,7 @@ struct FBLevelSystem: FBUserRelatedStorable {
     }
 
     func convertToModelType() -> LevelSystem {
-        return LevelSystem(
+        LevelSystem(
             userId: userId,
             id: id,
             experience: experience,

@@ -24,6 +24,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
     }
     var userStorage = FBImageSupportedStorage<FBUser>()
+    var levelSystemService: LevelSystemService?
     private var username = ""
     private var handle: AuthStateDidChangeListenerHandle?
     private var cancellables: Set<AnyCancellable> = []
@@ -34,7 +35,8 @@ final class FBSessionStore: ObservableObject, SessionStore {
             id: user.uid,
             email: user.email ?? "",
             username: username,
-            friendsId: []
+            friendsId: [],
+            levelSystemId: user.uid
         )
     }
 
@@ -61,8 +63,11 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 switch self.authState {
                 case .SignUp:
                     self.userStorage.add(user, with: nil, id: user.id)
+                    self.levelSystemService = FBLevelSystemService(userId: id)
+                    self.levelSystemService?.createLevelSystem()
                 case .LogIn:
                     self.userStorage.fetchWithId(id: id)
+                    self.levelSystemService = FBLevelSystemService(userId: id)
                 case .NoUser:
                     print("no user")
                 }

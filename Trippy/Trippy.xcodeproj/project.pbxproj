@@ -96,6 +96,8 @@
 		7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */; };
 		76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BC32613607C004BA414 /* LevelSystem.swift */; };
 		76E74BC92613617C004BA414 /* FBLevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BC82613617C004BA414 /* FBLevelSystem.swift */; };
+		76E74BCE26136350004BA414 /* FBLevelSystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BCD26136350004BA414 /* FBLevelSystemService.swift */; };
+		76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BD52613692F004BA414 /* LevelSystemService.swift */; };
 		76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE0E2610D8F000393AF7 /* FBUser.swift */; };
 		76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE192611105700393AF7 /* SessionStore.swift */; };
 		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
@@ -210,6 +212,8 @@
 		7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewModel.swift; sourceTree = "<group>"; };
 		76E74BC32613607C004BA414 /* LevelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystem.swift; sourceTree = "<group>"; };
 		76E74BC82613617C004BA414 /* FBLevelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLevelSystem.swift; sourceTree = "<group>"; };
+		76E74BCD26136350004BA414 /* FBLevelSystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLevelSystemService.swift; sourceTree = "<group>"; };
+		76E74BD52613692F004BA414 /* LevelSystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystemService.swift; sourceTree = "<group>"; };
 		76F8BE0E2610D8F000393AF7 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		76F8BE192611105700393AF7 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
@@ -428,6 +432,8 @@
 				01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */,
 				714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */,
 				01483A5126108D1500D840EA /* Image+Extensions.swift */,
+				76E74BCD26136350004BA414 /* FBLevelSystemService.swift */,
+				76E74BD52613692F004BA414 /* LevelSystemService.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 				714AF262260B85C20034269C /* FBLocation.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
+				76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
 				01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
@@ -701,6 +708,7 @@
 				01483A072610330100D840EA /* UserRelatedStorage.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,
+				76E74BCE26136350004BA414 /* FBLevelSystemService.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
