@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         Group {
-            if let user = session.session {
+            if let user = session.retrieveCurrentLoggedInUser() {
                 HomepageView(homepageViewModel: HomepageViewModel(session: session), user: user)
             } else {
                 StartUpView()
@@ -27,6 +27,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(SessionStore())
+            .environmentObject(FBSessionStore())
     }
 }

@@ -16,7 +16,7 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
 
     init(session: SessionStore) {
         self.session = session
-        guard let user = session.session else {
+        guard let user = session.retrieveCurrentLoggedInUser() else {
             self.email = ""
             self.username = ""
             return
@@ -26,7 +26,7 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     }
 
     func updateUserData() {
-        guard let oldUser = session.session else {
+        guard let oldUser = session.retrieveCurrentLoggedInUser() else {
             fatalError("User should have logged in")
         }
         oldUser.username = username

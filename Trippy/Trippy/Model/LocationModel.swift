@@ -37,7 +37,7 @@ class LocationModel<Storage: ImageSupportedStorage>: ObservableObject where Stor
             return
         }
 
-        try storage.add(location, with: image)
+        try storage.add(location, with: image, id: nil)
     }
 
     func removeLocation(location: Location) {

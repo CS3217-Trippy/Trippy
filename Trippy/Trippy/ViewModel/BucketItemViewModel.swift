@@ -3,7 +3,7 @@ import Foundation
 
 final class BucketItemViewModel: ObservableObject, Identifiable {
     @Published private var bucketItem: BucketItem
-    private var bucketModel: BucketModel
+    private var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
     private(set) var id = ""
     private var cancellables: Set<AnyCancellable> = []
     var locationImage: URL? {
@@ -18,7 +18,7 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
     var dateAdded: Date {
         bucketItem.dateAdded
     }
-    init(bucketItem: BucketItem, bucketModel: BucketModel) {
+    init(bucketItem: BucketItem, bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>) {
         self.bucketItem = bucketItem
         self.bucketModel = bucketModel
         $bucketItem.compactMap { $0.id }.assign(to: \.id, on: self)

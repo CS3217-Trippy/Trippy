@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomepageView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
     @ObservedObject var homepageViewModel: HomepageViewModel
     var user: User
 
@@ -21,6 +21,9 @@ struct HomepageView: View {
         let accountPageView = AccountPageView(
             accountPageViewModel: AccountPageViewModel(session: session), user: user)
 
+        let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel)
+        let friendListView = FriendsListView(viewModel: friendListVM)
+
         NavigationView {
             VStack(spacing: 10) {
                 Text("Welcome, \(user.username)")
@@ -32,7 +35,7 @@ struct HomepageView: View {
                 NavigationLink(destination: locationListView) {
                     Text("LOCATIONS")
                 }
-                NavigationLink(destination: FriendsListView(viewModel: FriendsListViewModel(session: session))) {
+                NavigationLink(destination: friendListView) {
                     Text("FRIENDS")
                 }
                 NavigationLink(destination: accountPageView) {

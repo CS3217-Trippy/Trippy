@@ -1,8 +1,6 @@
 import Foundation
-import FirebaseFirestoreSwift
-
-class BucketItem: Identifiable {
-    var id: String
+class BucketItem: UserRelatedModel {
+    var id: String?
     var locationName: String
     var locationCategory: LocationCategory
     var locationImage: URL?

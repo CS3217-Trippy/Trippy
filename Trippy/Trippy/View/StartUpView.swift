@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StartUpView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: FBSessionStore
 
     var body: some View {
         NavigationView {
