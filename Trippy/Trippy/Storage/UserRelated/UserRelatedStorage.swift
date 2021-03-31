@@ -18,6 +18,8 @@ protocol UserRelatedStorage: ObservableObject {
 
     func fetchWithId(id: String, handler: ((StoredType) -> Void)?)
 
+    func fetchWithField(field: String, handler: (([StoredType]) -> Void)?)
+
     func add(item: StoredType) throws
 
     func update(item: StoredType) throws

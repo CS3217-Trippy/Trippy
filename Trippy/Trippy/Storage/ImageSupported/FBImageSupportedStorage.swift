@@ -176,4 +176,8 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
     private func deleteImage(url: String) {
         self.imageStorage.reference(forURL: url).delete()
     }
+
+    func removeStoredItems() {
+        self._storedItems.removeAll()
+    }
 }
