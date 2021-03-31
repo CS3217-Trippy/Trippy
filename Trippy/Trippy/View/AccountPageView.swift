@@ -15,9 +15,20 @@ struct AccountPageView: View {
     @State private var selectedImage: UIImage?
     var user: User
 
-    var photoSection: some View {
+    var userInfoSection: some View {
         Section {
-            Text("Please submit a photo of the location if you have one! (optional)")
+            CircleImageView()
+            Text("\(user.username)")
+                .bold()
+                .font(.title)
+            Text(accountPageViewModel.email)
+                .font(.headline)
+        }
+    }
+
+    var changeProfilePictureSection: some View {
+        Section {
+            Text("CHANGE PROFILE PICTURE")
             if let selectedImage = selectedImage {
                 Image(uiImage: selectedImage)
                 .resizable()
@@ -28,29 +39,53 @@ struct AccountPageView: View {
         }
     }
 
+    var changeUsernameSection: some View {
+        Section {
+            Text("CHANGE USERNAME")
+            TextField("Enter new username", text: $accountPageViewModel.username)
+                .frame(width: 400, height: nil, alignment: .center)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
+    }
+
     var imagePickerButtons: some View {
         HStack {
             Button(action: {
                 self.willLaunchCamera()
             }) {
-                Text("Launch Camera")
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray)
-                )
+                Text("CAMERA")
+                    .frame(width: 150, height: nil, alignment: .center/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray)
+                    )
             }
 
             Button(action: {
                 self.imageSource = .photoLibrary
             }) {
-                Text("Launch Photo Library")
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray)
-                )
+                Text("PHOTO LIBRARY")
+                    .frame(width: 150, height: nil, alignment: .center/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray)
+                    )
             }
+        }
+    }
+
+    var updateDeleteAccountButtons: some View {
+        Section {
+            Button("UPDATE ACCOUNT") {
+                accountPageViewModel.updateUserData()
+            }
+            Button("DELETE ACCOUNT") {
+                accountPageViewModel.deleteUser()
+            }.foregroundColor(.red)
+            Text(accountPageViewModel.errorMessage)
+                .foregroundColor(.red)
         }
     }
 
@@ -64,39 +99,20 @@ struct AccountPageView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            CircleImageView()
-            Text("\(user.username)")
-                .bold()
-                .font(.title)
-            Text(accountPageViewModel.email)
-                .font(.headline)
+            userInfoSection
             Spacer().frame(height: 25)
             LevelProgressionView(viewModel: LevelProgressionViewModel(session: session))
             Spacer().frame(height: 25)
-            VStack {
-                Text("CHANGE USERNAME")
-                TextField("Enter new username", text: $accountPageViewModel.username)
-                    .frame(width: 400, height: nil, alignment: .center)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            Spacer().frame(height: 25)
-            photoSection
-            .fullScreenCover(item: $imageSource) { item in
-                ImagePicker(sourceType: item, selectedImage: $selectedImage)
-            }
-            .alert(isPresented: $showCameraError, content: {
-                Alert(title: Text("If only you had a camera"))
-            })
-            VStack(spacing: 10) {
-                Button("UPDATE ACCOUNT") {
-                    accountPageViewModel.updateUserData()
+            changeUsernameSection
+            changeProfilePictureSection
+                .fullScreenCover(item: $imageSource) { item in
+                    ImagePicker(sourceType: item, selectedImage: $selectedImage)
                 }
-                Button("DELETE ACCOUNT") {
-                    accountPageViewModel.deleteUser()
-                }.foregroundColor(.red)
-                Text(accountPageViewModel.errorMessage)
-                    .foregroundColor(.red)
-            }
+                .alert(isPresented: $showCameraError, content: {
+                    Alert(title: Text("No camera detected"))
+                })
+            Spacer().frame(height: 25)
+            updateDeleteAccountButtons
         }
         .padding()
     }
