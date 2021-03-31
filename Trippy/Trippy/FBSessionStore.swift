@@ -123,9 +123,9 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
     }
 
-    func updateUser(updatedUser: User) {
+    func updateUser(updatedUser: User, with image: UIImage? = nil) {
         do {
-            try self.userStorage.update(updatedUser)
+            try self.userStorage.update(updatedUser, with: image)
         } catch {
             print("Updating user failed")
         }

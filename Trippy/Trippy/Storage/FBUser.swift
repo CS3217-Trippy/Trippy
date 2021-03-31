@@ -23,15 +23,21 @@ struct FBUser: FBImageSupportedStorable {
         username = item.username
         friendsId = item.friendsId
         levelSystemId = item.levelSystemId
+        imageURL = item.imageURL?.absoluteString
     }
 
     func convertToModelType() -> User {
-        User(
+        var targetURL: URL?
+        if let url = imageURL {
+            targetURL = URL(string: url)
+        }
+        return User(
             id: id,
             email: email,
             username: username,
             friendsId: friendsId,
-            levelSystemId: levelSystemId
+            levelSystemId: levelSystemId,
+            imageURL: targetURL
         )
     }
 }

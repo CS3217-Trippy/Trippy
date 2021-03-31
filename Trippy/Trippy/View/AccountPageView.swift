@@ -12,12 +12,11 @@ struct AccountPageView: View {
     @ObservedObject var accountPageViewModel: AccountPageViewModel
     @State private var imageSource: UIImagePickerController.SourceType?
     @State private var showCameraError = false
-    @State private var selectedImage: UIImage?
     var user: User
 
     var userInfoSection: some View {
         Section {
-            CircleImageView()
+            CircleImageView(url: session.retrieveCurrentLoggedInUser()?.imageURL)
             Text("\(user.username)")
                 .bold()
                 .font(.title)
@@ -29,7 +28,7 @@ struct AccountPageView: View {
     var changeProfilePictureSection: some View {
         Section {
             Text("CHANGE PROFILE PICTURE")
-            if let selectedImage = selectedImage {
+            if let selectedImage = accountPageViewModel.selectedImage {
                 Image(uiImage: selectedImage)
                 .resizable()
                 .aspectRatio(1, contentMode: .fit)
@@ -54,7 +53,7 @@ struct AccountPageView: View {
                 self.willLaunchCamera()
             }) {
                 Text("CAMERA")
-                    .frame(width: 150, height: nil, alignment: .center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 150, height: nil, alignment: .center)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -66,7 +65,7 @@ struct AccountPageView: View {
                 self.imageSource = .photoLibrary
             }) {
                 Text("PHOTO LIBRARY")
-                    .frame(width: 150, height: nil, alignment: .center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 150, height: nil, alignment: .center)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -106,7 +105,7 @@ struct AccountPageView: View {
             changeUsernameSection
             changeProfilePictureSection
                 .fullScreenCover(item: $imageSource) { item in
-                    ImagePicker(sourceType: item, selectedImage: $selectedImage)
+                    ImagePicker(sourceType: item, selectedImage: $accountPageViewModel.selectedImage)
                 }
                 .alert(isPresented: $showCameraError, content: {
                     Alert(title: Text("No camera detected"))

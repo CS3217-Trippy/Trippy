@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SessionStore {
     var levelSystemService: LevelSystemService? { get set }
@@ -26,7 +27,7 @@ protocol SessionStore {
 
     func deleteUser(handler: @escaping ((String) -> Void))
 
-    func updateUser(updatedUser: User)
+    func updateUser(updatedUser: User, with image: UIImage?)
 
     func unbind()
 }

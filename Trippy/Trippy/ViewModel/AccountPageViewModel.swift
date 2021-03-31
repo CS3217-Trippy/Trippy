@@ -12,6 +12,7 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var email = ""
     @Published var username = ""
     @Published var errorMessage = ""
+    @Published var selectedImage: UIImage?
     private var session: SessionStore
 
     init(session: SessionStore) {
@@ -30,7 +31,7 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
             fatalError("User should have logged in")
         }
         oldUser.username = username
-        session.updateUser(updatedUser: oldUser)
+        session.updateUser(updatedUser: oldUser, with: selectedImage)
     }
 
     func deleteUser() {
