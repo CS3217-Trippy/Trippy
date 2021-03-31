@@ -68,14 +68,16 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
     }
 
     func generateExperienceFromAddingFriend(friend: Friend) {
-        levelSystemStorage.fetchWithId(id: friend.friendId) { friendLevelSystem in
+        let friendLevelSystemService = FBLevelSystemService(userId: friend.friendId)
+        let friendLevelSystemStorage = friendLevelSystemService.levelSystemStorage
+        friendLevelSystemStorage.fetchWithId(id: friend.friendId) { friendLevelSystem in
             let friendAddedFriends = friendLevelSystem.friendsIdAddedBefore
             if friendAddedFriends.contains(friend.userId) {
                 return
             }
             friendLevelSystem.friendsIdAddedBefore.append(friend.userId)
-            self.addExperience(action: .AddFriend, userLevelSystem: friendLevelSystem)
-            self.updateLevelSystem(userLevelSystem: friendLevelSystem)
+            friendLevelSystemService.addExperience(action: .AddFriend, userLevelSystem: friendLevelSystem)
+            friendLevelSystemService.updateLevelSystem(userLevelSystem: friendLevelSystem)
         }
         let userLevelSystem = getUserLevelSystem()
         let userAddedFriends = userLevelSystem.friendsIdAddedBefore
