@@ -24,7 +24,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
     }
     var userStorage = FBImageSupportedStorage<FBUser>()
-    var levelSystemService: LevelSystemService?
+    @Published var levelSystemService: LevelSystemService?
     private var username = ""
     private var handle: AuthStateDidChangeListenerHandle?
     private var cancellables: Set<AnyCancellable> = []

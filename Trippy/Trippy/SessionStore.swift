@@ -8,6 +8,8 @@
 import Foundation
 
 protocol SessionStore {
+    var levelSystemService: LevelSystemService? { get set }
+
     var session: [User] { get set }
 
     var userStorage: FBImageSupportedStorage<FBUser> { get set }

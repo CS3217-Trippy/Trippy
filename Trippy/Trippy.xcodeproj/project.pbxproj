@@ -101,6 +101,8 @@
 		76E74BDB26137B94004BA414 /* ExperienceAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BDA26137B94004BA414 /* ExperienceAction.swift */; };
 		76E74BE026137BFF004BA414 /* LevelSystemUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BDF26137BFF004BA414 /* LevelSystemUtil.swift */; };
 		76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */; };
+		76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BE92613CD57004BA414 /* LevelProgressionView.swift */; };
+		76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */; };
 		76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE0E2610D8F000393AF7 /* FBUser.swift */; };
 		76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE192611105700393AF7 /* SessionStore.swift */; };
 		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
@@ -220,6 +222,8 @@
 		76E74BDA26137B94004BA414 /* ExperienceAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceAction.swift; sourceTree = "<group>"; };
 		76E74BDF26137BFF004BA414 /* LevelSystemUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystemUtil.swift; sourceTree = "<group>"; };
 		76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystemConstants.swift; sourceTree = "<group>"; };
+		76E74BE92613CD57004BA414 /* LevelProgressionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressionView.swift; sourceTree = "<group>"; };
+		76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressionViewModel.swift; sourceTree = "<group>"; };
 		76F8BE0E2610D8F000393AF7 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		76F8BE192611105700393AF7 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
@@ -383,6 +387,7 @@
 				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
 				DB9273A12604487600B898AE /* AddFriendView.swift */,
+				76E74BE92613CD57004BA414 /* LevelProgressionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 				714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */,
 				714BA80D2601A61500E69470 /* AddLocationViewModel.swift */,
 				7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */,
+				76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -675,6 +681,7 @@
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
+				76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */,
 				01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
@@ -707,6 +714,7 @@
 				76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */,
 				714AF25D260B736F0034269C /* FBImageSupportedStorage.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
+				76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */,
 				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
 				7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */,
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,

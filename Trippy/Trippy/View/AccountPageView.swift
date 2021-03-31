@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountPageView: View {
+    @EnvironmentObject var session: FBSessionStore
     @ObservedObject var accountPageViewModel: AccountPageViewModel
     var user: User
 
@@ -16,32 +17,36 @@ struct AccountPageView: View {
             CircleImageView()
             Text("\(user.username)")
                 .bold()
+                .font(.title)
+            Text(accountPageViewModel.email)
                 .font(.headline)
+            Spacer().frame(height: 25)
+            LevelProgressionView(viewModel: LevelProgressionViewModel(session: session))
+            Spacer().frame(height: 25)
             VStack {
-                Text("USERNAME")
+                Text("CHANGE USERNAME")
                 TextField("Enter new username", text: $accountPageViewModel.username)
                     .frame(width: 400, height: nil, alignment: .center)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            VStack {
-                Text("EMAIL")
-                Text(accountPageViewModel.email)
+            Spacer().frame(height: 25)
+            VStack(spacing: 10) {
+                Button("UPDATE ACCOUNT") {
+                    accountPageViewModel.updateUserData()
+                }
+                Button("DELETE ACCOUNT") {
+                    accountPageViewModel.deleteUser()
+                }.foregroundColor(.red)
+                Text(accountPageViewModel.errorMessage)
+                    .foregroundColor(.red)
             }
-            Button("UPDATE ACCOUNT") {
-                accountPageViewModel.updateUserData()
-            }
-            Button("DELETE ACCOUNT") {
-                accountPageViewModel.deleteUser()
-            }.foregroundColor(.red)
-            Text(accountPageViewModel.errorMessage)
-                .foregroundColor(.red)
         }
         .padding()
     }
 }
 
 struct AccountPageView_Previews: PreviewProvider {
-    static func setSession() -> SessionStore {
+    static func setSession() -> FBSessionStore {
         let sessionStore = FBSessionStore()
         var userArray = [User]()
         userArray.append(User(id: "1", email: "1", username: "CAT", friendsId: [], levelSystemId: "1"))
@@ -51,10 +56,18 @@ struct AccountPageView_Previews: PreviewProvider {
 
     static func setUser() -> User {
         User(
-            id: "1", email: "1", username: "CAT", friendsId: [], levelSystemId: "1")
+            id: "1",
+            email: "1",
+            username: "CAT",
+            friendsId: [],
+            levelSystemId: "1"
+        )
     }
 
     static var previews: some View {
-        AccountPageView(accountPageViewModel: AccountPageViewModel(session: setSession()), user: setUser())
+        AccountPageView(
+            accountPageViewModel: AccountPageViewModel(session: setSession()),
+            user: setUser())
+            .environmentObject(setSession())
     }
 }

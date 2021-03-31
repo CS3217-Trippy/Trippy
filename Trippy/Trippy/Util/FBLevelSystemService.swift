@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class FBLevelSystemService: LevelSystemService {
+final class FBLevelSystemService: LevelSystemService, ObservableObject {
     var levelSystemStorage: FBUserRelatedStorage<FBLevelSystem>
     @Published var levelSystem = [LevelSystem]()
     private var cancellables: Set<AnyCancellable> = []
@@ -85,5 +85,12 @@ final class FBLevelSystemService: LevelSystemService {
         userLevelSystem.friendsIdAddedBefore.append(friend.friendId)
         addExperience(action: .AddFriend, userLevelSystem: userLevelSystem)
         updateLevelSystem(userLevelSystem: userLevelSystem)
+    }
+
+    func generateExperienceProgressData() -> (Int, Double) {
+        let userLevelSystem = getUserLevelSystem()
+        let currentExperience = userLevelSystem.experience
+        let experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
+        return (experienceToNextLevel, Double(currentExperience) / Double(experienceToNextLevel) * 100)
     }
 }

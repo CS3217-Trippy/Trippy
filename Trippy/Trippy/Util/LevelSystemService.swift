@@ -15,4 +15,6 @@ protocol LevelSystemService {
     func retrieveLevelSystem()
 
     func generateExperienceFromAddingFriend(friend: Friend)
+
+    func generateExperienceProgressData() -> (Int, Double)
 }
