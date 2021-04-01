@@ -77,7 +77,7 @@ class VisitTracker {
         guard currentDate.timeIntervalSince(arrivalTime) > minimumVisitDuration else {
             return
         }
-        bucketItem.dateAdded = arrivalTime
+        bucketItem.dateVisited = arrivalTime
         do {
             try bucketModel.updateBucketItem(bucketItem: bucketItem)
         } catch {
