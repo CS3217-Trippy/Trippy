@@ -10,11 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var session: FBSessionStore
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var locationCoordinator: LocationCoordinator
 
     var body: some View {
         Group {
             if let user = session.retrieveCurrentLoggedInUser() {
-                HomepageView(homepageViewModel: HomepageViewModel(session: session), user: user)
+                HomepageView(homepageViewModel: .init(session: session, locationCoordinator: locationCoordinator),
+                             user: user)
             } else {
                 StartUpView()
             }

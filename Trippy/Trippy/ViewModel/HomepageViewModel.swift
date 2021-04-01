@@ -12,8 +12,9 @@ final class HomepageViewModel: ObservableObject {
     @Published var locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
     @Published var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
     @Published var friendsModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
+    private let visitTracker: VisitTracker
 
-    init(session: SessionStore) {
+    init(session: SessionStore, locationCoordinator: LocationCoordinator) {
         let locationStorage = FBImageSupportedStorage<FBLocation>()
 
         let locationModel = LocationModel<FBImageSupportedStorage<FBLocation>>(storage: locationStorage)
@@ -32,5 +33,10 @@ final class HomepageViewModel: ObservableObject {
             userId: session.retrieveCurrentLoggedInUser()?.id
         )
         self.friendsModel = friendsModel
+        visitTracker = VisitTracker(
+            locationCoordinator: locationCoordinator,
+            locationModel: locationModel,
+            bucketModel: bucketModel
+        )
     }
 }
