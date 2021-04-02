@@ -51,6 +51,8 @@
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
 		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
 		01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8438525FDED6400080ED5 /* MockBucketStorage.swift */; };
+		714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A6D83261429BF0032CA7C /* LocationCoordinator.swift */; };
+		714A79112615689600E7C865 /* VisitTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A79102615689600E7C865 /* VisitTracker.swift */; };
 		714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */; };
 		714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */; };
 		714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */; };
@@ -174,6 +176,8 @@
 		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
 		01F8437D25FDED3800080ED5 /* BucketModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModelTests.swift; sourceTree = "<group>"; };
 		01F8438525FDED6400080ED5 /* MockBucketStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBucketStorage.swift; sourceTree = "<group>"; };
+		714A6D83261429BF0032CA7C /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
+		714A79102615689600E7C865 /* VisitTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitTracker.swift; sourceTree = "<group>"; };
 		714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapView.swift; sourceTree = "<group>"; };
@@ -423,6 +427,8 @@
 		01F4636F25FD1ECB00BBB8E9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				714A79102615689600E7C865 /* VisitTracker.swift */,
+				714A6D83261429BF0032CA7C /* LocationCoordinator.swift */,
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
 				DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */,
@@ -692,6 +698,7 @@
 				01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
+				714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
 				01483A452610728D00D840EA /* Friend.swift in Sources */,
@@ -715,6 +722,7 @@
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */,
+				714A79112615689600E7C865 /* VisitTracker.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				714AF253260B34A30034269C /* ImageSupportedStorage.swift in Sources */,

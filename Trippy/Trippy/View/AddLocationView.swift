@@ -12,7 +12,6 @@ import Combine
 
 struct AddLocationView: View {
     @State private var map = MKMapView()
-    @State private var locationManager = CLLocationManager()
     @State private var showLocationAlert = false
     @State private var locationName: String = ""
     @State private var locationDescription: String = ""
@@ -39,11 +38,7 @@ struct AddLocationView: View {
     var locationMapSection: some View {
         Section {
             Text("Please select the location on the map.")
-            AddLocationMapView(map: $map, locationManager: $locationManager,
-                               showLocationAlert: $showLocationAlert, selectedLocation: $selectedLocation)
-            .onAppear {
-                self.locationManager.requestAlwaysAuthorization()
-            }
+            AddLocationMapView(map: $map, showLocationAlert: $showLocationAlert, selectedLocation: $selectedLocation)
             .padding()
             .alert(isPresented: $showLocationAlert) {
                 Alert(
