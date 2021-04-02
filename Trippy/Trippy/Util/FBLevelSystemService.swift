@@ -89,6 +89,15 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         updateLevelSystem(userLevelSystem: userLevelSystem)
     }
 
+    func generateExperienceFromFinishingBucketItem(bucketItem: BucketItem) {
+        if bucketItem.dateVisited == nil {
+            return
+        }
+        let userLevelSystem = getUserLevelSystem()
+        addExperience(action: .FinishBucketItem, userLevelSystem: userLevelSystem)
+        updateLevelSystem(userLevelSystem: userLevelSystem)
+    }
+
     func generateExperienceProgressData() -> (Int, Double) {
         let userLevelSystem = getUserLevelSystem()
         let currentExperience = userLevelSystem.experience

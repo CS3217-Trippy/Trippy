@@ -11,7 +11,9 @@ class LevelSystemUtil {
     static func getExperienceFrom(action: ExperienceAction) -> Int {
         switch action {
         case .AddFriend:
-            return 50
+            return LevelSystemConstants.addFriendExp
+        case .FinishBucketItem:
+            return LevelSystemConstants.finishBucketItemExp
         }
     }
 

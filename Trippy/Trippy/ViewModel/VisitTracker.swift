@@ -19,6 +19,7 @@ class VisitTracker {
     private var cancellables: Set<AnyCancellable> = []
     private var nearbyBucketItem: BucketItem?
     private var arrivalTimeAtBucketItem: Date?
+    private var levelSystemService: LevelSystemService?
     private let minimumVisitDuration = 300.0
     private let tempBucketItemKey = "tempBucketItem"
     private let tempDateKey = "tempDate"
@@ -28,10 +29,11 @@ class VisitTracker {
 
     init(locationCoordinator: LocationCoordinator, locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>,
          bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
-         alertTitle: Binding<String>, alertContent: Binding<String>) {
+         alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?) {
         self.locationModel = locationModel
         self.bucketModel = bucketModel
         self.locationCoordinator = locationCoordinator
+        self.levelSystemService = levelSystemService
         self._showLocationAlert = showLocationAlert
         self._alertTitle = alertTitle
         self._alertContent = alertContent
@@ -87,6 +89,7 @@ class VisitTracker {
         bucketItem.dateVisited = arrivalTime
         do {
             try bucketModel.updateBucketItem(bucketItem: bucketItem)
+            levelSystemService?.generateExperienceFromFinishingBucketItem(bucketItem: bucketItem)
         } catch {
             print("Error: Failed to update storage")
             return

@@ -7,4 +7,5 @@
 
 enum ExperienceAction {
     case AddFriend
+    case FinishBucketItem
 }

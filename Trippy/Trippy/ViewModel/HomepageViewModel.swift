@@ -41,7 +41,8 @@ final class HomepageViewModel: ObservableObject {
             bucketModel: bucketModel,
             showLocationAlert: showLocationAlert,
             alertTitle: alertTitle,
-            alertContent: alertContent
+            alertContent: alertContent,
+            levelSystemService: session.levelSystemService
         )
     }
 }
