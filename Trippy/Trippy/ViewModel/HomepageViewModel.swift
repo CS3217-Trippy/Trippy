@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SwiftUI
 
 final class HomepageViewModel: ObservableObject {
 
@@ -14,7 +15,8 @@ final class HomepageViewModel: ObservableObject {
     @Published var friendsModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
     private let visitTracker: VisitTracker
 
-    init(session: SessionStore, locationCoordinator: LocationCoordinator) {
+    init(session: SessionStore, locationCoordinator: LocationCoordinator, showLocationAlert: Binding<Bool>,
+         alertTitle: Binding<String>, alertContent: Binding<String>) {
         let locationStorage = FBImageSupportedStorage<FBLocation>()
 
         let locationModel = LocationModel<FBImageSupportedStorage<FBLocation>>(storage: locationStorage)
@@ -36,7 +38,10 @@ final class HomepageViewModel: ObservableObject {
         visitTracker = VisitTracker(
             locationCoordinator: locationCoordinator,
             locationModel: locationModel,
-            bucketModel: bucketModel
+            bucketModel: bucketModel,
+            showLocationAlert: showLocationAlert,
+            alertTitle: alertTitle,
+            alertContent: alertContent
         )
     }
 }

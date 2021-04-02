@@ -22,12 +22,19 @@ class VisitTracker {
     private let minimumVisitDuration = 300.0
     private let tempBucketItemKey = "tempBucketItem"
     private let tempDateKey = "tempDate"
+    @Binding private var showLocationAlert: Bool
+    @Binding private var alertTitle: String
+    @Binding private var alertContent: String
 
     init(locationCoordinator: LocationCoordinator, locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>,
-         bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>) {
+         bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
+         alertTitle: Binding<String>, alertContent: Binding<String>) {
         self.locationModel = locationModel
         self.bucketModel = bucketModel
         self.locationCoordinator = locationCoordinator
+        self._showLocationAlert = showLocationAlert
+        self._alertTitle = alertTitle
+        self._alertContent = alertContent
         self.locationModel.$locations.assign(to: \.locations, on: self)
             .store(in: &cancellables)
         self.bucketModel.$bucketItems.assign(to: \.bucketItems, on: self)
@@ -85,7 +92,7 @@ class VisitTracker {
             return
         }
 
-        sendVisitNotification(for: bucketItem)
+        notifyUser(for: bucketItem)
     }
 
     private func isNearby(bucketItem: BucketItem, from point: CLLocationCoordinate2D) -> Bool {
@@ -105,17 +112,35 @@ class VisitTracker {
         return coordinates
     }
 
-    private func sendVisitNotification(for bucketItem: BucketItem) {
+    private func notifyUser(for bucketItem: BucketItem) {
+        let state = UIApplication.shared.applicationState
+        let title = "Congrats! You have visited \(bucketItem.locationName)"
+        let body = "bucketlist updated"
+        switch state {
+        case .background:
+            sendNotification(title: title, body: body)
+        default:
+            sendAlert(title: title, body: body)
+        }
+    }
+
+    private func sendNotification(title: String, body: String) {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
-        content.title = "Congrats! You have visited \(bucketItem.locationName)"
-        content.body = "bucketlist updated"
+        content.title = title
+        content.body = body
         content.sound = .default
 
         let uuidString = UUID().uuidString
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
         center.add(request, withCompletionHandler: nil)
+    }
+
+    private func sendAlert(title: String, body: String) {
+        alertTitle = title
+        alertContent = body
+        showLocationAlert = true
     }
 
     private func saveTempData() {
