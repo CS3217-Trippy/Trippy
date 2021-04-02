@@ -48,6 +48,8 @@
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
 		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
 		01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8438525FDED6400080ED5 /* MockBucketStorage.swift */; };
+		714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A6D83261429BF0032CA7C /* LocationCoordinator.swift */; };
+		714A79112615689600E7C865 /* VisitTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A79102615689600E7C865 /* VisitTracker.swift */; };
 		714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */; };
 		714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */; };
 		714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */; };
@@ -105,6 +107,11 @@
 		76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */; };
 		76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE0E2610D8F000393AF7 /* FBUser.swift */; };
 		76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE192611105700393AF7 /* SessionStore.swift */; };
+		DB2D334E2612E1DF000C2351 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D334D2612E1DF000C2351 /* WeatherService.swift */; };
+		DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33522612EE6C000C2351 /* NetworkError.swift */; };
+		DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33572612F003000C2351 /* WeatherSectionView.swift */; };
+		DB2D335D2612F0F0000C2351 /* WeatherSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */; };
+		DB2D33622612F3B4000C2351 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33612612F3B4000C2351 /* CurrentWeather.swift */; };
 		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
 		DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FriendsListViewModel.swift */; };
 		DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */; };
@@ -172,6 +179,8 @@
 		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
 		01F8437D25FDED3800080ED5 /* BucketModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModelTests.swift; sourceTree = "<group>"; };
 		01F8438525FDED6400080ED5 /* MockBucketStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBucketStorage.swift; sourceTree = "<group>"; };
+		714A6D83261429BF0032CA7C /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
+		714A79102615689600E7C865 /* VisitTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitTracker.swift; sourceTree = "<group>"; };
 		714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapView.swift; sourceTree = "<group>"; };
@@ -226,6 +235,11 @@
 		76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressionViewModel.swift; sourceTree = "<group>"; };
 		76F8BE0E2610D8F000393AF7 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		76F8BE192611105700393AF7 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		DB2D334D2612E1DF000C2351 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		DB2D33522612EE6C000C2351 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		DB2D33572612F003000C2351 /* WeatherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionView.swift; sourceTree = "<group>"; };
+		DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionViewModel.swift; sourceTree = "<group>"; };
+		DB2D33612612F3B4000C2351 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
 		DB92737526001AEA00B898AE /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
 		DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemViewModel.swift; sourceTree = "<group>"; };
@@ -384,6 +398,7 @@
 				714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */,
 				714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */,
 				714B74902600FD8700ADF2FE /* AddLocationMapView.swift */,
+				DB2D33572612F003000C2351 /* WeatherSectionView.swift */,
 				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
 				DB9273A12604487600B898AE /* AddFriendView.swift */,
@@ -415,8 +430,11 @@
 		01F4636F25FD1ECB00BBB8E9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				714A79102615689600E7C865 /* VisitTracker.swift */,
+				714A6D83261429BF0032CA7C /* LocationCoordinator.swift */,
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
+				DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */,
 				011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
 				DB92737526001AEA00B898AE /* FriendsListViewModel.swift */,
@@ -442,6 +460,7 @@
 				01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */,
 				01F4638925FD1FBE00BBB8E9 /* DateManager.swift */,
 				01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */,
+				DB2D33522612EE6C000C2351 /* NetworkError.swift */,
 				714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */,
 				01483A5126108D1500D840EA /* Image+Extensions.swift */,
 				76E74BCD26136350004BA414 /* FBLevelSystemService.swift */,
@@ -449,6 +468,8 @@
 				76E74BDA26137B94004BA414 /* ExperienceAction.swift */,
 				76E74BDF26137BFF004BA414 /* LevelSystemUtil.swift */,
 				76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */,
+				DB2D334D2612E1DF000C2351 /* WeatherService.swift */,
+				DB2D33612612F3B4000C2351 /* CurrentWeather.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -680,11 +701,13 @@
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */,
+				DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
 				76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */,
 				01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
+				714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
 				01483A452610728D00D840EA /* Friend.swift in Sources */,
@@ -694,10 +717,12 @@
 				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
+				DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */,
 				01483A4A26107AA400D840EA /* FBFriend.swift in Sources */,
 				76E74BE026137BFF004BA414 /* LevelSystemUtil.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
+				DB2D335D2612F0F0000C2351 /* WeatherSectionViewModel.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				714B10D026066D190040FAA1 /* UIImage+Extensions.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
@@ -708,6 +733,7 @@
 				76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */,
+				714A79112615689600E7C865 /* VisitTracker.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				714AF253260B34A30034269C /* ImageSupportedStorage.swift in Sources */,
@@ -715,6 +741,7 @@
 				714AF25D260B736F0034269C /* FBImageSupportedStorage.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
 				76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */,
+				DB2D33622612F3B4000C2351 /* CurrentWeather.swift in Sources */,
 				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
 				7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */,
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
@@ -729,6 +756,7 @@
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,
 				76E74BCE26136350004BA414 /* FBLevelSystemService.swift in Sources */,
+				DB2D334E2612E1DF000C2351 /* WeatherService.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
