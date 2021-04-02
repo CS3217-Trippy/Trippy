@@ -19,6 +19,7 @@ struct FBLocation: FBImageSupportedStorable {
     var longitude: Double
     var name: String
     var description: String
+    var category: LocationCategory
     var imageURL: String?
 
     init(item: ModelType) {
@@ -29,6 +30,7 @@ struct FBLocation: FBImageSupportedStorable {
         longitude = item.coordinates.longitude
         name = item.name
         description = item.description
+        category = item.category
         self.imageURL = imageURL
     }
 
@@ -42,11 +44,12 @@ struct FBLocation: FBImageSupportedStorable {
             coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
             name: name,
             description: description,
+            category: category,
             imageURL: targetURL
         )
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, latitude, longitude, name, description, imageURL
+        case id, latitude, longitude, name, description, category, imageURL
     }
 }

@@ -12,6 +12,7 @@ struct FBBucketItem: FBUserRelatedStorable {
     var dateVisited: Date?
     var dateAdded: Date
     var userDescription: String
+    var locationCategory: LocationCategory
 
     init(item: ModelType) {
         id = item.id
@@ -22,6 +23,7 @@ struct FBBucketItem: FBUserRelatedStorable {
         dateVisited = item.dateVisited
         dateAdded = item.dateAdded
         userDescription = item.userDescription
+        locationCategory = item.locationCategory
     }
 
     func convertToModelType() -> ModelType {
@@ -30,6 +32,7 @@ struct FBBucketItem: FBUserRelatedStorable {
             image = URL(string: url)
         }
         return BucketItem(locationName: locationName,
+                          locationCategory: locationCategory,
                           locationImage: image,
                           userId: userId,
                           locationId: locationId,
@@ -38,5 +41,4 @@ struct FBBucketItem: FBUserRelatedStorable {
                           userDescription: userDescription
         )
     }
-
 }

@@ -29,6 +29,10 @@ class LocationCardViewModel: Identifiable, ObservableObject {
         return formattedStreet + city
     }
 
+    var category: String {
+        location.category.rawValue.capitalized
+    }
+
     init(location: Location) {
         self.location = location
         $location
