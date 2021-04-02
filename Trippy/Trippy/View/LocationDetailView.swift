@@ -26,7 +26,7 @@ struct LocationDetailView: View {
 
     var pageContent: some View {
         VStack(alignment: .leading) {
-            Text("Sample Category Name")
+            Text(viewModel.category)
             .font(.headline)
             .foregroundColor(.secondary)
 

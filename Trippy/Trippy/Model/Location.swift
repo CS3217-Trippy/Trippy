@@ -15,13 +15,15 @@ class Location: ImageSupportedModel {
     var description: String
     var imageURL: URL?
     var placemark: CLPlacemark?
+    var category: LocationCategory
 
     init(id: String?, coordinates: CLLocationCoordinate2D, name: String,
-         description: String, imageURL: URL? = nil) {
+         description: String, category: LocationCategory, imageURL: URL? = nil) {
         self.id = id
         self.coordinates = coordinates
         self.name = name
         self.description = description
+        self.category = category
         self.imageURL = imageURL
         let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         CLGeocoder().reverseGeocodeLocation(location) { placemark, error in

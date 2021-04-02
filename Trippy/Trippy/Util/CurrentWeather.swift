@@ -32,8 +32,8 @@ struct Main: Decodable {
     let humidity: Int
     let pressure: Int
     let temp: Double
-    let tempMax: Int
-    let tempMin: Int
+    let tempMax: Double
+    let tempMin: Double
     private enum CodingKeys: String, CodingKey {
         case humidity, pressure, temp, tempMax = "temp_max", tempMin = "temp_min"
     }

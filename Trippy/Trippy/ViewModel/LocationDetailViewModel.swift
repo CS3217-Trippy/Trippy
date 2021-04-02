@@ -29,6 +29,9 @@ class LocationDetailViewModel: ObservableObject {
     var description: String {
         location.description
     }
+    var category: String {
+        location.category.rawValue.capitalized
+    }
 
     init(location: Location) {
         self.location = location
