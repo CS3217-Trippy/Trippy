@@ -17,7 +17,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
     }
 
     var didChange = PassthroughSubject<FBSessionStore, Never>()
-    var currentLoggedInUser: User?
+    @Published var currentLoggedInUser: User?
     @Published var session: [User] = [] {
         didSet {
             self.didChange.send(self)
@@ -50,6 +50,40 @@ final class FBSessionStore: ObservableObject, SessionStore {
     private var cancellables: Set<AnyCancellable> = []
     private var authState: AuthStates = .NoUser
 
+    init() {
+        retrievePreviousLogInSession()
+    }
+
+    func retrievePreviousLogInSession() {
+        if let user = Auth.auth().currentUser {
+            self.authState = .LogIn
+            let modelUser = self.translateFromFirebaseAuthToUser(user: user)
+            prepareInformationAfterSuccessfulLogIn(user: modelUser)
+        }
+    }
+
+    private func prepareInformationAfterSuccessfulLogIn(user: User) {
+        guard let id = user.id else {
+            fatalError("User should have id generated from firebase auth")
+        }
+        self.userStorage.fetchWithId(id: id)
+        self.friendStorage = FBUserRelatedStorage<FBFriend>(userId: id)
+        self.friendStorage?.fetch()
+        self.levelSystemService = FBLevelSystemService(userId: id)
+        self.levelSystemService?.retrieveLevelSystem()
+    }
+
+    private func prepareInformationAfterSuccessfulSignUp(user: User) {
+        guard let id = user.id else {
+            fatalError("User should have id generated from firebase auth")
+        }
+        self.userStorage.add(user, with: nil, id: user.id)
+        self.friendStorage = FBUserRelatedStorage<FBFriend>(userId: id)
+        self.friendStorage?.fetch()
+        self.levelSystemService = FBLevelSystemService(userId: id)
+        self.levelSystemService?.createLevelSystem()
+    }
+
     private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
         User(
             id: user.uid,
@@ -60,31 +94,16 @@ final class FBSessionStore: ObservableObject, SessionStore {
         )
     }
 
-    func retrieveCurrentLoggedInUser() -> User? {
-        currentLoggedInUser
-    }
-
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
                 self.userStorage.storedItems.assign(to: \.session, on: self).store(in: &self.cancellables)
                 let user = self.translateFromFirebaseAuthToUser(user: user)
-                guard let id = user.id else {
-                    fatalError("User should have id generated from firebase auth")
-                }
                 switch self.authState {
                 case .SignUp:
-                    self.userStorage.add(user, with: nil, id: user.id)
-                    self.friendStorage = FBUserRelatedStorage<FBFriend>(userId: id)
-                    self.friendStorage?.fetch()
-                    self.levelSystemService = FBLevelSystemService(userId: id)
-                    self.levelSystemService?.createLevelSystem()
+                    self.prepareInformationAfterSuccessfulSignUp(user: user)
                 case .LogIn:
-                    self.userStorage.fetchWithId(id: id)
-                    self.friendStorage = FBUserRelatedStorage<FBFriend>(userId: id)
-                    self.friendStorage?.fetch()
-                    self.levelSystemService = FBLevelSystemService(userId: id)
-                    self.levelSystemService?.retrieveLevelSystem()
+                    self.prepareInformationAfterSuccessfulLogIn(user: user)
                 case .NoUser:
                     self.userStorage.removeStoredItems()
                     print("no user")
@@ -124,7 +143,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
     }
 
     func deleteUser(handler: @escaping (String) -> Void) {
-        guard let user = self.retrieveCurrentLoggedInUser() else {
+        guard let user = self.currentLoggedInUser else {
             fatalError("User should exist prior to be deleted")
         }
         Auth.auth().currentUser?.delete { error in

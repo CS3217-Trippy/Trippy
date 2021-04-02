@@ -25,8 +25,8 @@ struct AddFriendView: View {
 
     var listView: some View {
         List(viewModel.usersList.filter {
-            $0.id != session.retrieveCurrentLoggedInUser()?.id
-                && !(session.retrieveCurrentLoggedInUser()?.friendsId.contains($0.id ?? "") ?? false)
+            $0.id != session.currentLoggedInUser?.id
+                && !(session.currentLoggedInUser?.friendsId.contains($0.id ?? "") ?? false)
                 && $0.username.contains(username)
         }) { user in
             HStack {
@@ -35,7 +35,7 @@ struct AddFriendView: View {
                 Text(user.username)
                 Spacer()
                 Button(action: {
-                    if let currentUser = session.retrieveCurrentLoggedInUser() {
+                    if let currentUser = session.currentLoggedInUser {
                         do {
                             try viewModel.addFriend(currentUser: currentUser, user: user)
                         } catch {

@@ -13,9 +13,9 @@ protocol SessionStore {
 
     var session: [User] { get set }
 
-    var userStorage: FBImageSupportedStorage<FBUser> { get set }
+    var currentLoggedInUser: User? { get set }
 
-    func retrieveCurrentLoggedInUser() -> User?
+    var userStorage: FBImageSupportedStorage<FBUser> { get set }
 
     func listen()
 
