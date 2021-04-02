@@ -6,29 +6,36 @@
 //
 
 import MapKit
+import Combine
+import SwiftUI
 
 class AddLocationMapCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
     var parent: AddLocationMapView
+    private var cancellables: Set<AnyCancellable> = []
 
     init(parent: AddLocationMapView) {
         self.parent = parent
         super.init()
         self.parent.map.removeAnnotations(self.parent.map.annotations)
+        self.parent.locationCoordinator.$currentLocation.sink {
+            self.willUpdateLocation(newLocation: $0)
+        }.store(in: &cancellables)
+        self.parent.locationCoordinator.$authorizationStatus.sink {
+            self.willChangeAuthorization(status: $0)
+        }.store(in: &cancellables)
     }
 
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func willChangeAuthorization(status: CLAuthorizationStatus) {
         if status == .denied {
             self.parent.showLocationAlert.toggle()
-        } else {
-            self.parent.locationManager.startUpdatingLocation()
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = locations.last?.coordinate else {
+    func willUpdateLocation(newLocation: CLLocationCoordinate2D? ) {
+        guard let location = newLocation else {
             return
         }
-        self.parent.map.setCenter(currentLocation, animated: true)
+        self.parent.map.setCenter(location, animated: true)
     }
 
     func mapView(

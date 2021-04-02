@@ -11,7 +11,6 @@ import CoreLocation
 
 struct LocationMapView: View {
     @State private var map = MKMapView()
-    @State private var locationManager = CLLocationManager()
     @State private var showLocationAlert = false
     @State private var showDetailView = false
     @State private var selectedLocation: Location?
@@ -21,15 +20,11 @@ struct LocationMapView: View {
         VStack {
             DisplayLocationsMapView(
                 map: self.$map,
-                locationManager: self.$locationManager,
                 showLocationAlert: self.$showLocationAlert,
                 showDetailView: self.$showDetailView,
                 selectedLocation: self.$selectedLocation,
                 viewModel: viewModel
             )
-            .onAppear {
-                self.locationManager.requestAlwaysAuthorization()
-            }
 
             if let selectedLocation = selectedLocation {
                 NavigationLink(

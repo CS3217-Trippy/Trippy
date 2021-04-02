@@ -11,13 +11,12 @@ import CoreLocation
 
 struct AddLocationMapView: UIViewRepresentable {
     @Binding var map: MKMapView
-    @Binding var locationManager: CLLocationManager
     @Binding var showLocationAlert: Bool
     @Binding var selectedLocation: CLLocationCoordinate2D
+    @EnvironmentObject var locationCoordinator: LocationCoordinator
 
     func makeUIView(context: Context) -> MKMapView {
         map.delegate = context.coordinator
-        locationManager.delegate = context.coordinator
         map.showsUserLocation = true
         let tapWithinMap = UITapGestureRecognizer(
             target: context.coordinator, action: #selector(context.coordinator.addPin(sender:)))
