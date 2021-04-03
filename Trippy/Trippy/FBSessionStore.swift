@@ -22,14 +22,11 @@ final class FBSessionStore: ObservableObject, SessionStore {
         didSet {
             self.didChange.send(self)
             if session.isEmpty {
-                print("No user here")
                 self.currentLoggedInUser = nil
             } else if session.count == 1 {
-                print(session[0].username)
                 self.currentLoggedInUser = session[0]
                 self.syncFriendWithUserInfo()
             } else {
-                print("Well...")
                 guard let currentUser = currentLoggedInUser else {
                     fatalError("User should have existed")
                 }

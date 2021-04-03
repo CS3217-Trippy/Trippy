@@ -15,7 +15,7 @@ struct LevelProgressionView: View {
             Text("LEVEL \(viewModel.level)")
                 .font(.title2)
             ProgressView(value: viewModel.percentageToNextLevel, total: 100)
-                .frame(width: 400, height: nil, alignment: .center)
+                .frame(width: 400, alignment: .center)
             Text("\(viewModel.experience) / \(viewModel.experienceToNextLevel) to the next level")
         }
     }

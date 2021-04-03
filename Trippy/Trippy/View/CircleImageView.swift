@@ -10,6 +10,7 @@ import URLImage
 
 struct CircleImageView: View {
     var url: URL?
+    let defaultPictureName = "cat"
 
     var body: some View {
         if let url = self.url {
@@ -21,7 +22,7 @@ struct CircleImageView: View {
                     .shadow(radius: 7)
             }
         } else {
-            Image("cat")
+            Image(defaultPictureName)
                 .frame(width: 300, height: 300, alignment: .center)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))

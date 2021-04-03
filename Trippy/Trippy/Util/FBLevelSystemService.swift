@@ -102,6 +102,7 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         let userLevelSystem = getUserLevelSystem()
         let currentExperience = userLevelSystem.experience
         let experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
-        return (experienceToNextLevel, Double(currentExperience) / Double(experienceToNextLevel) * 100)
+        let percentage = Double(currentExperience) / Double(experienceToNextLevel) * 100
+        return (experienceToNextLevel, percentage)
     }
 }
