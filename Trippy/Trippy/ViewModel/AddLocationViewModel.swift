@@ -42,9 +42,17 @@ class AddLocationViewModel {
                   image: UIImage?) throws {
         let formattedName = name.trimmingCharacters(in: .whitespacesAndNewlines).capitalized
         let formattedDescription = description.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let categoryEnum = LocationCategory(rawValue: category) else { return }
+        guard let categoryEnum = LocationCategory(rawValue: category) else {
+            return
+        }
         try locationModel.addLocation(
-            location: .init(id: nil, coordinates: coordinates, name: formattedName, description: formattedDescription, category: categoryEnum),
+            location: .init(
+                id: nil,
+                coordinates: coordinates,
+                name: formattedName,
+                description: formattedDescription,
+                category: categoryEnum
+            ),
             image: image
         )
     }

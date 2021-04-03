@@ -20,20 +20,20 @@ final class HomepageViewModel: ObservableObject {
         let locationStorage = FBImageSupportedStorage<FBLocation>()
         let locationModel = LocationModel<FBImageSupportedStorage<FBLocation>>(
             storage: locationStorage,
-            recommender: FBLocationRecommender(userId: session.retrieveCurrentLoggedInUser()?.id))
+            recommender: FBLocationRecommender(userId: session.currentLoggedInUser?.id))
         self.locationModel = locationModel
-        let bucketStorage = FBUserRelatedStorage<FBBucketItem>(userId: session.retrieveCurrentLoggedInUser()?.id)
+        let bucketStorage = FBUserRelatedStorage<FBBucketItem>(userId: session.currentLoggedInUser?.id)
 
         let bucketModel = BucketModel<FBUserRelatedStorage<FBBucketItem>>(
             storage: bucketStorage,
-            userId: session.retrieveCurrentLoggedInUser()?.id
+            userId: session.currentLoggedInUser?.id
         )
         self.bucketModel = bucketModel
 
-        let friendStorage = FBUserRelatedStorage<FBFriend>(userId: session.retrieveCurrentLoggedInUser()?.id)
+        let friendStorage = FBUserRelatedStorage<FBFriend>(userId: session.currentLoggedInUser?.id)
         let friendsModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(
             storage: friendStorage,
-            userId: session.retrieveCurrentLoggedInUser()?.id
+            userId: session.currentLoggedInUser?.id
         )
         self.friendsModel = friendsModel
         visitTracker = VisitTracker(
@@ -42,7 +42,8 @@ final class HomepageViewModel: ObservableObject {
             bucketModel: bucketModel,
             showLocationAlert: showLocationAlert,
             alertTitle: alertTitle,
-            alertContent: alertContent
+            alertContent: alertContent,
+            levelSystemService: session.levelSystemService
         )
     }
 }

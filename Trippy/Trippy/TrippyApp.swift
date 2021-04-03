@@ -12,6 +12,7 @@ import Firebase
 struct TrippyApp: App {
     @Environment(\.scenePhase) var scenePhase
     @State var locationCoordinator = LocationCoordinator()
+    var sessionWrapper = FBSessionWrapper()
 
     init() {
         FirebaseApp.configure()
@@ -21,12 +22,13 @@ struct TrippyApp: App {
                 print("Error: \(error.localizedDescription)")
             }
         }
+        sessionWrapper.initializeSessionStore()
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(FBSessionStore())
+                .environmentObject(sessionWrapper.retrieveSessionStore())
                 .environmentObject(locationCoordinator)
         }
         .onChange(of: scenePhase) { phase in

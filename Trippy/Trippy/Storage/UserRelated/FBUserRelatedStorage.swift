@@ -41,6 +41,47 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
         }
     }
 
+    func fetchWithField(field: String, handler: (([Storable.ModelType]) -> Void)?) {
+        guard let userId = userId else {
+            return
+        }
+        store.collection(Storable.path).whereField(field, isEqualTo: userId).getDocuments { snapshot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            let result: [Storable.ModelType] = snapshot?.documents.compactMap {
+                guard let fbItem = try? $0.data(as: Storable.self) else {
+                    return nil
+                }
+                return fbItem.convertToModelType()
+            } ?? []
+            if let handler = handler {
+                handler(result)
+            } else {
+                self._storedItems = result
+            }
+        }
+    }
+
+    func fetchWithId(id: String, handler: ((Storable.ModelType) -> Void)?) {
+        store.collection(Storable.path).document(id).getDocument { document, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let fbItem = try? document?.data(as: Storable.self) else {
+                return
+            }
+            guard let handler = handler else {
+                self._storedItems = []
+                self._storedItems.append(fbItem.convertToModelType())
+                return
+            }
+            handler(fbItem.convertToModelType())
+        }
+    }
+
     func add(item: Storable.ModelType) throws {
         let fbItem = Storable(item: item)
         do {

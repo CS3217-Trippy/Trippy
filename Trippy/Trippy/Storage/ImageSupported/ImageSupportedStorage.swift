@@ -22,4 +22,6 @@ protocol ImageSupportedStorage: ObservableObject {
     func update(_ item: StoredType, with image: UIImage?) throws
 
     func remove(_ item: StoredType)
+
+    func removeStoredItems()
 }

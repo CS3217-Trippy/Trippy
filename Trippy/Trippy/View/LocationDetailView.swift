@@ -16,7 +16,7 @@ struct LocationDetailView: View {
         HStack {
             NavigationLink(
                 destination: AddBucketItemView(
-                    viewModel: .init(location: viewModel.location, user: session.retrieveCurrentLoggedInUser()))
+                    viewModel: .init(location: viewModel.location, user: session.currentLoggedInUser))
             ) {
                 Text("Add to bucketlist")
             }

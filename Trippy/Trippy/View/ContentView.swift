@@ -17,7 +17,7 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if let user = session.retrieveCurrentLoggedInUser() {
+            if let user = session.currentLoggedInUser {
                 let homepageViewModel = HomepageViewModel(
                     session: session,
                     locationCoordinator: locationCoordinator,

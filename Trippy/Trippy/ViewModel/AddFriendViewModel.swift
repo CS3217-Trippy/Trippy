@@ -16,7 +16,7 @@ final class AddFriendViewModel: ObservableObject {
 
     init(session: SessionStore) {
         userStorage = session.userStorage
-        let user = session.retrieveCurrentLoggedInUser()
+        let user = session.currentLoggedInUser
         let storage = FBUserRelatedStorage<FBFriend>(userId: user?.id)
         self.friendsListModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(storage: storage, userId: user?.id)
         userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)

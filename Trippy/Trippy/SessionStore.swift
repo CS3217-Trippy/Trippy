@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SessionStore {
+    var levelSystemService: LevelSystemService? { get set }
+
     var session: [User] { get set }
 
-    var userStorage: FBImageSupportedStorage<FBUser> { get set }
+    var currentLoggedInUser: User? { get set }
 
-    func retrieveCurrentLoggedInUser() -> User?
+    var userStorage: FBImageSupportedStorage<FBUser> { get set }
 
     func listen()
 
@@ -24,7 +27,7 @@ protocol SessionStore {
 
     func deleteUser(handler: @escaping ((String) -> Void))
 
-    func updateUser(updatedUser: User)
+    func updateUser(updatedUser: User, with image: UIImage?)
 
     func unbind()
 }
