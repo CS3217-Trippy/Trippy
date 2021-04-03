@@ -13,8 +13,10 @@ struct PreviewLocations {
             id: "0-1",
             coordinates: CLLocationCoordinate2D(latitude: 1.295_84, longitude: 103.773_40),
             name: "The Lost Palace of Easttown",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-                "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud" +
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
+                +
+                "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
+                +
                 "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", category: LocationCategory.adventure
         ),
         Location(
@@ -38,7 +40,8 @@ struct PreviewLocations {
             coordinates: CLLocationCoordinate2D(latitude: 1.257_35, longitude: 103.823_78),
             name: "Tower of the South",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-                "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud" +
+                "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
+                +
                 "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", category: LocationCategory.adventure
         )
     ]
