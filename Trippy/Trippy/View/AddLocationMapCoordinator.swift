@@ -9,7 +9,7 @@ import MapKit
 import Combine
 import SwiftUI
 
-class AddLocationMapCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
+class AddLocationMapCoordinator: NSObject, MKMapViewDelegate {
     var parent: AddLocationMapView
     private var cancellables: Set<AnyCancellable> = []
 

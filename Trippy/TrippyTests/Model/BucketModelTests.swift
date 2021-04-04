@@ -1,7 +1,7 @@
-import XCTest
-@testable import Trippy
+ import XCTest
+ @testable import Trippy
 
-class BucketModelTests: XCTestCase {
+ class BucketModelTests: XCTestCase {
 
     func testInit() {
         let storage = MockBucketStorage()
@@ -95,4 +95,4 @@ class BucketModelTests: XCTestCase {
                           )
     }
 
-}
+ }

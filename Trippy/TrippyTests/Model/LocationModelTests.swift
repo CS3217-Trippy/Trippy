@@ -12,53 +12,42 @@ import CoreLocation
 class LocationModelTests: XCTestCase {
 
     func testInit() {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
-        XCTAssertEqual(model.locations.count, 3)
-    }
-
-    func testFetch() {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
-        let originalCount = model.locations.count
-        // Assume someone else removes a location from the database and the client decides to fetch the model again
-        model.fetchLocations()
-        XCTAssertEqual(model.locations.count, originalCount - 1)
+        let storage = MockImageSupportedStorage<FBLocation>()
+        let recommender = MockLocationRecommender()
+        let model = LocationModel<MockImageSupportedStorage<FBLocation>>(storage: storage, recommender: recommender)
+        XCTAssertEqual(model.locations.count, 0)
     }
 
     func testAdd_valid() throws {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
+        let storage = MockImageSupportedStorage<FBLocation>()
+        let recommender = MockLocationRecommender()
+        let model = LocationModel<MockImageSupportedStorage<FBLocation>>(storage: storage, recommender: recommender)
         let originalCount = model.locations.count
         let newLocation = Location(
             id: "1204A",
             coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
             name: "lorem",
-            description: "ipsum"
+            description: "ipsum",
+            category: .adventure
         )
         try model.addLocation(location: newLocation)
         XCTAssertEqual(model.locations.count, originalCount + 1)
         XCTAssertTrue(model.locations.contains(where: { $0 === newLocation }))
     }
 
-    func testAdd_duplicateId() throws {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
-        let originalCount = model.locations.count
-        let duplicatedId = model.locations[0].id
+    func testRemove_valid() throws {
+        let storage = MockImageSupportedStorage<FBLocation>()
+        let recommender = MockLocationRecommender()
+        let model = LocationModel<MockImageSupportedStorage<FBLocation>>(storage: storage, recommender: recommender)
         let newLocation = Location(
-            id: duplicatedId,
+            id: "1204A",
             coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
             name: "lorem",
-            description: "ipsum"
+            description: "ipsum",
+            category: .adventure
         )
         try model.addLocation(location: newLocation)
-        XCTAssertEqual(model.locations.count, originalCount)
-    }
 
-    func testRemove_valid() {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
         let originalCount = model.locations.count
         let toBeRemoved = model.locations[0]
         model.removeLocation(location: toBeRemoved)
@@ -67,22 +56,34 @@ class LocationModelTests: XCTestCase {
     }
 
     func testRemove_locationDoesNotExist() {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
+        let storage = MockImageSupportedStorage<FBLocation>()
+        let recommender = MockLocationRecommender()
+        let model = LocationModel<MockImageSupportedStorage<FBLocation>>(storage: storage, recommender: recommender)
         let originalCount = model.locations.count
         let newLocation = Location(
             id: "12414ABC",
             coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
             name: "lorem",
-            description: "ipsum"
+            description: "ipsum",
+            category: .nature
         )
         model.removeLocation(location: newLocation)
         XCTAssertEqual(model.locations.count, originalCount)
     }
 
     func testUpdate_valid() throws {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
+        let storage = MockImageSupportedStorage<FBLocation>()
+        let recommender = MockLocationRecommender()
+        let model = LocationModel<MockImageSupportedStorage<FBLocation>>(storage: storage, recommender: recommender)
+        let newLocation = Location(
+            id: "1204A",
+            coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
+            name: "lorem",
+            description: "ipsum",
+            category: .adventure
+        )
+        try model.addLocation(location: newLocation)
+
         let originalCount = model.locations.count
         let toUpdate = model.locations[0]
         let newDescription = "new description"
@@ -97,14 +98,16 @@ class LocationModelTests: XCTestCase {
     }
 
     func testUpdate_locationDoesNotExist() throws {
-        let storage = MockLocationStorage()
-        let model = LocationModel(storage: storage)
+        let storage = MockImageSupportedStorage<FBLocation>()
+        let recommender = MockLocationRecommender()
+        let model = LocationModel<MockImageSupportedStorage<FBLocation>>(storage: storage, recommender: recommender)
         let originalCount = model.locations.count
         let newLocation = Location(
             id: "12414ABC",
             coordinates: CLLocationCoordinate2D(latitude: 23, longitude: 123),
             name: "lorem",
-            description: "ipsum"
+            description: "ipsum",
+            category: .resort
         )
         try model.updateLocation(updatedLocation: newLocation)
         XCTAssertEqual(model.locations.count, originalCount)

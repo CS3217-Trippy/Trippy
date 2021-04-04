@@ -23,7 +23,6 @@
 		01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A5126108D1500D840EA /* Image+Extensions.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
-		017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8A925F7B6E80064EF40 /* TrippyTests.swift */; };
 		017FD8B525F7B6E80064EF40 /* TrippyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */; };
 		017FD8C725F7B9020064EF40 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8C625F7B9020064EF40 /* FirebaseFirestore */; };
 		017FD8C925F7B9020064EF40 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8C825F7B9020064EF40 /* FirebaseFirestoreSwift-Beta */; };
@@ -51,6 +50,7 @@
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
 		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
 		01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8438525FDED6400080ED5 /* MockBucketStorage.swift */; };
+		71498ADD2619581300AB8AEB /* MockLocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71498ADC2619581300AB8AEB /* MockLocationRecommender.swift */; };
 		714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A6D83261429BF0032CA7C /* LocationCoordinator.swift */; };
 		714A79112615689600E7C865 /* VisitTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A79102615689600E7C865 /* VisitTracker.swift */; };
 		714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */; };
@@ -69,7 +69,7 @@
 		714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */; };
 		714BA80926019D9000E69470 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80826019D9000E69470 /* AddLocationView.swift */; };
 		714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80D2601A61500E69470 /* AddLocationViewModel.swift */; };
-		714BFD512604785F001E369F /* MockLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD502604785F001E369F /* MockLocationStorage.swift */; };
+		714BFD512604785F001E369F /* MockImageSupportedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD502604785F001E369F /* MockImageSupportedStorage.swift */; };
 		714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD5826047C41001E369F /* LocationModelTests.swift */; };
 		714C54E9260C6C9D00C75D92 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C54E8260C6C9D00C75D92 /* Model.swift */; };
 		714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C54F0260C7F8000C75D92 /* FBStorable.swift */; };
@@ -164,7 +164,6 @@
 		017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		017FD8A025F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017FD8A525F7B6E80064EF40 /* TrippyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		017FD8A925F7B6E80064EF40 /* TrippyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyTests.swift; sourceTree = "<group>"; };
 		017FD8AB25F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyUITests.swift; sourceTree = "<group>"; };
@@ -186,6 +185,7 @@
 		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
 		01F8437D25FDED3800080ED5 /* BucketModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModelTests.swift; sourceTree = "<group>"; };
 		01F8438525FDED6400080ED5 /* MockBucketStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBucketStorage.swift; sourceTree = "<group>"; };
+		71498ADC2619581300AB8AEB /* MockLocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockLocationRecommender.swift; path = Trippy/Storage/Recommender/MockLocationRecommender.swift; sourceTree = SOURCE_ROOT; };
 		714A6D83261429BF0032CA7C /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
 		714A79102615689600E7C865 /* VisitTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitTracker.swift; sourceTree = "<group>"; };
 		714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapCoordinator.swift; sourceTree = "<group>"; };
 		714BA80826019D9000E69470 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
 		714BA80D2601A61500E69470 /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
-		714BFD502604785F001E369F /* MockLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationStorage.swift; sourceTree = "<group>"; };
+		714BFD502604785F001E369F /* MockImageSupportedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageSupportedStorage.swift; sourceTree = "<group>"; };
 		714BFD5826047C41001E369F /* LocationModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelTests.swift; sourceTree = "<group>"; };
 		714C54E8260C6C9D00C75D92 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		714C54F0260C7F8000C75D92 /* FBStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBStorable.swift; sourceTree = "<group>"; };
@@ -376,7 +376,6 @@
 			children = (
 				01F8437C25FDED2200080ED5 /* Model */,
 				01F4639C25FD202900BBB8E9 /* Util */,
-				017FD8A925F7B6E80064EF40 /* TrippyTests.swift */,
 				017FD8AB25F7B6E80064EF40 /* Info.plist */,
 			);
 			path = TrippyTests;
@@ -416,8 +415,8 @@
 				714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */,
 				714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */,
 				714B74902600FD8700ADF2FE /* AddLocationMapView.swift */,
-				DB2D33572612F003000C2351 /* WeatherSectionView.swift */,
 				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
+				DB2D33572612F003000C2351 /* WeatherSectionView.swift */,
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
 				DB9273A12604487600B898AE /* AddFriendView.swift */,
 				76E74BE92613CD57004BA414 /* LevelProgressionView.swift */,
@@ -434,7 +433,6 @@
 				DB92737F260027F800B898AE /* FriendsListModel.swift */,
 				71FB972C25F87C420083C6F5 /* Location.swift */,
 				01EFA3872612F93A002FEA23 /* LocationCategory.swift */,
-				714C54E3260C6C4500C75D92 /* ImageSupportedModel.swift */,
 				714C54E8260C6C9D00C75D92 /* Model.swift */,
 				714DFD4A26006CF800711204 /* LocationPin.swift */,
 				7152017825FCB91D00F0ABAC /* LocationModel.swift */,
@@ -522,10 +520,11 @@
 		01F8437C25FDED2200080ED5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				71498ADC2619581300AB8AEB /* MockLocationRecommender.swift */,
 				01F8437D25FDED3800080ED5 /* BucketModelTests.swift */,
 				714BFD5826047C41001E369F /* LocationModelTests.swift */,
 				01F8438525FDED6400080ED5 /* MockBucketStorage.swift */,
-				714BFD502604785F001E369F /* MockLocationStorage.swift */,
+				714BFD502604785F001E369F /* MockImageSupportedStorage.swift */,
 				768A9CAE26074A4C004EF22C /* UserTests.swift */,
 			);
 			path = Model;
@@ -700,7 +699,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				01EFA3882612F93A002FEA23 /* LocationCategory.swift in Sources */,
-				714C54E4260C6C4500C75D92 /* ImageSupportedModel.swift in Sources */,
 				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
 				76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */,
 				714AF258260B70790034269C /* FBImageSupportedStorable.swift in Sources */,
@@ -804,11 +802,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				017FD8AA25F7B6E80064EF40 /* TrippyTests.swift in Sources */,
+				71498ADD2619581300AB8AEB /* MockLocationRecommender.swift in Sources */,
 				01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */,
 				01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */,
 				768A9CAF26074A4C004EF22C /* UserTests.swift in Sources */,
-				714BFD512604785F001E369F /* MockLocationStorage.swift in Sources */,
+				714BFD512604785F001E369F /* MockImageSupportedStorage.swift in Sources */,
 				714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */,
 				01F8438625FDED6400080ED5 /* MockBucketStorage.swift in Sources */,
 			);

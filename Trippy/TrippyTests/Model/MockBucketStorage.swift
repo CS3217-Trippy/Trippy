@@ -1,7 +1,7 @@
-import Foundation
-@testable import Trippy
+ import Foundation
+ @testable import Trippy
 
-final class MockBucketStorage: BucketListStorage, ObservableObject {
+ final class MockBucketStorage: BucketListStorage, ObservableObject {
     @Published var bucketItems: [BucketItem] = []
     private var databaseItems: [BucketItem] = []
 
@@ -48,4 +48,4 @@ final class MockBucketStorage: BucketListStorage, ObservableObject {
     var bucketList: Published<[BucketItem]>.Publisher {
         $bucketItems
     }
-}
+ }
