@@ -81,7 +81,6 @@
 		7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018725FCD4EB00F0ABAC /* LocationCardView.swift */; };
 		7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018C25FCEE6700F0ABAC /* PreviewLocationStorage.swift */; };
 		71565A8425F9F4F40070256A /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A8325F9F4F40070256A /* StorageError.swift */; };
-		7169A4E32619EC4600CCBF78 /* MockLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169A4E22619EC4600CCBF78 /* MockLocationStorage.swift */; };
 		71FB972D25F87C420083C6F5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972C25F87C420083C6F5 /* Location.swift */; };
 		71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB973125F893750083C6F5 /* LocationMapView.swift */; };
 		71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
@@ -217,7 +216,6 @@
 		7152018725FCD4EB00F0ABAC /* LocationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardView.swift; sourceTree = "<group>"; };
 		7152018C25FCEE6700F0ABAC /* PreviewLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocationStorage.swift; sourceTree = "<group>"; };
 		71565A8325F9F4F40070256A /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
-		7169A4E22619EC4600CCBF78 /* MockLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationStorage.swift; sourceTree = "<group>"; };
 		71FB972C25F87C420083C6F5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		71FB973125F893750083C6F5 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
 		768A9CAE26074A4C004EF22C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
@@ -524,7 +522,6 @@
 			children = (
 				71498ADC2619581300AB8AEB /* MockLocationRecommender.swift */,
 				01F8437D25FDED3800080ED5 /* BucketModelTests.swift */,
-				7169A4E22619EC4600CCBF78 /* MockLocationStorage.swift */,
 				714BFD5826047C41001E369F /* LocationModelTests.swift */,
 				714BFD502604785F001E369F /* MockImageSupportedStorage.swift */,
 				768A9CAE26074A4C004EF22C /* UserTests.swift */,
@@ -807,7 +804,6 @@
 			files = (
 				71498ADD2619581300AB8AEB /* MockLocationRecommender.swift in Sources */,
 				01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */,
-				7169A4E32619EC4600CCBF78 /* MockLocationStorage.swift in Sources */,
 				01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */,
 				768A9CAF26074A4C004EF22C /* UserTests.swift in Sources */,
 				714BFD512604785F001E369F /* MockImageSupportedStorage.swift in Sources */,

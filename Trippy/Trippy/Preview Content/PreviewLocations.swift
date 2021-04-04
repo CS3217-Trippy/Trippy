@@ -17,7 +17,8 @@ struct PreviewLocations {
                 +
                 "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
                 +
-                "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", category: LocationCategory.adventure
+                "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+            category: LocationCategory.adventure
         ),
         Location(
             id: "0-2",
@@ -40,15 +41,9 @@ struct PreviewLocations {
             coordinates: CLLocationCoordinate2D(latitude: 1.257_35, longitude: 103.823_78),
             name: "Tower of the South",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-<<<<<<< HEAD
-                "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
-                +
-                "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", category: LocationCategory.adventure
-=======
                 "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud" +
                 "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
             category: LocationCategory.adventure
->>>>>>> main
         )
     ]
 }

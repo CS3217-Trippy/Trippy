@@ -2,6 +2,7 @@ import Foundation
  @testable import Trippy
 
 class MockUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserRelatedStorable {
+
     var userId: String?
 
     var storedItems: Published<[Storable.ModelType]>.Publisher {
@@ -10,6 +11,14 @@ class MockUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUse
     @Published private var _storedItems: [Storable.ModelType] = []
 
     func fetch() {
+
+    }
+
+    func fetchWithId(id: String, handler: ((Storable.ModelType) -> Void)?) {
+
+    }
+
+    func fetchWithField(field: String, handler: (([Storable.ModelType]) -> Void)?) {
 
     }
 
