@@ -39,4 +39,9 @@ class PreviewLocationStorage: ImageSupportedStorage {
         // Does Nothing
         return
     }
+
+    func removeStoredItems() {
+        // Does Nothing
+        return
+    }
 }

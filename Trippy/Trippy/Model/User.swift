@@ -13,12 +13,22 @@ class User: ImageSupportedModel {
     var email: String
     var username: String
     var friendsId: [String]
+    var levelSystemId: String
     var profilePhoto = "https://timesofindia.indiatimes.com/photo/67586673.cms"
 
-    init(id: String?, email: String, username: String, friendsId: [String]) {
+    init(
+        id: String?,
+        email: String,
+        username: String,
+        friendsId: [String],
+        levelSystemId: String,
+        imageURL: URL? = nil
+    ) {
         self.id = id
         self.email = email
         self.username = username
         self.friendsId = friendsId
+        self.levelSystemId = levelSystemId
+        self.imageURL = imageURL
     }
 }

@@ -17,37 +17,78 @@ final class FBSessionStore: ObservableObject, SessionStore {
     }
 
     var didChange = PassthroughSubject<FBSessionStore, Never>()
-    var currentLoggedInUser: User?
+    @Published var currentLoggedInUser: User?
     @Published var session: [User] = [] {
         didSet {
             self.didChange.send(self)
+            if session.isEmpty {
+                self.currentLoggedInUser = nil
+            } else if session.count == 1 {
+                self.currentLoggedInUser = session[0]
+                self.syncFriendWithUserInfo()
+            } else {
+                guard let currentUser = currentLoggedInUser else {
+                    fatalError("User should have existed")
+                }
+                self.session = [currentUser]
+            }
         }
     }
+    private var friends: [Friend] = []
     var userStorage = FBImageSupportedStorage<FBUser>()
+    private var friendStorage: FBUserRelatedStorage<FBFriend>? {
+        didSet {
+            friendStorage?.storedItems.assign(to: \.friends, on: self).store(in: &cancellables)
+        }
+    }
+    @Published var levelSystemService: LevelSystemService?
     private var username = ""
     private var handle: AuthStateDidChangeListenerHandle?
     private var cancellables: Set<AnyCancellable> = []
     private var authState: AuthStates = .NoUser
+
+    init() {
+        retrievePreviousLogInSession()
+    }
+
+    func retrievePreviousLogInSession() {
+        if let user = Auth.auth().currentUser {
+            self.authState = .LogIn
+            let modelUser = self.translateFromFirebaseAuthToUser(user: user)
+            prepareInformationAfterSuccessfulLogIn(user: modelUser)
+        }
+    }
+
+    private func prepareInformationAfterSuccessfulLogIn(user: User) {
+        guard let id = user.id else {
+            fatalError("User should have id generated from firebase auth")
+        }
+        self.userStorage.fetchWithId(id: id)
+        self.friendStorage = FBUserRelatedStorage<FBFriend>(userId: id)
+        self.friendStorage?.fetch()
+        self.levelSystemService = FBLevelSystemService(userId: id)
+        self.levelSystemService?.retrieveLevelSystem()
+    }
+
+    private func prepareInformationAfterSuccessfulSignUp(user: User) {
+        guard let id = user.id else {
+            fatalError("User should have id generated from firebase auth")
+        }
+        self.userStorage.add(user, with: nil, id: user.id)
+        self.friendStorage = FBUserRelatedStorage<FBFriend>(userId: id)
+        self.friendStorage?.fetch()
+        self.levelSystemService = FBLevelSystemService(userId: id)
+        self.levelSystemService?.createLevelSystem()
+    }
 
     private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
         User(
             id: user.uid,
             email: user.email ?? "",
             username: username,
-            friendsId: []
+            friendsId: [],
+            levelSystemId: user.uid
         )
-    }
-
-    func retrieveCurrentLoggedInUser() -> User? {
-        if session.count == 1 {
-            currentLoggedInUser = session[0]
-            return currentLoggedInUser
-        }
-        guard let user = currentLoggedInUser else {
-            return nil
-        }
-        self.session = [user]
-        return currentLoggedInUser
     }
 
     func listen() {
@@ -55,18 +96,17 @@ final class FBSessionStore: ObservableObject, SessionStore {
             if let user = user {
                 self.userStorage.storedItems.assign(to: \.session, on: self).store(in: &self.cancellables)
                 let user = self.translateFromFirebaseAuthToUser(user: user)
-                guard let id = user.id else {
-                    fatalError("User should have id generated from firebase auth")
-                }
                 switch self.authState {
                 case .SignUp:
-                    self.userStorage.add(user, with: nil, id: user.id)
+                    self.prepareInformationAfterSuccessfulSignUp(user: user)
                 case .LogIn:
-                    self.userStorage.fetchWithId(id: id)
+                    self.prepareInformationAfterSuccessfulLogIn(user: user)
                 case .NoUser:
+                    self.userStorage.removeStoredItems()
                     print("no user")
                 }
             } else {
+                self.userStorage.removeStoredItems()
                 self.session = []
                 self.username = ""
             }
@@ -92,8 +132,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
         do {
             try Auth.auth().signOut()
             self.authState = .NoUser
-            self.session = []
-            self.currentLoggedInUser = nil
             return true
         } catch {
             print(error.localizedDescription)
@@ -102,7 +140,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
     }
 
     func deleteUser(handler: @escaping (String) -> Void) {
-        guard let user = self.retrieveCurrentLoggedInUser() else {
+        guard let user = self.currentLoggedInUser else {
             fatalError("User should exist prior to be deleted")
         }
         Auth.auth().currentUser?.delete { error in
@@ -111,17 +149,41 @@ final class FBSessionStore: ObservableObject, SessionStore {
             } else {
                 self.userStorage.remove(user)
                 self.authState = .NoUser
-                self.session = []
-                self.currentLoggedInUser = nil
             }
         }
     }
 
-    func updateUser(updatedUser: User) {
+    func updateUser(updatedUser: User, with image: UIImage? = nil) {
         do {
-            try self.userStorage.update(updatedUser)
+            try self.userStorage.update(updatedUser, with: image)
         } catch {
             print("Updating user failed")
+        }
+    }
+
+    private func syncFriendWithUserInfo() {
+        guard let user = currentLoggedInUser else {
+            fatalError("User should have logged in")
+        }
+        for friend in friends {
+            friend.username = user.username
+            friend.userProfilePhoto = user.imageURL
+            do {
+                try self.friendStorage?.update(item: friend)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        friendStorage?.fetchWithField(field: "friendId") { friendList in
+            for associatedFriend in friendList {
+                associatedFriend.friendUsername = user.username
+                associatedFriend.friendProfilePhoto = user.imageURL
+                do {
+                    try self.friendStorage?.update(item: associatedFriend)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 

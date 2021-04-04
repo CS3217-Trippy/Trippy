@@ -2,11 +2,11 @@ import Foundation
 class Friend: UserRelatedModel {
     var id: String?
     private(set) var userId: String
-    private(set) var username: String
-    private(set) var userProfilePhoto: URL?
+    var username: String
+    var userProfilePhoto: URL?
     private(set) var friendId: String
-    private(set) var friendUsername: String
-    private(set) var friendProfilePhoto: URL?
+    var friendUsername: String
+    var friendProfilePhoto: URL?
     private(set) var hasAccepted: Bool
 
     init(userId: String,

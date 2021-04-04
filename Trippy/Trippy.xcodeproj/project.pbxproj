@@ -99,8 +99,18 @@
 		7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA412601608800AF9E63 /* AccountPageViewModel.swift */; };
 		7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA492602ED1300AF9E63 /* HomepageView.swift */; };
 		7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */; };
+		76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BC32613607C004BA414 /* LevelSystem.swift */; };
+		76E74BC92613617C004BA414 /* FBLevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BC82613617C004BA414 /* FBLevelSystem.swift */; };
+		76E74BCE26136350004BA414 /* FBLevelSystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BCD26136350004BA414 /* FBLevelSystemService.swift */; };
+		76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BD52613692F004BA414 /* LevelSystemService.swift */; };
+		76E74BDB26137B94004BA414 /* ExperienceAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BDA26137B94004BA414 /* ExperienceAction.swift */; };
+		76E74BE026137BFF004BA414 /* LevelSystemUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BDF26137BFF004BA414 /* LevelSystemUtil.swift */; };
+		76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */; };
+		76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BE92613CD57004BA414 /* LevelProgressionView.swift */; };
+		76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */; };
 		76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE0E2610D8F000393AF7 /* FBUser.swift */; };
 		76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F8BE192611105700393AF7 /* SessionStore.swift */; };
+		76FC82C426175FC2009736B2 /* FBSessionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC82C326175FC2009736B2 /* FBSessionWrapper.swift */; };
 		DB2D334E2612E1DF000C2351 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D334D2612E1DF000C2351 /* WeatherService.swift */; };
 		DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33522612EE6C000C2351 /* NetworkError.swift */; };
 		DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33572612F003000C2351 /* WeatherSectionView.swift */; };
@@ -221,8 +231,18 @@
 		7694EA412601608800AF9E63 /* AccountPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageViewModel.swift; sourceTree = "<group>"; };
 		7694EA492602ED1300AF9E63 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewModel.swift; sourceTree = "<group>"; };
+		76E74BC32613607C004BA414 /* LevelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystem.swift; sourceTree = "<group>"; };
+		76E74BC82613617C004BA414 /* FBLevelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLevelSystem.swift; sourceTree = "<group>"; };
+		76E74BCD26136350004BA414 /* FBLevelSystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLevelSystemService.swift; sourceTree = "<group>"; };
+		76E74BD52613692F004BA414 /* LevelSystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystemService.swift; sourceTree = "<group>"; };
+		76E74BDA26137B94004BA414 /* ExperienceAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceAction.swift; sourceTree = "<group>"; };
+		76E74BDF26137BFF004BA414 /* LevelSystemUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystemUtil.swift; sourceTree = "<group>"; };
+		76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSystemConstants.swift; sourceTree = "<group>"; };
+		76E74BE92613CD57004BA414 /* LevelProgressionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressionView.swift; sourceTree = "<group>"; };
+		76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressionViewModel.swift; sourceTree = "<group>"; };
 		76F8BE0E2610D8F000393AF7 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		76F8BE192611105700393AF7 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		76FC82C326175FC2009736B2 /* FBSessionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSessionWrapper.swift; sourceTree = "<group>"; };
 		DB2D334D2612E1DF000C2351 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		DB2D33522612EE6C000C2351 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DB2D33572612F003000C2351 /* WeatherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionView.swift; sourceTree = "<group>"; };
@@ -330,6 +350,7 @@
 				01F4638825FD1F6C00BBB8E9 /* Storage */,
 				01F4637A25FD1F3C00BBB8E9 /* Util */,
 				017FD89725F7B6E80064EF40 /* TrippyApp.swift */,
+				76FC82C326175FC2009736B2 /* FBSessionWrapper.swift */,
 				7694E9EB25FE5C6700AF9E63 /* FBSessionStore.swift */,
 				76F8BE192611105700393AF7 /* SessionStore.swift */,
 				017FD8A025F7B6E80064EF40 /* Info.plist */,
@@ -399,6 +420,7 @@
 				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
 				DB9273A12604487600B898AE /* AddFriendView.swift */,
+				76E74BE92613CD57004BA414 /* LevelProgressionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,6 +441,7 @@
 				01483A0E2610341A00D840EA /* ImageSupportedModel.swift */,
 				01483A20261034DC00D840EA /* UserRelatedModel.swift */,
 				01483A442610728D00D840EA /* Friend.swift */,
+				76E74BC32613607C004BA414 /* LevelSystem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -444,6 +467,7 @@
 				714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */,
 				714BA80D2601A61500E69470 /* AddLocationViewModel.swift */,
 				7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */,
+				76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -458,6 +482,11 @@
 				DB2D33522612EE6C000C2351 /* NetworkError.swift */,
 				714B10CF26066D180040FAA1 /* UIImage+Extensions.swift */,
 				01483A5126108D1500D840EA /* Image+Extensions.swift */,
+				76E74BCD26136350004BA414 /* FBLevelSystemService.swift */,
+				76E74BD52613692F004BA414 /* LevelSystemService.swift */,
+				76E74BDA26137B94004BA414 /* ExperienceAction.swift */,
+				76E74BDF26137BFF004BA414 /* LevelSystemUtil.swift */,
+				76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */,
 				DB2D334D2612E1DF000C2351 /* WeatherService.swift */,
 				DB2D33612612F3B4000C2351 /* CurrentWeather.swift */,
 			);
@@ -476,6 +505,7 @@
 				01483A4926107AA400D840EA /* FBFriend.swift */,
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
+				76E74BC82613617C004BA414 /* FBLevelSystem.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -689,10 +719,13 @@
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				714AF262260B85C20034269C /* FBLocation.swift in Sources */,
+				76E74BDB26137B94004BA414 /* ExperienceAction.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
+				76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */,
 				DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
+				76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */,
 				01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
@@ -701,6 +734,7 @@
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
 				01483A452610728D00D840EA /* Friend.swift in Sources */,
 				714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */,
+				76FC82C426175FC2009736B2 /* FBSessionWrapper.swift in Sources */,
 				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
 				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
@@ -708,6 +742,7 @@
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
 				DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */,
 				01483A4A26107AA400D840EA /* FBFriend.swift in Sources */,
+				76E74BE026137BFF004BA414 /* LevelSystemUtil.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				DB2D335D2612F0F0000C2351 /* WeatherSectionViewModel.swift in Sources */,
@@ -718,14 +753,17 @@
 				01483A262610388700D840EA /* FBUserRelatedStorage.swift in Sources */,
 				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
+				76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */,
 				714A79112615689600E7C865 /* VisitTracker.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				714AF253260B34A30034269C /* ImageSupportedStorage.swift in Sources */,
+				76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */,
 				714AF25D260B736F0034269C /* FBImageSupportedStorage.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
+				76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */,
 				012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */,
 				DB2D33622612F3B4000C2351 /* CurrentWeather.swift in Sources */,
 				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
@@ -741,6 +779,7 @@
 				01483A072610330100D840EA /* UserRelatedStorage.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,
+				76E74BCE26136350004BA414 /* FBLevelSystemService.swift in Sources */,
 				DB2D334E2612E1DF000C2351 /* WeatherService.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
@@ -753,6 +792,7 @@
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
 				01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */,
+				76E74BC92613617C004BA414 /* FBLevelSystem.swift in Sources */,
 				01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */,
 				7152018D25FCEE6700F0ABAC /* PreviewLocationStorage.swift in Sources */,
 			);

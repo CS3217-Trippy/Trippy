@@ -6,14 +6,28 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct CircleImageView: View {
+    var url: URL?
+    let defaultPictureName = "cat"
+
     var body: some View {
-        Image("cat")
-            .frame(width: 300, height: 300, alignment: .center)
-            .clipShape(Circle())
-            .overlay(Circle().stroke(Color.white, lineWidth: 4))
-            .shadow(radius: 7)
+        if let url = self.url {
+            URLImage(url: url) { image in
+                image
+                    .frame(width: 300, height: 300, alignment: .center)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 7)
+            }
+        } else {
+            Image(defaultPictureName)
+                .frame(width: 300, height: 300, alignment: .center)
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                .shadow(radius: 7)
+        }
     }
 }
 

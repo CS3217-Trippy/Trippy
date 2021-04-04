@@ -12,11 +12,12 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var email = ""
     @Published var username = ""
     @Published var errorMessage = ""
+    @Published var selectedImage: UIImage?
     private var session: SessionStore
 
     init(session: SessionStore) {
         self.session = session
-        guard let user = session.retrieveCurrentLoggedInUser() else {
+        guard let user = session.currentLoggedInUser else {
             self.email = ""
             self.username = ""
             return
@@ -26,11 +27,11 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     }
 
     func updateUserData() {
-        guard let oldUser = session.retrieveCurrentLoggedInUser() else {
+        guard let oldUser = session.currentLoggedInUser else {
             fatalError("User should have logged in")
         }
         oldUser.username = username
-        session.updateUser(updatedUser: oldUser)
+        session.updateUser(updatedUser: oldUser, with: selectedImage)
     }
 
     func deleteUser() {
