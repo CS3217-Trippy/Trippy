@@ -45,6 +45,7 @@
 		01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638925FD1FBE00BBB8E9 /* DateManager.swift */; };
 		01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */; };
 		01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */; };
+		01F712AA26189793000E0A6B /* MockUserRelatedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F712A926189793000E0A6B /* MockUserRelatedStorage.swift */; };
 		01F8435B25FDC6ED00080ED5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 01F8435A25FDC6ED00080ED5 /* URLImage */; };
 		01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436725FDDF4F00080ED5 /* BucketModel.swift */; };
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
@@ -181,6 +182,7 @@
 		01F4638925FD1FBE00BBB8E9 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
+		01F712A926189793000E0A6B /* MockUserRelatedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRelatedStorage.swift; sourceTree = "<group>"; };
 		01F8436725FDDF4F00080ED5 /* BucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModel.swift; sourceTree = "<group>"; };
 		01F8437425FDE05100080ED5 /* FBBucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBBucketItem.swift; sourceTree = "<group>"; };
 		01F8437D25FDED3800080ED5 /* BucketModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketModelTests.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				714BFD5826047C41001E369F /* LocationModelTests.swift */,
 				714BFD502604785F001E369F /* MockImageSupportedStorage.swift */,
 				768A9CAE26074A4C004EF22C /* UserTests.swift */,
+				01F712A926189793000E0A6B /* MockUserRelatedStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -809,6 +812,7 @@
 				768A9CAF26074A4C004EF22C /* UserTests.swift in Sources */,
 				714BFD512604785F001E369F /* MockImageSupportedStorage.swift in Sources */,
 				714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */,
+				01F712AA26189793000E0A6B /* MockUserRelatedStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

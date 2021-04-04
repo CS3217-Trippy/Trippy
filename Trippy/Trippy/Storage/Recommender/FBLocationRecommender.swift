@@ -197,8 +197,8 @@ class FBLocationRecommender: LocationRecommender {
         guard let locationId = location.id else {
             return
         }
-        let isExisting = _recommendedItems
-            .contains(where: { $0.id == location.id }) || currentLocationsInBucketList.contains(locationId)
+        let isExisting = _recommendedItems.contains(where: { $0.id == location.id })
+            || currentLocationsInBucketList.contains(locationId)
         if !isExisting {
             _recommendedItems.insert(location, at: 0)
         }

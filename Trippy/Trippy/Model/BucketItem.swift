@@ -10,8 +10,14 @@ class BucketItem: UserRelatedModel {
     var dateAdded: Date
     var userDescription: String
 
-    init(locationName: String, locationCategory: LocationCategory, locationImage: URL?,
-         userId: String, locationId: String, dateVisited: Date?, dateAdded: Date, userDescription: String) {
+    init(locationName: String,
+         locationCategory: LocationCategory,
+         locationImage: URL?,
+         userId: String,
+         locationId: String,
+         dateVisited: Date?,
+         dateAdded: Date,
+         userDescription: String) {
         self.id = userId + locationId
         self.locationName = locationName
         self.locationCategory = locationCategory

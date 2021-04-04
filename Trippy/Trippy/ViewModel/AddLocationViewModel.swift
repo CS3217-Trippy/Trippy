@@ -46,13 +46,11 @@ class AddLocationViewModel {
             return
         }
         try locationModel.addLocation(
-            location: .init(
-                id: nil,
-                coordinates: coordinates,
-                name: formattedName,
-                description: formattedDescription,
-                category: categoryEnum
-            ),
+            location: .init(id: nil,
+                            coordinates: coordinates,
+                            name: formattedName,
+                            description: formattedDescription,
+                            category: categoryEnum),
             image: image
         )
     }
