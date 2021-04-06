@@ -7,7 +7,7 @@
 
 import Foundation
 
-class User: ImageSupportedModel {
+class User: Model {
     var imageURL: URL?
     var id: String?
     var email: String

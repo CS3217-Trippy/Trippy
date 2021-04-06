@@ -1,5 +1,5 @@
 import Foundation
-class Friend: UserRelatedModel {
+class Friend: Model {
     var id: String?
     private(set) var userId: String
     var username: String

@@ -14,9 +14,7 @@
 		012CE5C926121E0E00039A25 /* LocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5C826121E0E00039A25 /* LocationRecommender.swift */; };
 		012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */; };
 		01483A072610330100D840EA /* UserRelatedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A062610330100D840EA /* UserRelatedStorage.swift */; };
-		01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A0E2610341A00D840EA /* ImageSupportedModel.swift */; };
 		01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A1B261034A800D840EA /* FBUserRelatedStorable.swift */; };
-		01483A21261034DC00D840EA /* UserRelatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A20261034DC00D840EA /* UserRelatedModel.swift */; };
 		01483A262610388700D840EA /* FBUserRelatedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A252610388700D840EA /* FBUserRelatedStorage.swift */; };
 		01483A452610728D00D840EA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A442610728D00D840EA /* Friend.swift */; };
 		01483A4A26107AA400D840EA /* FBFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A4926107AA400D840EA /* FBFriend.swift */; };
@@ -150,9 +148,7 @@
 		012CE5C826121E0E00039A25 /* LocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRecommender.swift; sourceTree = "<group>"; };
 		012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocationRecommender.swift; sourceTree = "<group>"; };
 		01483A062610330100D840EA /* UserRelatedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelatedStorage.swift; sourceTree = "<group>"; };
-		01483A0E2610341A00D840EA /* ImageSupportedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSupportedModel.swift; sourceTree = "<group>"; };
 		01483A1B261034A800D840EA /* FBUserRelatedStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserRelatedStorable.swift; sourceTree = "<group>"; };
-		01483A20261034DC00D840EA /* UserRelatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelatedModel.swift; sourceTree = "<group>"; };
 		01483A252610388700D840EA /* FBUserRelatedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserRelatedStorage.swift; sourceTree = "<group>"; };
 		01483A442610728D00D840EA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		01483A4926107AA400D840EA /* FBFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFriend.swift; sourceTree = "<group>"; };
@@ -437,8 +433,6 @@
 				714DFD4A26006CF800711204 /* LocationPin.swift */,
 				7152017825FCB91D00F0ABAC /* LocationModel.swift */,
 				01088F5B2606442F00579707 /* BucketListError.swift */,
-				01483A0E2610341A00D840EA /* ImageSupportedModel.swift */,
-				01483A20261034DC00D840EA /* UserRelatedModel.swift */,
 				01483A442610728D00D840EA /* Friend.swift */,
 				76E74BC32613607C004BA414 /* LevelSystem.swift */,
 			);
@@ -726,7 +720,6 @@
 				DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
 				76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */,
-				01483A0F2610341A00D840EA /* ImageSupportedModel.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */,
@@ -771,7 +764,6 @@
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
 				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
-				01483A21261034DC00D840EA /* UserRelatedModel.swift in Sources */,
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
@@ -959,7 +951,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
-				DEVELOPMENT_TEAM = D4DDSVK277;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -967,7 +959,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippy;
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyMakesATrip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -981,7 +973,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
-				DEVELOPMENT_TEAM = D4DDSVK277;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -989,7 +981,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippy;
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyMakesATrip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

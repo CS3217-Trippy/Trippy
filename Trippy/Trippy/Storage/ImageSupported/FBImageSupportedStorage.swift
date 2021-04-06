@@ -69,8 +69,7 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
                 if let error = error {
                     print("Error during retrieval of image url: \(error.localizedDescription)")
                 }
-                item.imageURL = url
-                self.addDocument(from: item)
+                self.addDocument(from: item, url: url)
             }
         }
     }
@@ -85,8 +84,9 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
         _storedItems.append(item)
     }
 
-    private func addDocument(from item: Storable.ModelType) {
-        let fbItem = Storable(item: item)
+    private func addDocument(from item: Storable.ModelType, url: URL? = nil) {
+        var fbItem = Storable(item: item)
+        fbItem.imageURL = url?.absoluteString
         do {
             item.id = try store.collection(Storable.path).addDocument(from: fbItem).documentID
         } catch {
@@ -119,22 +119,18 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
                 if let error = error {
                     print("Error during retrieval of image url: \(error.localizedDescription)")
                 }
-                let oldUrl = item.imageURL
-                item.imageURL = url
-                self.updateDocument(from: item) { error in
+                self.updateDocument(from: item, url: url) { error in
                     if error != nil {
                         return
-                    }
-                    if let urlString = oldUrl?.absoluteString {
-                        self.deleteImage(url: urlString)
                     }
                 }
             }
         }
     }
 
-    private func updateDocument(from item: Storable.ModelType, completion: ((Error?) -> Void)? = nil) {
-        let fbItem = Storable(item: item)
+    private func updateDocument(from item: Storable.ModelType, url: URL? = nil, completion: ((Error?) -> Void)? = nil) {
+        var fbItem = Storable(item: item)
+        fbItem.imageURL = url?.absoluteString
         guard let id = fbItem.id else {
             return
         }
@@ -165,9 +161,6 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
             if let error = error {
                 print("Error removing document: \(error.localizedDescription)")
             } else {
-                if let url = item.imageURL?.absoluteString {
-                    self.deleteImage(url: url)
-                }
                 self._storedItems.removeAll { $0.id == item.id }
             }
         }

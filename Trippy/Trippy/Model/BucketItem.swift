@@ -1,5 +1,5 @@
 import Foundation
-class BucketItem: UserRelatedModel {
+class BucketItem: Model {
     var id: String?
     var locationName: String
     var locationCategory: LocationCategory

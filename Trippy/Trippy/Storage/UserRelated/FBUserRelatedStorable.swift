@@ -1,3 +1,3 @@
-protocol FBUserRelatedStorable: FBStorable where ModelType: UserRelatedModel {
+protocol FBUserRelatedStorable: FBStorable {
     var userId: String { get }
 }

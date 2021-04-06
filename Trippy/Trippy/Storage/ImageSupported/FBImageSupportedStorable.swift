@@ -8,6 +8,6 @@
 import FirebaseFirestoreSwift
 import CoreGraphics
 
-protocol FBImageSupportedStorable: FBStorable where ModelType: ImageSupportedModel {
-    var imageURL: String? { get }
+protocol FBImageSupportedStorable: FBStorable {
+    var imageURL: String? { get set }
 }
