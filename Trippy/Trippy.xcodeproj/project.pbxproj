@@ -21,6 +21,8 @@
 		01483A452610728D00D840EA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A442610728D00D840EA /* Friend.swift */; };
 		01483A4A26107AA400D840EA /* FBFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A4926107AA400D840EA /* FBFriend.swift */; };
 		01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A5126108D1500D840EA /* Image+Extensions.swift */; };
+		01622D4B261FE76B004E506F /* FBImageStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01622D4A261FE76B004E506F /* FBImageStorable.swift */; };
+		01622D50261FE842004E506F /* FBImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01622D4F261FE842004E506F /* FBImageStorage.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
 		017FD8B525F7B6E80064EF40 /* TrippyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */; };
@@ -157,6 +159,8 @@
 		01483A442610728D00D840EA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		01483A4926107AA400D840EA /* FBFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFriend.swift; sourceTree = "<group>"; };
 		01483A5126108D1500D840EA /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
+		01622D4A261FE76B004E506F /* FBImageStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBImageStorable.swift; sourceTree = "<group>"; };
+		01622D4F261FE842004E506F /* FBImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBImageStorage.swift; sourceTree = "<group>"; };
 		017FD89425F7B6E80064EF40 /* Trippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD89725F7B6E80064EF40 /* TrippyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyApp.swift; sourceTree = "<group>"; };
 		017FD89925F7B6E80064EF40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -317,6 +321,8 @@
 				714AF252260B34A30034269C /* ImageSupportedStorage.swift */,
 				714AF25C260B736F0034269C /* FBImageSupportedStorage.swift */,
 				714AF257260B70790034269C /* FBImageSupportedStorable.swift */,
+				01622D4A261FE76B004E506F /* FBImageStorable.swift */,
+				01622D4F261FE842004E506F /* FBImageStorage.swift */,
 			);
 			path = ImageSupported;
 			sourceTree = "<group>";
@@ -735,6 +741,7 @@
 				01483A452610728D00D840EA /* Friend.swift in Sources */,
 				714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */,
 				76FC82C426175FC2009736B2 /* FBSessionWrapper.swift in Sources */,
+				01622D4B261FE76B004E506F /* FBImageStorable.swift in Sources */,
 				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
 				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
@@ -758,6 +765,7 @@
 				01483A1C261034A800D840EA /* FBUserRelatedStorable.swift in Sources */,
 				714A79112615689600E7C865 /* VisitTracker.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
+				01622D50261FE842004E506F /* FBImageStorage.swift in Sources */,
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				714AF253260B34A30034269C /* ImageSupportedStorage.swift in Sources */,
 				76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */,

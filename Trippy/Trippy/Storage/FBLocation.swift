@@ -10,7 +10,7 @@ import CoreGraphics
 import UIKit
 import CoreLocation
 
-struct FBLocation: FBImageSupportedStorable {
+final class FBLocation: FBImageSupportedStorable {
     typealias ModelType = Location
     static var path = "locations"
 
@@ -32,6 +32,13 @@ struct FBLocation: FBImageSupportedStorable {
         description = item.description
         category = item.category
         self.imageURL = imageURL
+    }
+
+    func adddURLToObject(images: [String]) {
+        guard !images.isEmpty else {
+            return
+        }
+        self.imageURL = images[0]
     }
 
     func convertToModelType() -> Location {

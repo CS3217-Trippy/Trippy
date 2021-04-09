@@ -59,6 +59,13 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
             return
         }
 
+        let imageUploader = FBImageStorage()
+        imageUploader.upload(images: [image]) { urls in
+            if !urls.isEmpty {
+                item.imageURL = urls[0]
+            }
+        }
+
         let imageRef = imageStorage.reference().child(UUID().uuidString + ".jpeg")
         addImage(image: image, imageRef: imageRef) { _, error in
             if let error = error {

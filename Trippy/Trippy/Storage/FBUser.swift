@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FBUser: FBImageSupportedStorable {
+final class FBUser: FBImageSupportedStorable {
     typealias ModelType = User
     static var path = "users"
     var id: String?
@@ -24,6 +24,13 @@ struct FBUser: FBImageSupportedStorable {
         friendsId = item.friendsId
         levelSystemId = item.levelSystemId
         imageURL = item.imageURL?.absoluteString
+    }
+
+    func adddURLToObject(images: [String]) {
+        guard !images.isEmpty else {
+            return
+        }
+        self.imageURL = images[0]
     }
 
     func convertToModelType() -> User {
