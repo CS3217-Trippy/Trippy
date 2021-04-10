@@ -16,18 +16,23 @@ struct FBAchievement: FBImageSupportedStorable {
     var name: String
     var description: String
     var imageURL: [String] = []
+    var type: String
+    var completion: Int
 
     init(item: ModelType) {
         self.id = item.id
         self.name = item.name
         self.description = item.description
+        self.completion = item.achievementType.getCompletion()
+        self.type = item.achievementType.getTypeDescription()
     }
 
     func convertToModelType() -> ModelType {
         let achievement = Achievement(
             id: id,
             name: name,
-            description: description
+            description: description,
+            achievementType: AchievementType.generateAchievementType(type: type, completion: completion)
         )
 
         if !imageURL.isEmpty {

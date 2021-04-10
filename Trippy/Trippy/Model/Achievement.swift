@@ -12,11 +12,13 @@ class Achievement: Model {
     var name: String
     var description: String
     var imageURL: UIImage?
+    var achievementType: AchievementType
 
-    init(id: String?, name: String, description: String, imageURL: UIImage? = nil) {
+    init(id: String?, name: String, description: String, achievementType: AchievementType, imageURL: UIImage? = nil) {
         self.id = id
         self.name = name
         self.description = description
+        self.achievementType = achievementType
         self.imageURL = imageURL
     }
 }
