@@ -90,6 +90,7 @@
 		7617D160262183A600D94782 /* FBAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D15F262183A600D94782 /* FBAchievement.swift */; };
 		7617D16E2622338E00D94782 /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D16D2622338E00D94782 /* AchievementService.swift */; };
 		7617D1732622348700D94782 /* AchievementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D1722622348700D94782 /* AchievementType.swift */; };
+		7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D17726225AAC00D94782 /* FBAchievementService.swift */; };
 		768A9CAF26074A4C004EF22C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A9CAE26074A4C004EF22C /* UserTests.swift */; };
 		7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D225FDEDC700AF9E63 /* LogInView.swift */; };
 		7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */; };
@@ -226,6 +227,7 @@
 		7617D15F262183A600D94782 /* FBAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAchievement.swift; sourceTree = "<group>"; };
 		7617D16D2622338E00D94782 /* AchievementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementService.swift; sourceTree = "<group>"; };
 		7617D1722622348700D94782 /* AchievementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementType.swift; sourceTree = "<group>"; };
+		7617D17726225AAC00D94782 /* FBAchievementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAchievementService.swift; sourceTree = "<group>"; };
 		768A9CAE26074A4C004EF22C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7694E9D225FDEDC700AF9E63 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				DB2D334D2612E1DF000C2351 /* WeatherService.swift */,
 				DB2D33612612F3B4000C2351 /* CurrentWeather.swift */,
 				7617D16D2622338E00D94782 /* AchievementService.swift */,
+				7617D17726225AAC00D94782 /* FBAchievementService.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -801,6 +804,7 @@
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
 				7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */,
+				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
 				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
