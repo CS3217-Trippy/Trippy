@@ -1,5 +1,5 @@
 import Foundation
-class BucketItem: UserRelatedModel {
+class BucketItem: Model {
     var id: String?
     var locationName: String
     var locationCategory: LocationCategory
@@ -12,7 +12,7 @@ class BucketItem: UserRelatedModel {
 
     init(locationName: String,
          locationCategory: LocationCategory,
-         locationImage: URL?,
+         locationImage: URL? = nil,
          userId: String,
          locationId: String,
          dateVisited: Date?,

@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 struct FBUser: FBImageSupportedStorable {
     typealias ModelType = User
     static var path = "users"
     var id: String?
-    var imageURL: String?
+    var imageURL: [String] = []
     var email: String
     var username: String
     var friendsId: [String]
@@ -23,21 +24,29 @@ struct FBUser: FBImageSupportedStorable {
         username = item.username
         friendsId = item.friendsId
         levelSystemId = item.levelSystemId
-        imageURL = item.imageURL?.absoluteString
     }
 
     func convertToModelType() -> User {
-        var targetURL: URL?
-        if let url = imageURL {
-            targetURL = URL(string: url)
-        }
-        return User(
+        let user = User(
             id: id,
             email: email,
             username: username,
             friendsId: friendsId,
-            levelSystemId: levelSystemId,
-            imageURL: targetURL
+            levelSystemId: levelSystemId
         )
+
+        if !imageURL.isEmpty {
+            let url = imageURL[0]
+            Downloader.getDataFromString(from: url) { data, _, error in
+                guard let data = data, error == nil else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    user.imageURL = image
+                }
+            }
+        }
+        return user
     }
 }

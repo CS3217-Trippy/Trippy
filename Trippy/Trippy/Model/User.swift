@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
-class User: ImageSupportedModel {
-    var imageURL: URL?
+class User: Model {
+    var imageURL: UIImage?
     var id: String?
     var email: String
     var username: String
@@ -22,7 +23,7 @@ class User: ImageSupportedModel {
         username: String,
         friendsId: [String],
         levelSystemId: String,
-        imageURL: URL? = nil
+        imageURL: UIImage? = nil
     ) {
         self.id = id
         self.email = email

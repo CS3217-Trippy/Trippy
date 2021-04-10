@@ -5,8 +5,8 @@
 //  Created by Audrey Felicio Anwar on 10/4/21.
 //
 
+import UIKit
 import FirebaseFirestoreSwift
-import Foundation
 
 struct FBAchievement: FBImageSupportedStorable {
     typealias ModelType = Achievement
@@ -15,26 +15,34 @@ struct FBAchievement: FBImageSupportedStorable {
     @DocumentID var id: String?
     var name: String
     var description: String
-    var imageURL: String?
+    var imageURL: [String] = []
 
     init(item: ModelType) {
-        let imageURL = item.imageURL?.absoluteString
         self.id = item.id
         self.name = item.name
         self.description = item.description
-        self.imageURL = imageURL
     }
 
     func convertToModelType() -> ModelType {
-        var targetURL: URL?
-        if let url = imageURL {
-            targetURL = URL(string: url)
-        }
-        return Achievement(
+        let achievement = Achievement(
             id: id,
             name: name,
-            description: description,
-            imageURL: targetURL
+            description: description
         )
+
+        if !imageURL.isEmpty {
+            let url = imageURL[0]
+            Downloader.getDataFromString(from: url) { data, _, error in
+                guard let data = data, error == nil else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    achievement.imageURL = image
+                }
+            }
+        }
+
+        return achievement
     }
 }

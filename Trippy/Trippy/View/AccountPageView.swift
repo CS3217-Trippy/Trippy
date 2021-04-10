@@ -16,7 +16,7 @@ struct AccountPageView: View {
 
     var userInfoSection: some View {
         Section {
-            CircleImageView(url: session.currentLoggedInUser?.imageURL)
+            CircleImageView(image: session.userImage)
             Text("\(user.username)")
                 .bold()
                 .font(.title)

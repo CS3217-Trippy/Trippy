@@ -93,7 +93,7 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
         } catch {
             print(error.localizedDescription)
         }
-        if item.userId == userId {
+        if fbItem.userId == userId {
             _storedItems.append(item)
         }
     }

@@ -5,15 +5,15 @@
 //  Created by Audrey Felicio Anwar on 10/4/21.
 //
 
-import Foundation
+import UIKit
 
-class Achievement: ImageSupportedModel {
+class Achievement: Model {
     var id: String?
     var name: String
     var description: String
-    var imageURL: URL?
+    var imageURL: UIImage?
 
-    init(id: String?, name: String, description: String, imageURL: URL? = nil) {
+    init(id: String?, name: String, description: String, imageURL: UIImage? = nil) {
         self.id = id
         self.name = name
         self.description = description

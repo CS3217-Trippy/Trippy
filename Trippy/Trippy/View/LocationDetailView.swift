@@ -55,12 +55,10 @@ struct LocationDetailView: View {
         ScrollView {
             VStack {
                addBucketView
-                if let url = viewModel.location.imageURL {
-                    URLImage(url: url) { image in
-                        image
+                if let image = viewModel.location.image {
+                    Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                    }
                 } else {
                     Image("Placeholder")
                     .resizable()
