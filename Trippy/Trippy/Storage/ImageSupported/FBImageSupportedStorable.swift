@@ -9,5 +9,5 @@ import FirebaseFirestoreSwift
 import CoreGraphics
 
 protocol FBImageSupportedStorable: FBStorable {
-    var imageURL: String? { get set }
+    var imageURL: [String] { get set }
 }

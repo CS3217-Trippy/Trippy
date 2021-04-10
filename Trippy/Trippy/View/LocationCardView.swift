@@ -40,11 +40,10 @@ struct LocationCardView: View {
     }
 
     var cardBody: some View {
-        if let url = viewModel.location.imageURL {
-            return AnyView(URLImage(url: url) { image in
-                image
-                .locationImageModifier()
-            })
+         if let image = viewModel.location.image {
+            return AnyView(
+                Image(uiImage: image).locationImageModifier()
+            )
         } else {
             return AnyView(Image("Placeholder")
             .locationImageModifier())

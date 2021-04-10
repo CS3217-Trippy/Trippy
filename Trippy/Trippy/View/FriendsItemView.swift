@@ -13,10 +13,9 @@ struct FriendsItemView: View {
     @ObservedObject var friendsItemViewModel: FriendsItemViewModel
 
     var profilePhoto: some View {
-        if let url = friendsItemViewModel.friendProfilePhoto {
-            return AnyView(URLImage(url: url) {image in
-                image.cardImageModifier()
-            })
+        if let image = friendsItemViewModel.friendProfilePhoto {
+            return AnyView(Image(uiImage: image).cardImageModifier()
+            )
         } else {
             return AnyView(Image("Placeholder").cardImageModifier())
         }

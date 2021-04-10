@@ -12,7 +12,7 @@ class BucketItem: Model {
 
     init(locationName: String,
          locationCategory: LocationCategory,
-         locationImage: URL?,
+         locationImage: URL? = nil,
          userId: String,
          locationId: String,
          dateVisited: Date?,

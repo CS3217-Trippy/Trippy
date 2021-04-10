@@ -16,6 +16,10 @@ final class FBSessionStore: ObservableObject, SessionStore {
         case SignUp, LogIn, NoUser
     }
 
+    var userImage: UIImage? {
+        currentLoggedInUser?.imageURL
+    }
+
     var didChange = PassthroughSubject<FBSessionStore, Never>()
     @Published var currentLoggedInUser: User?
     @Published var session: [User] = [] {

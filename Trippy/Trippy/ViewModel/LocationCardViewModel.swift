@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 import Combine
 
@@ -31,6 +32,10 @@ class LocationCardViewModel: Identifiable, ObservableObject {
 
     var category: String {
         location.category.rawValue.capitalized
+    }
+
+    var image: UIImage? {
+        location.image
     }
 
     init(location: Location) {

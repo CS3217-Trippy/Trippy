@@ -55,22 +55,14 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
         }
 
         guard let image = image else {
-            self.addDocument(from: item)
+            self.addDocument(from: item, url: [])
             return
         }
 
-        let imageRef = imageStorage.reference().child(UUID().uuidString + ".jpeg")
-        addImage(image: image, imageRef: imageRef) { _, error in
-            if let error = error {
-                print("Error during storing of image: \(error.localizedDescription)")
-            }
-
-            imageRef.downloadURL { url, error in
-                if let error = error {
-                    print("Error during retrieval of image url: \(error.localizedDescription)")
-                }
-                self.addDocument(from: item, url: url)
-            }
+        let imageUploader = FBImageStorage()
+        imageUploader.upload(images: [image]) { urls in
+            let urlStrings = urls.map { $0.absoluteString }
+            self.addDocument(from: item, url: urlStrings)
         }
     }
 
@@ -84,9 +76,9 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
         _storedItems.append(item)
     }
 
-    private func addDocument(from item: Storable.ModelType, url: URL? = nil) {
+    private func addDocument(from item: Storable.ModelType, url: [String]) {
         var fbItem = Storable(item: item)
-        fbItem.imageURL = url?.absoluteString
+        fbItem.imageURL = url
         do {
             item.id = try store.collection(Storable.path).addDocument(from: fbItem).documentID
         } catch {
@@ -105,32 +97,19 @@ class FBImageSupportedStorage<Storable>: ImageSupportedStorage where Storable: F
 
     func update(_ item: Storable.ModelType, with image: UIImage? = nil) throws {
         guard let image = image else {
-            self.updateDocument(from: item)
+            self.updateDocument(from: item, urls: [])
             return
         }
-
-        let imageRef = imageStorage.reference().child(UUID().uuidString + ".jpeg")
-        addImage(image: image, imageRef: imageRef) { _, error in
-            if let error = error {
-                print("Error during storing of image: \(error.localizedDescription)")
-            }
-
-            imageRef.downloadURL { url, error in
-                if let error = error {
-                    print("Error during retrieval of image url: \(error.localizedDescription)")
-                }
-                self.updateDocument(from: item, url: url) { error in
-                    if error != nil {
-                        return
-                    }
-                }
-            }
+        let imageUploader = FBImageStorage()
+        imageUploader.upload(images: [image]) { urls in
+            let urlStrings = urls.map { $0.absoluteString }
+            self.updateDocument(from: item, urls: urlStrings)
         }
     }
 
-    private func updateDocument(from item: Storable.ModelType, url: URL? = nil, completion: ((Error?) -> Void)? = nil) {
+    private func updateDocument(from item: Storable.ModelType, urls: [String], completion: ((Error?) -> Void)? = nil) {
         var fbItem = Storable(item: item)
-        fbItem.imageURL = url?.absoluteString
+        fbItem.imageURL = urls
         guard let id = fbItem.id else {
             return
         }

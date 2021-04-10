@@ -30,7 +30,7 @@ struct AddFriendView: View {
                 && $0.username.contains(username)
         }) { user in
             HStack {
-                CircleImageView(url: user.imageURL)
+                CircleImageView(image: user.imageURL)
                 Spacer()
                 Text(user.username)
                 Spacer()

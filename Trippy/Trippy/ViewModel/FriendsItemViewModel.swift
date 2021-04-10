@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class FriendsItemViewModel: ObservableObject, Identifiable {
     @Published var friend: Friend
@@ -17,7 +18,7 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
         friend.hasAccepted
     }
 
-    var friendProfilePhoto: URL? {
+    var friendProfilePhoto: UIImage? {
         friend.friendProfilePhoto
     }
 

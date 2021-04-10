@@ -41,10 +41,10 @@ final class AddFriendViewModel: ObservableObject {
         return Friend(
             userId: userId,
             username: to.username,
-            userProfilePhoto: URL(string: to.profilePhoto),
+            userProfilePhoto: to.imageURL,
             friendId: friendId,
             friendUsername: from.username,
-            friendProfilePhoto: URL(string: from.profilePhoto),
+            friendProfilePhoto: from.imageURL,
             hasAccepted: false
         )
     }

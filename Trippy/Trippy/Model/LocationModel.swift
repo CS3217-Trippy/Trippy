@@ -52,7 +52,6 @@ class LocationModel<Storage: ImageSupportedStorage>: ObservableObject where Stor
         guard locations.contains(where: { $0.id == updatedLocation.id }) else {
             return
         }
-
         try storage.update(updatedLocation, with: image)
     }
 
