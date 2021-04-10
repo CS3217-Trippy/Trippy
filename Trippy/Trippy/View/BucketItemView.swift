@@ -6,13 +6,9 @@ struct BucketItemView: View {
     var viewModel: BucketItemViewModel
 
     var imageView: some View {
-        if let unwrappedUrl = viewModel.locationImage {
-            return AnyView(URLImage(url: unwrappedUrl,
-                                    content: { image in
-                                        image
-                                            .renderingMode(.original)
-                                            .cardImageModifier()
-                                    }))
+        if let image = viewModel.locationImage {
+            return AnyView(Image(uiImage: image).cardImageModifier()
+            )
         } else {
             return AnyView(Image("Placeholder").cardImageModifier())
         }

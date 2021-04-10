@@ -1,9 +1,11 @@
 import Foundation
+import UIKit
+
 class BucketItem: Model {
     var id: String?
     var locationName: String
     var locationCategory: LocationCategory
-    var locationImage: URL?
+    var locationImage: UIImage?
     var userId: String
     var locationId: String
     var dateVisited: Date?
@@ -12,7 +14,7 @@ class BucketItem: Model {
 
     init(locationName: String,
          locationCategory: LocationCategory,
-         locationImage: URL? = nil,
+         locationImage: UIImage? = nil,
          userId: String,
          locationId: String,
          dateVisited: Date?,
