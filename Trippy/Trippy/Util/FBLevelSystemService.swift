@@ -9,11 +9,13 @@ import Foundation
 import Combine
 
 final class FBLevelSystemService: LevelSystemService, ObservableObject {
+    private var userId: String
     var levelSystemStorage: FBStorage<FBLevelSystem>
     @Published var levelSystem = [LevelSystem]()
     private var cancellables: Set<AnyCancellable> = []
 
     init(userId: String) {
+        self.userId = userId
         self.levelSystemStorage = FBStorage<FBLevelSystem>()
         self.levelSystemStorage.storedItems.assign(to: \.levelSystem, on: self).store(in: &self.cancellables)
     }
@@ -37,7 +39,7 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
     }
 
     func retrieveLevelSystem() {
-        self.levelSystemStorage.fetch()
+        self.levelSystemStorage.fetchWithField(field: "userId", value: userId, handler: nil)
     }
 
     private func updateLevelSystem(userLevelSystem: LevelSystem) {
