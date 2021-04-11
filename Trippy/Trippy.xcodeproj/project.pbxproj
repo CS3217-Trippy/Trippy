@@ -71,6 +71,9 @@
 		714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BA80D2601A61500E69470 /* AddLocationViewModel.swift */; };
 		714BFD512604785F001E369F /* MockImageSupportedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD502604785F001E369F /* MockImageSupportedStorage.swift */; };
 		714BFD5926047C41001E369F /* LocationModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFD5826047C41001E369F /* LocationModelTests.swift */; };
+		714BFF712622EF4000ABA11B /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFF702622EF4000ABA11B /* Rating.swift */; };
+		714BFF762622F1AC00ABA11B /* RatingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFF752622F1AC00ABA11B /* RatingModel.swift */; };
+		714BFF7B262302D200ABA11B /* FBRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BFF7A262302D200ABA11B /* FBRating.swift */; };
 		714C54E9260C6C9D00C75D92 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C54E8260C6C9D00C75D92 /* Model.swift */; };
 		714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C54F0260C7F8000C75D92 /* FBStorable.swift */; };
 		714DFD4B26006CF800711204 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714DFD4A26006CF800711204 /* LocationPin.swift */; };
@@ -206,6 +209,9 @@
 		714BA80D2601A61500E69470 /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
 		714BFD502604785F001E369F /* MockImageSupportedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageSupportedStorage.swift; sourceTree = "<group>"; };
 		714BFD5826047C41001E369F /* LocationModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelTests.swift; sourceTree = "<group>"; };
+		714BFF702622EF4000ABA11B /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		714BFF752622F1AC00ABA11B /* RatingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingModel.swift; sourceTree = "<group>"; };
+		714BFF7A262302D200ABA11B /* FBRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRating.swift; sourceTree = "<group>"; };
 		714C54E8260C6C9D00C75D92 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		714C54F0260C7F8000C75D92 /* FBStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBStorable.swift; sourceTree = "<group>"; };
 		714DFD4A26006CF800711204 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
@@ -428,6 +434,8 @@
 			isa = PBXGroup;
 			children = (
 				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
+				714BFF702622EF4000ABA11B /* Rating.swift */,
+				714BFF752622F1AC00ABA11B /* RatingModel.swift */,
 				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
 				7694E9E625FE541700AF9E63 /* User.swift */,
 				DB92737F260027F800B898AE /* FriendsListModel.swift */,
@@ -503,6 +511,7 @@
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
 				01483A4926107AA400D840EA /* FBFriend.swift */,
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
+				714BFF7A262302D200ABA11B /* FBRating.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
 				76E74BC82613617C004BA414 /* FBLevelSystem.swift */,
 			);
@@ -718,6 +727,7 @@
 				01088F5C2606442F00579707 /* BucketListError.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
+				714BFF712622EF4000ABA11B /* Rating.swift in Sources */,
 				714AF262260B85C20034269C /* FBLocation.swift in Sources */,
 				76E74BDB26137B94004BA414 /* ExperienceAction.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
@@ -731,6 +741,7 @@
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
+				714BFF7B262302D200ABA11B /* FBRating.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
 				01483A452610728D00D840EA /* Friend.swift in Sources */,
 				714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */,
@@ -745,6 +756,7 @@
 				76E74BE026137BFF004BA414 /* LevelSystemUtil.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
+				714BFF762622F1AC00ABA11B /* RatingModel.swift in Sources */,
 				DB2D335D2612F0F0000C2351 /* WeatherSectionViewModel.swift in Sources */,
 				01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */,
 				714B10D026066D190040FAA1 /* UIImage+Extensions.swift in Sources */,

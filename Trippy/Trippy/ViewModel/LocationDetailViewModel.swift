@@ -10,6 +10,7 @@ import Contacts
 
 class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
+    @Published var rating: Float
     private var cancellables: Set<AnyCancellable> = []
 
     var title: String {
@@ -29,11 +30,13 @@ class LocationDetailViewModel: ObservableObject {
     var description: String {
         location.description
     }
+    
     var category: String {
         location.category.rawValue.capitalized
     }
 
-    init(location: Location) {
+    init(location: Location, rating: Float) {
         self.location = location
+        self.rating = rating
     }
 }
