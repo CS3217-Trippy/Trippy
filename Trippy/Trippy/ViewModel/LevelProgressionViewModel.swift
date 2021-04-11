@@ -21,17 +21,17 @@ final class LevelProgressionViewModel: ObservableObject, Identifiable {
         self.experience = 0
         self.experienceToNextLevel = 100
         self.percentageToNextLevel = 0.0
-//        guard let userLevelSystemService = session.levelSystemService else {
-//            self.level = 1
-//            self.experience = 0
-//            self.experienceToNextLevel = 100
-//            self.percentageToNextLevel = 0.0
-//            return
-//        }
-//        let userLevelSystem = userLevelSystemService.getUserLevelSystem()
-//        (self.experienceToNextLevel, self.percentageToNextLevel) =
-//            userLevelSystemService.generateExperienceProgressData()
-//        self.level = userLevelSystem.level
-//        self.experience = userLevelSystem.experience
+        guard let userLevelSystemService = session.levelSystemService else {
+            self.level = 1
+            self.experience = 0
+            self.experienceToNextLevel = 100
+            self.percentageToNextLevel = 0.0
+            return
+        }
+        let userLevelSystem = userLevelSystemService.getUserLevelSystem()
+        (self.experienceToNextLevel, self.percentageToNextLevel) =
+            userLevelSystemService.generateExperienceProgressData()
+        self.level = userLevelSystem.level
+        self.experience = userLevelSystem.experience
     }
 }

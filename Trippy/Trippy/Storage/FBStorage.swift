@@ -18,7 +18,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     private let store = Firestore.firestore()
 
     func fetch() {
-        store.collection(Storable.path).getDocuments { snapshot, error in
+        store.collection(Storable.path).addSnapshotListener { snapshot, error in
             if let error = error {
                 print(error)
                 return
@@ -33,7 +33,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     }
 
     func fetchWithField(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
-        store.collection(Storable.path).whereField(field, isEqualTo: value).getDocuments { snapshot, error in
+        store.collection(Storable.path).whereField(field, isEqualTo: value).addSnapshotListener { snapshot, error in
             if let error = error {
                 print(error)
                 return
@@ -53,7 +53,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     }
 
     func fetchWithId(id: String, handler: ((Storable.ModelType) -> Void)?) {
-        store.collection(Storable.path).document(id).getDocument { document, error in
+        store.collection(Storable.path).document(id).addSnapshotListener { document, error in
             if let error = error {
                 print(error)
                 return
@@ -81,7 +81,6 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         } catch {
             print(error.localizedDescription)
         }
-        _storedItems.append(item)
     }
 
     func update(item: Storable.ModelType) throws {
@@ -89,26 +88,14 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         guard let id = fbItem.id else {
             return
         }
-        try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
-            if let error = error {
-                print("Error Updating: \(error.localizedDescription)")
-            }
-            self._storedItems.removeAll { $0.id == id }
-            self._storedItems.append(item)
-        }
+        try store.collection(Storable.path).document(id).setData(from: fbItem)
     }
 
     func remove(item: Storable.ModelType) {
         guard let id = item.id else {
             return
         }
-        store.collection(Storable.path).document(id).delete { error in
-            if let error = error {
-                print("Error removing document: \(error.localizedDescription)")
-            } else {
-                self._storedItems.removeAll { $0.id == id }
-            }
-        }
+        store.collection(Storable.path).document(id).delete()
     }
 
     func removeStoredItems() {
