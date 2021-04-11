@@ -1,12 +1,13 @@
 import Combine
 import Foundation
+import UIKit
 
 final class BucketItemViewModel: ObservableObject, Identifiable {
     @Published private var bucketItem: BucketItem
     private var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
     private(set) var id = ""
     private var cancellables: Set<AnyCancellable> = []
-    var locationImage: URL? {
+    var locationImage: UIImage? {
         bucketItem.locationImage
     }
     var locationName: String {
