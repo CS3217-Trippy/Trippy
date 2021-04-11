@@ -34,20 +34,20 @@ class FBAchievementService: AchievementService {
             }
             newCompletedAchievements.append(id)
         }
-//        let newUser = User(
-//            id: user.id,
-//            email: user.email,
-//            username: user.username,
-//            friendsId: user.friendsId,
-//            levelSystemId: user.levelSystemId,
-//            achievements: newCompletedAchievements,
-//            imageURL: user.imageURL
-//        )
-//        do {
-//            try userStorage.update(newUser)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
+        let newUser = User(
+            id: user.id,
+            email: user.email,
+            username: user.username,
+            friendsId: user.friendsId,
+            levelSystemId: user.levelSystemId,
+            achievements: newCompletedAchievements,
+            imageURL: user.imageURL
+        )
+        do {
+            try userStorage.update(newUser)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     func checkForCompletions(type: AchievementType, completion: Int) -> [Achievement] {

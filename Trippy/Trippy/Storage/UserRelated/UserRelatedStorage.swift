@@ -14,7 +14,7 @@ protocol UserRelatedStorage: ObservableObject {
 
     var storedItems: Published<[StoredType]>.Publisher { get }
 
-    func fetch()
+    func fetch(handler: (() -> Void)?)
 
     func fetchWithId(id: String, handler: ((StoredType) -> Void)?)
 

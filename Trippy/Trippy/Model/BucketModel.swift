@@ -15,7 +15,7 @@ class BucketModel<Storage: UserRelatedStorage>: ObservableObject where Storage.S
     }
 
     func fetchBucketItems() {
-        storage.fetch()
+        storage.fetch(handler: nil)
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {

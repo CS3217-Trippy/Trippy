@@ -22,7 +22,7 @@ final class FriendsListModel<Storage: UserRelatedStorage> where Storage.StoredTy
     }
 
     func getFriendsList() {
-        storage.fetch()
+        storage.fetch(handler: nil)
     }
 
     func addFriend(friend: Friend) throws {

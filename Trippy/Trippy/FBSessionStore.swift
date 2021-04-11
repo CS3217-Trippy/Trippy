@@ -37,7 +37,9 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 } else {
                     self.currentLoggedInUser = session[0]
                 }
-                self.syncFriendWithUserInfo()
+                friendStorage?.fetch {
+                    self.syncFriendWithUserInfo()
+                }
             } else {
                 guard let currentUser = currentLoggedInUser else {
                     fatalError("User should have existed")
@@ -172,7 +174,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
     func updateUser(updatedUser: User, with image: UIImage? = nil) {
         do {
             try self.userStorage.update(updatedUser, with: image)
-            friendStorage?.fetch()
         } catch {
             print("Updating user failed")
         }
@@ -183,6 +184,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
             fatalError("User should have logged in")
         }
         for friend in friends {
+            print(friend.friendUsername + " " + String(friend.hasAccepted))
             friend.username = user.username
             friend.userProfilePhoto = user.imageURL
             do {
@@ -193,6 +195,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
         friendStorage?.fetchWithField(field: "friendId") { friendList in
             for associatedFriend in friendList {
+                print("Asso: " + associatedFriend.username + " " + String(associatedFriend.hasAccepted))
                 associatedFriend.friendUsername = user.username
                 associatedFriend.friendProfilePhoto = user.imageURL
                 do {

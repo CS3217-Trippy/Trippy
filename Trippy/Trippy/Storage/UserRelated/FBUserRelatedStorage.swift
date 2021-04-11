@@ -22,7 +22,7 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
         self.userId = userId
     }
 
-    func fetch() {
+    func fetch(handler: (() -> Void)? = nil) {
         guard let userId = userId else {
             return
         }
@@ -38,6 +38,10 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
                 }
                 return fbItem.convertToModelType()
             } ?? []
+            guard let handler = handler else {
+                return
+            }
+            handler()
         }
     }
 
