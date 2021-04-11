@@ -26,18 +26,25 @@ final class FBSessionStore: ObservableObject, SessionStore {
     @Published var currentLoggedInUser: User?
     @Published var session: [User] = [] {
         didSet {
+            print(session.count)
+            for user in session {
+                print(user.username)
+            }
             self.didChange.send(self)
             if session.isEmpty {
-                self.currentLoggedInUser = nil
+                if authState == .NoUser {
+                    self.currentLoggedInUser = nil
+                }
             } else if session.count == 1 {
-                self.currentLoggedInUser = session[0]
+                if let user = currentLoggedInUser {
+                    if user.id == session[0].id {
+                        self.currentLoggedInUser = session[0]
+                    }
+                } else {
+                    self.currentLoggedInUser = session[0]
+                }
                 self.fetchUserImage()
                 self.syncFriendWithUserInfo()
-            } else {
-                guard let currentUser = currentLoggedInUser else {
-                    fatalError("User should have existed")
-                }
-                self.session = [currentUser]
             }
         }
     }
@@ -89,6 +96,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         guard let id = user.id else {
             fatalError("User should have id generated from firebase auth")
         }
+        self.userStorage.fetchWithId(id: id, handler: nil)
         self.userStorage.add(item: user)
         self.friendStorage = FBStorage<FBFriend>()
         self.friendStorage?.fetch()
