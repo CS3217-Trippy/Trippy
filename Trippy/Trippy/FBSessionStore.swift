@@ -26,9 +26,18 @@ final class FBSessionStore: ObservableObject, SessionStore {
         didSet {
             self.didChange.send(self)
             if session.isEmpty {
-                self.currentLoggedInUser = nil
+                if authState == .NoUser {
+                    self.currentLoggedInUser = nil
+                }
             } else if session.count == 1 {
-                self.currentLoggedInUser = session[0]
+                print("here" + session[0].username)
+                if let user = currentLoggedInUser {
+                    if user.id == session[0].id {
+                        self.currentLoggedInUser = session[0]
+                    }
+                } else {
+                    self.currentLoggedInUser = session[0]
+                }
                 self.syncFriendWithUserInfo()
             } else {
                 guard let currentUser = currentLoggedInUser else {
