@@ -15,6 +15,7 @@ class User: Model {
     var username: String
     var friendsId: [String]
     var levelSystemId: String
+    var achievements: [String]
     var profilePhoto = "https://timesofindia.indiatimes.com/photo/67586673.cms"
 
     init(
@@ -23,6 +24,7 @@ class User: Model {
         username: String,
         friendsId: [String],
         levelSystemId: String,
+        achievements: [String],
         imageURL: UIImage? = nil
     ) {
         self.id = id
@@ -30,6 +32,7 @@ class User: Model {
         self.username = username
         self.friendsId = friendsId
         self.levelSystemId = levelSystemId
+        self.achievements = achievements
         self.imageURL = imageURL
     }
 }

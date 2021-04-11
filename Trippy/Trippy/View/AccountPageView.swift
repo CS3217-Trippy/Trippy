@@ -121,7 +121,7 @@ struct AccountPageView_Previews: PreviewProvider {
     static func setSession() -> FBSessionStore {
         let sessionStore = FBSessionStore()
         var userArray = [User]()
-        userArray.append(User(id: "1", email: "1", username: "CAT", friendsId: [], levelSystemId: "1"))
+        userArray.append(User(id: "1", email: "1", username: "CAT", friendsId: [], levelSystemId: "1", achievements: []))
         sessionStore.session = userArray
         return sessionStore
     }
@@ -132,7 +132,8 @@ struct AccountPageView_Previews: PreviewProvider {
             email: "1",
             username: "CAT",
             friendsId: [],
-            levelSystemId: "1"
+            levelSystemId: "1",
+            achievements: []
         )
     }
 

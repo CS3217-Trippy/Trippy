@@ -46,6 +46,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
     }
     @Published var levelSystemService: LevelSystemService?
+    @Published var achievementService: AchievementService?
     private var username = ""
     private var handle: AuthStateDidChangeListenerHandle?
     private var cancellables: Set<AnyCancellable> = []
@@ -72,6 +73,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         self.friendStorage?.fetch()
         self.levelSystemService = FBLevelSystemService(userId: id)
         self.levelSystemService?.retrieveLevelSystem()
+        self.achievementService = FBAchievementService(userStorage: self.userStorage)
     }
 
     private func prepareInformationAfterSuccessfulSignUp(user: User) {
@@ -83,6 +85,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         self.friendStorage?.fetch()
         self.levelSystemService = FBLevelSystemService(userId: id)
         self.levelSystemService?.createLevelSystem()
+        self.achievementService = FBAchievementService(userStorage: self.userStorage)
     }
 
     private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
@@ -91,7 +94,8 @@ final class FBSessionStore: ObservableObject, SessionStore {
             email: user.email ?? "",
             username: username,
             friendsId: [],
-            levelSystemId: user.uid
+            levelSystemId: user.uid,
+            achievements: []
         )
     }
 

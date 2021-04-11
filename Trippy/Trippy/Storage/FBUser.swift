@@ -16,6 +16,7 @@ struct FBUser: FBImageSupportedStorable {
     var email: String
     var username: String
     var friendsId: [String]
+    var achievements: [String]
     var levelSystemId: String
 
     init(item: ModelType) {
@@ -24,6 +25,7 @@ struct FBUser: FBImageSupportedStorable {
         username = item.username
         friendsId = item.friendsId
         levelSystemId = item.levelSystemId
+        achievements = item.achievements
     }
 
     func convertToModelType() -> User {
@@ -32,7 +34,8 @@ struct FBUser: FBImageSupportedStorable {
             email: email,
             username: username,
             friendsId: friendsId,
-            levelSystemId: levelSystemId
+            levelSystemId: levelSystemId,
+            achievements: achievements
         )
 
         if !imageURL.isEmpty {
