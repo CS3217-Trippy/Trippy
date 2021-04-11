@@ -26,10 +26,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
     @Published var currentLoggedInUser: User?
     @Published var session: [User] = [] {
         didSet {
-            print(session.count)
-            for user in session {
-                print(user.username)
-            }
             self.didChange.send(self)
             if session.isEmpty {
                 if authState == .NoUser {
