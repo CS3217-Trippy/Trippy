@@ -30,7 +30,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
                     self.currentLoggedInUser = nil
                 }
             } else if session.count == 1 {
-                print("here" + session[0].username)
                 if let user = currentLoggedInUser {
                     if user.id == session[0].id {
                         self.currentLoggedInUser = session[0]
@@ -173,6 +172,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
     func updateUser(updatedUser: User, with image: UIImage? = nil) {
         do {
             try self.userStorage.update(updatedUser, with: image)
+            friendStorage?.fetch()
         } catch {
             print("Updating user failed")
         }
