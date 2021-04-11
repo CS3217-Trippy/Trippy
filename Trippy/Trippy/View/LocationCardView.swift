@@ -40,7 +40,7 @@ struct LocationCardView: View {
     }
 
     var cardBody: some View {
-         if let image = viewModel.location.image {
+         if let image = viewModel.image {
             return AnyView(
                 Image(uiImage: image).locationImageModifier()
             )

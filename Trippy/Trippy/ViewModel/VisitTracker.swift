@@ -12,8 +12,8 @@ import UserNotifications
 
 class VisitTracker {
     private let locationCoordinator: LocationCoordinator
-    private var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
-    private var locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
+    private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    private var locationModel: LocationModel<FBStorage<FBLocation>>
     private var bucketItems: [BucketItem] = []
     private var locations: [Location] = []
     private var cancellables: Set<AnyCancellable> = []
@@ -27,8 +27,8 @@ class VisitTracker {
     @Binding private var alertTitle: String
     @Binding private var alertContent: String
 
-    init(locationCoordinator: LocationCoordinator, locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>,
-         bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
+    init(locationCoordinator: LocationCoordinator, locationModel: LocationModel<FBStorage<FBLocation>>,
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
          alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?) {
         self.locationModel = locationModel
         self.bucketModel = bucketModel

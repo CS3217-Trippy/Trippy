@@ -9,12 +9,12 @@ import Foundation
 import Combine
 
 final class FBLevelSystemService: LevelSystemService, ObservableObject {
-    var levelSystemStorage: FBUserRelatedStorage<FBLevelSystem>
+    var levelSystemStorage: FBStorage<FBLevelSystem>
     @Published var levelSystem = [LevelSystem]()
     private var cancellables: Set<AnyCancellable> = []
 
     init(userId: String) {
-        self.levelSystemStorage = FBUserRelatedStorage<FBLevelSystem>(userId: userId)
+        self.levelSystemStorage = FBStorage<FBLevelSystem>()
         self.levelSystemStorage.storedItems.assign(to: \.levelSystem, on: self).store(in: &self.cancellables)
     }
 
@@ -25,10 +25,7 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         return levelSystem[0]
     }
 
-    func createLevelSystem() {
-        guard let userId = levelSystemStorage.userId else {
-            fatalError("User Id should have been specified")
-        }
+    func createLevelSystem(userId: String) {
         let newLevelSystemForUser = LevelSystem(
             userId: userId,
             id: userId,
@@ -36,11 +33,7 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             level: 1,
             friendsIdAddedBefore: []
         )
-        do {
-            try levelSystemStorage.add(item: newLevelSystemForUser)
-        } catch {
-            print(error.localizedDescription)
-        }
+        levelSystemStorage.add(item: newLevelSystemForUser)
     }
 
     func retrieveLevelSystem() {

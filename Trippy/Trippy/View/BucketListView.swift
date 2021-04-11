@@ -10,7 +10,7 @@ struct BucketListView: View {
             CollectionView(data: $viewModel.bucketItemViewModels, cols: 1, spacing: 10) { bucketViewModel in
                 BucketItemView(viewModel: bucketViewModel)
             }
-        }.onAppear(perform: viewModel.fetch)
+        }
         .navigationTitle("Bucket List")
     }
 }

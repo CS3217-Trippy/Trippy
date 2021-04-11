@@ -1,6 +1,6 @@
 import Combine
 
-class BucketModel<Storage: UserRelatedStorage>: ObservableObject where Storage.StoredType == BucketItem {
+class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.StoredType == BucketItem {
     @Published private(set) var bucketItems: [BucketItem] = []
     private let storage: Storage
     private var cancellables: Set<AnyCancellable> = []
@@ -15,7 +15,11 @@ class BucketModel<Storage: UserRelatedStorage>: ObservableObject where Storage.S
     }
 
     func fetchBucketItems() {
-        storage.fetch()
+        guard let userId = userId else {
+            return
+        }
+        let field = "userId"
+        storage.fetchWithField(field: field, value: userId, handler: nil)
     }
 
     func addBucketItem(bucketItem: BucketItem) throws {

@@ -3,41 +3,44 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Firebase
 
-class FBImageStorage {
+class FBImageStorage: ImageStorage {
+
     private let imageStorage = Firebase.Storage.storage()
 
-    func upload(images: [UIImage], callback: @escaping ([URL]) -> Void) {
-        var imageUrls: [URL] = []
+    func add(with images: [TrippyImage]) {
         for image in images {
-            let imageRef = imageStorage.reference().child(UUID().uuidString + ".jpeg")
-            addImage(image: image, imageRef: imageRef) { _, error in
-                if let error = error {
-                    print("Error during storing of image: \(error.localizedDescription)")
+            let imageRef = imageStorage.reference().child(image.id + ".jpeg")
+            let imageObj = image.image
+            addImage(image: imageObj, imageRef: imageRef)
+    }
+}
+
+    func fetch(ids: [String], callback: @escaping ([UIImage]) -> Void) {
+        var images: [UIImage] = []
+        for id in ids {
+            let imageRef = imageStorage.reference().child(id + ".jpeg")
+            let maxSizeInBytes: Int64 = 20_971_520
+            imageRef.getData(maxSize: maxSizeInBytes) {data, error in
+                guard let data = data, error == nil else {
                     return
                 }
-
-                imageRef.downloadURL { url, error in
-                    if let error = error {
-                        print("Error during retrieval of image url: \(error.localizedDescription)")
-                    }
-                    if let url = url {
-                        imageUrls.append(url)
-                    }
-
-                    if imageUrls.count == images.count {
-                        callback(imageUrls)
-                    }
+                let image = UIImage(data: data)
+                guard let nImage = image else {
+                    return
+                }
+                images.append(nImage)
+                if images.count == ids.count {
+                    callback(images)
                 }
             }
         }
     }
 
-    private func addImage(image: UIImage, imageRef: StorageReference,
-                          completion: ((StorageMetadata?, Error?) -> Void)?) {
+    private func addImage(image: UIImage, imageRef: StorageReference) {
         guard let data = image.jpegData(compressionQuality: 0.1) else {
             return
         }
-        imageRef.putData(data, metadata: nil, completion: completion)
+        imageRef.putData(data, metadata: nil)
     }
 
 }

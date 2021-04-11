@@ -7,19 +7,35 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class AddFriendViewModel: ObservableObject {
     @Published var usersList: [User] = []
+    @Published var image: UIImage?
     private var cancellables: Set<AnyCancellable> = []
-    private var friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
-    private var userStorage: FBImageSupportedStorage<FBUser>
+    private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
+    private var userStorage: FBStorage<FBUser>
+    private var user: User?
 
     init(session: SessionStore) {
         userStorage = session.userStorage
-        let user = session.currentLoggedInUser
-        let storage = FBUserRelatedStorage<FBFriend>(userId: user?.id)
-        self.friendsListModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(storage: storage, userId: user?.id)
+        self.user = session.currentLoggedInUser
+        let storage = FBStorage<FBFriend>()
+        self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: storage, userId: user?.id)
         userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)
+        getImage()
+    }
+
+    func getImage() {
+        guard let user = user, let id = user.imageId else {
+            return
+        }
+        let model = ImageModel(storage: FBImageStorage())
+        model.fetch(ids: [id]) { images in
+            if !images.isEmpty {
+                self.image = images[0]
+            }
+        }
     }
 
     func getUsers() {
@@ -41,10 +57,10 @@ final class AddFriendViewModel: ObservableObject {
         return Friend(
             userId: userId,
             username: to.username,
-            userProfilePhoto: to.imageURL,
+            userProfilePhoto: to.imageId,
             friendId: friendId,
             friendUsername: from.username,
-            friendProfilePhoto: from.imageURL,
+            friendProfilePhoto: from.imageId,
             hasAccepted: false
         )
     }

@@ -55,7 +55,7 @@ struct LocationDetailView: View {
         ScrollView {
             VStack {
                addBucketView
-                if let image = viewModel.location.image {
+                if let image = viewModel.image {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

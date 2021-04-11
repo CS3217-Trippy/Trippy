@@ -30,6 +30,9 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
         guard let oldUser = session.currentLoggedInUser else {
             fatalError("User should have logged in")
         }
+        if selectedImage != nil {
+            oldUser.imageId = UUID().uuidString
+        }
         oldUser.username = username
         session.updateUser(updatedUser: oldUser, with: selectedImage)
     }

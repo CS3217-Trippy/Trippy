@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class FriendsListModel<Storage: UserRelatedStorage> where Storage.StoredType == Friend {
+final class FriendsListModel<Storage: StorageProtocol> where Storage.StoredType == Friend {
     @Published var friendsList: [Friend] = []
     private var cancellables: Set<AnyCancellable> = []
     var storage: Storage
@@ -22,7 +22,11 @@ final class FriendsListModel<Storage: UserRelatedStorage> where Storage.StoredTy
     }
 
     func getFriendsList() {
-        storage.fetch()
+        let field = "userId"
+        guard let id = userId else {
+            return
+        }
+        storage.fetchWithField(field: field, value: id, handler: nil)
     }
 
     func addFriend(friend: Friend) throws {
