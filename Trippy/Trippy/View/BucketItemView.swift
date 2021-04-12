@@ -3,7 +3,7 @@ import URLImage
 
 struct BucketItemView: View {
     @State private var visited = false
-    var viewModel: BucketItemViewModel
+    @ObservedObject var viewModel: BucketItemViewModel
 
     var imageView: some View {
         if let image = viewModel.image {
