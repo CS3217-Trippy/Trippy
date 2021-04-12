@@ -1,15 +1,17 @@
 import FirebaseFirestoreSwift
 import Foundation
+import UIKit
 
-struct FBBucketItem: FBUserRelatedStorable {
+struct FBBucketItem: FBStorable {
     typealias ModelType = BucketItem
     static var path = "bucketItems"
     @DocumentID var id: String?
     var locationName: String
-    var locationImage: String?
+    var locationImage: [String] = []
     var userId: String
     var locationId: String
     var dateVisited: Date?
+    var locationImageIds: [String] = []
     var dateAdded: Date
     var userDescription: String
     var locationCategory: LocationCategory
@@ -17,28 +19,31 @@ struct FBBucketItem: FBUserRelatedStorable {
     init(item: ModelType) {
         id = item.id
         locationName = item.locationName
-        locationImage = item.locationImage?.absoluteString
         userId = item.userId
         locationId = item.locationId
         dateVisited = item.dateVisited
         dateAdded = item.dateAdded
         userDescription = item.userDescription
         locationCategory = item.locationCategory
+        if let imageId = item.locationImageId {
+            locationImageIds.append(imageId)
+        }
     }
 
     func convertToModelType() -> ModelType {
-        var image: URL?
-        if let url = locationImage {
-            image = URL(string: url)
+        var locationImageId: String?
+        if !locationImageIds.isEmpty {
+            locationImageId = locationImageIds[0]
         }
-        return BucketItem(locationName: locationName,
-                          locationCategory: locationCategory,
-                          locationImage: image,
-                          userId: userId,
-                          locationId: locationId,
-                          dateVisited: dateVisited,
-                          dateAdded: dateAdded,
-                          userDescription: userDescription
-        )
+        let bucketItem = BucketItem(locationName: locationName,
+                                    locationCategory: locationCategory,
+                                    locationImageId: locationImageId,
+                                    userId: userId,
+                                    locationId: locationId,
+                                    dateVisited: dateVisited,
+                                    dateAdded: dateAdded,
+                                    userDescription: userDescription
+                  )
+        return bucketItem
     }
 }

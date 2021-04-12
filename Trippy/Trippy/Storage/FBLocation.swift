@@ -10,7 +10,7 @@ import CoreGraphics
 import UIKit
 import CoreLocation
 
-struct FBLocation: FBImageSupportedStorable {
+struct FBLocation: FBStorable {
     typealias ModelType = Location
     static var path = "locations"
 
@@ -20,36 +20,37 @@ struct FBLocation: FBImageSupportedStorable {
     var name: String
     var description: String
     var category: LocationCategory
-    var imageURL: String?
+    var imageIds: [String] = []
 
     init(item: ModelType) {
-        let imageURL = item.imageURL?.absoluteString
-
         id = item.id
         latitude = item.coordinates.latitude
         longitude = item.coordinates.longitude
         name = item.name
         description = item.description
         category = item.category
-        self.imageURL = imageURL
+        if let imageId = item.imageId {
+            imageIds.append(imageId)
+        }
     }
 
     func convertToModelType() -> Location {
-        var targetURL: URL?
-        if let url = imageURL {
-            targetURL = URL(string: url)
+        var imageId: String?
+        if !imageIds.isEmpty {
+            imageId = imageIds[0]
         }
-        return Location(
+        let location = Location(
             id: id,
             coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
             name: name,
             description: description,
             category: category,
-            imageURL: targetURL
+            imageId: imageId
         )
+        return location
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, latitude, longitude, name, description, category, imageURL
+        case id, latitude, longitude, name, description, category, imageIds
     }
 }

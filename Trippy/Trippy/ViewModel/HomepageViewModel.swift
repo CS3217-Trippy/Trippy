@@ -10,28 +10,33 @@ import SwiftUI
 
 final class HomepageViewModel: ObservableObject {
 
-    @Published var locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
-    @Published var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
-    @Published var friendsModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
+    @Published var locationModel: LocationModel<FBStorage<FBLocation>>
+    @Published var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    @Published var friendsModel: FriendsListModel<FBStorage<FBFriend>>
+    let imageModel: ImageModel
     private let visitTracker: VisitTracker
 
     init(session: SessionStore, locationCoordinator: LocationCoordinator, showLocationAlert: Binding<Bool>,
          alertTitle: Binding<String>, alertContent: Binding<String>) {
-        let locationStorage = FBImageSupportedStorage<FBLocation>()
-        let locationModel = LocationModel<FBImageSupportedStorage<FBLocation>>(
+        let imageStorage = FBImageStorage()
+        let imageModel = ImageModel(storage: imageStorage)
+        self.imageModel = imageModel
+        let locationStorage = FBStorage<FBLocation>()
+        let locationModel = LocationModel<FBStorage<FBLocation>>(
             storage: locationStorage,
+            imageModel: imageModel,
             recommender: FBLocationRecommender(userId: session.currentLoggedInUser?.id))
         self.locationModel = locationModel
-        let bucketStorage = FBUserRelatedStorage<FBBucketItem>(userId: session.currentLoggedInUser?.id)
+        let bucketStorage = FBStorage<FBBucketItem>()
 
-        let bucketModel = BucketModel<FBUserRelatedStorage<FBBucketItem>>(
+        let bucketModel = BucketModel<FBStorage<FBBucketItem>>(
             storage: bucketStorage,
             userId: session.currentLoggedInUser?.id
         )
         self.bucketModel = bucketModel
 
-        let friendStorage = FBUserRelatedStorage<FBFriend>(userId: session.currentLoggedInUser?.id)
-        let friendsModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(
+        let friendStorage = FBStorage<FBFriend>()
+        let friendsModel = FriendsListModel<FBStorage<FBFriend>>(
             storage: friendStorage,
             userId: session.currentLoggedInUser?.id
         )

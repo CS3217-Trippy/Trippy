@@ -40,11 +40,10 @@ struct LocationCardView: View {
     }
 
     var cardBody: some View {
-        if let url = viewModel.location.imageURL {
-            return AnyView(URLImage(url: url) { image in
-                image
-                .locationImageModifier()
-            })
+         if let image = viewModel.image {
+            return AnyView(
+                Image(uiImage: image).locationImageModifier()
+            )
         } else {
             return AnyView(Image("Placeholder")
             .locationImageModifier())
@@ -52,19 +51,22 @@ struct LocationCardView: View {
     }
 
     var body: some View {
-        NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location))) {
+        NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location,
+                                                                        imageModel: viewModel.imageModel ))) {
             if isHorizontal {
                 HStack {
                     cardBody
                     locationCardText
-                        .padding()
-                }            .padding([.top, .horizontal])
+                    .padding()
+                }
+                .padding([.top, .horizontal])
             } else {
                 VStack {
                     cardBody
                     locationCardText
-                        .padding()
-                }            .padding([.top, .horizontal])
+                    .padding()
+                }
+                .padding([.top, .horizontal])
             }
 
         }
@@ -74,7 +76,8 @@ struct LocationCardView: View {
 struct LocationCardView_Previews: PreviewProvider {
     static var previews: some View {
         let testLocation = PreviewLocations.locations[0]
-        let locationCardViewModel = LocationCardViewModel(location: testLocation)
+        let locationCardViewModel = LocationCardViewModel(location: testLocation,
+                                                          imageModel: ImageModel(storage: FBImageStorage()))
         LocationCardView(viewModel: locationCardViewModel, showFullDetails: true, isHorizontal: true)
     }
 }

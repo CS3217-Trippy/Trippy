@@ -16,7 +16,7 @@ struct AccountPageView: View {
 
     var userInfoSection: some View {
         Section {
-            CircleImageView(url: session.currentLoggedInUser?.imageURL)
+            CircleImageView(image: session.userImage)
             Text("\(user.username)")
                 .bold()
                 .font(.title)
@@ -121,7 +121,7 @@ struct AccountPageView_Previews: PreviewProvider {
     static func setSession() -> FBSessionStore {
         let sessionStore = FBSessionStore()
         var userArray = [User]()
-        userArray.append(User(id: "1", email: "1", username: "CAT", friendsId: [], levelSystemId: "1"))
+        userArray.append(User(id: "1", email: "1", username: "CAT", friendsId: [], levelSystemId: "1", imageId: "1"))
         sessionStore.session = userArray
         return sessionStore
     }
@@ -132,7 +132,7 @@ struct AccountPageView_Previews: PreviewProvider {
             email: "1",
             username: "CAT",
             friendsId: [],
-            levelSystemId: "1"
+            levelSystemId: "1", imageId: "1"
         )
     }
 

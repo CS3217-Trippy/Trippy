@@ -6,15 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
-class User: ImageSupportedModel {
-    var imageURL: URL?
+class User: Model {
+    var imageId: String?
     var id: String?
     var email: String
     var username: String
     var friendsId: [String]
     var levelSystemId: String
-    var profilePhoto = "https://timesofindia.indiatimes.com/photo/67586673.cms"
 
     init(
         id: String?,
@@ -22,13 +22,13 @@ class User: ImageSupportedModel {
         username: String,
         friendsId: [String],
         levelSystemId: String,
-        imageURL: URL? = nil
+        imageId: String?
     ) {
         self.id = id
         self.email = email
         self.username = username
         self.friendsId = friendsId
         self.levelSystemId = levelSystemId
-        self.imageURL = imageURL
+        self.imageId = imageId
     }
 }
