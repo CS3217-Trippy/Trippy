@@ -19,7 +19,7 @@ class FBImageStorage: ImageStorage {
                 guard let callback = callback else {
                     return
                 }
-                imageIds.append(String(imageRef.name.split(separator: ".")[0]))
+                imageIds.append(image.id)
                 if imageIds.count == images.count {
                     callback(imageIds)
                 }
