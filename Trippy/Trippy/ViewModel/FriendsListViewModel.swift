@@ -11,9 +11,9 @@ import Combine
 final class FriendsListViewModel: ObservableObject {
     @Published var friendsList: [FriendsItemViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
-    private var friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
+    private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
 
-    init(friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>) {
+    init(friendsListModel: FriendsListModel<FBStorage<FBFriend>>) {
         self.friendsListModel = friendsListModel
         friendsListModel.$friendsList.map {
             $0.map {

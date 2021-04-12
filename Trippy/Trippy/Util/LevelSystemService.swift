@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LevelSystemService {
-    func createLevelSystem()
+    func createLevelSystem(userId: String)
 
     func getUserLevelSystem() -> LevelSystem
 

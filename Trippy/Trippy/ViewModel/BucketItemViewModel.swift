@@ -4,12 +4,31 @@ import UIKit
 
 final class BucketItemViewModel: ObservableObject, Identifiable {
     @Published private var bucketItem: BucketItem
-    private var bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
+    private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     private(set) var id = ""
-    private var cancellables: Set<AnyCancellable> = []
-    var locationImage: UIImage? {
-        bucketItem.locationImage
+    init(bucketItem: BucketItem, bucketModel: BucketModel<FBStorage<FBBucketItem>>) {
+        self.bucketItem = bucketItem
+        self.bucketModel = bucketModel
+        $bucketItem.compactMap { $0.id }.assign(to: \.id, on: self)
+            .store(in: &cancellables)
+        fetchImage()
     }
+
+    private func fetchImage() {
+        let id = bucketItem.locationImageId
+        let model = ImageModel(storage: FBImageStorage())
+        guard let imageId = id else {
+            return
+        }
+        model.fetch(ids: [imageId]) { images in
+            if !images.isEmpty {
+                self.image = images[0]
+            }
+        }
+    }
+
+    @Published var image: UIImage?
+    private var cancellables: Set<AnyCancellable> = []
     var locationName: String {
         bucketItem.locationName
     }
@@ -18,12 +37,6 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
     }
     var dateAdded: Date {
         bucketItem.dateAdded
-    }
-    init(bucketItem: BucketItem, bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>) {
-        self.bucketItem = bucketItem
-        self.bucketModel = bucketModel
-        $bucketItem.compactMap { $0.id }.assign(to: \.id, on: self)
-            .store(in: &cancellables)
     }
     func remove() {
         bucketModel.removeBucketItem(bucketItem: bucketItem)

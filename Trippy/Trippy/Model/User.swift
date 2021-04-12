@@ -9,14 +9,13 @@ import Foundation
 import UIKit
 
 class User: Model {
-    var imageURL: UIImage?
+    var imageId: String?
     var id: String?
     var email: String
     var username: String
     var friendsId: [String]
     var levelSystemId: String
     var achievements: [String]
-    var profilePhoto = "https://timesofindia.indiatimes.com/photo/67586673.cms"
 
     init(
         id: String?,
@@ -25,7 +24,7 @@ class User: Model {
         friendsId: [String],
         levelSystemId: String,
         achievements: [String],
-        imageURL: UIImage? = nil
+        imageId: String?
     ) {
         self.id = id
         self.email = email
@@ -33,6 +32,6 @@ class User: Model {
         self.friendsId = friendsId
         self.levelSystemId = levelSystemId
         self.achievements = achievements
-        self.imageURL = imageURL
+        self.imageId = imageId
     }
 }

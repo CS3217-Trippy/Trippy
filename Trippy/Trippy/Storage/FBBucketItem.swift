@@ -2,7 +2,7 @@ import FirebaseFirestoreSwift
 import Foundation
 import UIKit
 
-struct FBBucketItem: FBUserRelatedStorable {
+struct FBBucketItem: FBStorable {
     typealias ModelType = BucketItem
     static var path = "bucketItems"
     @DocumentID var id: String?
@@ -11,6 +11,7 @@ struct FBBucketItem: FBUserRelatedStorable {
     var userId: String
     var locationId: String
     var dateVisited: Date?
+    var locationImageIds: [String] = []
     var dateAdded: Date
     var userDescription: String
     var locationCategory: LocationCategory
@@ -24,26 +25,25 @@ struct FBBucketItem: FBUserRelatedStorable {
         dateAdded = item.dateAdded
         userDescription = item.userDescription
         locationCategory = item.locationCategory
+        if let imageId = item.locationImageId {
+            locationImageIds.append(imageId)
+        }
     }
 
     func convertToModelType() -> ModelType {
+        var locationImageId: String?
+        if !locationImageIds.isEmpty {
+            locationImageId = locationImageIds[0]
+        }
         let bucketItem = BucketItem(locationName: locationName,
                                     locationCategory: locationCategory,
+                                    locationImageId: locationImageId,
                                     userId: userId,
                                     locationId: locationId,
                                     dateVisited: dateVisited,
                                     dateAdded: dateAdded,
                                     userDescription: userDescription
                   )
-        if !locationImage.isEmpty {
-            Downloader.getDataFromString(from: locationImage[0]) { data, _, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                let image = UIImage(data: data)
-                bucketItem.locationImage = image
-            }
-        }
         return bucketItem
     }
 }

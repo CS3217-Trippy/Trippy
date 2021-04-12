@@ -8,7 +8,7 @@
 import Combine
 
 class LocationListViewModel: ObservableObject {
-    @Published var locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
+    @Published var locationModel: LocationModel<FBStorage<FBLocation>>
     @Published var locationCardViewModels: [LocationCardViewModel] = []
     @Published var recommendedLocationViewModels: [LocationCardViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
@@ -17,7 +17,7 @@ class LocationListViewModel: ObservableObject {
         locationModel.fetchRecommendedLocations()
     }
 
-    init(locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>) {
+    init(locationModel: LocationModel<FBStorage<FBLocation>>) {
         self.locationModel = locationModel
         locationModel.$locations.map { cards in
             cards.map(LocationCardViewModel.init)

@@ -6,7 +6,7 @@ struct BucketItemView: View {
     var viewModel: BucketItemViewModel
 
     var imageView: some View {
-        if let image = viewModel.locationImage {
+        if let image = viewModel.image {
             return AnyView(Image(uiImage: image).cardImageModifier()
             )
         } else {

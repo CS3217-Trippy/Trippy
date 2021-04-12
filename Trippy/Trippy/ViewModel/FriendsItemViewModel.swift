@@ -10,7 +10,8 @@ import UIKit
 
 final class FriendsItemViewModel: ObservableObject, Identifiable {
     @Published var friend: Friend
-    private var model: FriendsListModel<FBUserRelatedStorage<FBFriend>>
+    @Published var friendProfilePhoto: UIImage?
+    private var model: FriendsListModel<FBStorage<FBFriend>>
     var username: String {
         friend.friendUsername
     }
@@ -18,13 +19,22 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
         friend.hasAccepted
     }
 
-    var friendProfilePhoto: UIImage? {
-        friend.friendProfilePhoto
-    }
-
-    init(friend: Friend, model: FriendsListModel<FBUserRelatedStorage<FBFriend>>) {
+    init(friend: Friend, model: FriendsListModel<FBStorage<FBFriend>>) {
         self.model = model
         self.friend = friend
+        fetchImage()
+    }
+
+    private func fetchImage() {
+        let model = ImageModel(storage: FBImageStorage())
+        if let id = friend.friendProfilePhoto {
+            model.fetch(ids: [id]) { images in
+                if !images.isEmpty {
+                    self.friendProfilePhoto = images[0]
+                }
+            }
+        }
+
     }
 
     func acceptFriend() throws {

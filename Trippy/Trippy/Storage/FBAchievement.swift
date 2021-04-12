@@ -8,14 +8,14 @@
 import UIKit
 import FirebaseFirestoreSwift
 
-struct FBAchievement: FBImageSupportedStorable {
+struct FBAchievement: FBStorable {
     typealias ModelType = Achievement
     static var path = "achievements"
 
     @DocumentID var id: String?
     var name: String
     var description: String
-    var imageURL: [String] = []
+    var imageIds: [String] = []
     var type: String
     var completion: Int
 
@@ -25,28 +25,23 @@ struct FBAchievement: FBImageSupportedStorable {
         self.description = item.description
         self.completion = item.achievementType.getCompletion()
         self.type = item.achievementType.getTypeDescription()
+        if let id = item.imageId {
+            imageIds.append(id)
+        }
     }
 
     func convertToModelType() -> ModelType {
+        var imageId: String?
+        if !imageIds.isEmpty {
+            imageId = imageIds[0]
+        }
         let achievement = Achievement(
             id: id,
             name: name,
             description: description,
-            achievementType: AchievementType.generateAchievementType(type: type, completion: completion)
+            achievementType: AchievementType.generateAchievementType(type: type, completion: completion),
+            imageId: imageId
         )
-
-        if !imageURL.isEmpty {
-            let url = imageURL[0]
-            Downloader.getDataFromString(from: url) { data, _, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    let image = UIImage(data: data)
-                    achievement.imageURL = image
-                }
-            }
-        }
 
         return achievement
     }

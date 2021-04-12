@@ -1,7 +1,7 @@
 import FirebaseFirestoreSwift
 import Foundation
 import UIKit
-struct FBFriend: FBUserRelatedStorable {
+struct FBFriend: FBStorable {
     typealias ModelType = Friend
     static var path = "friends"
     @DocumentID var id: String?
@@ -17,33 +17,12 @@ struct FBFriend: FBUserRelatedStorable {
         let friend = Friend(
             userId: userId,
             username: username,
+            userProfilePhoto: userProfilePhoto,
             friendId: friendId,
             friendUsername: friendUsername,
+            friendProfilePhoto: friendProfilePhoto,
             hasAccepted: hasAccepted
         )
-        guard let userProfilePhoto = userProfilePhoto, let friendProfilePhoto = friendProfilePhoto else {
-            return friend
-        }
-        Downloader.getDataFromString(from: userProfilePhoto) { data, _, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            DispatchQueue.main.async {
-                let image = UIImage(data: data)
-                friend.userProfilePhoto = image
-            }
-        }
-
-        Downloader.getDataFromString(from: friendProfilePhoto) { data, _, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            DispatchQueue.main.async {
-                let image = UIImage(data: data)
-                friend.friendProfilePhoto = image
-            }
-        }
-
         return friend
     }
 
@@ -55,6 +34,8 @@ struct FBFriend: FBUserRelatedStorable {
         self.id = item.id
         self.friendUsername = item.friendUsername
         self.hasAccepted = item.hasAccepted
+        self.friendProfilePhoto = item.friendProfilePhoto
+        self.userProfilePhoto = item.userProfilePhoto
     }
 
 }

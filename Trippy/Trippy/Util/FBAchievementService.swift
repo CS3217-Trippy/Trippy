@@ -8,14 +8,14 @@
 import Combine
 
 class FBAchievementService: AchievementService {
-    var userStorage: FBImageSupportedStorage<FBUser>
-    var achievementStorage = FBImageSupportedStorage<FBAchievement>()
+    var userStorage: FBStorage<FBUser>
+    var achievementStorage = FBStorage<FBAchievement>()
     @Published var trippyAchievements = [Achievement]()
     private var cancellables: Set<AnyCancellable> = []
 
-    init(userStorage: FBImageSupportedStorage<FBUser>) {
+    init(userStorage: FBStorage<FBUser>) {
         self.userStorage = userStorage
-        self.achievementStorage.fetch()
+        self.achievementStorage.fetch(handler: nil)
         self.achievementStorage.storedItems.assign(to: \.trippyAchievements, on: self).store(in: &self.cancellables)
     }
 
@@ -41,10 +41,10 @@ class FBAchievementService: AchievementService {
             friendsId: user.friendsId,
             levelSystemId: user.levelSystemId,
             achievements: newCompletedAchievements,
-            imageURL: user.imageURL
+            imageId: user.imageId
         )
         do {
-            try userStorage.update(newUser)
+            try userStorage.update(item: newUser)
         } catch {
             print(error.localizedDescription)
         }
