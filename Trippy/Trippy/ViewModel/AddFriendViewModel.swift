@@ -26,7 +26,7 @@ final class AddFriendViewModel: ObservableObject {
         userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
-    func getImage(user: User?) {
+    private func getImage(user: User?) {
         guard let user = user, let id = user.imageId else {
             return
         }
