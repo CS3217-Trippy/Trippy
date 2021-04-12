@@ -79,6 +79,7 @@ struct LocationDetailView: View {
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationDetailView(viewModel: .init(location: PreviewLocations.locations[0]))
+        LocationDetailView(viewModel: .init(location: PreviewLocations.locations[0],
+                                            imageModel: ImageModel(storage: FBImageStorage())))
     }
 }

@@ -15,9 +15,11 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     @Published var image: UIImage?
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
+    let imageModel: ImageModel
 
-    init(location: Location) {
+    init(location: Location, imageModel: ImageModel) {
         self.location = location
+        self.imageModel = imageModel
         $location
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
@@ -27,11 +29,10 @@ class LocationCardViewModel: Identifiable, ObservableObject {
 
     private func fetchImage() {
         let id = location.imageId
-        let model = ImageModel(storage: FBImageStorage())
         guard let imageId = id else {
             return
         }
-        model.fetch(ids: [imageId]) { images in
+        imageModel.fetch(ids: [imageId]) { images in
             if !images.isEmpty {
                 self.image = images[0]
             }

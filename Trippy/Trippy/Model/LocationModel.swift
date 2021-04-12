@@ -13,11 +13,11 @@ class LocationModel<Storage: StorageProtocol>: ObservableObject where Storage.St
     @Published private(set) var recommendedLocations: [Location] = []
     private var recommender: LocationRecommender
     private let storage: Storage
-    private let imageStorage: ImageStorage
+    private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
 
-    init(storage: Storage, imageStorage: ImageStorage, recommender: LocationRecommender) {
-        self.imageStorage = imageStorage
+    init(storage: Storage, imageModel: ImageModel, recommender: LocationRecommender) {
+        self.imageModel = imageModel
         self.storage = storage
         self.recommender = recommender
         recommender.recommendedItems.assign(to: \.recommendedLocations, on: self).store(in: &cancellables)
@@ -41,9 +41,16 @@ class LocationModel<Storage: StorageProtocol>: ObservableObject where Storage.St
         let id = location.imageId
         if let image = image, let id = id {
             let trippyImage = TrippyImage(id: id, image: image)
-            imageStorage.add(with: [trippyImage])
+            imageModel.add(with: [trippyImage]) { _ in
+                do {
+                    try self.storage.add(item: location)
+                } catch {
+                    print("unable to save location")
+                }
+            }
+        } else {
+            try storage.add(item: location)
         }
-        try storage.add(item: location)
     }
 
     func removeLocation(location: Location) {
@@ -60,7 +67,7 @@ class LocationModel<Storage: StorageProtocol>: ObservableObject where Storage.St
         let id = updatedLocation.imageId
         if let image = image, let id = id {
             let trippyImage = TrippyImage(id: id, image: image)
-            imageStorage.add(with: [trippyImage])
+            imageModel.add(with: [trippyImage])
         }
         try storage.update(item: updatedLocation)
     }

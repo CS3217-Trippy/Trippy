@@ -15,6 +15,7 @@ final class AddFriendViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
     private var userStorage: FBStorage<FBUser>
+    private var imageModel = ImageModel(storage: FBImageStorage())
     private var user: User?
 
     init(session: SessionStore) {
@@ -25,12 +26,11 @@ final class AddFriendViewModel: ObservableObject {
         userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
-    func getImage(user: User?) {
+    private func getImage(user: User?) {
         guard let user = user, let id = user.imageId else {
             return
         }
-        let model = ImageModel(storage: FBImageStorage())
-        model.fetch(ids: [id]) { images in
+        imageModel.fetch(ids: [id]) { images in
             if !images.isEmpty {
                 self.images[id] = images[0]
             }

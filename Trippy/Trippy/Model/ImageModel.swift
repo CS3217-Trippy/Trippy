@@ -7,8 +7,8 @@ class ImageModel {
         self.storage = storage
     }
 
-    func add(with images: [TrippyImage]) {
-        storage.add(with: images)
+    func add(with images: [TrippyImage], callback: (([String]) -> Void)? = nil) {
+        storage.add(with: images, callback: callback)
     }
 
     func fetch(ids: [String], callback: @escaping ([UIImage]) -> Void) {
