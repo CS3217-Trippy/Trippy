@@ -7,11 +7,32 @@
 
 import Combine
 import Contacts
+import UIKit
 
 class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
     @Published var rating: Float
+    private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
+    @Published var image: UIImage?
+
+    init(location: Location, imageModel: ImageModel) {
+        self.location = location
+        self.imageModel = imageModel
+        fetchImage()
+    }
+
+    private func fetchImage() {
+        let id = location.imageId
+        guard let imageId = id else {
+            return
+        }
+        imageModel.fetch(ids: [imageId]) { images in
+            if !images.isEmpty {
+                self.image = images[0]
+            }
+        }
+    }
 
     var title: String {
         location.name

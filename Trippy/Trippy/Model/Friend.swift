@@ -1,20 +1,22 @@
 import Foundation
-class Friend: UserRelatedModel {
+import UIKit
+
+class Friend: Model {
     var id: String?
     private(set) var userId: String
     var username: String
-    var userProfilePhoto: URL?
+    var userProfilePhoto: String?
     private(set) var friendId: String
     var friendUsername: String
-    var friendProfilePhoto: URL?
+    var friendProfilePhoto: String?
     private(set) var hasAccepted: Bool
 
     init(userId: String,
          username: String,
-         userProfilePhoto: URL?,
+         userProfilePhoto: String?,
          friendId: String,
          friendUsername: String,
-         friendProfilePhoto: URL?,
+         friendProfilePhoto: String?,
          hasAccepted: Bool) {
         self.id = userId + friendId
         self.userId = userId

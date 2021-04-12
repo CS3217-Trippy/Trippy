@@ -1,6 +1,7 @@
 import FirebaseFirestoreSwift
 import Foundation
-struct FBFriend: FBUserRelatedStorable {
+import UIKit
+struct FBFriend: FBStorable {
     typealias ModelType = Friend
     static var path = "friends"
     @DocumentID var id: String?
@@ -13,37 +14,28 @@ struct FBFriend: FBUserRelatedStorable {
     var hasAccepted: Bool
 
     func convertToModelType() -> ModelType {
-        var friendPhoto: URL?
-        if let url = friendProfilePhoto {
-            friendPhoto = URL(string: url)
-        }
-
-        var userPhoto: URL?
-        if let url = userProfilePhoto {
-            userPhoto = URL(string: url)
-        }
-
-        return Friend(
+        let friend = Friend(
             userId: userId,
             username: username,
-            userProfilePhoto: userPhoto,
+            userProfilePhoto: userProfilePhoto,
             friendId: friendId,
             friendUsername: friendUsername,
-            friendProfilePhoto: friendPhoto,
+            friendProfilePhoto: friendProfilePhoto,
             hasAccepted: hasAccepted
         )
+        return friend
     }
 
     init(item: Friend) {
         self.userId = item.userId
         self.username = item.username
-        self.userProfilePhoto = item.userProfilePhoto?.absoluteString
         self.friendId = item.friendId
         self.friendUsername = item.friendUsername
         self.id = item.id
         self.friendUsername = item.friendUsername
-        self.friendProfilePhoto = item.friendProfilePhoto?.absoluteString
         self.hasAccepted = item.hasAccepted
+        self.friendProfilePhoto = item.friendProfilePhoto
+        self.userProfilePhoto = item.userProfilePhoto
     }
 
 }

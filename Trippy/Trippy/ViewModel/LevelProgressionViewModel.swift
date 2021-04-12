@@ -17,6 +17,10 @@ final class LevelProgressionViewModel: ObservableObject, Identifiable {
 
     init(session: SessionStore) {
         self.session = session
+        self.level = 1
+        self.experience = 0
+        self.experienceToNextLevel = 100
+        self.percentageToNextLevel = 0.0
         guard let userLevelSystemService = session.levelSystemService else {
             self.level = 1
             self.experience = 0

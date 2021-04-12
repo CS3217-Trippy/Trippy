@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LevelSystem: UserRelatedModel {
+class LevelSystem: Model {
     var userId: String
     var id: String?
     var experience: Int

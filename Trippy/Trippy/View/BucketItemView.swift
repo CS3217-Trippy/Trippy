@@ -3,16 +3,12 @@ import URLImage
 
 struct BucketItemView: View {
     @State private var visited = false
-    var viewModel: BucketItemViewModel
+    @ObservedObject var viewModel: BucketItemViewModel
 
     var imageView: some View {
-        if let unwrappedUrl = viewModel.locationImage {
-            return AnyView(URLImage(url: unwrappedUrl,
-                                    content: { image in
-                                        image
-                                            .renderingMode(.original)
-                                            .cardImageModifier()
-                                    }))
+        if let image = viewModel.image {
+            return AnyView(Image(uiImage: image).cardImageModifier()
+            )
         } else {
             return AnyView(Image("Placeholder").cardImageModifier())
         }

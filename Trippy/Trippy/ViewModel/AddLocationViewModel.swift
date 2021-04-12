@@ -9,9 +9,9 @@ import CoreLocation
 import UIKit
 
 class AddLocationViewModel {
-    let locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>
+    let locationModel: LocationModel<FBStorage<FBLocation>>
 
-    init(locationModel: LocationModel<FBImageSupportedStorage<FBLocation>>) {
+    init(locationModel: LocationModel<FBStorage<FBLocation>>) {
         self.locationModel = locationModel
     }
 
@@ -45,12 +45,15 @@ class AddLocationViewModel {
         guard let categoryEnum = LocationCategory(rawValue: category) else {
             return
         }
+        let imageId = UUID().uuidString
         try locationModel.addLocation(
             location: .init(id: nil,
                             coordinates: coordinates,
                             name: formattedName,
                             description: formattedDescription,
-                            category: categoryEnum),
+                            category: categoryEnum,
+                            imageId: imageId
+                            ),
             image: image
         )
     }

@@ -8,13 +8,13 @@
 import Foundation
 
 class AddBucketItemViewModel {
-    let bucketModel: BucketModel<FBUserRelatedStorage<FBBucketItem>>
+    let bucketModel: BucketModel<FBStorage<FBBucketItem>>
     let location: Location
     let user: User?
 
     init(location: Location, user: User?) {
-        let storage = FBUserRelatedStorage<FBBucketItem>(userId: user?.id)
-        self.bucketModel = BucketModel<FBUserRelatedStorage<FBBucketItem>>(storage: storage, userId: user?.id)
+        let storage = FBStorage<FBBucketItem>()
+        self.bucketModel = BucketModel<FBStorage<FBBucketItem>>(storage: storage, userId: user?.id)
         self.location = location
         self.user = user
     }
@@ -31,9 +31,10 @@ class AddBucketItemViewModel {
         guard let userUnwrapped = user else {
             throw BucketListError.invalidUser
         }
+        let imageId = location.imageId
         let bucketItem = BucketItem(locationName: location.name,
                                     locationCategory: location.category,
-                                    locationImage: location.imageURL,
+                                    locationImageId: imageId,
                                     userId: userUnwrapped.id ?? "",
                                     locationId: locationId,
                                     dateVisited: nil,

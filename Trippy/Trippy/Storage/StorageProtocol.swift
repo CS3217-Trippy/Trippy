@@ -7,22 +7,24 @@
 
 import Combine
 
-protocol UserRelatedStorage: ObservableObject {
-    var userId: String? { get }
-
+protocol StorageProtocol: ObservableObject {
     associatedtype StoredType
 
     var storedItems: Published<[StoredType]>.Publisher { get }
 
-    func fetch()
+    func fetch(handler: (([StoredType]) -> Void)?)
 
     func fetchWithId(id: String, handler: ((StoredType) -> Void)?)
 
-    func fetchWithField(field: String, handler: (([StoredType]) -> Void)?)
+    func fetchWithField(field: String, value: String, handler: (([StoredType]) -> Void)?)
+
+    func fetchWithFieldOnce(field: String, value: String, handler: (([StoredType]) -> Void)?)
 
     func add(item: StoredType) throws
 
     func update(item: StoredType) throws
 
     func remove(item: StoredType)
+
+    func removeStoredItems()
 }
