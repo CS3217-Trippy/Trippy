@@ -11,7 +11,7 @@ import UIKit
 
 final class AddFriendViewModel: ObservableObject {
     @Published var usersList: [User] = []
-    @Published var image: UIImage?
+    @Published var images: [String?: UIImage?] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
     private var userStorage: FBStorage<FBUser>
@@ -23,23 +23,27 @@ final class AddFriendViewModel: ObservableObject {
         let storage = FBStorage<FBFriend>()
         self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: storage, userId: user?.id)
         userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)
-        getImage()
     }
 
-    func getImage() {
+    func getImage(user: User?) {
         guard let user = user, let id = user.imageId else {
             return
         }
         let model = ImageModel(storage: FBImageStorage())
         model.fetch(ids: [id]) { images in
             if !images.isEmpty {
-                self.image = images[0]
+                self.images[id] = images[0]
             }
         }
     }
 
     func getUsers() {
-        userStorage.fetch()
+        userStorage.fetch { users in
+            self.usersList = users
+            for user in users {
+                self.getImage(user: user)
+            }
+        }
     }
 
     func addFriend(currentUser: User, user: User) throws {

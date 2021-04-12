@@ -26,10 +26,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
     @Published var currentLoggedInUser: User?
     @Published var session: [User] = [] {
         didSet {
-            print(session.count)
-            for user in session {
-                print(user.username)
-            }
             self.didChange.send(self)
             if session.isEmpty {
                 if authState == .NoUser {
@@ -87,7 +83,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
         self.userStorage.fetchWithId(id: id, handler: nil)
         self.friendStorage = FBStorage<FBFriend>()
-        self.friendStorage?.fetch()
+        self.friendStorage?.fetchWithField(field: "userId", value: id, handler: nil)
         self.levelSystemService = FBLevelSystemService(userId: id)
         self.levelSystemService?.retrieveLevelSystem()
     }
@@ -99,7 +95,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         self.userStorage.fetchWithId(id: id, handler: nil)
         self.userStorage.add(item: user)
         self.friendStorage = FBStorage<FBFriend>()
-        self.friendStorage?.fetch()
+        self.friendStorage?.fetchWithField(field: "userId", value: id, handler: nil)
         self.levelSystemService = FBLevelSystemService(userId: id)
         self.levelSystemService?.createLevelSystem(userId: id)
     }
@@ -206,7 +202,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         guard let id = user.id else {
             fatalError("User should have id")
         }
-        friendStorage?.fetchWithField(field: "friendId", value: id) { friendList in
+        friendStorage?.fetchWithFieldOnce(field: "friendId", value: id) { friendList in
             for associatedFriend in friendList {
                 associatedFriend.friendUsername = user.username
                 associatedFriend.friendProfilePhoto = user.imageId

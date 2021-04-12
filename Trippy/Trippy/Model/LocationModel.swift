@@ -31,7 +31,7 @@ class LocationModel<Storage: StorageProtocol>: ObservableObject where Storage.St
     }
 
     func fetchLocations() {
-        storage.fetch()
+        storage.fetch(handler: nil)
     }
 
     func addLocation(location: Location, image: UIImage? = nil) throws {

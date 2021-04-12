@@ -12,11 +12,13 @@ protocol StorageProtocol: ObservableObject {
 
     var storedItems: Published<[StoredType]>.Publisher { get }
 
-    func fetch()
+    func fetch(handler: (([StoredType]) -> Void)?)
 
     func fetchWithId(id: String, handler: ((StoredType) -> Void)?)
 
     func fetchWithField(field: String, value: String, handler: (([StoredType]) -> Void)?)
+
+    func fetchWithFieldOnce(field: String, value: String, handler: (([StoredType]) -> Void)?)
 
     func add(item: StoredType) throws
 
