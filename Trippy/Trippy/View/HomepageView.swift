@@ -13,15 +13,18 @@ struct HomepageView: View {
     var user: User
 
     var body: some View {
-        let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel)
+        let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
+                                               imageModel: homepageViewModel.imageModel)
         let bucketListView = BucketListView(viewModel: bucketListVM)
 
-        let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel)
+        let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,
+                                                      imageModel: homepageViewModel.imageModel)
         let locationListView = LocationListView(viewModel: locationViewModel)
         let accountPageView = AccountPageView(
             accountPageViewModel: AccountPageViewModel(session: session), user: user)
 
-        let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel)
+        let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
+                                                imageModel: homepageViewModel.imageModel)
         let friendListView = FriendsListView(viewModel: friendListVM)
 
         NavigationView {

@@ -5,10 +5,12 @@ import UIKit
 final class BucketItemViewModel: ObservableObject, Identifiable {
     @Published private var bucketItem: BucketItem
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    private let imageModel: ImageModel
     private(set) var id = ""
-    init(bucketItem: BucketItem, bucketModel: BucketModel<FBStorage<FBBucketItem>>) {
+    init(bucketItem: BucketItem, bucketModel: BucketModel<FBStorage<FBBucketItem>>, imageModel: ImageModel) {
         self.bucketItem = bucketItem
         self.bucketModel = bucketModel
+        self.imageModel = imageModel
         $bucketItem.compactMap { $0.id }.assign(to: \.id, on: self)
             .store(in: &cancellables)
         fetchImage()
@@ -16,11 +18,10 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
 
     private func fetchImage() {
         let id = bucketItem.locationImageId
-        let model = ImageModel(storage: FBImageStorage())
         guard let imageId = id else {
             return
         }
-        model.fetch(ids: [imageId]) { images in
+        imageModel.fetch(ids: [imageId]) { images in
             if !images.isEmpty {
                 self.image = images[0]
             }
