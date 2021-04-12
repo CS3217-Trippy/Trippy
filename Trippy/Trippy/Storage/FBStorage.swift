@@ -10,42 +10,55 @@ import FirebaseFirestoreSwift
 import Firebase
 import Combine
 
-class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserRelatedStorable {
-    var userId: String?
+class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     var storedItems: Published<[Storable.ModelType]>.Publisher {
         $_storedItems
     }
     @Published private var _storedItems: [Storable.ModelType] = []
     private let store = Firestore.firestore()
 
-    init(userId: String?) {
-        self.userId = userId
-    }
-
-    func fetch() {
-        guard let userId = userId else {
-            return
-        }
-        let field = "userId"
-        store.collection(Storable.path).whereField(field, isEqualTo: userId).getDocuments { snapshot, error in
+    func fetch(handler: (([Storable.ModelType]) -> Void)?) {
+        store.collection(Storable.path).addSnapshotListener { snapshot, error in
             if let error = error {
                 print(error)
                 return
             }
-            self._storedItems = snapshot?.documents.compactMap {
+            let result: [Storable.ModelType] = snapshot?.documents.compactMap {
                 guard let fbItem = try? $0.data(as: Storable.self) else {
                     return nil
                 }
                 return fbItem.convertToModelType()
             } ?? []
+            if let handler = handler {
+                handler(result)
+            } else {
+                self._storedItems = result
+            }
         }
     }
 
-    func fetchWithField(field: String, handler: (([Storable.ModelType]) -> Void)?) {
-        guard let userId = userId else {
-            return
+    func fetchWithField(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
+        store.collection(Storable.path).whereField(field, isEqualTo: value).addSnapshotListener { snapshot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            let result: [Storable.ModelType] = snapshot?.documents.compactMap {
+                guard let fbItem = try? $0.data(as: Storable.self) else {
+                    return nil
+                }
+                return fbItem.convertToModelType()
+            } ?? []
+            if let handler = handler {
+                handler(result)
+            } else {
+                self._storedItems = result
+            }
         }
-        store.collection(Storable.path).whereField(field, isEqualTo: userId).getDocuments { snapshot, error in
+    }
+
+    func fetchWithFieldOnce(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
+        store.collection(Storable.path).whereField(field, isEqualTo: value).getDocuments { snapshot, error in
             if let error = error {
                 print(error)
                 return
@@ -65,7 +78,7 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
     }
 
     func fetchWithId(id: String, handler: ((Storable.ModelType) -> Void)?) {
-        store.collection(Storable.path).document(id).getDocument { document, error in
+        store.collection(Storable.path).document(id).addSnapshotListener { document, error in
             if let error = error {
                 print(error)
                 return
@@ -82,7 +95,7 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
         }
     }
 
-    func add(item: Storable.ModelType) throws {
+    func add(item: Storable.ModelType) {
         let fbItem = Storable(item: item)
         do {
             if let id = item.id {
@@ -93,9 +106,6 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
         } catch {
             print(error.localizedDescription)
         }
-        if fbItem.userId == userId {
-            _storedItems.append(item)
-        }
     }
 
     func update(item: Storable.ModelType) throws {
@@ -103,26 +113,18 @@ class FBUserRelatedStorage<Storable>: UserRelatedStorage where Storable: FBUserR
         guard let id = fbItem.id else {
             return
         }
-        try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
-            if let error = error {
-                print("Error Updating: \(error.localizedDescription)")
-            }
-            self._storedItems.removeAll { $0.id == id }
-            self._storedItems.append(item)
-        }
+        try store.collection(Storable.path).document(id).setData(from: fbItem)
     }
 
     func remove(item: Storable.ModelType) {
         guard let id = item.id else {
             return
         }
-        store.collection(Storable.path).document(id).delete { error in
-            if let error = error {
-                print("Error removing document: \(error.localizedDescription)")
-            } else {
-                self._storedItems.removeAll { $0.id == id }
-            }
-        }
+        store.collection(Storable.path).document(id).delete()
+    }
+
+    func removeStoredItems() {
+        self._storedItems.removeAll()
     }
 
     typealias StoredType = Storable.ModelType

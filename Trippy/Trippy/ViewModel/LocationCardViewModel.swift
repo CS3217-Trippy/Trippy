@@ -12,8 +12,32 @@ import Combine
 
 class LocationCardViewModel: Identifiable, ObservableObject {
     @Published var location: Location
+    @Published var image: UIImage?
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
+    let imageModel: ImageModel
+
+    init(location: Location, imageModel: ImageModel) {
+        self.location = location
+        self.imageModel = imageModel
+        $location
+          .compactMap { $0.id }
+          .assign(to: \.id, on: self)
+          .store(in: &cancellables)
+        fetchImage()
+    }
+
+    private func fetchImage() {
+        let id = location.imageId
+        guard let imageId = id else {
+            return
+        }
+        imageModel.fetch(ids: [imageId]) { images in
+            if !images.isEmpty {
+                self.image = images[0]
+            }
+        }
+    }
 
     var title: String {
         location.name
@@ -34,15 +58,4 @@ class LocationCardViewModel: Identifiable, ObservableObject {
         location.category.rawValue.capitalized
     }
 
-    var image: UIImage? {
-        location.image
-    }
-
-    init(location: Location) {
-        self.location = location
-        $location
-          .compactMap { $0.id }
-          .assign(to: \.id, on: self)
-          .store(in: &cancellables)
-    }
 }

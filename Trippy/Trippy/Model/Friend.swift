@@ -5,18 +5,18 @@ class Friend: Model {
     var id: String?
     private(set) var userId: String
     var username: String
-    var userProfilePhoto: UIImage?
+    var userProfilePhoto: String?
     private(set) var friendId: String
     var friendUsername: String
-    var friendProfilePhoto: UIImage?
+    var friendProfilePhoto: String?
     private(set) var hasAccepted: Bool
 
     init(userId: String,
          username: String,
-         userProfilePhoto: UIImage? = nil,
+         userProfilePhoto: String?,
          friendId: String,
          friendUsername: String,
-         friendProfilePhoto: UIImage? = nil,
+         friendProfilePhoto: String?,
          hasAccepted: Bool) {
         self.id = userId + friendId
         self.userId = userId

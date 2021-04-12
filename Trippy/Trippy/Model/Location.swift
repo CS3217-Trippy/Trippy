@@ -13,18 +13,18 @@ class Location: Model {
     var id: String?
     var name: String
     var description: String
-    var image: UIImage?
     var placemark: CLPlacemark?
     var category: LocationCategory
+    var imageId: String?
 
     init(id: String?, coordinates: CLLocationCoordinate2D, name: String,
-         description: String, category: LocationCategory, imageURL: UIImage? = nil) {
+         description: String, category: LocationCategory, imageId: String?) {
         self.id = id
         self.coordinates = coordinates
         self.name = name
+        self.imageId = imageId
         self.description = description
         self.category = category
-        self.image = imageURL
         let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         CLGeocoder().reverseGeocodeLocation(location) { placemark, error in
             guard let placemark = placemark?.first, error == nil else {
@@ -34,4 +34,5 @@ class Location: Model {
             self.placemark = placemark
         }
     }
+
 }

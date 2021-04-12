@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct FBLevelSystem: FBUserRelatedStorable {
+struct FBLevelSystem: FBStorable {
     typealias ModelType = LevelSystem
     static var path = "levelSystem"
     @DocumentID var id: String?

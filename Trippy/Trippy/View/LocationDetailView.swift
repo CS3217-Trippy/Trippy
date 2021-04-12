@@ -55,7 +55,7 @@ struct LocationDetailView: View {
         ScrollView {
             VStack {
                addBucketView
-                if let image = viewModel.location.image {
+                if let image = viewModel.image {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -79,6 +79,7 @@ struct LocationDetailView: View {
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationDetailView(viewModel: .init(location: PreviewLocations.locations[0]))
+        LocationDetailView(viewModel: .init(location: PreviewLocations.locations[0],
+                                            imageModel: ImageModel(storage: FBImageStorage())))
     }
 }

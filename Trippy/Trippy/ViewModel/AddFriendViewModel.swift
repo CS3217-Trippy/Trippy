@@ -7,23 +7,43 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class AddFriendViewModel: ObservableObject {
     @Published var usersList: [User] = []
+    @Published var images: [String?: UIImage?] = [:]
     private var cancellables: Set<AnyCancellable> = []
-    private var friendsListModel: FriendsListModel<FBUserRelatedStorage<FBFriend>>
-    private var userStorage: FBImageSupportedStorage<FBUser>
+    private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
+    private var userStorage: FBStorage<FBUser>
+    private var imageModel = ImageModel(storage: FBImageStorage())
+    private var user: User?
 
     init(session: SessionStore) {
         userStorage = session.userStorage
-        let user = session.currentLoggedInUser
-        let storage = FBUserRelatedStorage<FBFriend>(userId: user?.id)
-        self.friendsListModel = FriendsListModel<FBUserRelatedStorage<FBFriend>>(storage: storage, userId: user?.id)
+        self.user = session.currentLoggedInUser
+        let storage = FBStorage<FBFriend>()
+        self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: storage, userId: user?.id)
         userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
+    private func getImage(user: User?) {
+        guard let user = user, let id = user.imageId else {
+            return
+        }
+        imageModel.fetch(ids: [id]) { images in
+            if !images.isEmpty {
+                self.images[id] = images[0]
+            }
+        }
+    }
+
     func getUsers() {
-        userStorage.fetch()
+        userStorage.fetch { users in
+            self.usersList = users
+            for user in users {
+                self.getImage(user: user)
+            }
+        }
     }
 
     func addFriend(currentUser: User, user: User) throws {
@@ -41,10 +61,10 @@ final class AddFriendViewModel: ObservableObject {
         return Friend(
             userId: userId,
             username: to.username,
-            userProfilePhoto: to.imageURL,
+            userProfilePhoto: to.imageId,
             friendId: friendId,
             friendUsername: from.username,
-            friendProfilePhoto: from.imageURL,
+            friendProfilePhoto: from.imageId,
             hasAccepted: false
         )
     }
