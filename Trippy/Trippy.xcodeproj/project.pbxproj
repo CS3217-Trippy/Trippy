@@ -15,6 +15,11 @@
 		01088F5C2606442F00579707 /* BucketListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01088F5B2606442F00579707 /* BucketListError.swift */; };
 		011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */; };
 		011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C82605BBCE0028F971 /* AddBucketItemView.swift */; };
+		0112EEA326248A8400F420E2 /* Meetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112EEA226248A8400F420E2 /* Meetup.swift */; };
+		0112EEA826248BF200F420E2 /* FBMeetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112EEA726248BF200F420E2 /* FBMeetup.swift */; };
+		0112EEAD26248DE400F420E2 /* MeetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112EEAC26248DE400F420E2 /* MeetupModel.swift */; };
+		0112EEB226248FF700F420E2 /* MeetupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112EEB126248FF700F420E2 /* MeetupListViewModel.swift */; };
+		0112EEB7262492DD00F420E2 /* MeetupItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112EEB6262492DD00F420E2 /* MeetupItemViewModel.swift */; };
 		0118657B25F9D8BA00BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */; };
 		012CE5C926121E0E00039A25 /* LocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5C826121E0E00039A25 /* LocationRecommender.swift */; };
 		012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */; };
@@ -34,6 +39,12 @@
 		017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */; };
 		017FD8D525F7B9020064EF40 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D425F7B9020064EF40 /* FirebaseMessaging */; };
 		017FD8D725F7B9020064EF40 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8D625F7B9020064EF40 /* FirebaseAuth */; };
+		01E5AA672625AEF400A8D9C6 /* CreateMeetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA662625AEF400A8D9C6 /* CreateMeetupViewModel.swift */; };
+		01E5AA6F2625BB3900A8D9C6 /* CreateMeetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA6E2625BB3900A8D9C6 /* CreateMeetupView.swift */; };
+		01E5AA742625D87A00A8D9C6 /* MeetupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */; };
+		01E5AA792625D8A100A8D9C6 /* MeetupItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA782625D8A100A8D9C6 /* MeetupItemView.swift */; };
+		01E5AA812625DDDE00A8D9C6 /* MeetupDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA802625DDDE00A8D9C6 /* MeetupDetailViewModel.swift */; };
+		01E5AA862625DF2300A8D9C6 /* MeetupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA852625DF2300A8D9C6 /* MeetupDetailView.swift */; };
 		01EFA3882612F93A002FEA23 /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EFA3872612F93A002FEA23 /* LocationCategory.swift */; };
 		01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */; };
 		01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */; };
@@ -158,6 +169,11 @@
 		01088F5B2606442F00579707 /* BucketListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListError.swift; sourceTree = "<group>"; };
 		011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBucketItemViewModel.swift; sourceTree = "<group>"; };
 		011172C82605BBCE0028F971 /* AddBucketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBucketItemView.swift; sourceTree = "<group>"; };
+		0112EEA226248A8400F420E2 /* Meetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meetup.swift; sourceTree = "<group>"; };
+		0112EEA726248BF200F420E2 /* FBMeetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMeetup.swift; sourceTree = "<group>"; };
+		0112EEAC26248DE400F420E2 /* MeetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupModel.swift; sourceTree = "<group>"; };
+		0112EEB126248FF700F420E2 /* MeetupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupListViewModel.swift; sourceTree = "<group>"; };
+		0112EEB6262492DD00F420E2 /* MeetupItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupItemViewModel.swift; sourceTree = "<group>"; };
 		0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		012CE5C826121E0E00039A25 /* LocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRecommender.swift; sourceTree = "<group>"; };
 		012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocationRecommender.swift; sourceTree = "<group>"; };
@@ -176,6 +192,12 @@
 		017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyUITests.swift; sourceTree = "<group>"; };
 		017FD8B625F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01E5AA662625AEF400A8D9C6 /* CreateMeetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetupViewModel.swift; sourceTree = "<group>"; };
+		01E5AA6E2625BB3900A8D9C6 /* CreateMeetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetupView.swift; sourceTree = "<group>"; };
+		01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupListView.swift; sourceTree = "<group>"; };
+		01E5AA782625D8A100A8D9C6 /* MeetupItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupItemView.swift; sourceTree = "<group>"; };
+		01E5AA802625DDDE00A8D9C6 /* MeetupDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupDetailViewModel.swift; sourceTree = "<group>"; };
+		01E5AA852625DF2300A8D9C6 /* MeetupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupDetailView.swift; sourceTree = "<group>"; };
 		01EFA3872612F93A002FEA23 /* LocationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCategory.swift; sourceTree = "<group>"; };
 		01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemView.swift; sourceTree = "<group>"; };
 		01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListView.swift; sourceTree = "<group>"; };
@@ -424,6 +446,10 @@
 				76E74BE92613CD57004BA414 /* LevelProgressionView.swift */,
 				7617D1A02625B49500D94782 /* AchievementListView.swift */,
 				7617D1A52625B51B00D94782 /* AchievementItemView.swift */,
+				01E5AA6E2625BB3900A8D9C6 /* CreateMeetupView.swift */,
+				01E5AA782625D8A100A8D9C6 /* MeetupItemView.swift */,
+				01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */,
+				01E5AA852625DF2300A8D9C6 /* MeetupDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,6 +474,8 @@
 				0106B3392622F5B500574097 /* ImageModel.swift */,
 				0106B3432622F87400574097 /* Trippyimage.swift */,
 				7617D18E2625AD4600D94782 /* AchievementModel.swift */,
+				0112EEA226248A8400F420E2 /* Meetup.swift */,
+				0112EEAC26248DE400F420E2 /* MeetupModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,6 +504,10 @@
 				76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */,
 				7617D1932625AE3300D94782 /* AchievementItemViewModel.swift */,
 				7617D19B2625AF7700D94782 /* AchievementListViewModel.swift */,
+				0112EEB126248FF700F420E2 /* MeetupListViewModel.swift */,
+				0112EEB6262492DD00F420E2 /* MeetupItemViewModel.swift */,
+				01E5AA662625AEF400A8D9C6 /* CreateMeetupViewModel.swift */,
+				01E5AA802625DDDE00A8D9C6 /* MeetupDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -518,6 +550,7 @@
 				7617D15F262183A600D94782 /* FBAchievement.swift */,
 				0106B37D2622FFCC00574097 /* FBStorage.swift */,
 				0106B38B262300E200574097 /* StorageProtocol.swift */,
+				0112EEA726248BF200F420E2 /* FBMeetup.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -715,7 +748,9 @@
 				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
 				76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */,
 				71FFCE012604BA6300309D80 /* ContentView.swift in Sources */,
+				0112EEAD26248DE400F420E2 /* MeetupModel.swift in Sources */,
 				71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */,
+				01E5AA742625D87A00A8D9C6 /* MeetupListView.swift in Sources */,
 				714B10C826060D6C0040FAA1 /* ImagePicker.swift in Sources */,
 				012CE5C926121E0E00039A25 /* LocationRecommender.swift in Sources */,
 				7617D16E2622338E00D94782 /* AchievementService.swift in Sources */,
@@ -723,6 +758,7 @@
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */,
 				7694EA3826015AB800AF9E63 /* AccountPageView.swift in Sources */,
+				01E5AA812625DDDE00A8D9C6 /* MeetupDetailViewModel.swift in Sources */,
 				0106B38C262300E200574097 /* StorageProtocol.swift in Sources */,
 				714C54E9260C6C9D00C75D92 /* Model.swift in Sources */,
 				7694E9E225FDF75A00AF9E63 /* SignUpViewModel.swift in Sources */,
@@ -734,17 +770,20 @@
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				714AF262260B85C20034269C /* FBLocation.swift in Sources */,
 				76E74BDB26137B94004BA414 /* ExperienceAction.swift in Sources */,
+				01E5AA792625D8A100A8D9C6 /* MeetupItemView.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */,
 				DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
+				0112EEB226248FF700F420E2 /* MeetupListViewModel.swift in Sources */,
 				76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */,
 				7617D1732622348700D94782 /* AchievementType.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
+				01E5AA862625DF2300A8D9C6 /* MeetupDetailView.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
 				01483A452610728D00D840EA /* Friend.swift in Sources */,
 				714C54F1260C7F8000C75D92 /* FBStorable.swift in Sources */,
@@ -757,6 +796,7 @@
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
 				DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */,
 				01483A4A26107AA400D840EA /* FBFriend.swift in Sources */,
+				0112EEA326248A8400F420E2 /* Meetup.swift in Sources */,
 				76E74BE026137BFF004BA414 /* LevelSystemUtil.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
@@ -769,6 +809,7 @@
 				7617D1A62625B51B00D94782 /* AchievementItemView.swift in Sources */,
 				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
+				01E5AA6F2625BB3900A8D9C6 /* CreateMeetupView.swift in Sources */,
 				0106B3442622F87400574097 /* Trippyimage.swift in Sources */,
 				76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
@@ -781,7 +822,9 @@
 				7617D1942625AE3300D94782 /* AchievementItemViewModel.swift in Sources */,
 				76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */,
 				012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */,
+				0112EEA826248BF200F420E2 /* FBMeetup.swift in Sources */,
 				DB2D33622612F3B4000C2351 /* CurrentWeather.swift in Sources */,
+				0112EEB7262492DD00F420E2 /* MeetupItemViewModel.swift in Sources */,
 				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
 				0106B33F2622F76A00574097 /* ImageStorage.swift in Sources */,
 				7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */,
@@ -808,6 +851,7 @@
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
 				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
 				7617D1A12625B49500D94782 /* AchievementListView.swift in Sources */,
+				01E5AA672625AEF400A8D9C6 /* CreateMeetupViewModel.swift in Sources */,
 				7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */,
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,

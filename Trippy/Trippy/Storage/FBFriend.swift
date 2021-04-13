@@ -1,6 +1,6 @@
 import FirebaseFirestoreSwift
 import Foundation
-import UIKit
+
 struct FBFriend: FBStorable {
     typealias ModelType = Friend
     static var path = "friends"

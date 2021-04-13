@@ -14,11 +14,15 @@ final class HomepageViewModel: ObservableObject {
     @Published var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     @Published var friendsModel: FriendsListModel<FBStorage<FBFriend>>
     @Published var achievementsModel: AchievementModel<FBStorage<FBAchievement>>
+    @Published var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
 
-    init(session: SessionStore, locationCoordinator: LocationCoordinator, showLocationAlert: Binding<Bool>,
-         alertTitle: Binding<String>, alertContent: Binding<String>) {
+    init(session: SessionStore,
+         locationCoordinator: LocationCoordinator,
+         showLocationAlert: Binding<Bool>,
+         alertTitle: Binding<String>,
+         alertContent: Binding<String>) {
         let imageStorage = FBImageStorage()
         let imageModel = ImageModel(storage: imageStorage)
         self.imageModel = imageModel
@@ -58,5 +62,12 @@ final class HomepageViewModel: ObservableObject {
             alertContent: alertContent,
             levelSystemService: session.levelSystemService
         )
+
+        let meetupStorage = FBStorage<FBMeetup>()
+        let meetupModel = MeetupModel<FBStorage<FBMeetup>>(
+            storage: meetupStorage,
+            userId: session.currentLoggedInUser?.id
+        )
+        self.meetupModel = meetupModel
     }
 }

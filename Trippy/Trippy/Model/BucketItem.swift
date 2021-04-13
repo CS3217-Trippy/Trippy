@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 class BucketItem: Model {
     var id: String?
