@@ -21,20 +21,32 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
     }
 
    func fetchMeetups() {
-        guard let userId = userId else {
-            return
-        }
-        let field = "hostUserId"
-        storage.fetchWithField(field: field, value: userId, handler: nil)
-        storage.fetchWithFieldContainsAny(field: field, value: [userId], handler: nil)
+    guard let userId = userId else {
+        return
+    }
+    self.meetupItems = []
+    let field = "hostUserId"
+    storage.fetchWithField(field: field, value: userId) { meetups in
+        self.meetupItems.removeAll { $0.hostUserId == userId }
+        self.meetupItems.append(contentsOf: meetups)
+    }
+    let usersField = "userIds"
+    storage.fetchWithFieldContainsAny(field: usersField, value: [userId]) { meetups in
+        self.meetupItems.removeAll { $0.hostUserId != userId }
+        self.meetupItems.append(contentsOf: meetups)
+    }
     }
 
-    func removeMeetup(meetup: Meetup) {
-        storage.remove(item: meetup)
+    func addMeetup(meetup: Meetup) throws {
+        try storage.add(item: meetup)
     }
 
     func updateMeetup(meetup: Meetup) throws {
         try storage.update(item: meetup)
+    }
+
+    func removeMeetup(meetup: Meetup) {
+        storage.remove(item: meetup)
     }
 
 }

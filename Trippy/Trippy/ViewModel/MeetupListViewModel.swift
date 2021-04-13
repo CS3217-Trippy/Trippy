@@ -26,6 +26,7 @@ final class MeetupListViewModel: ObservableObject {
         }
         .assign(to: \.meetupItemViewModels, on: self)
         .store(in: &cancellables)
+        fetch()
     }
 
     func fetch() {

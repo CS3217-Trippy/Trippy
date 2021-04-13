@@ -9,6 +9,7 @@ class Meetup: Model {
     var id: String?
     var userIds: [String]
     var userProfilePhotoIds: [String]
+    var hostUsername: String
     var hostUserId: String
     var locationName: String
     var locationCategory: LocationCategory
@@ -21,6 +22,7 @@ class Meetup: Model {
     init(id: String?,
          userIds: [String],
          userProfilePhotoIds: [String],
+         hostUsername: String,
          hostUserId: String,
          locationImageId: String?,
          locationName: String,
@@ -34,6 +36,7 @@ class Meetup: Model {
         self.locationName = locationName
         self.locationCategory = locationCategory
         self.locationImageId = locationImageId
+        self.hostUsername = hostUsername
         self.hostUserId = hostUserId
         self.userIds = userIds
         self.locationId = locationId
@@ -41,5 +44,4 @@ class Meetup: Model {
         self.dateAdded = dateAdded
         self.userDescription = userDescription
     }
-
 }

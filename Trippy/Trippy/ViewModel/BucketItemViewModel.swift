@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 
 final class BucketItemViewModel: ObservableObject, Identifiable {
-    @Published private var bucketItem: BucketItem
+    @Published var bucketItem: BucketItem
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     private let imageModel: ImageModel
     private(set) var id = ""
