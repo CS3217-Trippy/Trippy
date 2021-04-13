@@ -34,7 +34,7 @@ struct FriendsItemView: View {
                     Button(action: {
                         do {
                             try friendsItemViewModel.acceptFriend()
-                            completeFriendCountAchievement(friend: friendsItemViewModel.friend)
+//                            completeFriendCountAchievement(friend: friendsItemViewModel.friend)
                             session.levelSystemService?
                                 .generateExperienceFromAddingFriend(friend: friendsItemViewModel.friend)
                         } catch {

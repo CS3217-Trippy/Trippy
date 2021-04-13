@@ -44,13 +44,8 @@ final class FBSessionStore: ObservableObject, SessionStore {
             }
         }
     }
-    private var friends: [Friend] = []
     var userStorage = FBStorage<FBUser>()
-    private var friendStorage: FBStorage<FBFriend>? {
-        didSet {
-            friendStorage?.storedItems.assign(to: \.friends, on: self).store(in: &cancellables)
-        }
-    }
+    private var friendStorage: FBStorage<FBFriend>?
     @Published var levelSystemService: LevelSystemService?
     @Published var achievementService: AchievementService?
     private var username = ""
@@ -84,7 +79,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
         self.userStorage.fetchWithId(id: id, handler: nil)
         self.friendStorage = FBStorage<FBFriend>()
-        self.friendStorage?.fetchWithField(field: "userId", value: id, handler: nil)
         self.levelSystemService = FBLevelSystemService(userId: id)
         self.levelSystemService?.retrieveLevelSystem()
         self.achievementService = FBAchievementService(userStorage: self.userStorage)
@@ -97,7 +91,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
         self.userStorage.fetchWithId(id: id, handler: nil)
         self.userStorage.add(item: user)
         self.friendStorage = FBStorage<FBFriend>()
-        self.friendStorage?.fetchWithField(field: "userId", value: id, handler: nil)
         self.levelSystemService = FBLevelSystemService(userId: id)
         self.levelSystemService?.createLevelSystem(userId: id)
         self.achievementService = FBAchievementService(userStorage: self.userStorage)
@@ -194,22 +187,22 @@ final class FBSessionStore: ObservableObject, SessionStore {
         guard let user = currentLoggedInUser else {
             fatalError("User should have logged in")
         }
-        for friend in friends {
-            print(friend.friendUsername + " " + String(friend.hasAccepted))
-            friend.username = user.username
-            friend.userProfilePhoto = user.imageId
-            do {
-                try self.friendStorage?.update(item: friend)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
         guard let id = user.id else {
             fatalError("User should have id")
         }
+        friendStorage?.fetchWithFieldOnce(field: "userId", value: id) { friends in
+            for friend in friends {
+                friend.username = user.username
+                friend.userProfilePhoto = user.imageId
+                do {
+                    try self.friendStorage?.update(item: friend)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
         friendStorage?.fetchWithFieldOnce(field: "friendId", value: id) { friendList in
             for associatedFriend in friendList {
-                print("Asso: " + associatedFriend.username + " " + String(associatedFriend.hasAccepted))
                 associatedFriend.friendUsername = user.username
                 associatedFriend.friendProfilePhoto = user.imageId
                 do {
