@@ -13,6 +13,7 @@ struct HomepageView: View {
     var user: User
 
     var body: some View {
+        let hexColor = "001482"
         let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
                                                imageModel: homepageViewModel.imageModel)
         let bucketListView = BucketListView(viewModel: bucketListVM)
@@ -48,29 +49,31 @@ struct HomepageView: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack(spacing: 10) {
                     Text("Welcome, \(user.username)")
-                        .font(.title)
+                        .bold()
+                        .font(.largeTitle)
+                        .foregroundColor(Color(hex: "000000"))
 
                     NavigationLink(destination: bucketListView) {
-                        RaisedNavigationText(text: "BUCKET LIST")
+                        RaisedNavigationText(text: "BUCKET LIST", colorHex: hexColor).cornerRadius(10)
                     }
                     NavigationLink(destination: meetupListView) {
-                        RaisedNavigationText(text: "MEETUPS")
+                        RaisedNavigationText(text: "MEETUPS", colorHex: hexColor).cornerRadius(10)
                     }
                     NavigationLink(destination: locationListView) {
-                        RaisedNavigationText(text: "LOCATIONS")
+                        RaisedNavigationText(text: "LOCATIONS", colorHex: hexColor).cornerRadius(10)
                     }
                     NavigationLink(destination: friendListView) {
-                        RaisedNavigationText(text: "FRIENDS")
+                        RaisedNavigationText(text: "FRIENDS", colorHex: hexColor).cornerRadius(10)
                     }
                     NavigationLink(destination: accountPageView) {
-                        RaisedNavigationText(text: "ACCOUNT PAGE")
+                        RaisedNavigationText(text: "ACCOUNT PAGE", colorHex: hexColor).cornerRadius(10)
                     }
                     NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-                        RaisedNavigationText(text: "ADD FRIEND")
+                        RaisedNavigationText(text: "ADD FRIEND", colorHex: hexColor).cornerRadius(10)
                     }
-                    RaisedButton(child: "SIGN OUT") {
+                    RaisedButton(child: "SIGN OUT", colorHex: hexColor) {
                         _ = self.session.signOut()
-                    }.padding()
+                    }.cornerRadius(10)
                 }.zIndex(100)
             }
         }.navigationViewStyle(StackNavigationViewStyle())

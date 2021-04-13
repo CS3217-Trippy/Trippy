@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RaisedButton: View {
     let child: String
-    var colorHex = "287bf7"
+    var colorHex: String
     var callback: () -> Void
     var body: some View {
         Button(action: callback) {

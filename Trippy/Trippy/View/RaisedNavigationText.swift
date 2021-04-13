@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RaisedNavigationText: View {
     var text: String
-    var colorHex = "287bf7"
+    var colorHex: String
     var body: some View {
         Text(text)
             .frame(width: 400, height: 50, alignment: .center)

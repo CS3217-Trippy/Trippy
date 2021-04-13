@@ -30,15 +30,15 @@ struct StartUpView: View {
                 SecureField("PASSWORD", text: $logInViewModel.password)
                     .frame(width: 400, height: 50, alignment: .center)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                RaisedButton(child: "LOGIN") {
-                    self.logInViewModel.login()
-                }.padding()
                 Text(logInViewModel.errorMessage)
                     .foregroundColor(.red)
+                RaisedButton(child: "LOGIN", colorHex: "287bf7") {
+                    self.logInViewModel.login()
+                }.cornerRadius(10)
+                Text("")
                 NavigationLink(destination: SignUpView(signUpViewModel: SignUpViewModel(session: session))) {
-                    Text("SIGN UP")
-                }.padding()
-                // Spacer()
+                    RaisedNavigationText(text: "SIGN UP", colorHex: "287bf7").cornerRadius(10)
+                }
             }
             .padding()
         }
@@ -46,8 +46,9 @@ struct StartUpView: View {
     }
 }
 
-// struct StartUpView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        StartUpView(login)
-//    }
-// }
+struct StartUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        StartUpView(logInViewModel: LogInViewModel(session: FBSessionStore()))
+            .environmentObject(FBSessionStore())
+    }
+}
