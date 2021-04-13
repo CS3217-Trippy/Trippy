@@ -77,23 +77,25 @@ final class FBSessionStore: ObservableObject, SessionStore {
         guard let id = user.id else {
             fatalError("User should have id generated from firebase auth")
         }
+        let achievementService = FBAchievementService()
         self.userStorage.fetchWithId(id: id, handler: nil)
         self.friendStorage = FBStorage<FBFriend>()
-        self.levelSystemService = FBLevelSystemService(userId: id)
+        self.achievementService = achievementService
+        self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
         self.levelSystemService?.retrieveLevelSystem()
-        self.achievementService = FBAchievementService(userStorage: self.userStorage)
     }
 
     private func prepareInformationAfterSuccessfulSignUp(user: User) {
         guard let id = user.id else {
             fatalError("User should have id generated from firebase auth")
         }
+        let achievementService = FBAchievementService()
         self.userStorage.fetchWithId(id: id, handler: nil)
         self.userStorage.add(item: user)
         self.friendStorage = FBStorage<FBFriend>()
-        self.levelSystemService = FBLevelSystemService(userId: id)
+        self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
         self.levelSystemService?.createLevelSystem(userId: id)
-        self.achievementService = FBAchievementService(userStorage: self.userStorage)
+        self.achievementService = FBAchievementService()
     }
 
     private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
@@ -177,7 +179,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 let model = ImageModel(storage: FBImageStorage())
                 model.add(with: [trippyImage])
             }
-            try self.userStorage.update(item: updatedUser)
+            try self.userStorage.update(item: updatedUser, handler: nil)
         } catch {
             print("Updating user failed")
         }
@@ -195,7 +197,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 friend.username = user.username
                 friend.userProfilePhoto = user.imageId
                 do {
-                    try self.friendStorage?.update(item: friend)
+                    try self.friendStorage?.update(item: friend, handler: nil)
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -206,7 +208,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 associatedFriend.friendUsername = user.username
                 associatedFriend.friendProfilePhoto = user.imageId
                 do {
-                    try self.friendStorage?.update(item: associatedFriend)
+                    try self.friendStorage?.update(item: associatedFriend, handler: nil)
                 } catch {
                     print(error.localizedDescription)
                 }

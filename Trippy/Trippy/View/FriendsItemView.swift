@@ -34,7 +34,6 @@ struct FriendsItemView: View {
                     Button(action: {
                         do {
                             try friendsItemViewModel.acceptFriend()
-//                            completeFriendCountAchievement(friend: friendsItemViewModel.friend)
                             session.levelSystemService?
                                 .generateExperienceFromAddingFriend(friend: friendsItemViewModel.friend)
                         } catch {
@@ -48,24 +47,5 @@ struct FriendsItemView: View {
             }
             }
         )
-    }
-
-    private func completeFriendCountAchievement(friend: Friend) {
-        guard let user = session.currentLoggedInUser else {
-            return
-        }
-        guard let userLevelSystem = session.levelSystemService?.getUserLevelSystem() else {
-            fatalError("User should have level system")
-        }
-        var completion = userLevelSystem.friendsIdAddedBefore.count
-        if !userLevelSystem.friendsIdAddedBefore.contains(friend.friendId) {
-            completion += 1
-        }
-        let achievementsCompleted =
-            session.achievementService?.checkForCompletions(
-                type: .FriendCount(completion: 0),
-                completion: completion
-            ) ?? []
-        session.achievementService?.completeAchievements(for: user, achievement: achievementsCompleted)
     }
 }

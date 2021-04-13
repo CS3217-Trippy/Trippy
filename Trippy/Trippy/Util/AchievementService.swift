@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AchievementService {
-    func completeAchievements(for user: User, achievement: [Achievement])
+    func completeAchievements(for id: String, achievement: [Achievement])
 
     func checkForCompletions(type: AchievementType, completion: Int) -> [Achievement]
 }

@@ -8,51 +8,53 @@
 import Combine
 
 class FBAchievementService: AchievementService {
-    var userStorage: FBStorage<FBUser>
+    var userStorage = FBStorage<FBUser>()
     var achievementStorage = FBStorage<FBAchievement>()
     @Published var trippyAchievements = [Achievement]()
     private var cancellables: Set<AnyCancellable> = []
 
-    init(userStorage: FBStorage<FBUser>) {
-        self.userStorage = userStorage
+    init() {
         self.achievementStorage.fetch(handler: nil)
         self.achievementStorage.storedItems.assign(to: \.trippyAchievements, on: self).store(in: &self.cancellables)
     }
 
-    func completeAchievements(for user: User, achievement: [Achievement]) {
+    func completeAchievements(for id: String, achievement: [Achievement]) {
         if achievement.isEmpty {
             return
         }
-        let userCompletedAchievemnets = user.achievements
-        var newCompletedAchievements = user.achievements
-        for completed in achievement {
-            if userCompletedAchievemnets.contains(where: { $0 == completed.id }) {
-                continue
+        userStorage.fetchWithId(id: id) { user in
+            let userCompletedAchievemnets = user.achievements
+            var newCompletedAchievements = user.achievements
+            for completed in achievement {
+                if userCompletedAchievemnets.contains(where: { $0 == completed.id }) {
+                    continue
+                }
+                guard let id = completed.id else {
+                    continue
+                }
+                newCompletedAchievements.append(id)
             }
-            guard let id = completed.id else {
-                continue
+            let newUser = User(
+                id: user.id,
+                email: user.email,
+                username: user.username,
+                friendsId: user.friendsId,
+                levelSystemId: user.levelSystemId,
+                achievements: newCompletedAchievements,
+                imageId: user.imageId
+            )
+            do {
+                try self.userStorage.update(item: newUser, handler: nil)
+            } catch {
+                print(error.localizedDescription)
             }
-            newCompletedAchievements.append(id)
-        }
-        let newUser = User(
-            id: user.id,
-            email: user.email,
-            username: user.username,
-            friendsId: user.friendsId,
-            levelSystemId: user.levelSystemId,
-            achievements: newCompletedAchievements,
-            imageId: user.imageId
-        )
-        do {
-            try userStorage.update(item: newUser)
-        } catch {
-            print(error.localizedDescription)
         }
     }
 
     func checkForCompletions(type: AchievementType, completion: Int) -> [Achievement] {
         var completedAchievements = [Achievement]()
         for achievement in trippyAchievements {
+            print("Achievement: \(achievement.name)")
             let achievementTypeName = achievement.achievementType.getTypeDescription()
             let achievementCompletion = achievement.achievementType.getCompletion()
             let typeNameToCompare = type.getTypeDescription()

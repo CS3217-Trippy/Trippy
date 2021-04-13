@@ -10,12 +10,14 @@ import Combine
 
 final class FBLevelSystemService: LevelSystemService, ObservableObject {
     private var userId: String
+    var achievementService: AchievementService
     var levelSystemStorage: FBStorage<FBLevelSystem>
     @Published var levelSystem = [LevelSystem]()
     private var cancellables: Set<AnyCancellable> = []
 
-    init(userId: String) {
+    init(userId: String, achievementService: AchievementService) {
         self.userId = userId
+        self.achievementService = achievementService
         self.levelSystemStorage = FBStorage<FBLevelSystem>()
         self.levelSystemStorage.storedItems.assign(to: \.levelSystem, on: self).store(in: &self.cancellables)
     }
@@ -45,7 +47,13 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
 
     private func updateLevelSystem(userLevelSystem: LevelSystem) {
         do {
-            try levelSystemStorage.update(item: userLevelSystem)
+            try levelSystemStorage.update(item: userLevelSystem) { _ in
+                let completion = userLevelSystem.friendsIdAddedBefore.count
+                let completedAchievements = self.achievementService.checkForCompletions(
+                    type: .FriendCount(completion: 0), completion: completion
+                )
+                self.achievementService.completeAchievements(for: self.userId, achievement: completedAchievements)
+            }
         } catch {
             print(error.localizedDescription)
         }
@@ -64,7 +72,10 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
     }
 
     func generateExperienceFromAddingFriend(friend: Friend) {
-        let friendLevelSystemService = FBLevelSystemService(userId: friend.friendId)
+        let friendLevelSystemService = FBLevelSystemService(
+            userId: friend.friendId,
+            achievementService: achievementService
+        )
         let friendLevelSystemStorage = friendLevelSystemService.levelSystemStorage
         friendLevelSystemStorage.fetchWithId(id: friend.friendId) { friendLevelSystem in
             let friendAddedFriends = friendLevelSystem.friendsIdAddedBefore
