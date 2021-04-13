@@ -23,9 +23,9 @@ struct SignUpView: View {
                 .frame(width: 400, height: nil, alignment: .center)
             SecureField("CONFIRM PASSSWORD", text: $signUpViewModel.confirmPassword)
                 .frame(width: 400, height: nil, alignment: .center)
-            Button("SIGN UP") {
+            RaisedButton(child: "SIGN UP") {
                 self.signUpViewModel.signUp()
-            }
+            }.padding()
             Text(signUpViewModel.errorMessage)
                 .foregroundColor(.red)
         }

@@ -9,7 +9,6 @@ struct RaisedButton: View {
             Text(child).foregroundColor(Color.white)
                 .frame(width: 400, height: 50)
         }
-        .padding()
         .cornerRadius(5)
         .shadow(radius: 20)
         .background(Color(hex: colorHex))

@@ -31,12 +31,12 @@ struct StartUpView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 RaisedButton(child: "LOGIN") {
                     self.logInViewModel.login()
-                }
+                }.padding()
                 Text(logInViewModel.errorMessage)
                     .foregroundColor(.red)
                 NavigationLink(destination: SignUpView(signUpViewModel: SignUpViewModel(session: session))) {
                     Text("SIGN UP")
-                }
+                }.padding()
                 // Spacer()
             }
             .padding()
