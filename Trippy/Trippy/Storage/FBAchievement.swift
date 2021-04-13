@@ -18,6 +18,7 @@ struct FBAchievement: FBStorable {
     var imageIds: [String] = []
     var type: String
     var completion: Int
+    var exp: Int
 
     init(item: ModelType) {
         self.id = item.id
@@ -25,6 +26,7 @@ struct FBAchievement: FBStorable {
         self.description = item.description
         self.completion = item.achievementType.getCompletion()
         self.type = item.achievementType.getTypeDescription()
+        self.exp = item.exp
         if let id = item.imageId {
             imageIds.append(id)
         }
@@ -40,6 +42,7 @@ struct FBAchievement: FBStorable {
             name: name,
             description: description,
             achievementType: AchievementType.generateAchievementType(type: type, completion: completion),
+            exp: exp,
             imageId: imageId
         )
 

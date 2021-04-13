@@ -11,12 +11,21 @@ class Achievement: Model {
     var description: String
     var imageId: String?
     var achievementType: AchievementType
+    var exp: Int
 
-    init(id: String?, name: String, description: String, achievementType: AchievementType, imageId: String?) {
+    init(
+        id: String?,
+        name: String,
+        description: String,
+        achievementType: AchievementType,
+        exp: Int,
+        imageId: String?
+    ) {
         self.id = id
         self.name = name
         self.description = description
         self.achievementType = achievementType
+        self.exp = exp
         self.imageId = imageId
     }
 }

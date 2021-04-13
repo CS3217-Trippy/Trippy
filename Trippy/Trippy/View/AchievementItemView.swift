@@ -25,7 +25,6 @@ struct AchievementItemView: View {
                 .bold()
                 .font(.headline)
             Text(viewModel.achievementDescription).fontWeight(.light)
-            Image(systemName: "trash").foregroundColor(.red)
         }
     }
 

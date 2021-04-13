@@ -61,6 +61,10 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
                     for: self.userId,
                     achievement: completedFriendAchievements + completedBucketAchievements
                 )
+                self.generateExperienceFromCompletingAchievements(
+                    achievements: completedFriendAchievements + completedBucketAchievements,
+                    levelSystem: userLevelSystem
+                )
             }
         } catch {
             print(error.localizedDescription)
@@ -76,6 +80,29 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             userLevelSystem.experience = currentExperience + expToAdd - experienceToNextLevel
         } else {
             userLevelSystem.experience += expToAdd
+        }
+    }
+
+    private func addExperienceWithSetAmount(toAdd: Int, userLevelSystem: LevelSystem) {
+        let currentExperience = userLevelSystem.experience
+        let experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
+        if currentExperience + toAdd >= experienceToNextLevel {
+            userLevelSystem.level += 1
+            userLevelSystem.experience = currentExperience + toAdd - experienceToNextLevel
+        } else {
+            userLevelSystem.experience += toAdd
+        }
+    }
+
+    private func generateExperienceFromCompletingAchievements(achievements: [Achievement], levelSystem: LevelSystem) {
+        for achievement in achievements {
+            let exp = achievement.exp
+            addExperienceWithSetAmount(toAdd: exp, userLevelSystem: levelSystem)
+        }
+        do {
+            try levelSystemStorage.update(item: levelSystem, handler: nil)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 
