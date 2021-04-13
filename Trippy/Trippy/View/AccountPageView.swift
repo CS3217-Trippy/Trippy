@@ -88,6 +88,17 @@ struct AccountPageView: View {
         }
     }
 
+    var toAchievementsPage: some View {
+        let achievementListViewModel = AchievementListViewModel(
+            achievementModel: accountPageViewModel.achievementModel,
+            imageModel: accountPageViewModel.imageModel
+        )
+        let achievementListView = AchievementListView(viewModel: achievementListViewModel)
+        return NavigationLink(destination: achievementListView) {
+            Text("ACHIEVEMENTS")
+        }
+    }
+
     private func willLaunchCamera() {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             showCameraError = true
@@ -101,6 +112,8 @@ struct AccountPageView: View {
             userInfoSection
             Spacer().frame(height: 25)
             LevelProgressionView(viewModel: LevelProgressionViewModel(session: session))
+            Spacer().frame(height: 25)
+            toAchievementsPage
             Spacer().frame(height: 25)
             changeUsernameSection
             changeProfilePictureSection
@@ -122,7 +135,15 @@ struct AccountPageView_Previews: PreviewProvider {
         let sessionStore = FBSessionStore()
         var userArray = [User]()
         userArray.append(
-            User(id: "1", email: "1", username: "CAT", friendsId: [], levelSystemId: "1", achievements: [], imageId: "1")
+            User(
+                id: "1",
+                email: "1",
+                username: "CAT",
+                friendsId: [],
+                levelSystemId: "1",
+                achievements: [],
+                imageId: "1"
+            )
         )
         sessionStore.session = userArray
         return sessionStore
@@ -142,7 +163,11 @@ struct AccountPageView_Previews: PreviewProvider {
 
     static var previews: some View {
         AccountPageView(
-            accountPageViewModel: AccountPageViewModel(session: setSession()),
+            accountPageViewModel: AccountPageViewModel(
+                session: setSession(),
+                achievementModel: AchievementModel(storage: FBStorage<FBAchievement>()),
+                imageModel: ImageModel(storage: FBImageStorage())
+            ),
             user: setUser())
             .environmentObject(setSession())
     }

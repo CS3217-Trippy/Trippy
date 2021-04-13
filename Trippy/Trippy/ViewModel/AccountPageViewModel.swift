@@ -13,10 +13,19 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var username = ""
     @Published var errorMessage = ""
     @Published var selectedImage: UIImage?
+    @Published var achievementModel: AchievementModel<FBStorage<FBAchievement>>
+    @Published var imageModel: ImageModel
+
     private var session: SessionStore
 
-    init(session: SessionStore) {
+    init(
+        session: SessionStore,
+        achievementModel: AchievementModel<FBStorage<FBAchievement>>,
+        imageModel: ImageModel
+    ) {
         self.session = session
+        self.achievementModel = achievementModel
+        self.imageModel = imageModel
         guard let user = session.currentLoggedInUser else {
             self.email = ""
             self.username = ""

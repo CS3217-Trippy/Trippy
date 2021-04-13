@@ -13,6 +13,7 @@ final class HomepageViewModel: ObservableObject {
     @Published var locationModel: LocationModel<FBStorage<FBLocation>>
     @Published var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     @Published var friendsModel: FriendsListModel<FBStorage<FBFriend>>
+    @Published var achievementsModel: AchievementModel<FBStorage<FBAchievement>>
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
 
@@ -41,6 +42,13 @@ final class HomepageViewModel: ObservableObject {
             userId: session.currentLoggedInUser?.id
         )
         self.friendsModel = friendsModel
+
+        let achievementStorage = FBStorage<FBAchievement>()
+        let achievementsModel = AchievementModel<FBStorage<FBAchievement>>(
+            storage: achievementStorage
+        )
+        self.achievementsModel = achievementsModel
+
         visitTracker = VisitTracker(
             locationCoordinator: locationCoordinator,
             locationModel: locationModel,
