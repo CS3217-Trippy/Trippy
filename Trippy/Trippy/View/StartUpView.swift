@@ -9,18 +9,42 @@ import SwiftUI
 
 struct StartUpView: View {
     @EnvironmentObject var session: FBSessionStore
+    @ObservedObject var logInViewModel: LogInViewModel
+
+    var welcomeMessage: some View {
+        VStack {
+            HStack {
+                Text("Hello.").bold().font(.title)
+                Spacer()
+            }
+            HStack {
+                Text("Welcome Back").bold().font(.title)
+                Spacer()
+            }
+            Spacer()
+        }
+    }
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 10) {
-                Text("Trippy")
-                    .font(.largeTitle)
-                NavigationLink(destination: LogInView(logInViewModel: LogInViewModel(session: session))) {
-                    Text("LOG IN")
+            VStack(alignment: .center) {
+                welcomeMessage
+                TextField("EMAIL", text: $logInViewModel.email)
+                    .frame(width: 400, height: 50, alignment: .center)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .cornerRadius(20)
+                SecureField("PASSWORD", text: $logInViewModel.password)
+                    .frame(width: 400, height: 50, alignment: .center)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                RaisedButton(child: "LOGIN") {
+                    self.logInViewModel.login()
                 }
+                Text(logInViewModel.errorMessage)
+                    .foregroundColor(.red)
                 NavigationLink(destination: SignUpView(signUpViewModel: SignUpViewModel(session: session))) {
                     Text("SIGN UP")
                 }
+                // Spacer()
             }
             .padding()
         }
@@ -28,8 +52,8 @@ struct StartUpView: View {
     }
 }
 
-struct StartUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartUpView()
-    }
-}
+// struct StartUpView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StartUpView(login)
+//    }
+// }

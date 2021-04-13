@@ -30,7 +30,7 @@ struct ContentView: View {
                     user: user
                 )
             } else {
-                StartUpView()
+                StartUpView(logInViewModel: .init(session: session))
             }
         }.onAppear(perform: {
             session.listen()
