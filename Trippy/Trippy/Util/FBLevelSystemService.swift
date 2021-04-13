@@ -35,7 +35,8 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             id: userId,
             experience: 0,
             level: 1,
-            friendsIdAddedBefore: []
+            friendsIdAddedBefore: [],
+            bucketItemsAddedBefore: []
         )
         retrieveLevelSystem()
         levelSystemStorage.add(item: newLevelSystemForUser)

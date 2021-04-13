@@ -13,18 +13,21 @@ class LevelSystem: Model {
     var experience: Int
     var level: Int
     var friendsIdAddedBefore: [String]
+    var bucketItemsAddedBefore: [String]
 
     init(
         userId: String,
         id: String?,
         experience: Int,
         level: Int,
-        friendsIdAddedBefore: [String]
+        friendsIdAddedBefore: [String],
+        bucketItemsAddedBefore: [String]
     ) {
         self.userId = userId
         self.id = id
         self.experience = experience
         self.level = level
         self.friendsIdAddedBefore = friendsIdAddedBefore
+        self.bucketItemsAddedBefore = bucketItemsAddedBefore
     }
 }
