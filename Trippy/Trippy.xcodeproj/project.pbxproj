@@ -861,15 +861,9 @@
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
 				7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */,
-<<<<<<< Updated upstream
 				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
-=======
-<<<<<<< Updated upstream
-=======
 				01385D202626A32A0086358D /* MeetupPrivacy.swift in Sources */,
 				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
 				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
