@@ -12,16 +12,9 @@ struct StartUpView: View {
     @ObservedObject var logInViewModel: LogInViewModel
 
     var welcomeMessage: some View {
-        VStack {
-            HStack {
-                Text("Hello.").bold().font(.title)
-                Spacer()
-            }
-            HStack {
-                Text("Welcome Back").bold().font(.title)
-                Spacer()
-            }
-            Spacer()
+        VStack(alignment: .center) {
+            Text("Hello.").bold().font(.title)
+            Text("Welcome Back").bold().font(.title)
         }
     }
 
