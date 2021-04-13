@@ -6,7 +6,6 @@
 //
 
 import CoreLocation
-import UIKit
 
 class Location: Model {
     let coordinates: CLLocationCoordinate2D

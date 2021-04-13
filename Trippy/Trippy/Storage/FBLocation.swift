@@ -7,7 +7,6 @@
 
 import FirebaseFirestoreSwift
 import CoreGraphics
-import UIKit
 import CoreLocation
 
 struct FBLocation: FBStorable {
