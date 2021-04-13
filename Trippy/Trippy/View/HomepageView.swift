@@ -33,36 +33,45 @@ struct HomepageView: View {
                                                 imageModel: homepageViewModel.imageModel)
         let friendListView = FriendsListView(viewModel: friendListVM)
 
-        let meetupListVM = MeetupListViewModel(meetupModel: homepageViewModel.meetupModel, imageModel: homepageViewModel.imageModel)
+        let meetupListVM = MeetupListViewModel(
+            meetupModel: homepageViewModel.meetupModel,
+            imageModel: homepageViewModel.imageModel
+        )
 
         let meetupListView = MeetupListView(viewModel: meetupListVM)
 
         NavigationView {
-            VStack(spacing: 10) {
-                Text("Welcome, \(user.username)")
-                    .font(.title)
+            ZStack {
+                Image("background")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                VStack(spacing: 10) {
+                    Text("Welcome, \(user.username)")
+                        .font(.title)
 
-                NavigationLink(destination: bucketListView) {
-                    Text("BUCKET LIST")
-                }
-                NavigationLink(destination: meetupListView) {
-                    Text("MEETUPS")
-                }
-                NavigationLink(destination: locationListView) {
-                    Text("LOCATIONS")
-                }
-                NavigationLink(destination: friendListView) {
-                    Text("FRIENDS")
-                }
-                NavigationLink(destination: accountPageView) {
-                    Text("ACCOUNT PAGE")
-                }
-                NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-                    Text("ADD FRIEND")
-                }
-                Button("SIGN OUT") {
-                    _ = self.session.signOut()
-                }
+                    NavigationLink(destination: bucketListView) {
+                        Text("BUCKET LIST")
+                    }
+                    NavigationLink(destination: meetupListView) {
+                        Text("MEETUPS")
+                    }
+                    NavigationLink(destination: locationListView) {
+                        Text("LOCATIONS")
+                    }
+                    NavigationLink(destination: friendListView) {
+                        Text("FRIENDS")
+                    }
+                    NavigationLink(destination: accountPageView) {
+                        Text("ACCOUNT PAGE")
+                    }
+                    NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
+                        Text("ADD FRIEND")
+                    }
+                    Button("SIGN OUT") {
+                        _ = self.session.signOut()
+                    }
+                }.zIndex(100)
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
