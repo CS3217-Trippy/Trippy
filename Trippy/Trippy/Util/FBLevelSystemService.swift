@@ -49,11 +49,18 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
     private func updateLevelSystem(userLevelSystem: LevelSystem) {
         do {
             try levelSystemStorage.update(item: userLevelSystem) { _ in
-                let completion = userLevelSystem.friendsIdAddedBefore.count
-                let completedAchievements = self.achievementService.checkForCompletions(
-                    type: .FriendCount(completion: 0), completion: completion
+                let completionFriend = userLevelSystem.friendsIdAddedBefore.count
+                let completionBucket = userLevelSystem.bucketItemsAddedBefore.count
+                let completedFriendAchievements = self.achievementService.checkForCompletions(
+                    type: .FriendCount(completion: 0), completion: completionFriend
                 )
-                self.achievementService.completeAchievements(for: self.userId, achievement: completedAchievements)
+                let completedBucketAchievements = self.achievementService.checkForCompletions(
+                    type: .BucketItemCount(completion: 0), completion: completionBucket
+                )
+                self.achievementService.completeAchievements(
+                    for: self.userId,
+                    achievement: completedFriendAchievements + completedBucketAchievements
+                )
             }
         } catch {
             print(error.localizedDescription)
@@ -101,7 +108,14 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         if bucketItem.dateVisited == nil {
             return
         }
+        guard let id = bucketItem.id else {
+            return
+        }
         let userLevelSystem = getUserLevelSystem()
+        if userLevelSystem.bucketItemsAddedBefore.contains(id) {
+            return
+        }
+        userLevelSystem.bucketItemsAddedBefore.append(id)
         addExperience(action: .FinishBucketItem, userLevelSystem: userLevelSystem)
         updateLevelSystem(userLevelSystem: userLevelSystem)
     }

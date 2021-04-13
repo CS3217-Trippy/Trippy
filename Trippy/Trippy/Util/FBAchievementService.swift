@@ -58,11 +58,10 @@ class FBAchievementService: AchievementService {
             let achievementTypeName = achievement.achievementType.getTypeDescription()
             let achievementCompletion = achievement.achievementType.getCompletion()
             let typeNameToCompare = type.getTypeDescription()
-            let completionToCompare = type.getCompletion()
             if achievementTypeName != typeNameToCompare {
                 continue
             }
-            if completionToCompare >= achievementCompletion {
+            if completion >= achievementCompletion {
                 completedAchievements.append(achievement)
             }
         }
