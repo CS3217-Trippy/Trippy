@@ -33,7 +33,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
             if let handler = handler {
                 handler(result)
             } else {
-                self._storedItems.append(contentsOf: result)
+                self._storedItems = result
             }
         }
     }
