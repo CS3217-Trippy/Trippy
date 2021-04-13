@@ -91,7 +91,8 @@ struct AccountPageView: View {
     var toAchievementsPage: some View {
         let achievementListViewModel = AchievementListViewModel(
             achievementModel: accountPageViewModel.achievementModel,
-            imageModel: accountPageViewModel.imageModel
+            imageModel: accountPageViewModel.imageModel,
+            user: user
         )
         let achievementListView = AchievementListView(viewModel: achievementListViewModel)
         return NavigationLink(destination: achievementListView) {
