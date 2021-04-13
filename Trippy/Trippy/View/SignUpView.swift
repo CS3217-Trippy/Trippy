@@ -12,7 +12,7 @@ struct SignUpView: View {
     @EnvironmentObject var session: FBSessionStore
 
     var body: some View {
-        VStack {
+        VStack (spacing: 10) {
             Text("CREATE ACCOUNT")
                 .font(.title)
             TextField("EMAIL", text: $signUpViewModel.email)
@@ -23,9 +23,9 @@ struct SignUpView: View {
                 .frame(width: 400, height: nil, alignment: .center)
             SecureField("CONFIRM PASSSWORD", text: $signUpViewModel.confirmPassword)
                 .frame(width: 400, height: nil, alignment: .center)
-            Button("SIGN UP") {
+            RaisedButton(child: "SIGN UP", colorHex: "287bf7") {
                 self.signUpViewModel.signUp()
-            }
+            }.cornerRadius(10)
             Text(signUpViewModel.errorMessage)
                 .foregroundColor(.red)
         }
