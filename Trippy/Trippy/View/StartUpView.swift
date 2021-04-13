@@ -13,6 +13,7 @@ struct StartUpView: View {
 
     var welcomeMessage: some View {
         VStack(alignment: .center) {
+            Image("travel").padding()
             Text("Hello.").bold().font(.title)
             Text("Welcome Back").bold().font(.title)
         }
