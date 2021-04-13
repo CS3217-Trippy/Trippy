@@ -51,26 +51,26 @@ struct HomepageView: View {
                         .font(.title)
 
                     NavigationLink(destination: bucketListView) {
-                        Text("BUCKET LIST")
+                        RaisedNavigationText(text: "BUCKET LIST")
                     }
                     NavigationLink(destination: meetupListView) {
-                        Text("MEETUPS")
+                        RaisedNavigationText(text: "MEETUPS")
                     }
                     NavigationLink(destination: locationListView) {
-                        Text("LOCATIONS")
+                        RaisedNavigationText(text: "LOCATIONS")
                     }
                     NavigationLink(destination: friendListView) {
-                        Text("FRIENDS")
+                        RaisedNavigationText(text: "FRIENDS")
                     }
                     NavigationLink(destination: accountPageView) {
-                        Text("ACCOUNT PAGE")
+                        RaisedNavigationText(text: "ACCOUNT PAGE")
                     }
                     NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-                        Text("ADD FRIEND")
+                        RaisedNavigationText(text: "ADD FRIEND")
                     }
-                    Button("SIGN OUT") {
+                    RaisedButton(child: "SIGN OUT") {
                         _ = self.session.signOut()
-                    }
+                    }.padding()
                 }.zIndex(100)
             }
         }.navigationViewStyle(StackNavigationViewStyle())
