@@ -8,9 +8,9 @@
 import Foundation
 
 class AddBucketItemViewModel {
-    let bucketModel: BucketModel<FBStorage<FBBucketItem>>
-    let location: Location
-    let user: User?
+    private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    private var  location: Location
+    private var user: User?
 
     init(location: Location, user: User?) {
         let storage = FBStorage<FBBucketItem>()

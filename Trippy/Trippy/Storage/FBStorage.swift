@@ -11,6 +11,7 @@ import Firebase
 import Combine
 
 class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
+
     var storedItems: Published<[Storable.ModelType]>.Publisher {
         $_storedItems
     }
@@ -57,6 +58,28 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
+    func fetchWithFieldContainsAny(field: String, value: [String], handler: (([Storable.ModelType]) -> Void)?) {
+        store.collection(Storable.path)
+            .whereField(field, arrayContainsAny: value)
+            .addSnapshotListener { snapshot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            let result: [Storable.ModelType] = snapshot?.documents.compactMap {
+                guard let fbItem = try? $0.data(as: Storable.self) else {
+                    return nil
+                }
+                return fbItem.convertToModelType()
+            } ?? []
+            if let handler = handler {
+                handler(result)
+            } else {
+                    self._storedItems = result
+            }
+            }
+    }
+
     func fetchWithFieldOnce(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
         store.collection(Storable.path).whereField(field, isEqualTo: value).getDocuments { snapshot, error in
             if let error = error {
@@ -72,7 +95,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
             if let handler = handler {
                 handler(result)
             } else {
-                self._storedItems = result
+                    self._storedItems = result
             }
         }
     }
@@ -86,12 +109,13 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
             guard let fbItem = try? document?.data(as: Storable.self) else {
                 return
             }
-            guard let handler = handler else {
-                self._storedItems = []
-                self._storedItems.append(fbItem.convertToModelType())
+            let result = fbItem.convertToModelType()
+            if let handler = handler {
+                handler(result)
+            } else {
+                self._storedItems = [result]
                 return
             }
-            handler(fbItem.convertToModelType())
         }
     }
 

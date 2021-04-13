@@ -27,6 +27,10 @@ struct HomepageView: View {
                                                 imageModel: homepageViewModel.imageModel)
         let friendListView = FriendsListView(viewModel: friendListVM)
 
+        let meetupListVM = MeetupListViewModel(meetupModel: homepageViewModel.meetupModel, imageModel: homepageViewModel.imageModel)
+
+        let meetupListView = MeetupListView(viewModel: meetupListVM)
+
         NavigationView {
             VStack(spacing: 10) {
                 Text("Welcome, \(user.username)")
@@ -34,6 +38,9 @@ struct HomepageView: View {
 
                 NavigationLink(destination: bucketListView) {
                     Text("BUCKET LIST")
+                }
+                NavigationLink(destination: meetupListView) {
+                    Text("MEETUPS")
                 }
                 NavigationLink(destination: locationListView) {
                     Text("LOCATIONS")

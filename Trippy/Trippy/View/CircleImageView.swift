@@ -15,13 +15,13 @@ struct CircleImageView: View {
     var body: some View {
         if let image = image {
             Image(uiImage: image)
-                .frame(width: 300, height: 300, alignment: .center)
+                .frame(width: 200, height: 200, alignment: .center)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                 .shadow(radius: 7)
         } else {
             Image(defaultPictureName)
-                .frame(width: 300, height: 300, alignment: .center)
+                .frame(width: 200, height: 200, alignment: .center)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                 .shadow(radius: 7)

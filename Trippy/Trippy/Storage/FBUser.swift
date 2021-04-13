@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct FBUser: FBStorable {
     typealias ModelType = User

@@ -1,28 +1,18 @@
 //
-//  LocationDetailView.swift
+//  MeetupDetailView.swift
 //  Trippy
 //
-//  Created by QL on 15/3/21.
+//  Created by Lim Chun Yong on 13/4/21.
 //
+
+import Foundation
 
 import SwiftUI
 
-struct LocationDetailView: View {
-    @ObservedObject var viewModel: LocationDetailViewModel
+struct MeetupDetailView: View {
+    @ObservedObject var viewModel: MeetupDetailViewModel
     @EnvironmentObject var session: FBSessionStore
-
-    var addBucketView: some View {
-        HStack {
-            NavigationLink(
-                destination: AddBucketItemView(
-                    viewModel: .init(location: viewModel.location, user: session.currentLoggedInUser))
-            ) {
-                Text("Add to bucketlist")
-            }
-            Spacer()
-        }.padding(10)
-    }
-
+    @Environment(\.presentationMode) var presentationMode
     var pageContent: some View {
         VStack(alignment: .leading) {
             Text(viewModel.category)
@@ -34,7 +24,7 @@ struct LocationDetailView: View {
             .fontWeight(.black)
             .foregroundColor(.primary)
 
-            Text(viewModel.address)
+            Text(viewModel.host)
             .font(.caption)
             .foregroundColor(.secondary)
 
@@ -47,13 +37,21 @@ struct LocationDetailView: View {
             Text(viewModel.description)
             .font(.body)
             .foregroundColor(.primary)
+
+            Image(systemName: "trash").foregroundColor(.red).onTapGesture {
+                do {
+                    try viewModel.remove(userId: session.currentLoggedInUser?.id)
+                } catch {
+                    print("error while removing")
+                }
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 
     var body: some View {
         ScrollView {
             VStack {
-               addBucketView
                 if let image = viewModel.image {
                     Image(uiImage: image)
                         .resizable()
@@ -64,8 +62,6 @@ struct LocationDetailView: View {
                     .aspectRatio(contentMode: .fit)
                 }
 
-                WeatherSectionView(viewModel: WeatherSectionViewModel(coordinates: viewModel.location.coordinates))
-
                 HStack {
                     pageContent
                     Spacer()
@@ -73,12 +69,5 @@ struct LocationDetailView: View {
                 .padding()
             }
         }
-    }
-}
-
-struct LocationDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        LocationDetailView(viewModel: .init(location: PreviewLocations.locations[0],
-                                            imageModel: ImageModel(storage: FBImageStorage())))
     }
 }
