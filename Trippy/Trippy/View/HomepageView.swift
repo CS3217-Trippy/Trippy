@@ -20,8 +20,14 @@ struct HomepageView: View {
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,
                                                       imageModel: homepageViewModel.imageModel)
         let locationListView = LocationListView(viewModel: locationViewModel)
+
+        let accountPageViewModel = AccountPageViewModel(
+            session: session,
+            achievementModel: homepageViewModel.achievementsModel,
+            imageModel: homepageViewModel.imageModel
+        )
         let accountPageView = AccountPageView(
-            accountPageViewModel: AccountPageViewModel(session: session), user: user)
+            accountPageViewModel: accountPageViewModel, user: user)
 
         let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
                                                 imageModel: homepageViewModel.imageModel)

@@ -42,7 +42,7 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
     }
 
     func updateMeetup(meetup: Meetup) throws {
-        try storage.update(item: meetup)
+        try storage.update(item: meetup, handler: nil)
     }
 
     func removeMeetup(meetup: Meetup) {

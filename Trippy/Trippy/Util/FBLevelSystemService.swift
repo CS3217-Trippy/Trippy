@@ -10,12 +10,14 @@ import Combine
 
 final class FBLevelSystemService: LevelSystemService, ObservableObject {
     private var userId: String
+    var achievementService: AchievementService
     var levelSystemStorage: FBStorage<FBLevelSystem>
     @Published var levelSystem = [LevelSystem]()
     private var cancellables: Set<AnyCancellable> = []
 
-    init(userId: String) {
+    init(userId: String, achievementService: AchievementService) {
         self.userId = userId
+        self.achievementService = achievementService
         self.levelSystemStorage = FBStorage<FBLevelSystem>()
         self.levelSystemStorage.storedItems.assign(to: \.levelSystem, on: self).store(in: &self.cancellables)
     }
@@ -33,7 +35,8 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             id: userId,
             experience: 0,
             level: 1,
-            friendsIdAddedBefore: []
+            friendsIdAddedBefore: [],
+            bucketItemsAddedBefore: []
         )
         retrieveLevelSystem()
         levelSystemStorage.add(item: newLevelSystemForUser)
@@ -45,7 +48,24 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
 
     private func updateLevelSystem(userLevelSystem: LevelSystem) {
         do {
-            try levelSystemStorage.update(item: userLevelSystem)
+            try levelSystemStorage.update(item: userLevelSystem) { _ in
+                let completionFriend = userLevelSystem.friendsIdAddedBefore.count
+                let completionBucket = userLevelSystem.bucketItemsAddedBefore.count
+                let completedFriendAchievements = self.achievementService.checkForCompletions(
+                    type: .FriendCount(completion: 0), completion: completionFriend
+                )
+                let completedBucketAchievements = self.achievementService.checkForCompletions(
+                    type: .BucketItemCount(completion: 0), completion: completionBucket
+                )
+                self.achievementService.completeAchievements(
+                    for: self.userId,
+                    achievement: completedFriendAchievements + completedBucketAchievements
+                )
+                self.generateExperienceFromCompletingAchievements(
+                    achievements: completedFriendAchievements + completedBucketAchievements,
+                    levelSystem: userLevelSystem
+                )
+            }
         } catch {
             print(error.localizedDescription)
         }
@@ -63,8 +83,34 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         }
     }
 
+    private func addExperienceWithSetAmount(toAdd: Int, userLevelSystem: LevelSystem) {
+        let currentExperience = userLevelSystem.experience
+        let experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
+        if currentExperience + toAdd >= experienceToNextLevel {
+            userLevelSystem.level += 1
+            userLevelSystem.experience = currentExperience + toAdd - experienceToNextLevel
+        } else {
+            userLevelSystem.experience += toAdd
+        }
+    }
+
+    private func generateExperienceFromCompletingAchievements(achievements: [Achievement], levelSystem: LevelSystem) {
+        for achievement in achievements {
+            let exp = achievement.exp
+            addExperienceWithSetAmount(toAdd: exp, userLevelSystem: levelSystem)
+        }
+        do {
+            try levelSystemStorage.update(item: levelSystem, handler: nil)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
     func generateExperienceFromAddingFriend(friend: Friend) {
-        let friendLevelSystemService = FBLevelSystemService(userId: friend.friendId)
+        let friendLevelSystemService = FBLevelSystemService(
+            userId: friend.friendId,
+            achievementService: achievementService
+        )
         let friendLevelSystemStorage = friendLevelSystemService.levelSystemStorage
         friendLevelSystemStorage.fetchWithId(id: friend.friendId) { friendLevelSystem in
             let friendAddedFriends = friendLevelSystem.friendsIdAddedBefore
@@ -89,7 +135,14 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         if bucketItem.dateVisited == nil {
             return
         }
+        guard let id = bucketItem.id else {
+            return
+        }
         let userLevelSystem = getUserLevelSystem()
+        if userLevelSystem.bucketItemsAddedBefore.contains(id) {
+            return
+        }
+        userLevelSystem.bucketItemsAddedBefore.append(id)
         addExperience(action: .FinishBucketItem, userLevelSystem: userLevelSystem)
         updateLevelSystem(userLevelSystem: userLevelSystem)
     }

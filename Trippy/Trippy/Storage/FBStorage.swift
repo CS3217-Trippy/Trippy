@@ -95,7 +95,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
             if let handler = handler {
                 handler(result)
             } else {
-                    self._storedItems = result
+                self._storedItems = result
             }
         }
     }
@@ -132,12 +132,19 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
-    func update(item: Storable.ModelType) throws {
+    func update(item: Storable.ModelType, handler: ((Storable.ModelType) -> Void)?) throws {
         let fbItem = Storable(item: item)
         guard let id = fbItem.id else {
             return
         }
-        try store.collection(Storable.path).document(id).setData(from: fbItem)
+        try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
+            guard let handler = handler else {
+                return
+            }
+            if error == nil {
+                handler(item)
+            }
+        }
     }
 
     func remove(item: Storable.ModelType) {

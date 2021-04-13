@@ -94,6 +94,16 @@
 		71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89725F7B6E80064EF40 /* TrippyApp.swift */; };
 		71FFCE012604BA6300309D80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD89925F7B6E80064EF40 /* ContentView.swift */; };
 		71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638325FD1F5900BBB8E9 /* Date+Extensions.swift */; };
+		7617D15B2621829F00D94782 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D15A2621829F00D94782 /* Achievement.swift */; };
+		7617D160262183A600D94782 /* FBAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D15F262183A600D94782 /* FBAchievement.swift */; };
+		7617D16E2622338E00D94782 /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D16D2622338E00D94782 /* AchievementService.swift */; };
+		7617D1732622348700D94782 /* AchievementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D1722622348700D94782 /* AchievementType.swift */; };
+		7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D17726225AAC00D94782 /* FBAchievementService.swift */; };
+		7617D18F2625AD4600D94782 /* AchievementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D18E2625AD4600D94782 /* AchievementModel.swift */; };
+		7617D1942625AE3300D94782 /* AchievementItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D1932625AE3300D94782 /* AchievementItemViewModel.swift */; };
+		7617D19C2625AF7700D94782 /* AchievementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D19B2625AF7700D94782 /* AchievementListViewModel.swift */; };
+		7617D1A12625B49500D94782 /* AchievementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D1A02625B49500D94782 /* AchievementListView.swift */; };
+		7617D1A62625B51B00D94782 /* AchievementItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7617D1A52625B51B00D94782 /* AchievementItemView.swift */; };
 		768A9CAF26074A4C004EF22C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A9CAE26074A4C004EF22C /* UserTests.swift */; };
 		7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D225FDEDC700AF9E63 /* LogInView.swift */; };
 		7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */; };
@@ -234,6 +244,16 @@
 		71565A8325F9F4F40070256A /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 		71FB972C25F87C420083C6F5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		71FB973125F893750083C6F5 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
+		7617D15A2621829F00D94782 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		7617D15F262183A600D94782 /* FBAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAchievement.swift; sourceTree = "<group>"; };
+		7617D16D2622338E00D94782 /* AchievementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementService.swift; sourceTree = "<group>"; };
+		7617D1722622348700D94782 /* AchievementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementType.swift; sourceTree = "<group>"; };
+		7617D17726225AAC00D94782 /* FBAchievementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAchievementService.swift; sourceTree = "<group>"; };
+		7617D18E2625AD4600D94782 /* AchievementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementModel.swift; sourceTree = "<group>"; };
+		7617D1932625AE3300D94782 /* AchievementItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementItemViewModel.swift; sourceTree = "<group>"; };
+		7617D19B2625AF7700D94782 /* AchievementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementListViewModel.swift; sourceTree = "<group>"; };
+		7617D1A02625B49500D94782 /* AchievementListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementListView.swift; sourceTree = "<group>"; };
+		7617D1A52625B51B00D94782 /* AchievementItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementItemView.swift; sourceTree = "<group>"; };
 		768A9CAE26074A4C004EF22C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7694E9D225FDEDC700AF9E63 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		7694E9D725FDEEA900AF9E63 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
@@ -424,6 +444,8 @@
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
 				DB9273A12604487600B898AE /* AddFriendView.swift */,
 				76E74BE92613CD57004BA414 /* LevelProgressionView.swift */,
+				7617D1A02625B49500D94782 /* AchievementListView.swift */,
+				7617D1A52625B51B00D94782 /* AchievementItemView.swift */,
 				01E5AA6E2625BB3900A8D9C6 /* CreateMeetupView.swift */,
 				01E5AA782625D8A100A8D9C6 /* MeetupItemView.swift */,
 				01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */,
@@ -447,8 +469,11 @@
 				01088F5B2606442F00579707 /* BucketListError.swift */,
 				01483A442610728D00D840EA /* Friend.swift */,
 				76E74BC32613607C004BA414 /* LevelSystem.swift */,
+				7617D15A2621829F00D94782 /* Achievement.swift */,
+				7617D1722622348700D94782 /* AchievementType.swift */,
 				0106B3392622F5B500574097 /* ImageModel.swift */,
 				0106B3432622F87400574097 /* Trippyimage.swift */,
+				7617D18E2625AD4600D94782 /* AchievementModel.swift */,
 				0112EEA226248A8400F420E2 /* Meetup.swift */,
 				0112EEAC26248DE400F420E2 /* MeetupModel.swift */,
 			);
@@ -477,6 +502,8 @@
 				714BA80D2601A61500E69470 /* AddLocationViewModel.swift */,
 				7694EA4E2602EF9A00AF9E63 /* HomepageViewModel.swift */,
 				76E74BEE2614566F004BA414 /* LevelProgressionViewModel.swift */,
+				7617D1932625AE3300D94782 /* AchievementItemViewModel.swift */,
+				7617D19B2625AF7700D94782 /* AchievementListViewModel.swift */,
 				0112EEB126248FF700F420E2 /* MeetupListViewModel.swift */,
 				0112EEB6262492DD00F420E2 /* MeetupItemViewModel.swift */,
 				01E5AA662625AEF400A8D9C6 /* CreateMeetupViewModel.swift */,
@@ -502,6 +529,8 @@
 				76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */,
 				DB2D334D2612E1DF000C2351 /* WeatherService.swift */,
 				DB2D33612612F3B4000C2351 /* CurrentWeather.swift */,
+				7617D16D2622338E00D94782 /* AchievementService.swift */,
+				7617D17726225AAC00D94782 /* FBAchievementService.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -518,6 +547,7 @@
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
 				76E74BC82613617C004BA414 /* FBLevelSystem.swift */,
+				7617D15F262183A600D94782 /* FBAchievement.swift */,
 				0106B37D2622FFCC00574097 /* FBStorage.swift */,
 				0106B38B262300E200574097 /* StorageProtocol.swift */,
 				0112EEA726248BF200F420E2 /* FBMeetup.swift */,
@@ -723,6 +753,7 @@
 				01E5AA742625D87A00A8D9C6 /* MeetupListView.swift in Sources */,
 				714B10C826060D6C0040FAA1 /* ImagePicker.swift in Sources */,
 				012CE5C926121E0E00039A25 /* LocationRecommender.swift in Sources */,
+				7617D16E2622338E00D94782 /* AchievementService.swift in Sources */,
 				7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */,
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */,
@@ -750,6 +781,7 @@
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
 				DB92738526002AE300B898AE /* FriendsItemView.swift in Sources */,
 				714A6D84261429BF0032CA7C /* LocationCoordinator.swift in Sources */,
+				7617D1732622348700D94782 /* AchievementType.swift in Sources */,
 				7694E9E725FE541700AF9E63 /* User.swift in Sources */,
 				01E5AA862625DF2300A8D9C6 /* MeetupDetailView.swift in Sources */,
 				01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */,
@@ -758,6 +790,7 @@
 				76FC82C426175FC2009736B2 /* FBSessionWrapper.swift in Sources */,
 				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
+				7617D19C2625AF7700D94782 /* AchievementListViewModel.swift in Sources */,
 				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
@@ -772,6 +805,8 @@
 				714B10D026066D190040FAA1 /* UIImage+Extensions.swift in Sources */,
 				01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */,
 				76F8BE1A2611105700393AF7 /* SessionStore.swift in Sources */,
+				7617D160262183A600D94782 /* FBAchievement.swift in Sources */,
+				7617D1A62625B51B00D94782 /* AchievementItemView.swift in Sources */,
 				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				01E5AA6F2625BB3900A8D9C6 /* CreateMeetupView.swift in Sources */,
@@ -784,6 +819,7 @@
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
+				7617D1942625AE3300D94782 /* AchievementItemViewModel.swift in Sources */,
 				76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */,
 				012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */,
 				0112EEA826248BF200F420E2 /* FBMeetup.swift in Sources */,
@@ -792,6 +828,7 @@
 				714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */,
 				0106B33F2622F76A00574097 /* ImageStorage.swift in Sources */,
 				7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */,
+				7617D18F2625AD4600D94782 /* AchievementModel.swift in Sources */,
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
 				0106B37E2622FFCC00574097 /* FBStorage.swift in Sources */,
@@ -800,6 +837,7 @@
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
 				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
+				7617D15B2621829F00D94782 /* Achievement.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,
 				76E74BCE26136350004BA414 /* FBLevelSystemService.swift in Sources */,
@@ -808,9 +846,11 @@
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
 				7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */,
+				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
 				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
+				7617D1A12625B49500D94782 /* AchievementListView.swift in Sources */,
 				01E5AA672625AEF400A8D9C6 /* CreateMeetupViewModel.swift in Sources */,
 				7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */,
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,

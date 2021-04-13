@@ -24,8 +24,8 @@ class FBImageStorage: ImageStorage {
                     callback(imageIds)
                 }
             }
+        }
     }
-}
 
     func fetch(ids: [String], callback: @escaping ([UIImage]) -> Void) {
         var images: [UIImage] = []
@@ -49,11 +49,14 @@ class FBImageStorage: ImageStorage {
         }
     }
 
-    private func addImage(image: UIImage, imageRef: StorageReference, completion: ((StorageMetadata?, Error?) -> Void)?) {
+    private func addImage(
+        image: UIImage,
+        imageRef: StorageReference,
+        completion: ((StorageMetadata?, Error?) -> Void)?
+    ) {
         guard let data = image.jpegData(compressionQuality: 0.1) else {
             return
         }
         imageRef.putData(data, metadata: nil, completion: completion)
     }
-
 }
