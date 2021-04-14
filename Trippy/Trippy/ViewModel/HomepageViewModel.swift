@@ -17,7 +17,7 @@ final class HomepageViewModel: ObservableObject {
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
 
-    init(session: SessionStore, locationCoordinator: LocationCoordinator, showLocationAlert: Binding<Bool>,
+    init(session: SessionStore, locationCoordinator: LocationCoordinator, showLocationAlert: Binding<Bool>, completedLocation: Binding<String>,
          alertTitle: Binding<String>, alertContent: Binding<String>) {
         let imageStorage = FBImageStorage()
         let imageModel = ImageModel(storage: imageStorage)
@@ -50,6 +50,7 @@ final class HomepageViewModel: ObservableObject {
             locationModel: locationModel,
             bucketModel: bucketModel,
             showLocationAlert: showLocationAlert,
+            completedLocation: completedLocation,
             alertTitle: alertTitle,
             alertContent: alertContent,
             levelSystemService: session.levelSystemService,

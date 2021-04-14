@@ -81,6 +81,8 @@
 		7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */; };
 		7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */; };
 		7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018725FCD4EB00F0ABAC /* LocationCardView.swift */; };
+		7155CBA82627020B0007E8C2 /* SubmitRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155CBA72627020B0007E8C2 /* SubmitRatingView.swift */; };
+		7155CBB0262705050007E8C2 /* SubmitRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155CBAF262705050007E8C2 /* SubmitRatingViewModel.swift */; };
 		71565A8425F9F4F40070256A /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A8325F9F4F40070256A /* StorageError.swift */; };
 		71FB972D25F87C420083C6F5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB972C25F87C420083C6F5 /* Location.swift */; };
 		71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FB973125F893750083C6F5 /* LocationMapView.swift */; };
@@ -217,6 +219,8 @@
 		7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 		7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardViewModel.swift; sourceTree = "<group>"; };
 		7152018725FCD4EB00F0ABAC /* LocationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardView.swift; sourceTree = "<group>"; };
+		7155CBA72627020B0007E8C2 /* SubmitRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitRatingView.swift; sourceTree = "<group>"; };
+		7155CBAF262705050007E8C2 /* SubmitRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitRatingViewModel.swift; sourceTree = "<group>"; };
 		71565A8325F9F4F40070256A /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 		71FB972C25F87C420083C6F5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		71FB973125F893750083C6F5 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 				DB92738426002AE300B898AE /* FriendsItemView.swift */,
 				7152017325FCB5D300F0ABAC /* LocationListView.swift */,
 				7152018725FCD4EB00F0ABAC /* LocationCardView.swift */,
+				7155CBA72627020B0007E8C2 /* SubmitRatingView.swift */,
 				714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */,
 				71FB973125F893750083C6F5 /* LocationMapView.swift */,
 				714BA80826019D9000E69470 /* AddLocationView.swift */,
@@ -443,6 +448,7 @@
 				714A79102615689600E7C865 /* VisitTracker.swift */,
 				714ADFC4262597ED00619349 /* NotificationManager.swift */,
 				714A6D83261429BF0032CA7C /* LocationCoordinator.swift */,
+				7155CBAF262705050007E8C2 /* SubmitRatingViewModel.swift */,
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
 				DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */,
@@ -736,6 +742,7 @@
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
 				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
+				7155CBB0262705050007E8C2 /* SubmitRatingViewModel.swift in Sources */,
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
 				DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */,
 				01483A4A26107AA400D840EA /* FBFriend.swift in Sources */,
@@ -789,6 +796,7 @@
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
 				01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */,
 				76E74BC92613617C004BA414 /* FBLevelSystem.swift in Sources */,
+				7155CBA82627020B0007E8C2 /* SubmitRatingView.swift in Sources */,
 				01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */,
 				0106B33A2622F5B500574097 /* ImageModel.swift in Sources */,
 			);

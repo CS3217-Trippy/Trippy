@@ -19,7 +19,7 @@ class RatingModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
             .store(in: &cancellables)
         fetchRatings()
     }
-    
+
     func fetchRatings() {
         storage.fetch(handler: nil)
     }
@@ -48,4 +48,11 @@ class RatingModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         try storage.update(item: updatedRating)
     }
 
+    func getAverageRating(for location: Location) -> Float? {
+        let filteredRatings = ratings.filter { $0.locationId == location.id }
+        if filteredRatings.isEmpty {
+            return nil
+        }
+        return Float(filteredRatings.reduce(0, { $0 + $1.score })) / Float(filteredRatings.count)
+    }
 }

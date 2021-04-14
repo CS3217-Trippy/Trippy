@@ -12,8 +12,7 @@ import Combine
 
 class LocationCardViewModel: Identifiable, ObservableObject {
     @Published var location: Location
-    @Published var ratings: [Rating] = []
-    private let ratingModel: RatingModel<FBStorage<FBRating>>
+    let ratingModel: RatingModel<FBStorage<FBRating>>
     @Published var image: UIImage?
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
@@ -27,11 +26,6 @@ class LocationCardViewModel: Identifiable, ObservableObject {
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
           .store(in: &cancellables)
-        ratingModel.$ratings
-            .sink { publishedRatings in
-                self.ratings = publishedRatings.filter {$0.locationId == location.id}
-            }
-            .store(in: &cancellables)
         fetchImage()
     }
 
@@ -65,11 +59,12 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     var category: String {
         location.category.rawValue.capitalized
     }
-    
-    var rating: Float {
-        if ratings.isEmpty {
-            return 0.0
+
+    var averageRatingDescription: String {
+        guard let rating = ratingModel.getAverageRating(for: location) else {
+            return "No ratings yet"
         }
-        return Float(ratings.reduce(0, {$0 + $1.score})) / Float(ratings.count)
+        let roundedRating = String(format: "%.1f", rating)
+        return "Rating: \(roundedRating)/5.0"
     }
 }

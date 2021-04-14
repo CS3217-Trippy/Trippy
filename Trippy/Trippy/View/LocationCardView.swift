@@ -28,10 +28,13 @@ struct LocationCardView: View {
                 .font(font)
                 .foregroundColor(.primary)
                 .lineLimit(1)
-                
-                Text("Rating: \(viewModel.rating) / 5")
-                .font(font)
-                .foregroundColor(.secondary)
+
+                if showFullDetails {
+                    Text(viewModel.averageRatingDescription)
+                    .font(.caption)
+                    .fontWeight(.black)
+                    .foregroundColor(.secondary)
+                }
 
                 if showFullDetails {
                     Text(viewModel.caption)
@@ -56,7 +59,8 @@ struct LocationCardView: View {
 
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location,
-                                                                        imageModel: viewModel.imageModel ))) {
+                                                                        imageModel: viewModel.imageModel,
+                                                                        ratingModel: viewModel.ratingModel))) {
             if isHorizontal {
                 HStack {
                     cardBody

@@ -19,7 +19,6 @@ struct FBRating: FBStorable {
     let userId: String
     let score: Int
     let date: Date
-    
 
     init(item: ModelType) {
         id = item.id
@@ -30,7 +29,7 @@ struct FBRating: FBStorable {
     }
 
     func convertToModelType() -> Rating {
-        return Rating(
+        Rating(
             id: id,
             locationId: locationId,
             userId: userId,
@@ -43,4 +42,3 @@ struct FBRating: FBStorable {
         case id, locationId, userId, score, date
     }
 }
-

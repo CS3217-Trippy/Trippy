@@ -14,6 +14,8 @@ struct ContentView: View {
     @State var showLocationAlert = false
     @State var alertTitle = ""
     @State var alertContent = ""
+    @State var completedLocation = ""
+    @State private var showSubmitRatingSheet = false
 
     var body: some View {
         Group {
@@ -22,21 +24,33 @@ struct ContentView: View {
                     session: session,
                     locationCoordinator: locationCoordinator,
                     showLocationAlert: $showLocationAlert,
+                    completedLocation: $completedLocation,
                     alertTitle: $alertTitle,
                     alertContent: $alertContent
                 )
                 HomepageView(
                     homepageViewModel: homepageViewModel,
                     user: user
-                )
+                ).alert(isPresented: $showLocationAlert) {
+                    Alert(
+                        title: Text(alertTitle),
+                        message: Text(alertContent),
+                        primaryButton: .default(Text("Rate now"), action: { showSubmitRatingSheet.toggle() }),
+                        secondaryButton: .cancel()
+                    )
+                }.sheet(isPresented: $showSubmitRatingSheet) {
+                    SubmitRatingView(viewModel: SubmitRatingViewModel(
+                                        locationId: completedLocation,
+                                        userId: user.id ?? "",
+                                        ratingModel: homepageViewModel.ratingModel
+                    ))
+                }
             } else {
                 StartUpView()
             }
         }.onAppear(perform: {
             session.listen()
-        }).alert(isPresented: $showLocationAlert) {
-            Alert(title: Text(alertTitle), message: Text(alertContent))
-        }
+        })
     }
 }
 

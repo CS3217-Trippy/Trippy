@@ -13,7 +13,7 @@ class Rating: Model {
     let userId: String
     let score: Int
     let date: Date
-    
+
     init(id: String?, locationId: String, userId: String, score: Int, date: Date) {
         self.id = id
         self.locationId = locationId

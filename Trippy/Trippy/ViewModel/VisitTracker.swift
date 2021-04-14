@@ -22,12 +22,14 @@ class VisitTracker {
     private var nearbyBucketItem: BucketItem?
     private var arrivalTimeAtBucketItem: Date?
     private var levelSystemService: LevelSystemService?
-    private let minimumVisitDuration = 300.0
-    private let tempBucketItemKey = "tempBucketItem"
-    private let tempDateKey = "tempDate"
     @Binding private var showLocationAlert: Bool
+    @Binding private var completedLocation: String
     @Binding private var alertTitle: String
     @Binding private var alertContent: String
+    private let tempBucketItemKey = "tempBucketItem"
+    private let tempDateKey = "tempDate"
+    private let minimumVisitDuration = 300.0
+    private let maxDistanceThreshhold = 500.0
     private let notificationCategoryName = "rateAfterVisit"
     private let ratingActions = [
         UNNotificationAction(identifier: "rate1", title: "1"),
@@ -38,7 +40,7 @@ class VisitTracker {
     ]
 
     init(locationCoordinator: LocationCoordinator, locationModel: LocationModel<FBStorage<FBLocation>>,
-         bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>, completedLocation: Binding<String>,
          alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?,
          ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.locationModel = locationModel
@@ -47,6 +49,7 @@ class VisitTracker {
         self.locationCoordinator = locationCoordinator
         self.levelSystemService = levelSystemService
         self._showLocationAlert = showLocationAlert
+        self._completedLocation = completedLocation
         self._alertTitle = alertTitle
         self._alertContent = alertContent
         self.locationModel.$locations.assign(to: \.locations, on: self)
@@ -111,7 +114,7 @@ class VisitTracker {
     }
 
     private func isNearby(bucketItem: BucketItem, from point: CLLocationCoordinate2D) -> Bool {
-        distance(from: bucketItem, to: point) < 500
+        distance(from: bucketItem, to: point) < maxDistanceThreshhold
     }
 
     private func distance(from bucketItem: BucketItem, to point: CLLocationCoordinate2D) -> Double {
@@ -130,17 +133,19 @@ class VisitTracker {
     private func notifyUser(for bucketItem: BucketItem) {
         let state = UIApplication.shared.applicationState
         let title = "Congrats! You have visited \(bucketItem.locationName)"
-        let body = "bucketlist updated"
+        let body = "Please leave a rating!"
         switch state {
         case .background:
-            notificationManager.sendNotificationWithActions(title: title, body: body, categoryName: notificationCategoryName, actions: ratingActions) { actionId in
-                
+            notificationManager.sendNotificationWithActions(title: title, body: body,
+                categoryName: notificationCategoryName, actions: ratingActions) { actionId in
+                self.rate(actionId: actionId, locationId: bucketItem.locationId)
             }
         default:
+            completedLocation = bucketItem.locationId
             sendAlert(title: title, body: body)
         }
     }
-    
+
     private func rate(actionId: String, locationId: String) {
         guard let choiceOfRating = ratingActions.first(where: { $0.identifier == actionId }) else {
             print("ERROR: Invalid choice")
