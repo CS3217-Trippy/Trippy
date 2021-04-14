@@ -33,6 +33,10 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         friendsListModel.getFriendsList()
     }
 
+    var privacyOptions: [String] {
+        MeetupPrivacy.allCases.map { $0.rawValue }
+    }
+
     private func getImage(friend: Friend) {
         if let id = friend.friendProfilePhoto {
             imageModel.fetch(ids: [id]) { images in
@@ -43,25 +47,33 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         }
     }
 
-    func saveForm(meetupDate: Date, userDescription: String, friends: [Friend]) throws {
-        let meetup = try buildMeetup(friends: friends, meetupDate: meetupDate, userDescription: userDescription)
+    func saveForm(meetupDate: Date, userDescription: String, meetupPrivacy: String, friends: [Friend]) throws {
+        let meetup = try buildMeetup(friends: friends,
+                                     meetupPrivacy: meetupPrivacy,
+                                     meetupDate: meetupDate,
+                                     userDescription: userDescription)
         try meetupModel.addMeetup(meetup: meetup)
     }
 
-    private func buildMeetup(friends: [Friend], meetupDate: Date, userDescription: String) throws -> Meetup {
+    private func buildMeetup(friends: [Friend], meetupPrivacy: String, meetupDate: Date, userDescription: String) throws -> Meetup {
         guard let locationId = bucketItem.id else {
-            fatalError("Location should have id")
+            throw MeetupError.invalidLocation
         }
         guard let userId = user?.id else {
-            fatalError("User should be logged in")
+            throw MeetupError.invalidUser
         }
         guard let username = user?.username else {
-            fatalError("User should have username")
+            throw MeetupError.invalidUser
         }
+        guard let privacy = MeetupPrivacy(rawValue: meetupPrivacy) else {
+            throw MeetupError.invalidPrivacy
+        }
+
         let imageId = bucketItem.locationImageId
         let userIds = getUserIdsFromUsers(friends: friends)
         let userPhotos = getUserPhotosFromUsers(friends: friends)
         let meetup = Meetup(id: nil,
+                            meetupPrivacy: privacy,
                             userIds: userIds,
                             userProfilePhotoIds: userPhotos,
                             hostUsername: username,

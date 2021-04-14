@@ -13,7 +13,8 @@ struct MeetupDetailView: View {
     @ObservedObject var viewModel: MeetupDetailViewModel
     @EnvironmentObject var session: FBSessionStore
     @Environment(\.presentationMode) var presentationMode
-    var pageContent: some View {
+
+    var keyDetails: some View {
         VStack(alignment: .leading) {
             Text(viewModel.category)
             .font(.headline)
@@ -24,28 +25,63 @@ struct MeetupDetailView: View {
             .fontWeight(.black)
             .foregroundColor(.primary)
 
-            Text(viewModel.host)
-            .font(.caption)
-            .foregroundColor(.secondary)
+            Text("Hosted by \(viewModel.host)")
+            .font(.body)
+                .foregroundColor(Color(.black))
+        }
+    }
 
-            Divider()
-
+    var additionalDetails: some View {
+        VStack(alignment: .leading) {
             Text("About")
             .font(.title2)
             .fontWeight(.bold)
+            .padding(.bottom)
+
+            Text("Number of participants: \(viewModel.count)")
+                .font(.body)
+                    .foregroundColor(Color(.black))
+
+            Text("Meetup date: \(viewModel.meetupDate)")
 
             Text(viewModel.description)
             .font(.body)
+            .padding(.top)
             .foregroundColor(.primary)
+        }
+    }
 
-            Image(systemName: "trash").foregroundColor(.red).onTapGesture {
-                do {
-                    try viewModel.remove(userId: session.currentLoggedInUser?.id)
-                } catch {
-                    print("error while removing")
-                }
-                presentationMode.wrappedValue.dismiss()
+    var leaveMeetup: some View {
+        Text("Leave meetup").foregroundColor(.red).padding(.top).onTapGesture {
+            do {
+                try viewModel.remove(userId: session.currentLoggedInUser?.id)
+            } catch {
+                print("error while removing")
             }
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
+
+    var joinMeetup: some View {
+        RaisedButton(child: "Join Meetup", colorHex: Color.buttonBlue) {
+
+        }
+    }
+
+    var interactions: some View {
+        if viewModel.userInMeetup(user: session.currentLoggedInUser) {
+            return AnyView(leaveMeetup)
+        } else {
+            return AnyView(joinMeetup)
+        }
+    }
+
+    var pageContent: some View {
+        VStack(alignment: .leading) {
+            keyDetails
+            Divider()
+            additionalDetails
+            interactions
         }
     }
 

@@ -43,6 +43,10 @@ class MeetupDetailViewModel: ObservableObject {
         meetup.userDescription
     }
 
+    var count: Int {
+        meetup.userIds.count + 1
+    }
+
     var host: String {
         meetup.hostUsername
     }
@@ -52,11 +56,18 @@ class MeetupDetailViewModel: ObservableObject {
     }
 
     var meetupDate: String {
-        meetup.meetupDate.dateStringFromDate
+        meetup.meetupDate.dateTimeStringFromDate
     }
 
     var dateAdded: String {
         meetup.dateAdded.dateStringFromDate
+    }
+
+    func userInMeetup(user: User?) -> Bool {
+        guard let id = user?.id else {
+            return false
+        }
+        return meetup.userIds.contains { $0 == id } || meetup.hostUserId == id
     }
 
     func remove(userId: String?) throws {
