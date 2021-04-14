@@ -6,6 +6,7 @@
 //
 import Foundation
 class Meetup: Model {
+    var meetupPrivacy: MeetupPrivacy
     var id: String?
     var userIds: [String]
     var userProfilePhotoIds: [String]
@@ -20,6 +21,7 @@ class Meetup: Model {
     var userDescription: String
 
     init(id: String?,
+         meetupPrivacy: MeetupPrivacy,
          userIds: [String],
          userProfilePhotoIds: [String],
          hostUsername: String,
@@ -31,6 +33,7 @@ class Meetup: Model {
          meetupDate: Date,
          dateAdded: Date,
          userDescription: String) {
+        self.meetupPrivacy = meetupPrivacy
         self.id = id
         self.userProfilePhotoIds = userProfilePhotoIds
         self.locationName = locationName

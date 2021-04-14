@@ -24,10 +24,10 @@ struct MeetupItemView: View {
         VStack(alignment: .leading, spacing: 15) {
             Text(viewModel.locationName)
                 .font(.headline)
-                .foregroundColor(.secondary)
-            Text(viewModel.userDescription).font(font).foregroundColor(.secondary)
+                .foregroundColor(Color(.black))
+            Text(viewModel.userDescription).font(font).foregroundColor(Color(.black))
             Text("Added on " + viewModel.dateAdded.dateTimeStringFromDate)
-                .lineLimit(9).font(font).foregroundColor(.secondary)
+                .lineLimit(9).font(font).foregroundColor(Color(.black))
         }
     }
 

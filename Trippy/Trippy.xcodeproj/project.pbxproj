@@ -23,6 +23,8 @@
 		0118657B25F9D8BA00BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */; };
 		012CE5C926121E0E00039A25 /* LocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5C826121E0E00039A25 /* LocationRecommender.swift */; };
 		012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */; };
+		01385D182626A0C60086358D /* MeetupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01385D172626A0C60086358D /* MeetupError.swift */; };
+		01385D202626A32A0086358D /* MeetupPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01385D1F2626A32A0086358D /* MeetupPrivacy.swift */; };
 		01483A452610728D00D840EA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A442610728D00D840EA /* Friend.swift */; };
 		01483A4A26107AA400D840EA /* FBFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A4926107AA400D840EA /* FBFriend.swift */; };
 		01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A5126108D1500D840EA /* Image+Extensions.swift */; };
@@ -179,6 +181,8 @@
 		0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		012CE5C826121E0E00039A25 /* LocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRecommender.swift; sourceTree = "<group>"; };
 		012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocationRecommender.swift; sourceTree = "<group>"; };
+		01385D172626A0C60086358D /* MeetupError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupError.swift; sourceTree = "<group>"; };
+		01385D1F2626A32A0086358D /* MeetupPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupPrivacy.swift; sourceTree = "<group>"; };
 		01483A442610728D00D840EA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		01483A4926107AA400D840EA /* FBFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFriend.swift; sourceTree = "<group>"; };
 		01483A5126108D1500D840EA /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
@@ -482,6 +486,8 @@
 				7617D18E2625AD4600D94782 /* AchievementModel.swift */,
 				0112EEA226248A8400F420E2 /* Meetup.swift */,
 				0112EEAC26248DE400F420E2 /* MeetupModel.swift */,
+				01385D172626A0C60086358D /* MeetupError.swift */,
+				01385D1F2626A32A0086358D /* MeetupPrivacy.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -754,6 +760,7 @@
 				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
 				76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */,
 				71FFCE012604BA6300309D80 /* ContentView.swift in Sources */,
+				01385D182626A0C60086358D /* MeetupError.swift in Sources */,
 				0112EEAD26248DE400F420E2 /* MeetupModel.swift in Sources */,
 				71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */,
 				01E5AA742625D87A00A8D9C6 /* MeetupListView.swift in Sources */,
@@ -854,6 +861,8 @@
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
 				7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */,
+				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
+				01385D202626A32A0086358D /* MeetupPrivacy.swift in Sources */,
 				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,

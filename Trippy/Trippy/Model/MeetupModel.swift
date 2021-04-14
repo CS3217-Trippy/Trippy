@@ -9,6 +9,7 @@ import Combine
 
 class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.StoredType == Meetup {
     @Published private(set) var meetupItems: [Meetup] = []
+    @Published private(set) var publicMeetupItems: [Meetup] = []
     private let storage: Storage
     private var cancellables: Set<AnyCancellable> = []
     private let userId: String?
@@ -25,11 +26,19 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         return
     }
     self.meetupItems = []
+
+    let publicField = "publicity"
+    let value = MeetupPrivacy.publicMeetup.rawValue
+    storage.fetchWithField(field: publicField, value: value) { meetups in
+        self.publicMeetupItems = meetups
+    }
+
     let field = "hostUserId"
     storage.fetchWithField(field: field, value: userId) { meetups in
         self.meetupItems.removeAll { $0.hostUserId == userId }
         self.meetupItems.append(contentsOf: meetups)
     }
+
     let usersField = "userIds"
     storage.fetchWithFieldContainsAny(field: usersField, value: [userId]) { meetups in
         self.meetupItems.removeAll { $0.hostUserId != userId }

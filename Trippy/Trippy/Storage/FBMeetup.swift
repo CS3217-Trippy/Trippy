@@ -4,6 +4,7 @@ import Foundation
 struct FBMeetup: FBStorable {
     typealias ModelType = Meetup
     static var path = "meetups"
+    var meetupPrivacy: MeetupPrivacy
     @DocumentID var id: String?
     var userIds: [String]
     var hostUsername: String
@@ -18,6 +19,7 @@ struct FBMeetup: FBStorable {
     var userDescription: String
 
     init(item: ModelType) {
+        self.meetupPrivacy = item.meetupPrivacy
         self.id = item.id
         self.userIds = item.userIds
         self.userProfilePhotoIds = item.userProfilePhotoIds
@@ -40,6 +42,7 @@ struct FBMeetup: FBStorable {
             locationImageId = locationImageIds[0]
         }
         let meetup = Meetup(id: id,
+                            meetupPrivacy: meetupPrivacy,
                             userIds: userIds,
                             userProfilePhotoIds: userProfilePhotoIds,
                             hostUsername: hostUsername,
