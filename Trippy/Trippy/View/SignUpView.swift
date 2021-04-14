@@ -30,9 +30,10 @@ struct SignUpView: View {
             }.cornerRadius(10)
             Text(signUpViewModel.errorMessage)
                 .foregroundColor(.red)
-        }
+            }
         .padding()
         .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
     }
 }
 
