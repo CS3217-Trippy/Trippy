@@ -34,7 +34,12 @@ struct LocationDetailView: View {
             .font(.title)
             .fontWeight(.black)
             .foregroundColor(.primary)
-
+            
+            Text("Rating: \(viewModel.rating) / 5")
+            .font(.caption)
+            .fontWeight(.black)
+            .foregroundColor(.secondary)
+            
             Text(viewModel.address)
             .font(.caption)
             .foregroundColor(.secondary)
@@ -80,6 +85,6 @@ struct LocationDetailView: View {
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
         LocationDetailView(viewModel: .init(location: PreviewLocations.locations[0],
-                                            imageModel: ImageModel(storage: FBImageStorage())))
+                                            imageModel: ImageModel(storage: FBImageStorage()), rating: 5.0))
     }
 }

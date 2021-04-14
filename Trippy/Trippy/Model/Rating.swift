@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Rating: UserRelatedModel {
+class Rating: Model {
     var id: String?
     let locationId: String
     let userId: String

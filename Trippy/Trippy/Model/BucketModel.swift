@@ -4,7 +4,7 @@ class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
     @Published private(set) var bucketItems: [BucketItem] = []
     private let storage: Storage
     private var cancellables: Set<AnyCancellable> = []
-    private let userId: String?
+    let userId: String?
 
     init(storage: Storage, userId: String?) {
         self.storage = storage

@@ -13,19 +13,25 @@ import Combine
 class LocationCardViewModel: Identifiable, ObservableObject {
     @Published var location: Location
     @Published var ratings: [Rating] = []
-    private let ratingModel: RatingModel<FBUserRelatedStorage<FBRating>>
+    private let ratingModel: RatingModel<FBStorage<FBRating>>
     @Published var image: UIImage?
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
     let imageModel: ImageModel
 
-    init(location: Location, imageModel: ImageModel) {
+    init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.location = location
         self.imageModel = imageModel
+        self.ratingModel = ratingModel
         $location
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
           .store(in: &cancellables)
+        ratingModel.$ratings
+            .sink { publishedRatings in
+                self.ratings = publishedRatings.filter {$0.locationId == location.id}
+            }
+            .store(in: &cancellables)
         fetchImage()
     }
 
@@ -65,20 +71,5 @@ class LocationCardViewModel: Identifiable, ObservableObject {
             return 0.0
         }
         return Float(ratings.reduce(0, {$0 + $1.score})) / Float(ratings.count)
-    }
-
-    init(location: Location, ratingModel: RatingModel<FBUserRelatedStorage<FBRating>>) {
-        self.location = location
-        self.ratingModel = ratingModel
-        $location
-          .compactMap { $0.id }
-          .assign(to: \.id, on: self)
-          .store(in: &cancellables)
-        
-        ratingModel.$ratings
-            .sink { publishedRatings in
-                self.ratings = publishedRatings.filter {$0.locationId == location.id}
-            }
-            .store(in: &cancellables)
     }
 }

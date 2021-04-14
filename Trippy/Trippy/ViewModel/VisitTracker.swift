@@ -12,7 +12,9 @@ import UserNotifications
 
 class VisitTracker {
     private let locationCoordinator: LocationCoordinator
+    @EnvironmentObject private var notificationManager: NotificationManager
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    private var ratingModel: RatingModel<FBStorage<FBRating>>
     private var locationModel: LocationModel<FBStorage<FBLocation>>
     private var bucketItems: [BucketItem] = []
     private var locations: [Location] = []
@@ -26,12 +28,22 @@ class VisitTracker {
     @Binding private var showLocationAlert: Bool
     @Binding private var alertTitle: String
     @Binding private var alertContent: String
+    private let notificationCategoryName = "rateAfterVisit"
+    private let ratingActions = [
+        UNNotificationAction(identifier: "rate1", title: "1"),
+        UNNotificationAction(identifier: "rate2", title: "2"),
+        UNNotificationAction(identifier: "rate3", title: "3"),
+        UNNotificationAction(identifier: "rate4", title: "4"),
+        UNNotificationAction(identifier: "rate5", title: "5")
+    ]
 
     init(locationCoordinator: LocationCoordinator, locationModel: LocationModel<FBStorage<FBLocation>>,
          bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
-         alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?) {
+         alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?,
+         ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.locationModel = locationModel
         self.bucketModel = bucketModel
+        self.ratingModel = ratingModel
         self.locationCoordinator = locationCoordinator
         self.levelSystemService = levelSystemService
         self._showLocationAlert = showLocationAlert
@@ -121,23 +133,33 @@ class VisitTracker {
         let body = "bucketlist updated"
         switch state {
         case .background:
-            sendNotification(title: title, body: body)
+            notificationManager.sendNotificationWithActions(title: title, body: body, categoryName: notificationCategoryName, actions: ratingActions) { actionId in
+                
+            }
         default:
             sendAlert(title: title, body: body)
         }
     }
-
-    private func sendNotification(title: String, body: String) {
-        let center = UNUserNotificationCenter.current()
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        content.sound = .default
-
-        let uuidString = UUID().uuidString
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-        center.add(request, withCompletionHandler: nil)
+    
+    private func rate(actionId: String, locationId: String) {
+        guard let choiceOfRating = ratingActions.first(where: { $0.identifier == actionId }) else {
+            print("ERROR: Invalid choice")
+            return
+        }
+        guard let score = Int(choiceOfRating.title) else {
+            print("ERROR: Invalid score")
+            return
+        }
+        guard let userId = bucketModel.userId else {
+            print("ERROR: Invalid user")
+            return
+        }
+        let rating = Rating(id: nil, locationId: locationId, userId: userId, score: score, date: Date())
+        do {
+            try ratingModel.add(rating: rating)
+        } catch {
+            print("ERROR: Unable to save. \(error.localizedDescription)")
+        }
     }
 
     private func sendAlert(title: String, body: String) {

@@ -8,12 +8,12 @@
 import Foundation
 import Combine
 
-class RatingModel<Storage: UserRelatedStorage>: ObservableObject where Storage.StoredType == Rating {
+class RatingModel<Storage: StorageProtocol>: ObservableObject where Storage.StoredType == Rating {
     @Published private(set) var ratings: [Rating] = []
     private let storage: Storage
     private var cancellables: Set<AnyCancellable> = []
 
-    init(storage: Storage, recommender: LocationRecommender) {
+    init(storage: Storage) {
         self.storage = storage
         storage.storedItems.assign(to: \.ratings, on: self)
             .store(in: &cancellables)
@@ -21,7 +21,7 @@ class RatingModel<Storage: UserRelatedStorage>: ObservableObject where Storage.S
     }
     
     func fetchRatings() {
-        storage.fetch()
+        storage.fetch(handler: nil)
     }
 
     func add(rating: Rating) throws {

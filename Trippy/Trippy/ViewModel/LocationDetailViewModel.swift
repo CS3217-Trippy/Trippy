@@ -16,9 +16,10 @@ class LocationDetailViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     @Published var image: UIImage?
 
-    init(location: Location, imageModel: ImageModel) {
+    init(location: Location, imageModel: ImageModel, rating: Float) {
         self.location = location
         self.imageModel = imageModel
+        self.rating = rating
         fetchImage()
     }
 
@@ -54,10 +55,5 @@ class LocationDetailViewModel: ObservableObject {
     
     var category: String {
         location.category.rawValue.capitalized
-    }
-
-    init(location: Location, rating: Float) {
-        self.location = location
-        self.rating = rating
     }
 }

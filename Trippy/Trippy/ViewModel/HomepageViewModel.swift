@@ -13,6 +13,7 @@ final class HomepageViewModel: ObservableObject {
     @Published var locationModel: LocationModel<FBStorage<FBLocation>>
     @Published var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     @Published var friendsModel: FriendsListModel<FBStorage<FBFriend>>
+    @Published var ratingModel: RatingModel<FBStorage<FBRating>>
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
 
@@ -20,6 +21,9 @@ final class HomepageViewModel: ObservableObject {
          alertTitle: Binding<String>, alertContent: Binding<String>) {
         let imageStorage = FBImageStorage()
         let imageModel = ImageModel(storage: imageStorage)
+        let ratingStorage = FBStorage<FBRating>()
+        let ratingModel = RatingModel(storage: ratingStorage)
+        self.ratingModel = ratingModel
         self.imageModel = imageModel
         let locationStorage = FBStorage<FBLocation>()
         let locationModel = LocationModel<FBStorage<FBLocation>>(
@@ -48,7 +52,8 @@ final class HomepageViewModel: ObservableObject {
             showLocationAlert: showLocationAlert,
             alertTitle: alertTitle,
             alertContent: alertContent,
-            levelSystemService: session.levelSystemService
+            levelSystemService: session.levelSystemService,
+            ratingModel: ratingModel
         )
     }
 }

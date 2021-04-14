@@ -58,6 +58,7 @@
 		714A9A1125FF4D540030C2F9 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */; };
 		714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */; };
 		714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */; };
+		714ADFC5262597ED00619349 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714ADFC4262597ED00619349 /* NotificationManager.swift */; };
 		714AF262260B85C20034269C /* FBLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF261260B85C20034269C /* FBLocation.swift */; };
 		714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */; };
 		714B10C826060D6C0040FAA1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B10C726060D6C0040FAA1 /* ImagePicker.swift */; };
@@ -193,6 +194,7 @@
 		714A9A1025FF4D540030C2F9 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLocationsMapView.swift; sourceTree = "<group>"; };
 		714A9A1D25FFDB4F0030C2F9 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
+		714ADFC4262597ED00619349 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		714AF261260B85C20034269C /* FBLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocation.swift; sourceTree = "<group>"; };
 		714AF4F625FD16B300C0EFFA /* PreviewLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocations.swift; sourceTree = "<group>"; };
 		714B10C726060D6C0040FAA1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				714A79102615689600E7C865 /* VisitTracker.swift */,
+				714ADFC4262597ED00619349 /* NotificationManager.swift */,
 				714A6D83261429BF0032CA7C /* LocationCoordinator.swift */,
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
@@ -690,6 +693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				714ADFC5262597ED00619349 /* NotificationManager.swift in Sources */,
 				01EFA3882612F93A002FEA23 /* LocationCategory.swift in Sources */,
 				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
 				76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */,

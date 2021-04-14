@@ -28,6 +28,10 @@ struct LocationCardView: View {
                 .font(font)
                 .foregroundColor(.primary)
                 .lineLimit(1)
+                
+                Text("Rating: \(viewModel.rating) / 5")
+                .font(font)
+                .foregroundColor(.secondary)
 
                 if showFullDetails {
                     Text(viewModel.caption)
@@ -70,14 +74,5 @@ struct LocationCardView: View {
             }
 
         }
-    }
-}
-
-struct LocationCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        let testLocation = PreviewLocations.locations[0]
-        let locationCardViewModel = LocationCardViewModel(location: testLocation,
-                                                          imageModel: ImageModel(storage: FBImageStorage()))
-        LocationCardView(viewModel: locationCardViewModel, showFullDetails: true, isHorizontal: true)
     }
 }

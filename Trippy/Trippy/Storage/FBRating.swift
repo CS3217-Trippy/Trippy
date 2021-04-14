@@ -10,7 +10,7 @@ import CoreGraphics
 import UIKit
 import CoreLocation
 
-struct FBRating: FBUserRelatedStorable {
+struct FBRating: FBStorable {
     typealias ModelType = Rating
     static var path = "rating"
 
