@@ -18,11 +18,13 @@ protocol StorageProtocol: ObservableObject {
 
     func fetchWithField(field: String, value: String, handler: (([StoredType]) -> Void)?)
 
+    func fetchWithFieldContainsAny(field: String, value: [String], handler: (([StoredType]) -> Void)?)
+
     func fetchWithFieldOnce(field: String, value: String, handler: (([StoredType]) -> Void)?)
 
     func add(item: StoredType) throws
 
-    func update(item: StoredType) throws
+    func update(item: StoredType, handler: ((StoredType) -> Void)?) throws
 
     func remove(item: StoredType)
 

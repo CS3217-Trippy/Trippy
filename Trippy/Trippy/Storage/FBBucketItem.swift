@@ -1,6 +1,5 @@
 import FirebaseFirestoreSwift
 import Foundation
-import UIKit
 
 struct FBBucketItem: FBStorable {
     typealias ModelType = BucketItem

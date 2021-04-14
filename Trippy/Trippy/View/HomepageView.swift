@@ -13,6 +13,7 @@ struct HomepageView: View {
     var user: User
 
     var body: some View {
+        let hexColor = "001482"
         let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
                                                imageModel: homepageViewModel.imageModel)
         let bucketListView = BucketListView(viewModel: bucketListVM)
@@ -21,36 +22,60 @@ struct HomepageView: View {
                                                       imageModel: homepageViewModel.imageModel,
                                                       ratingModel: homepageViewModel.ratingModel)
         let locationListView = LocationListView(viewModel: locationViewModel)
+
+        let accountPageViewModel = AccountPageViewModel(
+            session: session,
+            achievementModel: homepageViewModel.achievementsModel,
+            imageModel: homepageViewModel.imageModel
+        )
         let accountPageView = AccountPageView(
-            accountPageViewModel: AccountPageViewModel(session: session), user: user)
+            accountPageViewModel: accountPageViewModel, user: user)
 
         let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
                                                 imageModel: homepageViewModel.imageModel)
         let friendListView = FriendsListView(viewModel: friendListVM)
 
-        NavigationView {
-            VStack(spacing: 10) {
-                Text("Welcome, \(user.username)")
-                    .font(.title)
+        let meetupListVM = MeetupListViewModel(
+            meetupModel: homepageViewModel.meetupModel,
+            imageModel: homepageViewModel.imageModel
+        )
 
-                NavigationLink(destination: bucketListView) {
-                    Text("BUCKET LIST")
-                }
-                NavigationLink(destination: locationListView) {
-                    Text("LOCATIONS")
-                }
-                NavigationLink(destination: friendListView) {
-                    Text("FRIENDS")
-                }
-                NavigationLink(destination: accountPageView) {
-                    Text("ACCOUNT PAGE")
-                }
-                NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-                    Text("ADD FRIEND")
-                }
-                Button("SIGN OUT") {
-                    _ = self.session.signOut()
-                }
+        let meetupListView = MeetupListView(viewModel: meetupListVM)
+
+        NavigationView {
+            ZStack {
+                Image("background")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                VStack(spacing: 10) {
+                    Text("Welcome, \(user.username)")
+                        .bold()
+                        .font(.largeTitle)
+                        .foregroundColor(Color(hex: "000000"))
+
+                    NavigationLink(destination: bucketListView) {
+                        RaisedNavigationText(text: "BUCKET LIST", colorHex: hexColor).cornerRadius(10)
+                    }
+                    NavigationLink(destination: meetupListView) {
+                        RaisedNavigationText(text: "MEETUPS", colorHex: hexColor).cornerRadius(10)
+                    }
+                    NavigationLink(destination: locationListView) {
+                        RaisedNavigationText(text: "LOCATIONS", colorHex: hexColor).cornerRadius(10)
+                    }
+                    NavigationLink(destination: friendListView) {
+                        RaisedNavigationText(text: "FRIENDS", colorHex: hexColor).cornerRadius(10)
+                    }
+                    NavigationLink(destination: accountPageView) {
+                        RaisedNavigationText(text: "ACCOUNT PAGE", colorHex: hexColor).cornerRadius(10)
+                    }
+                    NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
+                        RaisedNavigationText(text: "ADD FRIEND", colorHex: hexColor).cornerRadius(10)
+                    }
+                    RaisedButton(child: "SIGN OUT", colorHex: hexColor) {
+                        _ = self.session.signOut()
+                    }.cornerRadius(10)
+                }.zIndex(100)
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

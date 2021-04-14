@@ -15,6 +15,7 @@ class User: Model {
     var username: String
     var friendsId: [String]
     var levelSystemId: String
+    var achievements: [String]
 
     init(
         id: String?,
@@ -22,6 +23,7 @@ class User: Model {
         username: String,
         friendsId: [String],
         levelSystemId: String,
+        achievements: [String],
         imageId: String?
     ) {
         self.id = id
@@ -29,6 +31,7 @@ class User: Model {
         self.username = username
         self.friendsId = friendsId
         self.levelSystemId = levelSystemId
+        self.achievements = achievements
         self.imageId = imageId
     }
 }

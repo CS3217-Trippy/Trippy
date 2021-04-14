@@ -40,6 +40,6 @@ class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         guard bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return
         }
-        try storage.update(item: bucketItem)
+        try storage.update(item: bucketItem, handler: nil)
     }
 }

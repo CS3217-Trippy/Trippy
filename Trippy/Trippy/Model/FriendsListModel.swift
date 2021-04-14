@@ -37,7 +37,7 @@ final class FriendsListModel<Storage: StorageProtocol> where Storage.StoredType 
         guard friendsList.contains(where: { $0.id == friend.id }) else {
             return
         }
-        try storage.update(item: friend)
+        try storage.update(item: friend, handler: nil)
     }
 
     func removeFriend(friend: Friend) {

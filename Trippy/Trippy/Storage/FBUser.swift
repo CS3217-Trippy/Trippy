@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct FBUser: FBStorable {
     typealias ModelType = User
@@ -16,6 +15,7 @@ struct FBUser: FBStorable {
     var email: String
     var username: String
     var friendsId: [String]
+    var achievements: [String]
     var levelSystemId: String
 
     init(item: ModelType) {
@@ -24,6 +24,7 @@ struct FBUser: FBStorable {
         username = item.username
         friendsId = item.friendsId
         levelSystemId = item.levelSystemId
+        achievements = item.achievements
         if let id = item.imageId {
             imageIds.append(id)
         }
@@ -40,6 +41,7 @@ struct FBUser: FBStorable {
             username: username,
             friendsId: friendsId,
             levelSystemId: levelSystemId,
+            achievements: achievements,
             imageId: imageId
         )
         return user

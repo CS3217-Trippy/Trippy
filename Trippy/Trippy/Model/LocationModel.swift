@@ -69,7 +69,6 @@ class LocationModel<Storage: StorageProtocol>: ObservableObject where Storage.St
             let trippyImage = TrippyImage(id: id, image: image)
             imageModel.add(with: [trippyImage])
         }
-        try storage.update(item: updatedLocation)
+        try storage.update(item: updatedLocation, handler: nil)
     }
-
 }

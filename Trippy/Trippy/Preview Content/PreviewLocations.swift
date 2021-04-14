@@ -27,7 +27,8 @@ struct PreviewLocations {
             name: "The great tree",
             description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore" +
                 "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
-                "qui officia deserunt mollit anim id est laborum.", category: LocationCategory.adventure,
+                "qui officia deserunt mollit anim id est laborum.",
+            category: LocationCategory.adventure,
             imageId: "2"
         ),
         Location(
@@ -36,7 +37,8 @@ struct PreviewLocations {
             name: "The Obelisk of Centraltown",
             description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore" +
                 "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
-                "qui officia deserunt mollit anim id est laborum.", category: LocationCategory.adventure,
+                "qui officia deserunt mollit anim id est laborum.",
+            category: LocationCategory.adventure,
             imageId: "3"
         ),
         Location(

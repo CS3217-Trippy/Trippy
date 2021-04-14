@@ -46,7 +46,7 @@ struct ContentView: View {
                     ))
                 }
             } else {
-                StartUpView()
+                StartUpView(logInViewModel: .init(session: session))
             }
         }.onAppear(perform: {
             session.listen()

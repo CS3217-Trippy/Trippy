@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import URLImage
 
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
