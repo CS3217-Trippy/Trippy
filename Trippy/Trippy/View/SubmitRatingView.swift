@@ -21,19 +21,25 @@ struct SubmitRatingView: View {
                 }
                 Spacer()
             }
-            padding()
+            .padding()
+
             Text("Please give a score of 1-5")
             Slider(value: $score, in: 1...5, step: 1, onEditingChanged: { editing in
                 isEditing = editing
             }, minimumValueLabel: Text("1"), maximumValueLabel: Text("5")) {
                 Text("Rating")
             }
+            .padding()
             Text("\(Int(score))")
             .foregroundColor(isEditing ? .blue : .black)
 
             Button("Submit") {
                 viewModel.submitRating(score: Int(score))
+                presentationMode.wrappedValue.dismiss()
             }
+            .padding()
+
+            Spacer()
         }
     }
 }

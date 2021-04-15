@@ -45,7 +45,7 @@ class RatingModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
             return
         }
 
-        try storage.update(item: updatedRating)
+        try storage.update(item: updatedRating, handler: nil)
     }
 
     func getAverageRating(for location: Location) -> Float? {

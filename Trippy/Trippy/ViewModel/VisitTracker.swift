@@ -28,7 +28,7 @@ class VisitTracker {
     @Binding private var alertContent: String
     private let tempBucketItemKey = "tempBucketItem"
     private let tempDateKey = "tempDate"
-    private let minimumVisitDuration = 300.0
+    private let minimumVisitDuration = 3.0
     private let maxDistanceThreshhold = 500.0
     private let notificationCategoryName = "rateAfterVisit"
     private let ratingActions = [
@@ -72,6 +72,7 @@ class VisitTracker {
     func trackBucketItemProximities(location: CLLocationCoordinate2D) {
         if let bucketItem = nearbyBucketItem {
             if !isNearby(bucketItem: bucketItem, from: location) {
+                print("Left \(bucketItem.locationName)")
                 recordVisitForBucketItem()
                 nearbyBucketItem = nil
                 arrivalTimeAtBucketItem = nil
@@ -87,6 +88,7 @@ class VisitTracker {
             return
         }
         if isNearby(bucketItem: nearestItem, from: location) {
+            print("\(nearestItem.locationName) is currently nearby")
             nearbyBucketItem = nearestItem
             arrivalTimeAtBucketItem = Date()
             saveTempData()
@@ -99,10 +101,12 @@ class VisitTracker {
             return
         }
         guard currentDate.timeIntervalSince(arrivalTime) > minimumVisitDuration else {
+            print("Visit was too short to be counted")
             return
         }
         bucketItem.dateVisited = arrivalTime
         do {
+            print("bucketitem visited")
             try bucketModel.updateBucketItem(bucketItem: bucketItem)
             levelSystemService?.generateExperienceFromFinishingBucketItem(bucketItem: bucketItem)
         } catch {

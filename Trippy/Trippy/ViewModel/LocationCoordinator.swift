@@ -32,6 +32,7 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startMonitoringSignificantLocationChanges()
+        print("Monitoring in background")
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -43,5 +44,6 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last?.coordinate
+        print("location updated to: \(currentLocation?.latitude ?? 0.0),\(currentLocation?.longitude ?? 0.0)")
     }
 }

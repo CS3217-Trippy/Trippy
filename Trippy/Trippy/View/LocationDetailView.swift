@@ -42,11 +42,11 @@ struct LocationDetailView: View {
                 .foregroundColor(.secondary)
 
                 if let locationId = viewModel.location.id, let user = session.currentLoggedInUser?.id {
-                    padding()
                     Button(action: { showSubmitRatingSheet.toggle() }) {
                         Text("Submit rating")
                         .font(.caption)
                     }
+                    .padding()
                     .sheet(isPresented: $showSubmitRatingSheet) {
                         SubmitRatingView(viewModel: SubmitRatingViewModel(locationId: locationId, userId: user, ratingModel: viewModel.ratingModel))
                     }
