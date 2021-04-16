@@ -19,6 +19,7 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
         locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
         authorizationStatus = locationManager.authorizationStatus
+        locationManager.allowsBackgroundLocationUpdates = true
         enableAccurateLocation()
     }
 
@@ -29,9 +30,8 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
 
     func enableApproximateLocation() {
         locationManager.stopUpdatingLocation()
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.pausesLocationUpdatesAutomatically = false
         print("Monitoring in background")
     }
 
