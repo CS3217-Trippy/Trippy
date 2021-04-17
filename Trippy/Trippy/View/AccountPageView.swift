@@ -140,7 +140,6 @@ struct AccountPageView_Previews: PreviewProvider {
                 id: "1",
                 email: "1",
                 username: "CAT",
-                friendsId: [],
                 levelSystemId: "1",
                 achievements: [],
                 imageId: "1"
@@ -155,7 +154,6 @@ struct AccountPageView_Previews: PreviewProvider {
             id: "1",
             email: "1",
             username: "CAT",
-            friendsId: [],
             levelSystemId: "1",
             achievements: [],
             imageId: "1"

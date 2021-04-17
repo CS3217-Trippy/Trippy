@@ -14,7 +14,6 @@ class User: Model {
     var id: String?
     var email: String
     var username: String
-    var friendsId: [String]
     var levelSystemId: String
     var achievements: [String]
 
@@ -22,7 +21,6 @@ class User: Model {
         id: String?,
         email: String,
         username: String,
-        friendsId: [String],
         levelSystemId: String,
         achievements: [String],
         imageId: String?
@@ -30,7 +28,6 @@ class User: Model {
         self.id = id
         self.email = email
         self.username = username
-        self.friendsId = friendsId
         self.levelSystemId = levelSystemId
         self.achievements = achievements
         self.imageId = imageId
