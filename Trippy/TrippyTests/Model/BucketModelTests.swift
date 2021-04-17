@@ -4,35 +4,35 @@ import XCTest
  class BucketModelTests: XCTestCase {
 
     func testInit() throws {
-        let storage = MockUserRelatedStorage<FBBucketItem>()
+        let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
         let locationId = "1"
         let item = constructBucketItem(locationId: locationId)
-        try storage.add(item: item)
-        let model = BucketModel<MockUserRelatedStorage<FBBucketItem>>(storage: storage, userId: userId)
+        storage.add(item: item)
+        let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 1)
     }
 
     func testAdd() throws {
-        let storage = MockUserRelatedStorage<FBBucketItem>()
+        let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
         let locationId = "1"
         let item = constructBucketItem(locationId: locationId)
 
-        let model = BucketModel<MockUserRelatedStorage<FBBucketItem>>(storage: storage, userId: userId)
+        let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         try model.addBucketItem(bucketItem: item)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 1)
     }
 //
     func testAdd_duplicate_shouldFail() throws {
-        let storage = MockUserRelatedStorage<FBBucketItem>()
+        let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
         let locationId = "1"
         let item = constructBucketItem(locationId: locationId)
 
-        let model = BucketModel<MockUserRelatedStorage<FBBucketItem>>(storage: storage, userId: userId)
+        let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         try model.addBucketItem(bucketItem: item)
         try model.addBucketItem(bucketItem: item)
         let items = model.bucketItems
@@ -40,12 +40,12 @@ import XCTest
     }
 
     func testUpdate() throws {
-        let storage = MockUserRelatedStorage<FBBucketItem>()
+        let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
         let locationId = "1"
         let item = constructBucketItem(locationId: locationId)
 
-        let model = BucketModel<MockUserRelatedStorage<FBBucketItem>>(storage: storage, userId: userId)
+        let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         try model.addBucketItem(bucketItem: item)
         let newLocationId = "2"
         item.locationId = newLocationId
@@ -57,9 +57,9 @@ import XCTest
     }
 
     func testUpdate_itemDoesNotExist_shouldFail() throws {
-        let storage = MockUserRelatedStorage<FBBucketItem>()
+        let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
-        let model = BucketModel<MockUserRelatedStorage<FBBucketItem>>(storage: storage, userId: userId)
+        let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         let locationId = "location1"
         let item = constructBucketItem(locationId: locationId)
         let newItem = constructBucketItem(locationId: locationId)
@@ -75,9 +75,9 @@ import XCTest
     }
 
     func testRemove() throws {
-        let storage = MockUserRelatedStorage<FBBucketItem>()
+        let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
-        let model = BucketModel<MockUserRelatedStorage<FBBucketItem>>(storage: storage, userId: userId)
+        let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         let locationId = "locationId"
         let newItem = constructBucketItem(locationId: locationId)
         try model.addBucketItem(bucketItem: newItem)
@@ -87,9 +87,9 @@ import XCTest
     }
 
     func testRemove_itemDoesNotExist_shouldFail() {
-        let storage = MockUserRelatedStorage<FBBucketItem>()
+        let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
-        let model = BucketModel<MockUserRelatedStorage<FBBucketItem>>(storage: storage, userId: userId)
+        let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         let locationId = "locationId1"
         let newItem = constructBucketItem(locationId: locationId)
         let items = model.bucketItems
@@ -104,7 +104,7 @@ import XCTest
         let description = "description"
         let dateAdded = Date()
         return BucketItem(locationName: locationName, locationCategory: LocationCategory.adventure,
-                          locationImage: nil,
+                          locationImageId: nil,
                           userId: userId,
                           locationId: locationId, dateVisited: nil,
                           dateAdded: dateAdded,
