@@ -48,7 +48,6 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
         locationManager.pausesLocationUpdatesAutomatically = false
-        print("Monitoring in background")
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -60,7 +59,6 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last?.coordinate
-        print("location updated to: \(currentLocation?.latitude ?? 0.0),\(currentLocation?.longitude ?? 0.0)")
     }
 
     func monitorRegionAtLocation(center: CLLocationCoordinate2D, radius: Double, id: String ) {
@@ -83,11 +81,9 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         enteredRegion = region
-        print("region entered: \(region.identifier)")
     }
 
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         exitedRegion = region
-        print("region exited: \(region.identifier)")
     }
 }
