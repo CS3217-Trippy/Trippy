@@ -44,8 +44,11 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
     var userDescription: String {
         meetupItem.userDescription
     }
-    var dateAdded: Date {
-        meetupItem.dateAdded
+    var dateOfMeetup: String {
+        meetupItem.meetupDate.dateTimeStringFromDate
+    }
+    var locationCategory: String {
+        meetupItem.locationCategory.rawValue.capitalized
     }
 
 }

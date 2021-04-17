@@ -64,7 +64,7 @@ struct LocationDetailView: View {
                     .aspectRatio(contentMode: .fit)
                 }
 
-                WeatherSectionView(viewModel: WeatherSectionViewModel(coordinates: viewModel.location.coordinates))
+                WeatherSectionView(viewModel: WeatherSectionViewModel(coordinates: viewModel.locationCoordinates))
 
                 HStack {
                     pageContent

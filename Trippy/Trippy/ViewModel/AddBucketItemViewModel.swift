@@ -39,7 +39,8 @@ class AddBucketItemViewModel {
                                     locationId: locationId,
                                     dateVisited: nil,
                                     dateAdded: Date(),
-                                    userDescription: userDescription
+                                    userDescription: userDescription,
+                                    coordinates: location.coordinates
                                     )
         return bucketItem
     }

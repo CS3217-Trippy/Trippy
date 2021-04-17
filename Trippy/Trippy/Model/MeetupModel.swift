@@ -25,26 +25,11 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
     guard let userId = userId else {
         return
     }
-    self.meetupItems = []
-
-    let publicField = "publicity"
-    let value = MeetupPrivacy.publicMeetup.rawValue
-    storage.fetchWithField(field: publicField, value: value) { meetups in
-        self.publicMeetupItems = meetups
-    }
-
-    let field = "hostUserId"
-    storage.fetchWithField(field: field, value: userId) { meetups in
-        self.meetupItems.removeAll { $0.hostUserId == userId }
-        self.meetupItems.append(contentsOf: meetups)
-    }
-
-    let usersField = "userIds"
-    storage.fetchWithFieldContainsAny(field: usersField, value: [userId]) { meetups in
-        self.meetupItems.removeAll { $0.hostUserId != userId }
-        self.meetupItems.append(contentsOf: meetups)
-    }
-    }
+    resetMeetups()
+    fetchPublicMeetups()
+    fetchMeetupsHostedByUser(userId: userId)
+    fetchMeetupsJoinedByUser(userId: userId)
+   }
 
     func addMeetup(meetup: Meetup) throws {
         try storage.add(item: meetup)
@@ -56,6 +41,35 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
 
     func removeMeetup(meetup: Meetup) {
         storage.remove(item: meetup)
+    }
+
+    private func resetMeetups() {
+        self.publicMeetupItems = []
+        self.meetupItems = []
+    }
+
+    private func fetchMeetupsHostedByUser(userId: String) {
+        let field = "hostUserId"
+        storage.fetchWithField(field: field, value: userId) { meetups in
+            self.meetupItems.removeAll { $0.hostUserId == userId }
+            self.meetupItems.append(contentsOf: meetups)
+        }
+    }
+
+    private func fetchMeetupsJoinedByUser(userId: String) {
+        let usersField = "userIds"
+        storage.fetchWithFieldContainsAny(field: usersField, value: [userId]) { meetups in
+            self.meetupItems.removeAll { $0.hostUserId != userId }
+            self.meetupItems.append(contentsOf: meetups)
+        }
+    }
+
+    private func fetchPublicMeetups() {
+        let publicField = "meetupPrivacy"
+        let value = MeetupPrivacy.publicMeetup.rawValue
+        storage.fetchWithField(field: publicField, value: value) { meetups in
+            self.publicMeetupItems = meetups
+        }
     }
 
 }
