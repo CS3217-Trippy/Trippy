@@ -37,6 +37,7 @@ final class MeetupListViewModel: ObservableObject {
         fetch()
     }
 
+    /// Fetches list of meetups that are public or joined by the user
     func fetch() {
         meetupModel.fetchMeetups()
     }

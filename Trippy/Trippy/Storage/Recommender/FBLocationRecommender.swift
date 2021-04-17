@@ -16,6 +16,7 @@ class FBLocationRecommender: LocationRecommender {
         fetch()
     }
 
+    /// Fetches recommendations for the logged in user
     func fetch() {
         guard let userId = userId else {
             return
@@ -28,9 +29,7 @@ class FBLocationRecommender: LocationRecommender {
         }
     }
 
-    /**
-     Gets locations similar to those in the user's bucketlist
-     */
+    //// Gets locations similar to those in the user's bucketlist
     private func getContentRecommendations() {
         guard let userId = userId else {
             return
@@ -45,9 +44,7 @@ class FBLocationRecommender: LocationRecommender {
         }
     }
 
-    /**
-     Gets locations from the bucketlist of other users who have similar bucketlists as current user
-     */
+    /// Gets locations from the bucketlist of other users who have similar bucketlists as current user
     private func getCollaborativeRecommendations() {
         guard let userId = userId else {
             return
@@ -68,9 +65,7 @@ class FBLocationRecommender: LocationRecommender {
         bucketItems.filter { $0.userId != userId }
     }
 
-    /**
-     Given an array of user ids, get the locations that they like that are not currently liked by the current user
-     */
+    /// Given an array of user ids, get the locations that they like that are not currently liked by the current user
     private func getUserRecommendationsFromUserIds(userIds: Set<String>) {
         for userId in userIds {
             let field = "userId"
@@ -89,9 +84,7 @@ class FBLocationRecommender: LocationRecommender {
         }
     }
 
-    /**
-     Given an array of location ids, gets the location data for each location
-     */
+    /// Given an array of location ids, gets the location data for each location
     private func getLocationsFromLocationIds(locationIds: [String]) {
         for locationId in locationIds {
             locationItemStore.fetchWithId(id: locationId) {location in
@@ -100,31 +93,23 @@ class FBLocationRecommender: LocationRecommender {
         }
     }
 
-    /**
-     Gets the unique set of user ids from array of bucket items
-     */
+    /// Gets the unique set of user ids from array of bucket items
     private func getUniqueUserIdsFromBucketList(bucketItems: [BucketItem]) -> Set<String> {
         let users: [String] = bucketItems.map { $0.userId }
         return Set(users)
     }
 
-    /**
-     Gets the location ids from an array of bucket items
-     */
+    /// Gets the location ids from an array of bucket items
     private func getLocationIdsFromBucketList(bucketItems: [BucketItem]) -> [String] {
         bucketItems.map { $0.locationId }
     }
 
-    /**
-     Given an array of bucket items, gets the unique categories of these bucket items
-     */
+    /// Given an array of bucket items, gets the unique categories of these bucket items
     private func getCategoriesFromBucketList(bucketItems: [BucketItem]) -> Set<String> {
         Set(bucketItems.map { $0.locationCategory.rawValue })
     }
 
-    /**
-     Given a Set of categories, gets the locations with similar categories
-     */
+    /// Given a Set of categories, gets the locations with similar categories
     private func getLocationsWithSameCategory(categories: Set<String>) {
         let arr = Array(categories)
         guard !arr.isEmpty else {
@@ -136,18 +121,14 @@ class FBLocationRecommender: LocationRecommender {
         }
     }
 
-    /**
-     Adds an array of `Location` to the recommended list
-     */
+    /// Adds an array of `Location` to the recommended list
     private func addLocationArray(locations: [Location]) {
         for location in locations {
             addLocationToRecommended(location: location)
         }
     }
 
-    /**
-     Adds a `Location` to the recommended list
-     */
+    /// Adds a `Location` to the recommended list
     private func addLocationToRecommended(location: Location) {
         guard let locationId = location.id else {
             return

@@ -3,10 +3,10 @@ import CoreLocation
 
 class BucketItem: Model {
     var id: String?
-    let locationName: String
+    var locationName: String
     let locationCategory: LocationCategory
     let userId: String
-    let locationId: String
+    var locationId: String
     var dateVisited: Date?
     let dateAdded: Date
     let locationImageId: String?

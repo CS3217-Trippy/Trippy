@@ -21,6 +21,7 @@ final class BucketListViewModel: ObservableObject {
         .store(in: &cancellables)
     }
 
+    /// Fetches list of bucket items owned by the user
     func fetch() {
         bucketModel.fetchBucketItems()
     }

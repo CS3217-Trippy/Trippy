@@ -39,7 +39,11 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             bucketItemsAddedBefore: []
         )
         retrieveLevelSystem()
-        levelSystemStorage.add(item: newLevelSystemForUser)
+        do {
+            try levelSystemStorage.add(item: newLevelSystemForUser)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     func retrieveLevelSystem() {

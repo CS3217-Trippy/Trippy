@@ -1,4 +1,5 @@
 import XCTest
+import CoreLocation
  @testable import Trippy
 
  class BucketModelTests: XCTestCase {
@@ -25,7 +26,7 @@ import XCTest
         let items = model.bucketItems
         XCTAssertEqual(items.count, 1)
     }
-//
+
     func testAdd_duplicate_shouldFail() throws {
         let storage = MockStorage<FBBucketItem>()
         let userId = "userId"
@@ -108,7 +109,8 @@ import XCTest
                           userId: userId,
                           locationId: locationId, dateVisited: nil,
                           dateAdded: dateAdded,
-                          userDescription: description
+                          userDescription: description,
+                          coordinates: CLLocationCoordinate2D(latitude: 0, longitude: 0)
                           )
     }
 
