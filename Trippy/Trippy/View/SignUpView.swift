@@ -23,14 +23,11 @@ struct SignUpView: View {
                 .frame(width: 400, height: nil, alignment: .center)
             SecureField("CONFIRM PASSSWORD", text: $signUpViewModel.confirmPassword)
                 .frame(width: 400, height: nil, alignment: .center)
-
-            RaisedButton(child: "SIGN UP", colorHex: "287bf7") {
             RaisedButton(child: "SIGN UP", colorHex: Color.buttonBlue) {
                 self.signUpViewModel.signUp()
             }.cornerRadius(10)
             Text(signUpViewModel.errorMessage)
                 .foregroundColor(.red)
-            }
         .padding()
         .textFieldStyle(RoundedBorderTextFieldStyle())
         }
