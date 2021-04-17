@@ -56,18 +56,23 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             try levelSystemStorage.update(item: userLevelSystem) { _ in
                 let completionFriend = userLevelSystem.friendsIdAddedBefore.count
                 let completionBucket = userLevelSystem.bucketItemsAddedBefore.count
+                let completionMeetup = userLevelSystem.meetupsJoinedBefore.count
                 let completedFriendAchievements = self.achievementService.checkForCompletions(
                     type: .FriendCount(completion: 0), completion: completionFriend
                 )
                 let completedBucketAchievements = self.achievementService.checkForCompletions(
                     type: .BucketItemCount(completion: 0), completion: completionBucket
                 )
+                let completedMeetupAchievements = self.achievementService.checkForCompletions(
+                    type: .MeetupCount(completion: 0), completion: completionMeetup
+                )
                 self.achievementService.completeAchievements(
                     for: self.userId,
-                    achievement: completedFriendAchievements + completedBucketAchievements
+                    achievement: completedFriendAchievements + completedBucketAchievements + completedMeetupAchievements
                 )
                 self.generateExperienceFromCompletingAchievements(
-                    achievements: completedFriendAchievements + completedBucketAchievements,
+                    achievements: completedFriendAchievements +
+                        completedBucketAchievements + completedMeetupAchievements,
                     levelSystem: userLevelSystem
                 )
             }

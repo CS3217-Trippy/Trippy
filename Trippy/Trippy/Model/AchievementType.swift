@@ -10,12 +10,15 @@ import Foundation
 enum AchievementType {
     case FriendCount(completion: Int)
     case BucketItemCount(completion: Int)
+    case MeetupCount(completion: Int)
 
     func getCompletion() -> Int {
         switch self {
         case .FriendCount(let completion):
             return completion
         case .BucketItemCount(let completion):
+            return completion
+        case .MeetupCount(let completion):
             return completion
         }
     }
@@ -26,6 +29,8 @@ enum AchievementType {
             return "friendCount"
         case .BucketItemCount:
             return "bucketItemCount"
+        case .MeetupCount:
+            return "meetupCount"
         }
     }
 
@@ -34,6 +39,8 @@ enum AchievementType {
             return .FriendCount(completion: completion)
         } else if type == "bucketItemCount" {
             return .BucketItemCount(completion: completion)
+        } else if type == "meetupCount" {
+            return .MeetupCount(completion: completion)
         } else {
             fatalError("Undefined achievement type")
         }
