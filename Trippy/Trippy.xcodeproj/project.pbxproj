@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0106B33A2622F5B500574097 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B3392622F5B500574097 /* ImageModel.swift */; };
 		0106B33F2622F76A00574097 /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B33E2622F76A00574097 /* ImageStorage.swift */; };
-		0106B3442622F87400574097 /* Trippyimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B3432622F87400574097 /* Trippyimage.swift */; };
+		0106B3442622F87400574097 /* TrippyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B3432622F87400574097 /* TrippyImage.swift */; };
 		0106B37E2622FFCC00574097 /* FBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B37D2622FFCC00574097 /* FBStorage.swift */; };
 		0106B38C262300E200574097 /* StorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B38B262300E200574097 /* StorageProtocol.swift */; };
 		01088F5C2606442F00579707 /* BucketListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01088F5B2606442F00579707 /* BucketListError.swift */; };
@@ -173,7 +173,7 @@
 /* Begin PBXFileReference section */
 		0106B3392622F5B500574097 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		0106B33E2622F76A00574097 /* ImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
-		0106B3432622F87400574097 /* Trippyimage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trippyimage.swift; sourceTree = "<group>"; };
+		0106B3432622F87400574097 /* TrippyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyImage.swift; sourceTree = "<group>"; };
 		0106B37D2622FFCC00574097 /* FBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBStorage.swift; sourceTree = "<group>"; };
 		0106B38B262300E200574097 /* StorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProtocol.swift; sourceTree = "<group>"; };
 		01088F5B2606442F00579707 /* BucketListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListError.swift; sourceTree = "<group>"; };
@@ -497,7 +497,7 @@
 				7617D15A2621829F00D94782 /* Achievement.swift */,
 				7617D1722622348700D94782 /* AchievementType.swift */,
 				0106B3392622F5B500574097 /* ImageModel.swift */,
-				0106B3432622F87400574097 /* Trippyimage.swift */,
+				0106B3432622F87400574097 /* TrippyImage.swift */,
 				7617D18E2625AD4600D94782 /* AchievementModel.swift */,
 				0112EEA226248A8400F420E2 /* Meetup.swift */,
 				0112EEAC26248DE400F420E2 /* MeetupModel.swift */,
@@ -847,7 +847,7 @@
 				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
 				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				01E5AA6F2625BB3900A8D9C6 /* CreateMeetupView.swift in Sources */,
-				0106B3442622F87400574097 /* Trippyimage.swift in Sources */,
+				0106B3442622F87400574097 /* TrippyImage.swift in Sources */,
 				76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
 				714A79112615689600E7C865 /* VisitTracker.swift in Sources */,

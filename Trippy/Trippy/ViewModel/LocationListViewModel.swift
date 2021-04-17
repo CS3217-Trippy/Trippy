@@ -19,7 +19,8 @@ class LocationListViewModel: ObservableObject {
         locationModel.fetchRecommendedLocations()
     }
 
-    init(locationModel: LocationModel<FBStorage<FBLocation>>, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>) {
+    init(locationModel: LocationModel<FBStorage<FBLocation>>, imageModel: ImageModel,
+         ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.locationModel = locationModel
         self.imageModel = imageModel
         self.ratingModel = ratingModel

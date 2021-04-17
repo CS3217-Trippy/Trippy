@@ -29,7 +29,8 @@ struct LocationMapView: View {
             if let selectedLocation = selectedLocation {
                 NavigationLink(
                     destination: LocationDetailView(viewModel: .init(location: selectedLocation,
-                                                                     imageModel: viewModel.imageModel, ratingModel: viewModel.ratingModel)),
+                                                                     imageModel: viewModel.imageModel,
+                                                                     ratingModel: viewModel.ratingModel)),
                     isActive: $showDetailView
                 ) { EmptyView() }
             }

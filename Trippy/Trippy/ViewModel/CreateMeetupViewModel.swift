@@ -55,7 +55,8 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         try meetupModel.addMeetup(meetup: meetup)
     }
 
-    private func buildMeetup(friends: [Friend], meetupPrivacy: String, meetupDate: Date, userDescription: String) throws -> Meetup {
+    private func buildMeetup(friends: [Friend], meetupPrivacy: String, meetupDate: Date,
+                             userDescription: String) throws -> Meetup {
         guard let locationId = bucketItem.id else {
             throw MeetupError.invalidLocation
         }

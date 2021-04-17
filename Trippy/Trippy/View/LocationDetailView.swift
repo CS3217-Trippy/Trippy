@@ -48,7 +48,8 @@ struct LocationDetailView: View {
                     }
                     .padding()
                     .sheet(isPresented: $showSubmitRatingSheet) {
-                        SubmitRatingView(viewModel: SubmitRatingViewModel(locationId: locationId, userId: user, ratingModel: viewModel.ratingModel))
+                        SubmitRatingView(viewModel: SubmitRatingViewModel(locationId: locationId, userId: user,
+                                                                          ratingModel: viewModel.ratingModel))
                     }
                 }
             }

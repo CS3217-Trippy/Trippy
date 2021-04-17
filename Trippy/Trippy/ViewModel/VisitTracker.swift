@@ -39,8 +39,10 @@ class VisitTracker {
         UNNotificationAction(identifier: "rate5", title: "5")
     ]
 
-    init(locationCoordinator: LocationCoordinator, notificationManager: NotificationManager, locationModel: LocationModel<FBStorage<FBLocation>>,
-         bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>, completedLocation: Binding<String>,
+    init(locationCoordinator: LocationCoordinator, notificationManager: NotificationManager,
+         locationModel: LocationModel<FBStorage<FBLocation>>,
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
+         completedLocation: Binding<String>,
          alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?,
          ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.locationModel = locationModel
@@ -142,8 +144,12 @@ class VisitTracker {
         let notificationBody = "Tap and hold to leave a rating!"
         switch state {
         case .background:
-            notificationManager.sendNotificationWithActions(title: title, body: notificationBody,
-                categoryName: notificationCategoryName, actions: ratingActions) { actionId in
+            notificationManager.sendNotificationWithActions(
+                title: title,
+                body: notificationBody,
+                categoryName: notificationCategoryName,
+                actions: ratingActions
+            ) { actionId in
                 self.rate(actionId: actionId, locationId: bucketItem.locationId)
             }
         default:
