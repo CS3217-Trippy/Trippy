@@ -12,6 +12,7 @@ import Firebase
 struct TrippyApp: App {
     @Environment(\.scenePhase) var scenePhase
     @State var locationCoordinator = LocationCoordinator()
+    @State var notificationManager = NotificationManager()
     var sessionWrapper = FBSessionWrapper()
 
     init() {
@@ -30,6 +31,7 @@ struct TrippyApp: App {
             ContentView()
                 .environmentObject(sessionWrapper.retrieveSessionStore())
                 .environmentObject(locationCoordinator)
+                .environmentObject(notificationManager)
         }
         .onChange(of: scenePhase) { phase in
             switch phase {

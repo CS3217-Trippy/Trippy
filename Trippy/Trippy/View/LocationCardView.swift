@@ -30,6 +30,13 @@ struct LocationCardView: View {
                 .lineLimit(1)
 
                 if showFullDetails {
+                    Text(viewModel.averageRatingDescription)
+                    .font(.caption)
+                    .fontWeight(.black)
+                    .foregroundColor(.secondary)
+                }
+
+                if showFullDetails {
                     Text(viewModel.caption)
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -52,7 +59,8 @@ struct LocationCardView: View {
 
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location,
-                                                                        imageModel: viewModel.imageModel ))) {
+                                                                        imageModel: viewModel.imageModel,
+                                                                        ratingModel: viewModel.ratingModel))) {
             if isHorizontal {
                 HStack {
                     cardBody
@@ -70,14 +78,5 @@ struct LocationCardView: View {
             }
 
         }
-    }
-}
-
-struct LocationCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        let testLocation = PreviewLocations.locations[0]
-        let locationCardViewModel = LocationCardViewModel(location: testLocation,
-                                                          imageModel: ImageModel(storage: FBImageStorage()))
-        LocationCardView(viewModel: locationCardViewModel, showFullDetails: true, isHorizontal: true)
     }
 }

@@ -14,11 +14,13 @@ class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
     private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
+    let ratingModel: RatingModel<FBStorage<FBRating>>
     @Published var image: UIImage?
 
-    init(location: Location, imageModel: ImageModel) {
+    init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.location = location
         self.imageModel = imageModel
+        self.ratingModel = ratingModel
         fetchImage()
     }
 
@@ -51,12 +53,21 @@ class LocationDetailViewModel: ObservableObject {
     var description: String {
         location.description
     }
+
     var category: String {
         location.category.rawValue.capitalized
     }
 
     var locationCoordinates: CLLocationCoordinate2D {
         location.coordinates
+    }
+
+    var averageRatingDescription: String {
+        guard let rating = ratingModel.getAverageRating(for: location) else {
+            return "No ratings yet"
+        }
+        let roundedRating = String(format: "%.1f", rating)
+        return "Rating: \(roundedRating)/5.0"
     }
 
 }

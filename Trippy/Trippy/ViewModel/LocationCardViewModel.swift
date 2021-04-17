@@ -12,14 +12,16 @@ import Combine
 
 class LocationCardViewModel: Identifiable, ObservableObject {
     @Published var location: Location
+    let ratingModel: RatingModel<FBStorage<FBRating>>
     @Published var image: UIImage?
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
     let imageModel: ImageModel
 
-    init(location: Location, imageModel: ImageModel) {
+    init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.location = location
         self.imageModel = imageModel
+        self.ratingModel = ratingModel
         $location
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
@@ -58,4 +60,11 @@ class LocationCardViewModel: Identifiable, ObservableObject {
         location.category.rawValue.capitalized
     }
 
+    var averageRatingDescription: String {
+        guard let rating = ratingModel.getAverageRating(for: location) else {
+            return "No ratings yet"
+        }
+        let roundedRating = String(format: "%.1f", rating)
+        return "Rating: \(roundedRating)/5.0"
+    }
 }
