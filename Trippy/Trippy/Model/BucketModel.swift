@@ -14,6 +14,7 @@ class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         fetchBucketItems()
     }
 
+    /// Retrieves bucket list of the logged in user
     func fetchBucketItems() {
         guard let userId = userId else {
             return
@@ -22,6 +23,9 @@ class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         storage.fetchWithField(field: field, value: userId, handler: nil)
     }
 
+    /// Adds a bucket item to storage
+    /// - Parameters:
+    ///  bucketItem: BucketItem to be added
     func addBucketItem(bucketItem: BucketItem) throws {
         guard !bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return
@@ -29,6 +33,9 @@ class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         try storage.add(item: bucketItem)
     }
 
+    /// Removes a bucket item from storage
+    /// - Parameters:
+    ///  bucketItem: BucketItem to be removed
     func removeBucketItem(bucketItem: BucketItem) {
         guard bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return
@@ -36,6 +43,10 @@ class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         storage.remove(item: bucketItem)
     }
 
+    /// Updates bucket item in storage
+    /// - Parameters:
+    ///  bucketItem: BucketItem to be updated
+    /// - Throws:StorageError.saveFailure
     func updateBucketItem(bucketItem: BucketItem) throws {
         guard bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return

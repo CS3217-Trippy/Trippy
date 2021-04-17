@@ -1,5 +1,6 @@
 import FirebaseFirestoreSwift
 import Foundation
+import CoreLocation
 
 struct FBMeetup: FBStorable {
     typealias ModelType = Meetup
@@ -17,6 +18,8 @@ struct FBMeetup: FBStorable {
     var meetupDate: Date
     var dateAdded: Date
     var userDescription: String
+    var latitude: Double
+    var longitude: Double
 
     init(item: ModelType) {
         self.meetupPrivacy = item.meetupPrivacy
@@ -34,6 +37,8 @@ struct FBMeetup: FBStorable {
         if let imageId = item.locationImageId {
             locationImageIds.append(imageId)
         }
+        self.latitude = item.coordinates.latitude
+        self.longitude = item.coordinates.longitude
     }
 
     func convertToModelType() -> Meetup {
@@ -53,7 +58,8 @@ struct FBMeetup: FBStorable {
                             locationId: locationId,
                             meetupDate: meetupDate,
                             dateAdded: dateAdded,
-                            userDescription: userDescription)
+                            userDescription: userDescription,
+                            coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         return meetup
     }
 }

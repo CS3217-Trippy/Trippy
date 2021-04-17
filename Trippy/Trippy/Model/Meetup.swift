@@ -5,6 +5,8 @@
 //  Created by Lim Chun Yong on 12/4/21.
 //
 import Foundation
+import CoreLocation
+
 class Meetup: Model {
     var meetupPrivacy: MeetupPrivacy
     var id: String?
@@ -19,20 +21,14 @@ class Meetup: Model {
     var meetupDate: Date
     var dateAdded: Date
     var userDescription: String
+    let coordinates: CLLocationCoordinate2D
+    var placemark: CLPlacemark?
 
-    init(id: String?,
-         meetupPrivacy: MeetupPrivacy,
-         userIds: [String],
-         userProfilePhotoIds: [String],
-         hostUsername: String,
-         hostUserId: String,
-         locationImageId: String?,
-         locationName: String,
-         locationCategory: LocationCategory,
-         locationId: String,
-         meetupDate: Date,
-         dateAdded: Date,
-         userDescription: String) {
+    init(id: String?, meetupPrivacy: MeetupPrivacy, userIds: [String],
+         userProfilePhotoIds: [String], hostUsername: String, hostUserId: String,
+         locationImageId: String?, locationName: String, locationCategory: LocationCategory,
+         locationId: String, meetupDate: Date, dateAdded: Date,
+         userDescription: String, coordinates: CLLocationCoordinate2D) {
         self.meetupPrivacy = meetupPrivacy
         self.id = id
         self.userProfilePhotoIds = userProfilePhotoIds
@@ -46,5 +42,14 @@ class Meetup: Model {
         self.meetupDate = meetupDate
         self.dateAdded = dateAdded
         self.userDescription = userDescription
+        self.coordinates = coordinates
+        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        CLGeocoder().reverseGeocodeLocation(location) { placemark, error in
+            guard let placemark = placemark?.first, error == nil else {
+                print("Unable to retrieve placemark")
+                return
+            }
+            self.placemark = placemark
+        }
     }
 }

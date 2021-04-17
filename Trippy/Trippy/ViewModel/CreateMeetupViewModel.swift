@@ -47,6 +47,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         }
     }
 
+    /// Saves the form and adds meetup to model
     func saveForm(meetupDate: Date, userDescription: String, meetupPrivacy: String, friends: [Friend]) throws {
         let meetup = try buildMeetup(friends: friends,
                                      meetupPrivacy: meetupPrivacy,
@@ -55,7 +56,9 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         try meetupModel.addMeetup(meetup: meetup)
     }
 
-    private func buildMeetup(friends: [Friend], meetupPrivacy: String, meetupDate: Date,
+    private func buildMeetup(friends: [Friend],
+                             meetupPrivacy: String,
+                             meetupDate: Date,
                              userDescription: String) throws -> Meetup {
         guard let locationId = bucketItem.id else {
             throw MeetupError.invalidLocation
@@ -73,19 +76,13 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         let imageId = bucketItem.locationImageId
         let userIds = getUserIdsFromUsers(friends: friends)
         let userPhotos = getUserPhotosFromUsers(friends: friends)
-        let meetup = Meetup(id: nil,
-                            meetupPrivacy: privacy,
-                            userIds: userIds,
-                            userProfilePhotoIds: userPhotos,
-                            hostUsername: username,
-                            hostUserId: userId,
-                            locationImageId: imageId,
-                            locationName: bucketItem.locationName,
-                            locationCategory: bucketItem.locationCategory,
-                            locationId: locationId,
-                            meetupDate: meetupDate,
-                            dateAdded: Date(),
-                            userDescription: userDescription)
+        let coordinates = bucketItem.coordinates
+        let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds,
+                            userProfilePhotoIds: userPhotos, hostUsername: username,
+                            hostUserId: userId, locationImageId: imageId, locationName: bucketItem.locationName,
+                            locationCategory: bucketItem.locationCategory, locationId: locationId,
+                            meetupDate: meetupDate, dateAdded: Date(),
+                            userDescription: userDescription, coordinates: coordinates)
         return meetup
     }
 

@@ -1,7 +1,4 @@
 import Combine
-import FirebaseFirestore
-import FirebaseFirestoreSwift
-import Firebase
 
 class FBLocationRecommender: LocationRecommender {
 
@@ -9,8 +6,8 @@ class FBLocationRecommender: LocationRecommender {
         $_recommendedItems
     }
     @Published private var _recommendedItems: [Location] = []
-    private var store = Firestore.firestore()
-    private let path = "locations"
+    private var bucketItemStore: FBStorage<FBBucketItem> = FBStorage<FBBucketItem>()
+    private var locationItemStore: FBStorage<FBLocation> = FBStorage<FBLocation>()
     private let userId: String?
     private var currentLocationsInBucketList: [String] = []
 
@@ -19,25 +16,20 @@ class FBLocationRecommender: LocationRecommender {
         fetch()
     }
 
+    /// Fetches recommendations for the logged in user
     func fetch() {
         guard let userId = userId else {
             return
         }
-        let bucketListPath = "bucketItems"
         let field = "userId"
-        store.collection(bucketListPath).whereField(field, isEqualTo: userId).getDocuments { snapshot, error in
-            if error != nil {
-                return
-            }
-            self.currentLocationsInBucketList = self.getLocationIdsFromBucketListSnapshot(snapshot: snapshot)
+        bucketItemStore.fetchWithField(field: field, value: userId) { bucketItems in
+            self.currentLocationsInBucketList = self.getLocationIdsFromBucketList(bucketItems: bucketItems)
             self.getContentRecommendations()
             self.getCollaborativeRecommendations()
         }
     }
 
-    /**
-     Gets locations similar to those in the user's bucketlist
-     */
+    //// Gets locations similar to those in the user's bucketlist
     private func getContentRecommendations() {
         guard let userId = userId else {
             return
@@ -45,20 +37,14 @@ class FBLocationRecommender: LocationRecommender {
         guard !currentLocationsInBucketList.isEmpty else {
             return
         }
-        let bucketListPath = "bucketItems"
         let field = "userId"
-        store.collection(bucketListPath).whereField(field, isEqualTo: userId).getDocuments { snapshot, error in
-            if error != nil {
-                return
-            }
-            let categories = self.getCategoriesFromBucketListSnapshot(snapshot: snapshot)
+        bucketItemStore.fetchWithField(field: field, value: userId) { bucketItems in
+            let categories = self.getCategoriesFromBucketList(bucketItems: bucketItems)
             self.getLocationsWithSameCategory(categories: categories)
         }
     }
 
-    /**
-     Gets locations from the bucketlist of other users who have similar bucketlists as current user
-     */
+    /// Gets locations from the bucketlist of other users who have similar bucketlists as current user
     private func getCollaborativeRecommendations() {
         guard let userId = userId else {
             return
@@ -66,133 +52,83 @@ class FBLocationRecommender: LocationRecommender {
         guard !currentLocationsInBucketList.isEmpty else {
             return
         }
-        let bucketListPath = "bucketItems"
-        let userIdField = "userId"
         let locationField = "locationId"
-        store.collection(bucketListPath)
-            .whereField(locationField, in: currentLocationsInBucketList)
-            .whereField(userIdField, isNotEqualTo: userId).getDocuments {snapshot, _ in
-                let userIds = self.getUniqueUserIdsFromSnapshot(snapshot: snapshot)
-                self.getUserRecommendationsFromUserIds(userIds: userIds)
-            }
+        bucketItemStore.fetchWithFieldContainsAny(field: locationField,
+                                                  value: currentLocationsInBucketList) { bucketItems in
+            let filteredBucketItems = self.getBucketItemsNotBelongingToUser(userId: userId, bucketItems: bucketItems)
+            let userIds = self.getUniqueUserIdsFromBucketList(bucketItems: filteredBucketItems)
+            self.getUserRecommendationsFromUserIds(userIds: userIds)
+        }
     }
 
-    /**
-     Given an array of user ids, get the locations that they like that are not currently liked by the current user
-     */
+    private func getBucketItemsNotBelongingToUser(userId: String, bucketItems: [BucketItem]) -> [BucketItem] {
+        bucketItems.filter { $0.userId != userId }
+    }
+
+    /// Given an array of user ids, get the locations that they like that are not currently liked by the current user
     private func getUserRecommendationsFromUserIds(userIds: Set<String>) {
         for userId in userIds {
-            let bucketListPath = "bucketItems"
-            let userIdField = "userId"
-            let locationIdField = "locationId"
-            store.collection(bucketListPath).whereField(
-                locationIdField,
-                notIn: currentLocationsInBucketList)
-                .whereField(userIdField, isEqualTo: userId).getDocuments { snapshot, _ in
-                    let locationIdsOfUserRecommendations = self.getLocationIdsFromBucketListSnapshot(snapshot: snapshot)
-                    self.getLocationsFromLocationIds(locationIds: locationIdsOfUserRecommendations)
-                }
-        }
-    }
-    /**
-     Given an array of location ids, gets the location data for each location
-     */
-    private func getLocationsFromLocationIds(locationIds: [String]) {
-        for locationId in locationIds {
-            store.collection(path).document(locationId).getDocument { snapshot, error in
-                if error != nil {
-                    return
-                }
-                guard let location = try? snapshot?.data(as: FBLocation.self) else {
-                    return
-                }
-                self.addLocationToRecommended(location: location.convertToModelType())
+            let field = "userId"
+            bucketItemStore.fetchWithField(field: field, value: userId) { bucketItems in
+                let filteredBucketItems = self.getBucketItemsNotInCurrentList(bucketItems: bucketItems)
+                let locationIdsOfUserRecommendations = self.getLocationIdsFromBucketList(
+                    bucketItems: filteredBucketItems)
+                self.getLocationsFromLocationIds(locationIds: locationIdsOfUserRecommendations)
             }
         }
     }
 
-    /**
-     Gets the unique set of user ids from a QuerySnapshot
-     */
-    private func getUniqueUserIdsFromSnapshot(snapshot: QuerySnapshot?) -> Set<String> {
-        let users: [String] = snapshot?.documents.compactMap {
-            guard let fbItem = try? $0.data(as: FBBucketItem.self) else {
-                return nil
+    private func getBucketItemsNotInCurrentList(bucketItems: [BucketItem]) -> [BucketItem] {
+        bucketItems.filter { bucketItem in
+           !self.currentLocationsInBucketList.contains(bucketItem.locationId)
+        }
+    }
+
+    /// Given an array of location ids, gets the location data for each location
+    private func getLocationsFromLocationIds(locationIds: [String]) {
+        for locationId in locationIds {
+            locationItemStore.fetchWithId(id: locationId) {location in
+                self.addLocationToRecommended(location: location)
             }
-            return fbItem.userId
-        } ?? []
+        }
+    }
+
+    /// Gets the unique set of user ids from array of bucket items
+    private func getUniqueUserIdsFromBucketList(bucketItems: [BucketItem]) -> Set<String> {
+        let users: [String] = bucketItems.map { $0.userId }
         return Set(users)
     }
 
-    /**
-     Gets the location ids from a QuerySnapshot of bucket items
-     */
-    private func getLocationIdsFromBucketListSnapshot(snapshot: QuerySnapshot?) -> [String] {
-        let bucketItems: [FBBucketItem] = snapshot?.documents.compactMap {
-            guard let fbItem = try? $0.data(as: FBBucketItem.self) else {
-                return nil
-            }
-            return fbItem
-        } ?? []
-        return bucketItems.map { $0.locationId }
+    /// Gets the location ids from an array of bucket items
+    private func getLocationIdsFromBucketList(bucketItems: [BucketItem]) -> [String] {
+        bucketItems.map { $0.locationId }
     }
 
-    /**
-     Given a QuerySnapshot, gets the unique categories of these bucket items
-     */
-    private func getCategoriesFromBucketListSnapshot(snapshot: QuerySnapshot?) -> Set<String> {
-        let bucketItems: [FBBucketItem] = snapshot?.documents.compactMap {
-            guard let fbItem = try? $0.data(as: FBBucketItem.self) else {
-                return nil
-            }
-            return fbItem
-        } ?? []
-        return Set(bucketItems.map { $0.locationCategory.rawValue })
+    /// Given an array of bucket items, gets the unique categories of these bucket items
+    private func getCategoriesFromBucketList(bucketItems: [BucketItem]) -> Set<String> {
+        Set(bucketItems.map { $0.locationCategory.rawValue })
     }
 
-    /**
-     Given a Set of categories, gets the locations with similar categories
-     */
+    /// Given a Set of categories, gets the locations with similar categories
     private func getLocationsWithSameCategory(categories: Set<String>) {
         let arr = Array(categories)
         guard !arr.isEmpty else {
             return
         }
         let field = "category"
-        store.collection(path).whereField(field, in: arr).getDocuments { snapshot, error in
-            if error != nil {
-                return
-            }
-            let locations = self.getLocationsFromSnapshot(snapshot: snapshot)
+        locationItemStore.fetchWithFieldContainsAny(field: field, value: arr) { locations in
             self.addLocationArray(locations: locations)
         }
     }
 
-    /**
-     Given a QuerySnapshot, returns an array of `Location`
-     */
-    private func getLocationsFromSnapshot(snapshot: QuerySnapshot?) -> [Location] {
-        let locations: [Location] = snapshot?.documents.compactMap {
-            guard let fbItem = try? $0.data(as: FBLocation.self) else {
-                return nil
-            }
-            return fbItem.convertToModelType()
-        } ?? []
-        return locations
-    }
-
-    /**
-     Adds an array of `Location` to the recommended list
-     */
+    /// Adds an array of `Location` to the recommended list
     private func addLocationArray(locations: [Location]) {
         for location in locations {
             addLocationToRecommended(location: location)
         }
     }
 
-    /**
-     Adds a `Location` to the recommended list
-     */
+    /// Adds a `Location` to the recommended list
     private func addLocationToRecommended(location: Location) {
         guard let locationId = location.id else {
             return

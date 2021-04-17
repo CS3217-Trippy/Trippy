@@ -17,6 +17,7 @@ struct CreateMeetupView: View {
     @State private var meetupDate = Date()
     @State private var selectedPrivacy: String = ""
     @Environment(\.presentationMode) var presentationMode
+    let prompt = "Date of meetup"
 
     var search: some View {
 
@@ -62,13 +63,11 @@ struct CreateMeetupView: View {
     }
 
     var datePicker: some View {
-        DatePicker(selection: $meetupDate, in: Date()..., displayedComponents: .date) {
-            Text("Select a date")
-        }
+        DatePicker(prompt, selection: $meetupDate, in: Date()...).datePickerStyle(GraphicalDatePickerStyle())
     }
 
     var notesInput: some View {
-        TextField("Notes", text: $userDescription)
+        TextField("Description", text: $userDescription)
     }
 
     var submitSection: some View {

@@ -11,36 +11,61 @@ import URLImage
 struct MeetupItemView: View {
     @ObservedObject var viewModel: MeetupItemViewModel
     let font = Font.body
+    let showFullDetails: Bool
+    let isHorizontal: Bool
+
     var imageView: some View {
         if let image = viewModel.image {
-            return AnyView(Image(uiImage: image).cardImageModifier()
+            return AnyView(
+                Image(uiImage: image).locationImageModifier()
             )
         } else {
-            return AnyView(Image("Placeholder").cardImageModifier())
+            return AnyView(Image("Placeholder").locationImageModifier())
         }
     }
 
     var textView: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text(viewModel.locationName)
-                .font(.headline)
-                .foregroundColor(Color(.black))
-            Text(viewModel.userDescription).font(font).foregroundColor(Color(.black))
-            Text("Added on " + viewModel.dateAdded.dateTimeStringFromDate)
-                .lineLimit(9).font(font).foregroundColor(Color(.black))
+        let font: Font = showFullDetails ? Font.title : Font.body
+        return HStack {
+            VStack(alignment: .leading) {
+                if showFullDetails {
+                    Text(viewModel.locationCategory)
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+                }
+
+                Text(viewModel.locationName)
+                .font(font)
+                .foregroundColor(.primary)
+                .lineLimit(1)
+
+                if showFullDetails {
+                    Text(viewModel.dateOfMeetup)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                }
+            }
+            Spacer()
         }
     }
 
     var body: some View {
-        NavigationLink(destination:
-                        MeetupDetailView(viewModel: viewModel.meetupDetailViewModel)) {
-                RectangularCard(width: UIScreen.main.bounds.width - 10, height: 210, viewBuilder: {
-                    HStack(alignment: .center) {
+        NavigationLink(destination: MeetupDetailView(viewModel: viewModel.meetupDetailViewModel)) {
+            if isHorizontal {
+                VStack {
+                    imageView
+                    textView
+                    .padding()
+                }
+                .padding([.top, .horizontal])
+            } else {
+                    HStack {
                         imageView
                         textView
-                        Spacer()
+                        .padding()
                     }
-                })
+                    .padding([.top, .horizontal])
+            }
         }
 
     }

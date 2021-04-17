@@ -19,6 +19,7 @@ class AddBucketItemViewModel {
         self.user = user
     }
 
+    /// Saves the form and adds the bucket item to model
     func saveForm(userDescription: String) throws {
         let bucketItem = try buildBucketItem(userDescription: userDescription)
         try bucketModel.addBucketItem(bucketItem: bucketItem)
@@ -39,7 +40,8 @@ class AddBucketItemViewModel {
                                     locationId: locationId,
                                     dateVisited: nil,
                                     dateAdded: Date(),
-                                    userDescription: userDescription
+                                    userDescription: userDescription,
+                                    coordinates: location.coordinates
                                     )
         return bucketItem
     }

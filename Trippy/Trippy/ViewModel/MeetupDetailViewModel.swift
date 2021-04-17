@@ -8,6 +8,7 @@
 import Combine
 import Contacts
 import UIKit
+import CoreLocation
 
 class MeetupDetailViewModel: ObservableObject {
     @Published var meetup: Meetup
@@ -52,7 +53,7 @@ class MeetupDetailViewModel: ObservableObject {
     }
 
     var category: String {
-        meetup.locationCategory.rawValue
+        meetup.locationCategory.rawValue.capitalized
     }
 
     var meetupDate: String {
@@ -63,6 +64,20 @@ class MeetupDetailViewModel: ObservableObject {
         meetup.dateAdded.dateStringFromDate
     }
 
+    var locationCoordinates: CLLocationCoordinate2D {
+        meetup.coordinates
+    }
+
+    var address: String {
+        let postalAddressFormatter = CNPostalAddressFormatter()
+        postalAddressFormatter.style = .mailingAddress
+        var addressString: String?
+        if let postalAddress = meetup.placemark?.postalAddress {
+            addressString = postalAddressFormatter.string(from: postalAddress)
+        }
+        return addressString ?? ""
+    }
+
     func userInMeetup(user: User?) -> Bool {
         guard let id = user?.id else {
             return false
@@ -70,9 +85,23 @@ class MeetupDetailViewModel: ObservableObject {
         return meetup.userIds.contains { $0 == id } || meetup.hostUserId == id
     }
 
+    func joinMeetup(userId: String?) throws {
+        guard let id = userId else {
+            throw MeetupError.invalidUser
+        }
+        let hostId = meetup.hostUserId
+        let isMeetupOwner = id == hostId
+        let isInMeetup = meetup.userIds.contains(id)
+        if isMeetupOwner || isInMeetup {
+            return
+        }
+        meetup.userIds.append(id)
+        try meetupModel.updateMeetup(meetup: meetup)
+    }
+
     func remove(userId: String?) throws {
         guard let id = userId else {
-            return
+            throw MeetupError.invalidUser
         }
         let hostId = meetup.hostUserId
         if id == hostId {

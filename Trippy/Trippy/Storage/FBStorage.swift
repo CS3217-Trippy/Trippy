@@ -60,7 +60,29 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
 
     func fetchWithFieldContainsAny(field: String, value: [String], handler: (([Storable.ModelType]) -> Void)?) {
         store.collection(Storable.path)
-            .whereField(field, arrayContainsAny: value)
+            .whereField(field, in: value)
+            .addSnapshotListener { snapshot, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            let result: [Storable.ModelType] = snapshot?.documents.compactMap {
+                guard let fbItem = try? $0.data(as: Storable.self) else {
+                    return nil
+                }
+                return fbItem.convertToModelType()
+            } ?? []
+            if let handler = handler {
+                handler(result)
+            } else {
+                    self._storedItems = result
+            }
+            }
+    }
+
+    func fetchWithFieldNotIn(field: String, value: [String], handler: (([StoredType]) -> Void)?) {
+        store.collection(Storable.path)
+            .whereField(field, notIn: value)
             .addSnapshotListener { snapshot, error in
             if let error = error {
                 print(error)
@@ -119,7 +141,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
-    func add(item: Storable.ModelType) {
+    func add(item: Storable.ModelType) throws {
         let fbItem = Storable(item: item)
         do {
             if let id = item.id {
@@ -128,7 +150,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
                 item.id = try store.collection(Storable.path).addDocument(from: fbItem).documentID
             }
         } catch {
-            print(error.localizedDescription)
+            throw StorageError.saveFailure
         }
     }
 
@@ -137,14 +159,19 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         guard let id = fbItem.id else {
             return
         }
-        try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
-            guard let handler = handler else {
-                return
+        do {
+            try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
+                guard let handler = handler else {
+                    return
+                }
+                if error == nil {
+                    handler(item)
+                }
             }
-            if error == nil {
-                handler(item)
-            }
+        } catch {
+            throw StorageError.saveFailure
         }
+
     }
 
     func remove(item: Storable.ModelType) {

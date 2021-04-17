@@ -1,15 +1,18 @@
 import Foundation
+import CoreLocation
 
 class BucketItem: Model {
     var id: String?
     var locationName: String
-    var locationCategory: LocationCategory
-    var userId: String
+    let locationCategory: LocationCategory
+    let userId: String
     var locationId: String
     var dateVisited: Date?
-    var dateAdded: Date
-    var locationImageId: String?
-    var userDescription: String
+    let dateAdded: Date
+    let locationImageId: String?
+    let userDescription: String
+    let coordinates: CLLocationCoordinate2D
+    var placemark: CLPlacemark?
 
     init(locationName: String,
          locationCategory: LocationCategory,
@@ -18,7 +21,8 @@ class BucketItem: Model {
          locationId: String,
          dateVisited: Date?,
          dateAdded: Date,
-         userDescription: String) {
+         userDescription: String,
+         coordinates: CLLocationCoordinate2D) {
         self.id = userId + locationId
         self.locationName = locationName
         self.locationCategory = locationCategory
@@ -28,5 +32,14 @@ class BucketItem: Model {
         self.dateVisited = dateVisited
         self.dateAdded = dateAdded
         self.userDescription = userDescription
+        self.coordinates = coordinates
+        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        CLGeocoder().reverseGeocodeLocation(location) { placemark, error in
+            guard let placemark = placemark?.first, error == nil else {
+                print("Unable to retrieve placemark")
+                return
+            }
+            self.placemark = placemark
+        }
     }
 }

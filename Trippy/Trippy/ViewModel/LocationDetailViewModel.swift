@@ -8,6 +8,7 @@
 import Combine
 import Contacts
 import UIKit
+import CoreLocation
 
 class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
@@ -57,6 +58,10 @@ class LocationDetailViewModel: ObservableObject {
         location.category.rawValue.capitalized
     }
 
+    var locationCoordinates: CLLocationCoordinate2D {
+        location.coordinates
+    }
+    
     var averageRatingDescription: String {
         guard let rating = ratingModel.getAverageRating(for: location) else {
             return "No ratings yet"
@@ -64,4 +69,5 @@ class LocationDetailViewModel: ObservableObject {
         let roundedRating = String(format: "%.1f", rating)
         return "Rating: \(roundedRating)/5.0"
     }
+
 }

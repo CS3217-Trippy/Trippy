@@ -12,12 +12,29 @@ struct MeetupListView: View {
     @ObservedObject var viewModel: MeetupListViewModel
     var body: some View {
         VStack {
-            if viewModel.isEmpty {
-                Text("No items in meetup list!")
-            }
-            CollectionView(data: $viewModel.meetupItemViewModels,
-                           cols: 1, spacing: 10) { meetupViewModel in
-                MeetupItemView(viewModel: meetupViewModel)
+            List {
+                if !viewModel.publicMeetupViewModels.isEmpty {
+                    Text("Public Meetups")
+                    VStack(alignment: .leading) {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
+                                    MeetupItemView(viewModel: meetupViewModel,
+                                                   showFullDetails: false,
+                                                   isHorizontal: true)
+                                }
+                            }
+                        }.frame(height: 200)
+                    }
+                }
+
+                Text("Upcoming Meetups")
+
+                ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
+                    MeetupItemView(viewModel: meetupViewModel,
+                                   showFullDetails: true,
+                                   isHorizontal: false).frame(height: 200)
+                }
             }
         }
         .navigationTitle("Meetups")
