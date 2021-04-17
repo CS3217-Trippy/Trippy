@@ -10,7 +10,11 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     private let imageModel: ImageModel
     private(set) var id = ""
-    init(itineraryItem: ItineraryItem, itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>, imageModel: ImageModel) {
+    init(
+        itineraryItem: ItineraryItem,
+        itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>,
+        imageModel: ImageModel
+    ) {
         self.itineraryItem = itineraryItem
         self.itineraryModel = itineraryModel
         self.imageModel = imageModel

@@ -61,7 +61,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
 
     private func getDistance(indexI: Int, indexJ: Int) -> Double {
         CLLocation(latitude: itineraryItems[indexI].coordinates.latitude,
-                              longitude: itineraryItems[indexI].coordinates.longitude)
+                   longitude: itineraryItems[indexI].coordinates.longitude)
             .distance(from: CLLocation(latitude: itineraryItems[indexJ].coordinates.latitude,
                                        longitude: itineraryItems[indexJ].coordinates.longitude))
     }
