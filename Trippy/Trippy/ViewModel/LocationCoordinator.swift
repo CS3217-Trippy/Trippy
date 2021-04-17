@@ -13,6 +13,7 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
     @Published var currentLocation: CLLocationCoordinate2D?
     @Published var authorizationStatus: CLAuthorizationStatus = .denied
     @Published var visited: CLVisit?
+    private let approximateDistanceFilter = 500.0
 
     override init() {
         super.init()
@@ -24,13 +25,15 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
     }
 
     func enableAccurateLocation() {
-        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
     }
 
     func enableApproximateLocation() {
-        locationManager.stopUpdatingLocation()
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.distanceFilter = approximateDistanceFilter
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.startUpdatingLocation()
         locationManager.pausesLocationUpdatesAutomatically = false
         print("Monitoring in background")
     }

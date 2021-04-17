@@ -11,6 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var session: FBSessionStore
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var locationCoordinator: LocationCoordinator
+    @EnvironmentObject var notificationManager: NotificationManager
     @State var showLocationAlert = false
     @State var alertTitle = ""
     @State var alertContent = ""
@@ -23,6 +24,7 @@ struct ContentView: View {
                 let homepageViewModel = HomepageViewModel(
                     session: session,
                     locationCoordinator: locationCoordinator,
+                    notificationManager: notificationManager,
                     showLocationAlert: $showLocationAlert,
                     completedLocation: $completedLocation,
                     alertTitle: $alertTitle,

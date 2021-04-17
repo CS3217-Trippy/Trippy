@@ -12,7 +12,7 @@ import UserNotifications
 
 class VisitTracker {
     private let locationCoordinator: LocationCoordinator
-    @EnvironmentObject private var notificationManager: NotificationManager
+    private let notificationManager: NotificationManager
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     private var ratingModel: RatingModel<FBStorage<FBRating>>
     private var locationModel: LocationModel<FBStorage<FBLocation>>
@@ -28,7 +28,7 @@ class VisitTracker {
     @Binding private var alertContent: String
     private let tempBucketItemKey = "tempBucketItem"
     private let tempDateKey = "tempDate"
-    private let minimumVisitDuration = 3.0
+    private let minimumVisitDuration = 300.0
     private let maxDistanceThreshhold = 500.0
     private let notificationCategoryName = "rateAfterVisit"
     private let ratingActions = [
@@ -39,7 +39,7 @@ class VisitTracker {
         UNNotificationAction(identifier: "rate5", title: "5")
     ]
 
-    init(locationCoordinator: LocationCoordinator, locationModel: LocationModel<FBStorage<FBLocation>>,
+    init(locationCoordinator: LocationCoordinator, notificationManager: NotificationManager, locationModel: LocationModel<FBStorage<FBLocation>>,
          bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>, completedLocation: Binding<String>,
          alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?,
          ratingModel: RatingModel<FBStorage<FBRating>>) {
@@ -47,6 +47,7 @@ class VisitTracker {
         self.bucketModel = bucketModel
         self.ratingModel = ratingModel
         self.locationCoordinator = locationCoordinator
+        self.notificationManager = notificationManager
         self.levelSystemService = levelSystemService
         self._showLocationAlert = showLocationAlert
         self._completedLocation = completedLocation
@@ -137,16 +138,17 @@ class VisitTracker {
     private func notifyUser(for bucketItem: BucketItem) {
         let state = UIApplication.shared.applicationState
         let title = "Congrats! You have visited \(bucketItem.locationName)"
-        let body = "Please leave a rating!"
+        let alertBody = "Please leave a rating!"
+        let notificationBody = "Tap and hold to leave a rating!"
         switch state {
         case .background:
-            notificationManager.sendNotificationWithActions(title: title, body: body,
+            notificationManager.sendNotificationWithActions(title: title, body: notificationBody,
                 categoryName: notificationCategoryName, actions: ratingActions) { actionId in
                 self.rate(actionId: actionId, locationId: bucketItem.locationId)
             }
         default:
             completedLocation = bucketItem.locationId
-            sendAlert(title: title, body: body)
+            sendAlert(title: title, body: alertBody)
         }
     }
 
