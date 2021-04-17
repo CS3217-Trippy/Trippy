@@ -25,6 +25,10 @@ struct MeetupDetailView: View {
             .fontWeight(.black)
             .foregroundColor(.primary)
 
+            Text(viewModel.address)
+            .font(.headline)
+            .foregroundColor(.secondary)
+
             Text("Hosted by \(viewModel.host)")
             .font(.body)
                 .foregroundColor(Color(.black))
@@ -102,6 +106,8 @@ struct MeetupDetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                 }
+
+                WeatherSectionView(viewModel: WeatherSectionViewModel(coordinates: viewModel.locationCoordinates))
 
                 HStack {
                     pageContent

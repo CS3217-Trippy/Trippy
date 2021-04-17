@@ -13,6 +13,10 @@ final class MeetupListViewModel: ObservableObject {
     private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
 
+    var hasNoMeetups: Bool {
+        meetupItemViewModels.isEmpty
+    }
+
     init(meetupModel: MeetupModel<FBStorage<FBMeetup>>, imageModel: ImageModel) {
         self.meetupModel = meetupModel
         self.imageModel = imageModel

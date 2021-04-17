@@ -8,6 +8,7 @@
 import Combine
 import Contacts
 import UIKit
+import CoreLocation
 
 class MeetupDetailViewModel: ObservableObject {
     @Published var meetup: Meetup
@@ -52,7 +53,7 @@ class MeetupDetailViewModel: ObservableObject {
     }
 
     var category: String {
-        meetup.locationCategory.rawValue
+        meetup.locationCategory.rawValue.capitalized
     }
 
     var meetupDate: String {
@@ -61,6 +62,20 @@ class MeetupDetailViewModel: ObservableObject {
 
     var dateAdded: String {
         meetup.dateAdded.dateStringFromDate
+    }
+
+    var locationCoordinates: CLLocationCoordinate2D {
+        meetup.coordinates
+    }
+
+    var address: String {
+        let postalAddressFormatter = CNPostalAddressFormatter()
+        postalAddressFormatter.style = .mailingAddress
+        var addressString: String?
+        if let postalAddress = meetup.placemark?.postalAddress {
+            addressString = postalAddressFormatter.string(from: postalAddress)
+        }
+        return addressString ?? ""
     }
 
     func userInMeetup(user: User?) -> Bool {

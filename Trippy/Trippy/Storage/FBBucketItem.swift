@@ -1,5 +1,6 @@
 import FirebaseFirestoreSwift
 import Foundation
+import CoreLocation
 
 struct FBBucketItem: FBStorable {
     typealias ModelType = BucketItem
@@ -7,6 +8,8 @@ struct FBBucketItem: FBStorable {
     @DocumentID var id: String?
     var locationName: String
     var locationImage: [String] = []
+    var latitude: Double
+    var longitude: Double
     var userId: String
     var locationId: String
     var dateVisited: Date?
@@ -24,6 +27,8 @@ struct FBBucketItem: FBStorable {
         dateAdded = item.dateAdded
         userDescription = item.userDescription
         locationCategory = item.locationCategory
+        latitude = item.coordinates.latitude
+        longitude = item.coordinates.longitude
         if let imageId = item.locationImageId {
             locationImageIds.append(imageId)
         }
@@ -41,7 +46,8 @@ struct FBBucketItem: FBStorable {
                                     locationId: locationId,
                                     dateVisited: dateVisited,
                                     dateAdded: dateAdded,
-                                    userDescription: userDescription
+                                    userDescription: userDescription,
+                                    coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                   )
         return bucketItem
     }

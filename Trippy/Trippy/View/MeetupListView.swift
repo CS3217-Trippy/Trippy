@@ -13,19 +13,27 @@ struct MeetupListView: View {
     var body: some View {
         VStack {
             List {
-                if !viewModel.meetupItemViewModels.isEmpty {
+                if !viewModel.publicMeetupViewModels.isEmpty {
+                    Text("Public Meetups")
                     VStack(alignment: .leading) {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
-                                    MeetupItemView(viewModel: meetupViewModel, isHorizontal: true)
+                                ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
+                                    MeetupItemView(viewModel: meetupViewModel,
+                                                   showFullDetails: false,
+                                                   isHorizontal: true)
                                 }
                             }
                         }.frame(height: 200)
                     }
                 }
-                ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
-                    MeetupItemView(viewModel: meetupViewModel, isHorizontal: false).frame(height: 200)
+
+                Text("Upcoming Meetups")
+    
+                ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
+                    MeetupItemView(viewModel: meetupViewModel,
+                                   showFullDetails: true,
+                                   isHorizontal: false).frame(height: 200)
                 }
             }
         }

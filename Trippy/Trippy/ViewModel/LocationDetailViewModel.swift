@@ -8,6 +8,7 @@
 import Combine
 import Contacts
 import UIKit
+import CoreLocation
 
 class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
@@ -52,6 +53,10 @@ class LocationDetailViewModel: ObservableObject {
     }
     var category: String {
         location.category.rawValue.capitalized
+    }
+
+    var locationCoordinates: CLLocationCoordinate2D {
+        location.coordinates
     }
 
 }
