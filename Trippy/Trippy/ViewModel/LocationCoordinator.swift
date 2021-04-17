@@ -11,9 +11,11 @@ import Combine
 class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject {
     private let locationManager = CLLocationManager()
     @Published var currentLocation: CLLocationCoordinate2D?
+    @Published var enteredRegion: CLRegion?
+    @Published var exitedRegion: CLRegion?
     @Published var authorizationStatus: CLAuthorizationStatus = .denied
-    @Published var visited: CLVisit?
     private let approximateDistanceFilter = 500.0
+    private var notificationManager = NotificationManager()
 
     override init() {
         super.init()
@@ -22,6 +24,17 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
         authorizationStatus = locationManager.authorizationStatus
         locationManager.allowsBackgroundLocationUpdates = true
         enableAccurateLocation()
+    }
+
+    var monitoredRegions: Set<CLRegion> {
+        locationManager.monitoredRegions
+    }
+
+    func clearMonitoredRegions() {
+        let monitoredRegions = locationManager.monitoredRegions
+        for region in monitoredRegions {
+            locationManager.stopMonitoring(for: region)
+        }
     }
 
     func enableAccurateLocation() {
@@ -48,5 +61,33 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last?.coordinate
         print("location updated to: \(currentLocation?.latitude ?? 0.0),\(currentLocation?.longitude ?? 0.0)")
+    }
+
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D, radius: Double, id: String ) {
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            let region = CLCircularRegion(center: center,
+                                          radius: radius, identifier: id)
+            region.notifyOnEntry = true
+            region.notifyOnExit = true
+
+            locationManager.startMonitoring(for: region)
+        }
+    }
+
+    func stopMonitoring(for regionId: String) {
+        guard let region = monitoredRegions.first(where: { $0.identifier == regionId }) else {
+            return
+        }
+        locationManager.stopMonitoring(for: region)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        enteredRegion = region
+        print("region entered: \(region.identifier)")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        exitedRegion = region
+        print("region exited: \(region.identifier)")
     }
 }

@@ -95,6 +95,9 @@
 		7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */; };
 		7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */; };
 		7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152018725FCD4EB00F0ABAC /* LocationCardView.swift */; };
+		7152BBB8262AFE4C00D1727D /* FBVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152BBB7262AFE4C00D1727D /* FBVisit.swift */; };
+		7152BBBD262AFF3200D1727D /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152BBBC262AFF3200D1727D /* Visit.swift */; };
+		7152BBC2262B00FF00D1727D /* VisitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152BBC1262B00FF00D1727D /* VisitModel.swift */; };
 		7155CBA82627020B0007E8C2 /* SubmitRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155CBA72627020B0007E8C2 /* SubmitRatingView.swift */; };
 		7155CBB0262705050007E8C2 /* SubmitRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155CBAF262705050007E8C2 /* SubmitRatingViewModel.swift */; };
 		71565A8425F9F4F40070256A /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71565A8325F9F4F40070256A /* StorageError.swift */; };
@@ -258,6 +261,9 @@
 		7152017D25FCC5D700F0ABAC /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 		7152018225FCD00D00F0ABAC /* LocationCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardViewModel.swift; sourceTree = "<group>"; };
 		7152018725FCD4EB00F0ABAC /* LocationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardView.swift; sourceTree = "<group>"; };
+		7152BBB7262AFE4C00D1727D /* FBVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBVisit.swift; sourceTree = "<group>"; };
+		7152BBBC262AFF3200D1727D /* Visit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visit.swift; sourceTree = "<group>"; };
+		7152BBC1262B00FF00D1727D /* VisitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitModel.swift; sourceTree = "<group>"; };
 		7155CBA72627020B0007E8C2 /* SubmitRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitRatingView.swift; sourceTree = "<group>"; };
 		7155CBAF262705050007E8C2 /* SubmitRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitRatingViewModel.swift; sourceTree = "<group>"; };
 		71565A8325F9F4F40070256A /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
@@ -481,6 +487,8 @@
 			isa = PBXGroup;
 			children = (
 				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
+				7152BBBC262AFF3200D1727D /* Visit.swift */,
+				7152BBC1262B00FF00D1727D /* VisitModel.swift */,
 				714BFF702622EF4000ABA11B /* Rating.swift */,
 				714BFF752622F1AC00ABA11B /* RatingModel.swift */,
 				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
@@ -574,6 +582,7 @@
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
 				01483A4926107AA400D840EA /* FBFriend.swift */,
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
+				7152BBB7262AFE4C00D1727D /* FBVisit.swift */,
 				714BFF7A262302D200ABA11B /* FBRating.swift */,
 				71565A8325F9F4F40070256A /* StorageError.swift */,
 				76E74BC82613617C004BA414 /* FBLevelSystem.swift */,
@@ -830,6 +839,7 @@
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
 				7155CBB0262705050007E8C2 /* SubmitRatingViewModel.swift in Sources */,
 				7694EA422601608800AF9E63 /* AccountPageViewModel.swift in Sources */,
+				7152BBC2262B00FF00D1727D /* VisitModel.swift in Sources */,
 				DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */,
 				01483A4A26107AA400D840EA /* FBFriend.swift in Sources */,
 				0112EEA326248A8400F420E2 /* Meetup.swift in Sources */,
@@ -874,6 +884,7 @@
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
+				7152BBB8262AFE4C00D1727D /* FBVisit.swift in Sources */,
 				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
 				7617D15B2621829F00D94782 /* Achievement.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
@@ -890,6 +901,7 @@
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
 				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
+				7152BBBD262AFF3200D1727D /* Visit.swift in Sources */,
 				7617D1A12625B49500D94782 /* AchievementListView.swift in Sources */,
 				01E5AA672625AEF400A8D9C6 /* CreateMeetupViewModel.swift in Sources */,
 				7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */,
