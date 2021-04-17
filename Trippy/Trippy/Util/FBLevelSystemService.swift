@@ -36,7 +36,8 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             experience: 0,
             level: 1,
             friendsIdAddedBefore: [],
-            bucketItemsAddedBefore: []
+            bucketItemsAddedBefore: [],
+            meetupsJoinedBefore: []
         )
         retrieveLevelSystem()
         do {
@@ -148,6 +149,22 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         }
         userLevelSystem.bucketItemsAddedBefore.append(id)
         addExperience(action: .FinishBucketItem, userLevelSystem: userLevelSystem)
+        updateLevelSystem(userLevelSystem: userLevelSystem)
+    }
+
+    func generateExperienceFromJoiningMeetup(meetup: Meetup) {
+        let userLevelSystem = getUserLevelSystem()
+        if meetup.hostUserId == userLevelSystem.userId || meetup.meetupPrivacy == MeetupPrivacy.privateMeetup {
+            return
+        }
+        guard let id = meetup.id else {
+            return
+        }
+        if userLevelSystem.meetupsJoinedBefore.contains(id) {
+            return
+        }
+        userLevelSystem.meetupsJoinedBefore.append(id)
+        addExperience(action: .JoinMeetup, userLevelSystem: userLevelSystem)
         updateLevelSystem(userLevelSystem: userLevelSystem)
     }
 

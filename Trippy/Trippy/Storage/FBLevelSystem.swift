@@ -17,6 +17,7 @@ struct FBLevelSystem: FBStorable {
     var level: Int
     var friendsIdAddedBefore: [String]
     var bucketItemsAddedBefore: [String]
+    var meetupsJoinedBefore: [String]
 
     init(item: LevelSystem) {
         self.id = item.id
@@ -25,6 +26,7 @@ struct FBLevelSystem: FBStorable {
         self.level = item.level
         self.friendsIdAddedBefore = item.friendsIdAddedBefore
         self.bucketItemsAddedBefore = item.bucketItemsAddedBefore
+        self.meetupsJoinedBefore = item.meetupsJoinedBefore
     }
 
     func convertToModelType() -> LevelSystem {
@@ -34,7 +36,8 @@ struct FBLevelSystem: FBStorable {
             experience: experience,
             level: level,
             friendsIdAddedBefore: friendsIdAddedBefore,
-            bucketItemsAddedBefore: bucketItemsAddedBefore
+            bucketItemsAddedBefore: bucketItemsAddedBefore,
+            meetupsJoinedBefore: meetupsJoinedBefore
         )
     }
 }

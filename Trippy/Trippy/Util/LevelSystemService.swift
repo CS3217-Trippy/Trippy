@@ -18,5 +18,7 @@ protocol LevelSystemService {
 
     func generateExperienceFromFinishingBucketItem(bucketItem: BucketItem)
 
+    func generateExperienceFromJoiningMeetup(meetup: Meetup)
+
     func generateExperienceProgressData() -> (Int, Double)
 }

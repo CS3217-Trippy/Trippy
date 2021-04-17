@@ -14,6 +14,7 @@ class LevelSystem: Model {
     var level: Int
     var friendsIdAddedBefore: [String]
     var bucketItemsAddedBefore: [String]
+    var meetupsJoinedBefore: [String]
 
     init(
         userId: String,
@@ -21,7 +22,8 @@ class LevelSystem: Model {
         experience: Int,
         level: Int,
         friendsIdAddedBefore: [String],
-        bucketItemsAddedBefore: [String]
+        bucketItemsAddedBefore: [String],
+        meetupsJoinedBefore: [String]
     ) {
         self.userId = userId
         self.id = id
@@ -29,5 +31,6 @@ class LevelSystem: Model {
         self.level = level
         self.friendsIdAddedBefore = friendsIdAddedBefore
         self.bucketItemsAddedBefore = bucketItemsAddedBefore
+        self.meetupsJoinedBefore = meetupsJoinedBefore
     }
 }

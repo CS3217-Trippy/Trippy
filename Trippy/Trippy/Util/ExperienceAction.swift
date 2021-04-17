@@ -8,4 +8,5 @@
 enum ExperienceAction {
     case AddFriend
     case FinishBucketItem
+    case JoinMeetup
 }

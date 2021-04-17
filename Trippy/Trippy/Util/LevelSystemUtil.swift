@@ -14,6 +14,8 @@ class LevelSystemUtil {
             return LevelSystemConstants.addFriendExp
         case .FinishBucketItem:
             return LevelSystemConstants.finishBucketItemExp
+        case .JoinMeetup:
+            return LevelSystemConstants.joinMeetupExp
         }
     }
 

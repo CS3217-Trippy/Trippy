@@ -69,7 +69,10 @@ struct MeetupDetailView: View {
     var joinMeetup: some View {
         RaisedButton(child: "Join Meetup", colorHex: Color.buttonBlue) {
             do {
-                try viewModel.joinMeetup(userId: session.currentLoggedInUser?.id)
+                try viewModel.joinMeetup(
+                    userId: session.currentLoggedInUser?.id,
+                    levelSystemService: session.levelSystemService
+                )
             } catch {
                 print("error while adding")
             }
