@@ -141,7 +141,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
-    func add(item: Storable.ModelType) {
+    func add(item: Storable.ModelType) throws {
         let fbItem = Storable(item: item)
         do {
             if let id = item.id {
@@ -150,7 +150,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
                 item.id = try store.collection(Storable.path).addDocument(from: fbItem).documentID
             }
         } catch {
-            print(error.localizedDescription)
+            throw StorageError.saveFailure
         }
     }
 
@@ -159,14 +159,19 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         guard let id = fbItem.id else {
             return
         }
-        try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
-            guard let handler = handler else {
-                return
+        do {
+            try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
+                guard let handler = handler else {
+                    return
+                }
+                if error == nil {
+                    handler(item)
+                }
             }
-            if error == nil {
-                handler(item)
-            }
+        } catch {
+            throw StorageError.saveFailure
         }
+
     }
 
     func remove(item: Storable.ModelType) {

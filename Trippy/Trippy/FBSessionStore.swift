@@ -91,11 +91,15 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
         let achievementService = FBAchievementService()
         self.userStorage.fetchWithId(id: id, handler: nil)
-        self.userStorage.add(item: user)
-        self.friendStorage = FBStorage<FBFriend>()
-        self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
-        self.levelSystemService?.createLevelSystem(userId: id)
-        self.achievementService = FBAchievementService()
+        do {
+            try self.userStorage.add(item: user)
+            self.friendStorage = FBStorage<FBFriend>()
+            self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
+            self.levelSystemService?.createLevelSystem(userId: id)
+            self.achievementService = FBAchievementService()
+        } catch {
+            fatalError("Sign up failed")
+        }
     }
 
     private func translateFromFirebaseAuthToUser(user: FirebaseAuth.User) -> User {
