@@ -82,26 +82,29 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
     }
 
     private func addExperience(action: ExperienceAction, userLevelSystem: LevelSystem) {
-        let currentExperience = userLevelSystem.experience
-        let expToAdd = LevelSystemUtil.getExperienceFrom(action: action)
-        let experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
-        if currentExperience + expToAdd >= experienceToNextLevel {
+        var currentExperience = userLevelSystem.experience
+        var expToAdd = LevelSystemUtil.getExperienceFrom(action: action)
+        var experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
+        while currentExperience + expToAdd >= experienceToNextLevel {
             userLevelSystem.level += 1
-            userLevelSystem.experience = currentExperience + expToAdd - experienceToNextLevel
-        } else {
-            userLevelSystem.experience += expToAdd
+            currentExperience = 0
+            expToAdd -= experienceToNextLevel - currentExperience
+            experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
         }
+        userLevelSystem.experience = expToAdd
     }
 
     private func addExperienceWithSetAmount(toAdd: Int, userLevelSystem: LevelSystem) {
-        let currentExperience = userLevelSystem.experience
-        let experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
-        if currentExperience + toAdd >= experienceToNextLevel {
+        var currentExperience = userLevelSystem.experience
+        var expToAdd = toAdd
+        var experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
+        while currentExperience + expToAdd >= experienceToNextLevel {
             userLevelSystem.level += 1
-            userLevelSystem.experience = currentExperience + toAdd - experienceToNextLevel
-        } else {
-            userLevelSystem.experience += toAdd
+            currentExperience = 0
+            expToAdd -= experienceToNextLevel - currentExperience
+            experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
         }
+        userLevelSystem.experience = expToAdd
     }
 
     private func generateExperienceFromCompletingAchievements(achievements: [Achievement], levelSystem: LevelSystem) {
