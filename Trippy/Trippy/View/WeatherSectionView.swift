@@ -1,9 +1,6 @@
-//
-//  WeatherSectionView.swift
-//  Trippy
-//
-//  Created by Fidella Widjojo on 30/3/21.
-//
+/**
+ View of weather info of a location.
+*/
 
 import SwiftUI
 import CoreLocation

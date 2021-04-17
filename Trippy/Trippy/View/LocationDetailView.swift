@@ -20,6 +20,7 @@ struct LocationDetailView: View {
                 Text("Add to bucketlist")
             }
             Spacer()
+            AddItineraryView(viewModel: .init(location: viewModel.location, user: session.currentLoggedInUser))
         }.padding(10)
     }
 
@@ -54,6 +55,7 @@ struct LocationDetailView: View {
         ScrollView {
             VStack {
                addBucketView
+
                 if let image = viewModel.image {
                     Image(uiImage: image)
                         .resizable()
