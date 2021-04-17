@@ -27,7 +27,6 @@ class AddItineraryItemViewModel {
         }
         let imageId = location.imageId
         let itineraryItem = ItineraryItem(locationName: location.name,
-                                    locationCategory: location.category,
                                     locationImageId: imageId,
                                     userId: userUnwrapped.id ?? "",
                                     locationId: locationId,

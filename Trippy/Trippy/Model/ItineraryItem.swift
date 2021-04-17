@@ -4,7 +4,6 @@ import CoreLocation
 class ItineraryItem: Model {
     var id: String?
     let locationName: String
-    let locationCategory: LocationCategory
     let userId: String
     let locationId: String
     let locationImageId: String?
@@ -12,14 +11,12 @@ class ItineraryItem: Model {
     var placemark: CLPlacemark?
 
     init(locationName: String,
-         locationCategory: LocationCategory,
          locationImageId: String?,
          userId: String,
          locationId: String,
          coordinates: CLLocationCoordinate2D) {
         self.id = userId + locationId
         self.locationName = locationName
-        self.locationCategory = locationCategory
         self.locationImageId = locationImageId
         self.userId = userId
         self.locationId = locationId

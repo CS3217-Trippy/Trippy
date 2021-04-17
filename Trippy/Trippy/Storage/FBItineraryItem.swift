@@ -13,14 +13,12 @@ struct FBItineraryItem: FBStorable {
     var userId: String
     var locationId: String
     var locationImageIds: [String] = []
-    var locationCategory: LocationCategory
 
     init(item: ModelType) {
         id = item.id
         locationName = item.locationName
         userId = item.userId
         locationId = item.locationId
-        locationCategory = item.locationCategory
         latitude = item.coordinates.latitude
         longitude = item.coordinates.longitude
         if let imageId = item.locationImageId {
@@ -34,11 +32,10 @@ struct FBItineraryItem: FBStorable {
             locationImageId = locationImageIds[0]
         }
         let itineraryItem = ItineraryItem(locationName: locationName,
-                                    locationCategory: locationCategory,
-                                    locationImageId: locationImageId,
-                                    userId: userId,
-                                    locationId: locationId,
-                                    coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                                          locationImageId: locationImageId,
+                                          userId: userId,
+                                          locationId: locationId,
+                                          coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                   )
         return itineraryItem
     }

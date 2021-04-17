@@ -47,6 +47,6 @@ struct ItineraryListView: View {
                 ItineraryItemView(viewModel: itineraryViewModel)
             }
         }
-        .navigationTitle("Itinerary List")
+        .navigationTitle("Itinerary")
     }
 }
