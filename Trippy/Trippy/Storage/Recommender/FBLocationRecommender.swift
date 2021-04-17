@@ -1,7 +1,4 @@
 import Combine
-import FirebaseFirestore
-import FirebaseFirestoreSwift
-import Firebase
 
 class FBLocationRecommender: LocationRecommender {
 
