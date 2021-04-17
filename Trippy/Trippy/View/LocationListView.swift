@@ -14,7 +14,8 @@ struct LocationListView: View {
         HStack {
             NavigationLink(
                 destination: LocationMapView(viewModel: .init(locationModel: viewModel.locationModel,
-                                                              imageModel: viewModel.imageModel))
+                                                              imageModel: viewModel.imageModel,
+                                                              ratingModel: viewModel.ratingModel))
             ) {
                 Text("Map")
             }

@@ -16,16 +16,18 @@ final class HomepageViewModel: ObservableObject {
     @Published var achievementsModel: AchievementModel<FBStorage<FBAchievement>>
     @Published var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     @Published var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
+    @Published var ratingModel: RatingModel<FBStorage<FBRating>>
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
 
-    init(session: SessionStore,
-         locationCoordinator: LocationCoordinator,
-         showLocationAlert: Binding<Bool>,
-         alertTitle: Binding<String>,
-         alertContent: Binding<String>) {
+    init(session: SessionStore, locationCoordinator: LocationCoordinator,
+         notificationManager: NotificationManager, showLocationAlert: Binding<Bool>,
+         completedLocation: Binding<String>, alertTitle: Binding<String>, alertContent: Binding<String>) {
         let imageStorage = FBImageStorage()
         let imageModel = ImageModel(storage: imageStorage)
+        let ratingStorage = FBStorage<FBRating>()
+        let ratingModel = RatingModel(storage: ratingStorage)
+        self.ratingModel = ratingModel
         self.imageModel = imageModel
         let locationStorage = FBStorage<FBLocation>()
         let locationModel = LocationModel<FBStorage<FBLocation>>(
@@ -56,12 +58,15 @@ final class HomepageViewModel: ObservableObject {
 
         visitTracker = VisitTracker(
             locationCoordinator: locationCoordinator,
+            notificationManager: notificationManager,
             locationModel: locationModel,
             bucketModel: bucketModel,
             showLocationAlert: showLocationAlert,
+            completedLocation: completedLocation,
             alertTitle: alertTitle,
             alertContent: alertContent,
-            levelSystemService: session.levelSystemService
+            levelSystemService: session.levelSystemService,
+            ratingModel: ratingModel
         )
 
         let meetupStorage = FBStorage<FBMeetup>()

@@ -11,9 +11,12 @@ struct ContentView: View {
     @EnvironmentObject var session: FBSessionStore
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var locationCoordinator: LocationCoordinator
+    @EnvironmentObject var notificationManager: NotificationManager
     @State var showLocationAlert = false
     @State var alertTitle = ""
     @State var alertContent = ""
+    @State var completedLocation = ""
+    @State private var showSubmitRatingSheet = false
 
     var body: some View {
         Group {
@@ -21,22 +24,35 @@ struct ContentView: View {
                 let homepageViewModel = HomepageViewModel(
                     session: session,
                     locationCoordinator: locationCoordinator,
+                    notificationManager: notificationManager,
                     showLocationAlert: $showLocationAlert,
+                    completedLocation: $completedLocation,
                     alertTitle: $alertTitle,
                     alertContent: $alertContent
                 )
                 HomepageView(
                     homepageViewModel: homepageViewModel,
                     user: user
-                )
+                ).alert(isPresented: $showLocationAlert) {
+                    Alert(
+                        title: Text(alertTitle),
+                        message: Text(alertContent),
+                        primaryButton: .default(Text("Rate now"), action: { showSubmitRatingSheet.toggle() }),
+                        secondaryButton: .cancel()
+                    )
+                }.sheet(isPresented: $showSubmitRatingSheet) {
+                    SubmitRatingView(viewModel: SubmitRatingViewModel(
+                                        locationId: completedLocation,
+                                        userId: user.id ?? "",
+                                        ratingModel: homepageViewModel.ratingModel
+                    ))
+                }
             } else {
                 StartUpView(logInViewModel: .init(session: session))
             }
         }.onAppear(perform: {
             session.listen()
-        }).alert(isPresented: $showLocationAlert) {
-            Alert(title: Text(alertTitle), message: Text(alertContent))
-        }
+        })
     }
 }
 
