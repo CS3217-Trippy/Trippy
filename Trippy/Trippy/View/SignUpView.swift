@@ -29,8 +29,8 @@ struct SignUpView: View {
             Text(signUpViewModel.errorMessage)
                 .foregroundColor(.red)
         .padding()
-        .textFieldStyle(RoundedBorderTextFieldStyle())
         }
+        .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 
