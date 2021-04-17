@@ -146,6 +146,18 @@
 		DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33572612F003000C2351 /* WeatherSectionView.swift */; };
 		DB2D335D2612F0F0000C2351 /* WeatherSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */; };
 		DB2D33622612F3B4000C2351 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33612612F3B4000C2351 /* CurrentWeather.swift */; };
+		DB8EAC74262AE81500BB170E /* FBItineraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC73262AE81500BB170E /* FBItineraryItem.swift */; };
+		DB8EAC79262AE84400BB170E /* ItineraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC78262AE84400BB170E /* ItineraryItem.swift */; };
+		DB8EAC7E262B07E700BB170E /* ItineraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC7D262B07E700BB170E /* ItineraryModel.swift */; };
+		DB8EAC83262B09A900BB170E /* AddItineraryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC82262B09A900BB170E /* AddItineraryItemViewModel.swift */; };
+		DB8EAC88262B0BA400BB170E /* AddItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC87262B0BA400BB170E /* AddItineraryView.swift */; };
+		DB8EAC8D262B0DD000BB170E /* ItineraryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC8C262B0DD000BB170E /* ItineraryItemViewModel.swift */; };
+		DB8EAC92262B0E3900BB170E /* ItineraryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC91262B0E3900BB170E /* ItineraryListViewModel.swift */; };
+		DB8EAC97262B0F2200BB170E /* ItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC96262B0F2200BB170E /* ItineraryItemView.swift */; };
+		DB8EAC9C262B10F300BB170E /* ItineraryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC9B262B10F300BB170E /* ItineraryListView.swift */; };
+		DB8EACA1262B18CE00BB170E /* BestRouteUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EACA0262B18CE00BB170E /* BestRouteUtil.swift */; };
+		DB8EACAE262B1A3800BB170E /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EACAD262B1A3800BB170E /* UnionFind.swift */; };
+		DB8EACB3262B2CB600BB170E /* BestRouteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EACB2262B2CB600BB170E /* BestRouteItemView.swift */; };
 		DB927371260019A400B898AE /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB927370260019A400B898AE /* FriendsListView.swift */; };
 		DB92737626001AEA00B898AE /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737526001AEA00B898AE /* FriendsListViewModel.swift */; };
 		DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */; };
@@ -308,6 +320,18 @@
 		DB2D33572612F003000C2351 /* WeatherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionView.swift; sourceTree = "<group>"; };
 		DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionViewModel.swift; sourceTree = "<group>"; };
 		DB2D33612612F3B4000C2351 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		DB8EAC73262AE81500BB170E /* FBItineraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBItineraryItem.swift; sourceTree = "<group>"; };
+		DB8EAC78262AE84400BB170E /* ItineraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItem.swift; sourceTree = "<group>"; };
+		DB8EAC7D262B07E700BB170E /* ItineraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryModel.swift; sourceTree = "<group>"; };
+		DB8EAC82262B09A900BB170E /* AddItineraryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItineraryItemViewModel.swift; sourceTree = "<group>"; };
+		DB8EAC87262B0BA400BB170E /* AddItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItineraryView.swift; sourceTree = "<group>"; };
+		DB8EAC8C262B0DD000BB170E /* ItineraryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItemViewModel.swift; sourceTree = "<group>"; };
+		DB8EAC91262B0E3900BB170E /* ItineraryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryListViewModel.swift; sourceTree = "<group>"; };
+		DB8EAC96262B0F2200BB170E /* ItineraryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItemView.swift; sourceTree = "<group>"; };
+		DB8EAC9B262B10F300BB170E /* ItineraryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryListView.swift; sourceTree = "<group>"; };
+		DB8EACA0262B18CE00BB170E /* BestRouteUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRouteUtil.swift; sourceTree = "<group>"; };
+		DB8EACAD262B1A3800BB170E /* UnionFind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
+		DB8EACB2262B2CB600BB170E /* BestRouteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRouteItemView.swift; sourceTree = "<group>"; };
 		DB927370260019A400B898AE /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
 		DB92737526001AEA00B898AE /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
 		DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsItemViewModel.swift; sourceTree = "<group>"; };
@@ -443,7 +467,10 @@
 			children = (
 				017FD89925F7B6E80064EF40 /* ContentView.swift */,
 				01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */,
+				DB8EAC96262B0F2200BB170E /* ItineraryItemView.swift */,
+				DB8EACB2262B2CB600BB170E /* BestRouteItemView.swift */,
 				01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */,
+				DB8EAC9B262B10F300BB170E /* ItineraryListView.swift */,
 				011172C82605BBCE0028F971 /* AddBucketItemView.swift */,
 				01F4635225FD1E6200BBB8E9 /* CollectionView.swift */,
 				01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */,
@@ -452,10 +479,10 @@
 				7694EA3C26015C1300AF9E63 /* CircleImageView.swift */,
 				7694E9F025FEA73900AF9E63 /* StartUpView.swift */,
 				7694E9DC25FDF5EB00AF9E63 /* SignUpView.swift */,
-				DB927370260019A400B898AE /* FriendsListView.swift */,
 				DB92738426002AE300B898AE /* FriendsItemView.swift */,
 				7152017325FCB5D300F0ABAC /* LocationListView.swift */,
 				7152018725FCD4EB00F0ABAC /* LocationCardView.swift */,
+				DB927370260019A400B898AE /* FriendsListView.swift */,
 				7155CBA72627020B0007E8C2 /* SubmitRatingView.swift */,
 				714A9A0B25FF46EE0030C2F9 /* LocationDetailView.swift */,
 				71FB973125F893750083C6F5 /* LocationMapView.swift */,
@@ -464,6 +491,7 @@
 				714A9A1825FFDA050030C2F9 /* DisplayLocationsMapView.swift */,
 				714B74822600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift */,
 				714B74902600FD8700ADF2FE /* AddLocationMapView.swift */,
+				DB8EAC87262B0BA400BB170E /* AddItineraryView.swift */,
 				714B7495260100F400ADF2FE /* AddLocationMapCoordinator.swift */,
 				DB2D33572612F003000C2351 /* WeatherSectionView.swift */,
 				7694EA492602ED1300AF9E63 /* HomepageView.swift */,
@@ -485,12 +513,14 @@
 			isa = PBXGroup;
 			children = (
 				01F4636025FD1EA200BBB8E9 /* BucketItem.swift */,
+				DB8EAC78262AE84400BB170E /* ItineraryItem.swift */,
 				7152BBBC262AFF3200D1727D /* Visit.swift */,
 				7152BBC1262B00FF00D1727D /* VisitModel.swift */,
 				714BFF702622EF4000ABA11B /* Rating.swift */,
 				714BFF752622F1AC00ABA11B /* RatingModel.swift */,
 				01F8436725FDDF4F00080ED5 /* BucketModel.swift */,
 				7694E9E625FE541700AF9E63 /* User.swift */,
+				DB8EAC7D262B07E700BB170E /* ItineraryModel.swift */,
 				DB92737F260027F800B898AE /* FriendsListModel.swift */,
 				71FB972C25F87C420083C6F5 /* Location.swift */,
 				01EFA3872612F93A002FEA23 /* LocationCategory.swift */,
@@ -521,10 +551,13 @@
 				714ADFC4262597ED00619349 /* NotificationManager.swift */,
 				7155CBAF262705050007E8C2 /* SubmitRatingViewModel.swift */,
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
+				DB8EAC8C262B0DD000BB170E /* ItineraryItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
+				DB8EAC91262B0E3900BB170E /* ItineraryListViewModel.swift */,
 				DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */,
 				011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */,
 				7694E9E125FDF75A00AF9E63 /* SignUpViewModel.swift */,
+				DB8EAC82262B09A900BB170E /* AddItineraryItemViewModel.swift */,
 				DB92737526001AEA00B898AE /* FriendsListViewModel.swift */,
 				DB9273A626044F0B00B898AE /* AddFriendViewModel.swift */,
 				DB92737A26001BCE00B898AE /* FriendsItemViewModel.swift */,
@@ -564,6 +597,8 @@
 				76E74BE426137DA5004BA414 /* LevelSystemConstants.swift */,
 				DB2D334D2612E1DF000C2351 /* WeatherService.swift */,
 				DB2D33612612F3B4000C2351 /* CurrentWeather.swift */,
+				DB8EACA0262B18CE00BB170E /* BestRouteUtil.swift */,
+				DB8EACAD262B1A3800BB170E /* UnionFind.swift */,
 				7617D16D2622338E00D94782 /* AchievementService.swift */,
 				7617D17726225AAC00D94782 /* FBAchievementService.swift */,
 			);
@@ -578,6 +613,7 @@
 				714AF261260B85C20034269C /* FBLocation.swift */,
 				76F8BE0E2610D8F000393AF7 /* FBUser.swift */,
 				01F8437425FDE05100080ED5 /* FBBucketItem.swift */,
+				DB8EAC73262AE81500BB170E /* FBItineraryItem.swift */,
 				01483A4926107AA400D840EA /* FBFriend.swift */,
 				714C54F0260C7F8000C75D92 /* FBStorable.swift */,
 				7152BBB7262AFE4C00D1727D /* FBVisit.swift */,
@@ -782,9 +818,11 @@
 			files = (
 				714ADFC5262597ED00619349 /* NotificationManager.swift in Sources */,
 				01EFA3882612F93A002FEA23 /* LocationCategory.swift in Sources */,
+				DB8EAC9C262B10F300BB170E /* ItineraryListView.swift in Sources */,
 				71FFCE052604BA7E00309D80 /* Date+Extensions.swift in Sources */,
 				76F8BE0F2610D8F000393AF7 /* FBUser.swift in Sources */,
 				71FFCE012604BA6300309D80 /* ContentView.swift in Sources */,
+				DB8EAC79262AE84400BB170E /* ItineraryItem.swift in Sources */,
 				01385D182626A0C60086358D /* MeetupError.swift in Sources */,
 				0112EEAD26248DE400F420E2 /* MeetupModel.swift in Sources */,
 				71FFCDFD2604BA4F00309D80 /* TrippyApp.swift in Sources */,
@@ -793,6 +831,7 @@
 				012CE5C926121E0E00039A25 /* LocationRecommender.swift in Sources */,
 				01CAFEDE2625F35100294587 /* RaisedButton.swift in Sources */,
 				7617D16E2622338E00D94782 /* AchievementService.swift in Sources */,
+				DB8EACAE262B1A3800BB170E /* UnionFind.swift in Sources */,
 				7694E9D825FDEEA900AF9E63 /* LogInViewModel.swift in Sources */,
 				7694E9DD25FDF5EB00AF9E63 /* SignUpView.swift in Sources */,
 				7694E9D325FDEDC700AF9E63 /* LogInView.swift in Sources */,
@@ -816,6 +855,7 @@
 				76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */,
 				DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
+				DB8EAC7E262B07E700BB170E /* ItineraryModel.swift in Sources */,
 				0112EEB226248FF700F420E2 /* MeetupListViewModel.swift in Sources */,
 				76E74BEA2613CD57004BA414 /* LevelProgressionView.swift in Sources */,
 				DB927380260027F800B898AE /* FriendsListModel.swift in Sources */,
@@ -831,6 +871,7 @@
 				76FC82C426175FC2009736B2 /* FBSessionWrapper.swift in Sources */,
 				DB9273A22604487600B898AE /* AddFriendView.swift in Sources */,
 				01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */,
+				DB8EAC92262B0E3900BB170E /* ItineraryListViewModel.swift in Sources */,
 				7617D19C2625AF7700D94782 /* AchievementListViewModel.swift in Sources */,
 				01483A5226108D1500D840EA /* Image+Extensions.swift in Sources */,
 				01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */,
@@ -857,13 +898,17 @@
 				0106B3442622F87400574097 /* TrippyImage.swift in Sources */,
 				76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */,
 				7152017425FCB5D300F0ABAC /* LocationListView.swift in Sources */,
+				DB8EACA1262B18CE00BB170E /* BestRouteUtil.swift in Sources */,
 				714A79112615689600E7C865 /* VisitTracker.swift in Sources */,
 				714BA80926019D9000E69470 /* AddLocationView.swift in Sources */,
 				01622D50261FE842004E506F /* FBImageStorage.swift in Sources */,
 				7617D1B72626075500D94782 /* RaisedNavigationText.swift in Sources */,
+				DB8EAC8D262B0DD000BB170E /* ItineraryItemViewModel.swift in Sources */,
+				DB8EAC83262B09A900BB170E /* AddItineraryItemViewModel.swift in Sources */,
 				DB9273A726044F0B00B898AE /* AddFriendViewModel.swift in Sources */,
 				76E74BC42613607C004BA414 /* LevelSystem.swift in Sources */,
 				7152018825FCD4EB00F0ABAC /* LocationCardView.swift in Sources */,
+				DB8EAC97262B0F2200BB170E /* ItineraryItemView.swift in Sources */,
 				7617D1942625AE3300D94782 /* AchievementItemViewModel.swift in Sources */,
 				76E74BEF2614566F004BA414 /* LevelProgressionViewModel.swift in Sources */,
 				012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */,
@@ -876,6 +921,7 @@
 				7617D18F2625AD4600D94782 /* AchievementModel.swift in Sources */,
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
+				DB8EAC74262AE81500BB170E /* FBItineraryItem.swift in Sources */,
 				0106B37E2622FFCC00574097 /* FBStorage.swift in Sources */,
 				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
@@ -890,12 +936,14 @@
 				DB2D334E2612E1DF000C2351 /* WeatherService.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
+				DB8EACB3262B2CB600BB170E /* BestRouteItemView.swift in Sources */,
 				714BA80E2601A61500E69470 /* AddLocationViewModel.swift in Sources */,
 				7694EA4F2602EF9A00AF9E63 /* HomepageViewModel.swift in Sources */,
 				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
 				01385D202626A32A0086358D /* MeetupPrivacy.swift in Sources */,
 				7617D17826225AAC00D94782 /* FBAchievementService.swift in Sources */,
 				714AF4F725FD16B300C0EFFA /* PreviewLocations.swift in Sources */,
+				DB8EAC88262B0BA400BB170E /* AddItineraryView.swift in Sources */,
 				7152017925FCB91D00F0ABAC /* LocationModel.swift in Sources */,
 				714A9A0C25FF46EE0030C2F9 /* LocationDetailView.swift in Sources */,
 				7152BBBD262AFF3200D1727D /* Visit.swift in Sources */,

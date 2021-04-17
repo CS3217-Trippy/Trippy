@@ -43,7 +43,6 @@ final class WeatherService {
                     do {
                         if response.statusCode == 200 {
                             let items = try JSONDecoder().decode(CurrentWeather.self, from: data)
-                            print(items)
                             completionHandler(.success(items))
                         } else {
                             completionHandler(.failure(NetworkError.invalidResponse))

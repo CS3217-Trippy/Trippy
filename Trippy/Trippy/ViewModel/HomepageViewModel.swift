@@ -15,6 +15,7 @@ final class HomepageViewModel: ObservableObject {
     @Published var friendsModel: FriendsListModel<FBStorage<FBFriend>>
     @Published var achievementsModel: AchievementModel<FBStorage<FBAchievement>>
     @Published var meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    @Published var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     @Published var ratingModel: RatingModel<FBStorage<FBRating>>
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
@@ -74,5 +75,11 @@ final class HomepageViewModel: ObservableObject {
             userId: session.currentLoggedInUser?.id
         )
         self.meetupModel = meetupModel
+
+        let itineraryStorage = FBStorage<FBItineraryItem>()
+        let itineraryModel = ItineraryModel<FBStorage<FBItineraryItem>>(
+            storage: itineraryStorage, userId: session.currentLoggedInUser?.id
+        )
+        self.itineraryModel = itineraryModel
     }
 }

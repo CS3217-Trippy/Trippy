@@ -42,6 +42,10 @@ struct HomepageView: View {
 
         let meetupListView = MeetupListView(viewModel: meetupListVM)
 
+        let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
+                                               imageModel: homepageViewModel.imageModel)
+        let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
+
         NavigationView {
             ZStack {
                 Image("background")
@@ -62,6 +66,9 @@ struct HomepageView: View {
                     }
                     NavigationLink(destination: locationListView) {
                         RaisedNavigationText(text: "LOCATIONS", colorHex: hexColor).cornerRadius(10)
+                    }
+                    NavigationLink(destination: itineraryListView) {
+                        RaisedNavigationText(text: "ITINERARY", colorHex: hexColor).cornerRadius(10)
                     }
                     NavigationLink(destination: friendListView) {
                         RaisedNavigationText(text: "FRIENDS", colorHex: hexColor).cornerRadius(10)
