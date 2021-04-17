@@ -27,14 +27,14 @@ final class ItineraryListViewModel: ObservableObject {
         .assign(to: \.itineraryItemViewModels, on: self)
         .store(in: &cancellables)
     }
-    
+
     /**
      Fetch itinerary items from the model.
      */
     func fetch() {
         itineraryModel.fetchItineraryItems()
     }
-    
+
     /**
      Get the best route for the current itinerary,
      */

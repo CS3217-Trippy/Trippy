@@ -36,7 +36,7 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
     var locationName: String {
         itineraryItem.locationName
     }
-    
+
     /**
      Remove an itinerary item.
      */

@@ -28,7 +28,7 @@ struct FBItineraryItem: FBStorable {
             locationImageIds.append(imageId)
         }
     }
-    
+
     func convertToModelType() -> ModelType {
         var locationImageId: String?
         if !locationImageIds.isEmpty {

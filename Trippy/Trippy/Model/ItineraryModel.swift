@@ -17,7 +17,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
             .store(in: &cancellables)
         fetchItineraryItems()
     }
-    
+
     /**
      Fetchs itinerary items from the storage.
      */
@@ -28,7 +28,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         let field = "userId"
         storage.fetchWithField(field: field, value: userId, handler: nil)
     }
-    
+
     /**
     Add itinerary item to the storage.
      */
@@ -65,7 +65,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
             .distance(from: CLLocation(latitude: itineraryItems[indexJ].coordinates.latitude,
                                        longitude: itineraryItems[indexJ].coordinates.longitude))
     }
-    
+
     /**
      Get the best route for the current itinerary,
      */
@@ -73,18 +73,28 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         let numOfNodes = itineraryItems.count
         let bestRouteUtil = BestRouteUtil(numOfNodes: numOfNodes)
 
-        for i in 0...numOfNodes - 2 {
-            for j in i + 1...numOfNodes - 1 {
-                let dist = getDistance(indexI: i, indexJ: j)
-                bestRouteUtil.addEdge(edge: .init(u: i, v: j, weight: dist))
+        if numOfNodes > 1 {
+            for i in 0...numOfNodes - 2 {
+                for j in i + 1...numOfNodes - 1 {
+                    let dist = getDistance(indexI: i, indexJ: j)
+                    bestRouteUtil.addEdge(edge: .init(u: i, v: j, weight: dist))
+                }
             }
         }
 
-        let result = bestRouteUtil.getBestRoute()
+        let result: [Int]
+
+        if numOfNodes > 0 {
+            result = bestRouteUtil.getBestRoute()
+        } else {
+            result = []
+        }
         var cost = 0.0
 
-        for i in 0...numOfNodes - 2 {
-            cost += getDistance(indexI: result[i], indexJ: result[i + 1])
+        if numOfNodes > 1 {
+            for i in 0...numOfNodes - 2 {
+                cost += getDistance(indexI: result[i], indexJ: result[i + 1])
+            }
         }
 
         return .init(route: result.map { itineraryItems[$0] }, cost: cost)

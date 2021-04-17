@@ -11,7 +11,7 @@ class AddItineraryItemViewModel {
         self.location = location
         self.user = user
     }
-    
+
     /**
      Converts the current information to an itinerary item and saves to the itinerary model.
      */
