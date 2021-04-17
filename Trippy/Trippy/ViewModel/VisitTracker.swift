@@ -30,7 +30,7 @@ class VisitTracker {
     @Binding private var alertContent: String
 
     // Defaults
-    private let minimumVisitDuration = 20.0
+    private let minimumVisitDuration = 300.0
     private let maxDistanceThreshhold = 500.0
     private let notificationCategoryName = "rateAfterVisit"
     private let ratingActions = [

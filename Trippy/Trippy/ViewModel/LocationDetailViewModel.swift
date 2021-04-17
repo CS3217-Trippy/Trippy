@@ -61,7 +61,7 @@ class LocationDetailViewModel: ObservableObject {
     var locationCoordinates: CLLocationCoordinate2D {
         location.coordinates
     }
-    
+
     var averageRatingDescription: String {
         guard let rating = ratingModel.getAverageRating(for: location) else {
             return "No ratings yet"

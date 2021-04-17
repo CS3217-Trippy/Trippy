@@ -516,9 +516,9 @@
 		01F4636F25FD1ECB00BBB8E9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				714A6D83261429BF0032CA7C /* LocationCoordinator.swift */,
 				714A79102615689600E7C865 /* VisitTracker.swift */,
 				714ADFC4262597ED00619349 /* NotificationManager.swift */,
-				714A6D83261429BF0032CA7C /* LocationCoordinator.swift */,
 				7155CBAF262705050007E8C2 /* SubmitRatingViewModel.swift */,
 				01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */,
 				01F4637525FD1EF600BBB8E9 /* BucketListViewModel.swift */,
