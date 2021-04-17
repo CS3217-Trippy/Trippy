@@ -11,6 +11,7 @@ import URLImage
 struct MeetupItemView: View {
     @ObservedObject var viewModel: MeetupItemViewModel
     let font = Font.body
+    var isHorizontal: Bool
     var imageView: some View {
         if let image = viewModel.image {
             return AnyView(Image(uiImage: image).cardImageModifier()
@@ -32,15 +33,22 @@ struct MeetupItemView: View {
     }
 
     var body: some View {
-        NavigationLink(destination:
-                        MeetupDetailView(viewModel: viewModel.meetupDetailViewModel)) {
-                RectangularCard(width: UIScreen.main.bounds.width - 10, height: 210, viewBuilder: {
-                    HStack(alignment: .center) {
+        NavigationLink(destination: MeetupDetailView(viewModel: viewModel.meetupDetailViewModel)) {
+            if isHorizontal {
+                HStack {
+                    imageView
+                    textView
+//                    Spacer()
+                }
+                .padding([.top, .horizontal])
+            } else {
+                    VStack {
                         imageView
                         textView
                         Spacer()
                     }
-                })
+                    .padding([.top, .horizontal])
+            }
         }
 
     }

@@ -64,7 +64,12 @@ struct MeetupDetailView: View {
 
     var joinMeetup: some View {
         RaisedButton(child: "Join Meetup", colorHex: Color.buttonBlue) {
-
+            do {
+                try viewModel.joinMeetup(userId: session.currentLoggedInUser?.id)
+            } catch {
+                print("error while adding")
+            }
+            presentationMode.wrappedValue.dismiss()
         }
     }
 

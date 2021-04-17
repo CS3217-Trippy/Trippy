@@ -70,9 +70,23 @@ class MeetupDetailViewModel: ObservableObject {
         return meetup.userIds.contains { $0 == id } || meetup.hostUserId == id
     }
 
+    func joinMeetup(userId: String?) throws {
+        guard let id = userId else {
+            throw MeetupError.invalidUser
+        }
+        let hostId = meetup.hostUserId
+        let isMeetupOwner = id == hostId
+        let isInMeetup = meetup.userIds.contains(id)
+        if isMeetupOwner || isInMeetup {
+            return
+        }
+        meetup.userIds.append(id)
+        try meetupModel.updateMeetup(meetup: meetup)
+    }
+
     func remove(userId: String?) throws {
         guard let id = userId else {
-            return
+            throw MeetupError.invalidUser
         }
         let hostId = meetup.hostUserId
         if id == hostId {
