@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Represents a user specific to firebase storage solution
 struct FBUser: FBStorable {
     typealias ModelType = User
     static var path = "users"
@@ -30,6 +31,7 @@ struct FBUser: FBStorable {
         }
     }
 
+    /// Converts from storage specific to general model
     func convertToModelType() -> User {
         var imageId: String?
         if !imageIds.isEmpty {

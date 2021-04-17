@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
+/// Represents a level system specific to firebase storage solution
 struct FBLevelSystem: FBStorable {
     typealias ModelType = LevelSystem
     static var path = "levelSystem"
@@ -29,6 +30,7 @@ struct FBLevelSystem: FBStorable {
         self.meetupsJoinedBefore = item.meetupsJoinedBefore
     }
 
+    /// Converts from storage specific to general model
     func convertToModelType() -> LevelSystem {
         LevelSystem(
             userId: userId,

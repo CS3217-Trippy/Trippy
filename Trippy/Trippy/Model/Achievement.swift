@@ -5,6 +5,7 @@
 //  Created by Audrey Felicio Anwar on 10/4/21.
 //
 
+/// A class describing achievement
 class Achievement: Model {
     var id: String?
     var name: String

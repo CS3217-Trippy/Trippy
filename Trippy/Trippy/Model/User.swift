@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// A class describing a user
 class User: Model {
     var imageId: String?
     var id: String?

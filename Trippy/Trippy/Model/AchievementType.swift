@@ -7,11 +7,13 @@
 
 import Foundation
 
+/// An encapsulation of possible achievement types for Trippy
 enum AchievementType {
     case FriendCount(completion: Int)
     case BucketItemCount(completion: Int)
     case MeetupCount(completion: Int)
 
+    /// Get completion associated value
     func getCompletion() -> Int {
         switch self {
         case .FriendCount(let completion):
@@ -23,6 +25,7 @@ enum AchievementType {
         }
     }
 
+    /// Get description for an achievement type
     func getTypeDescription() -> String {
         switch self {
         case .FriendCount:
@@ -34,6 +37,10 @@ enum AchievementType {
         }
     }
 
+    /// Generate a new instanc eof AchievementType
+    /// - parameters:
+    /// type: A string describing the achievement type to be generated
+    /// completion: The current count for completion of achievement
     static func generateAchievementType(type: String, completion: Int) -> AchievementType {
         if type == "friendCount" {
             return .FriendCount(completion: completion)

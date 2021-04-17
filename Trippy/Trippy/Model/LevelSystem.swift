@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A class describing a level system
 class LevelSystem: Model {
     var userId: String
     var id: String?
