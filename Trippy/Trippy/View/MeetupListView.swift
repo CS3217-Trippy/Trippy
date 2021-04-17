@@ -29,7 +29,7 @@ struct MeetupListView: View {
                 }
 
                 Text("Upcoming Meetups")
-    
+
                 ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
                     MeetupItemView(viewModel: meetupViewModel,
                                    showFullDetails: true,
