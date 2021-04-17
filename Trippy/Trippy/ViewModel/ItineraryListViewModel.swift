@@ -1,3 +1,6 @@
+/**
+ View model of an itinerary list.
+*/
 import Combine
 
 final class ItineraryListViewModel: ObservableObject {
@@ -24,11 +27,17 @@ final class ItineraryListViewModel: ObservableObject {
         .assign(to: \.itineraryItemViewModels, on: self)
         .store(in: &cancellables)
     }
-
+    
+    /**
+     Fetch itinerary items from the model.
+     */
     func fetch() {
         itineraryModel.fetchItineraryItems()
     }
-
+    
+    /**
+     Get the best route for the current itinerary,
+     */
     func getBestRoute() {
         let result = itineraryModel.getBestRoute()
 

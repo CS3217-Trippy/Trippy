@@ -11,8 +11,11 @@ class AddItineraryItemViewModel {
         self.location = location
         self.user = user
     }
-
-    func saveForm() throws {
+    
+    /**
+     Converts the current information to an itinerary item and saves to the itinerary model.
+     */
+    func save() throws {
         if let itineraryItem = buildItineraryItem() {
             try itineraryModel.addItineraryItem(itineraryItem: itineraryItem)
         }
@@ -27,10 +30,10 @@ class AddItineraryItemViewModel {
         }
         let imageId = location.imageId
         let itineraryItem = ItineraryItem(locationName: location.name,
-                                    locationImageId: imageId,
-                                    userId: userUnwrapped.id ?? "",
-                                    locationId: locationId,
-                                    coordinates: location.coordinates
+                                          locationImageId: imageId,
+                                          userId: userUnwrapped.id ?? "",
+                                          locationId: locationId,
+                                          coordinates: location.coordinates
                                     )
         return itineraryItem
     }

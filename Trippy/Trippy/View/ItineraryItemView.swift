@@ -1,3 +1,6 @@
+/**
+ View of an itinerary item.
+*/
 import SwiftUI
 import URLImage
 

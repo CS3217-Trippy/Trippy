@@ -1,9 +1,6 @@
-//
-//  ItineraryListView.swift
-//  Trippy
-//
-//  Created by Fidella Widjojo on 17/4/21.
-//
+/**
+ View of a itinerary list..
+*/
 
 import SwiftUI
 

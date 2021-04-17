@@ -5,6 +5,9 @@
 //  Created by Fidella Widjojo on 17/4/21.
 //
 
+/**
+ View of a best route item.
+*/
 import SwiftUI
 
 struct BestRouteItemView: View {

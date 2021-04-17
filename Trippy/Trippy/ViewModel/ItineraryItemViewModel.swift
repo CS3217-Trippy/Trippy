@@ -1,3 +1,6 @@
+/**
+ View model of an itinerary item.
+*/
 import Combine
 import Foundation
 import UIKit
@@ -33,6 +36,10 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
     var locationName: String {
         itineraryItem.locationName
     }
+    
+    /**
+     Remove an itinerary item.
+     */
     func remove() {
         itineraryModel.removeItineraryItem(itineraryItem: itineraryItem)
     }

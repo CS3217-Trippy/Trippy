@@ -1,9 +1,6 @@
-//
-//  AddItineraryView.swift
-//  Trippy
-//
-//  Created by Fidella Widjojo on 17/4/21.
-//
+/**
+ View for adding itinerary items.
+*/
 
 import SwiftUI
 
@@ -13,7 +10,7 @@ struct AddItineraryView: View {
     var body: some View {
         Button("Add to itinerary") {
             do {
-                try viewModel.saveForm()
+                try viewModel.save()
             } catch {
                 showStorageError = true
             }

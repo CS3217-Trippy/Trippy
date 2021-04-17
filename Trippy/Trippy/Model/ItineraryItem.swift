@@ -1,3 +1,6 @@
+/**
+ Model representation of an itinerary item.
+ */
 import Foundation
 import CoreLocation
 

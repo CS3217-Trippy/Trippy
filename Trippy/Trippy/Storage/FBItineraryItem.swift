@@ -1,3 +1,6 @@
+/**
+ Storage representation of an itinerary item.
+ */
 import FirebaseFirestoreSwift
 import Foundation
 import CoreLocation
@@ -25,7 +28,7 @@ struct FBItineraryItem: FBStorable {
             locationImageIds.append(imageId)
         }
     }
-
+    
     func convertToModelType() -> ModelType {
         var locationImageId: String?
         if !locationImageIds.isEmpty {
