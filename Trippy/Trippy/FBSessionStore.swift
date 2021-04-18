@@ -47,7 +47,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
     var userStorage = FBStorage<FBUser>()
     private var friendStorage: FBStorage<FBFriend>?
     @Published var levelSystemService: LevelSystemService?
-    @Published var achievementService: AchievementService?
     private var username = ""
     private var handle: AuthStateDidChangeListenerHandle?
     private var cancellables: Set<AnyCancellable> = []
@@ -80,7 +79,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
         let achievementService = FBAchievementService()
         self.userStorage.fetchWithId(id: id, handler: nil)
         self.friendStorage = FBStorage<FBFriend>()
-        self.achievementService = achievementService
         self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
         self.levelSystemService?.retrieveLevelSystem()
     }
@@ -96,7 +94,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
             self.friendStorage = FBStorage<FBFriend>()
             self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
             self.levelSystemService?.createLevelSystem(userId: id)
-            self.achievementService = FBAchievementService()
         } catch {
             fatalError("Sign up failed")
         }
@@ -107,7 +104,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
             id: user.uid,
             email: user.email ?? "",
             username: username,
-            friendsId: [],
             levelSystemId: user.uid,
             achievements: [],
             imageId: nil

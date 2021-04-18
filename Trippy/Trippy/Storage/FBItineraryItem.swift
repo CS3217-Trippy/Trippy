@@ -1,10 +1,8 @@
-/**
- Storage representation of an itinerary item.
- */
 import FirebaseFirestoreSwift
 import Foundation
 import CoreLocation
 
+/// Storage representation of an itinerary item.
 struct FBItineraryItem: FBStorable {
     typealias ModelType = ItineraryItem
     static var path = "itineraryItems"

@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestoreSwift
 
+/// Represents an achievement specific to firebase storage solution
 struct FBAchievement: FBStorable {
     typealias ModelType = Achievement
     static var path = "achievements"
@@ -32,6 +33,7 @@ struct FBAchievement: FBStorable {
         }
     }
 
+    /// Converts from storage specific to general model
     func convertToModelType() -> ModelType {
         var imageId: String?
         if !imageIds.isEmpty {

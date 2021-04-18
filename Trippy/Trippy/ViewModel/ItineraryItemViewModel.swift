@@ -1,16 +1,18 @@
-/**
- View model of an itinerary item.
-*/
 import Combine
 import Foundation
 import UIKit
 
+/// View model of an itinerary item.
 final class ItineraryItemViewModel: ObservableObject, Identifiable {
     @Published var itineraryItem: ItineraryItem
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     private let imageModel: ImageModel
     private(set) var id = ""
-    init(itineraryItem: ItineraryItem, itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>, imageModel: ImageModel) {
+    init(
+        itineraryItem: ItineraryItem,
+        itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>,
+        imageModel: ImageModel
+    ) {
         self.itineraryItem = itineraryItem
         self.itineraryModel = itineraryModel
         self.imageModel = imageModel
@@ -37,9 +39,7 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
         itineraryItem.locationName
     }
 
-    /**
-     Remove an itinerary item.
-     */
+    /// Remove an itinerary item.
     func remove() {
         itineraryModel.removeItineraryItem(itineraryItem: itineraryItem)
     }

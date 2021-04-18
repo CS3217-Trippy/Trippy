@@ -43,7 +43,7 @@ struct HomepageView: View {
         let meetupListView = MeetupListView(viewModel: meetupListVM)
 
         let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
-                                               imageModel: homepageViewModel.imageModel)
+                                                     imageModel: homepageViewModel.imageModel)
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 
         NavigationView {

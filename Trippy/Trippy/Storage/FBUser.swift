@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Represents a user specific to firebase storage solution
 struct FBUser: FBStorable {
     typealias ModelType = User
     static var path = "users"
@@ -14,7 +15,6 @@ struct FBUser: FBStorable {
     var imageIds: [String] = []
     var email: String
     var username: String
-    var friendsId: [String]
     var achievements: [String]
     var levelSystemId: String
 
@@ -22,7 +22,6 @@ struct FBUser: FBStorable {
         id = item.id
         email = item.email
         username = item.username
-        friendsId = item.friendsId
         levelSystemId = item.levelSystemId
         achievements = item.achievements
         if let id = item.imageId {
@@ -30,6 +29,7 @@ struct FBUser: FBStorable {
         }
     }
 
+    /// Converts from storage specific to general model
     func convertToModelType() -> User {
         var imageId: String?
         if !imageIds.isEmpty {
@@ -39,7 +39,6 @@ struct FBUser: FBStorable {
             id: id,
             email: email,
             username: username,
-            friendsId: friendsId,
             levelSystemId: levelSystemId,
             achievements: achievements,
             imageId: imageId

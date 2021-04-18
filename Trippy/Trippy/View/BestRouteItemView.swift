@@ -5,11 +5,9 @@
 //  Created by Fidella Widjojo on 17/4/21.
 //
 
-/**
- View of a best route item.
-*/
 import SwiftUI
 
+/// View of a best route item.
 struct BestRouteItemView: View {
     @ObservedObject var viewModel: ItineraryItemViewModel
     @EnvironmentObject var session: FBSessionStore

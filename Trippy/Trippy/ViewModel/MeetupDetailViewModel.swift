@@ -85,7 +85,7 @@ class MeetupDetailViewModel: ObservableObject {
         return meetup.userIds.contains { $0 == id } || meetup.hostUserId == id
     }
 
-    func joinMeetup(userId: String?) throws {
+    func joinMeetup(userId: String?, levelSystemService: LevelSystemService?) throws {
         guard let id = userId else {
             throw MeetupError.invalidUser
         }
@@ -96,7 +96,9 @@ class MeetupDetailViewModel: ObservableObject {
             return
         }
         meetup.userIds.append(id)
-        try meetupModel.updateMeetup(meetup: meetup)
+        try meetupModel.updateMeetup(meetup: meetup) { meetup in
+            levelSystemService?.generateExperienceFromJoiningMeetup(meetup: meetup)
+        }
     }
 
     func remove(userId: String?) throws {
@@ -110,7 +112,7 @@ class MeetupDetailViewModel: ObservableObject {
             meetup.userIds.removeAll {
                 $0 == id
             }
-            try meetupModel.updateMeetup(meetup: meetup)
+            try meetupModel.updateMeetup(meetup: meetup, handler: nil)
         }
     }
 

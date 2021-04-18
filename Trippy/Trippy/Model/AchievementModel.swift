@@ -7,6 +7,7 @@
 
 import Combine
 
+/// A class that acts as intermediate between Achievements and storage
 class AchievementModel<Storage: StorageProtocol>: ObservableObject where Storage.StoredType == Achievement {
     @Published private(set) var achievements: [Achievement] = []
     private let storage: Storage
@@ -19,6 +20,7 @@ class AchievementModel<Storage: StorageProtocol>: ObservableObject where Storage
         fetchAchievements()
     }
 
+    /// Fetches all achievements in the database
     private func fetchAchievements() {
         storage.fetch(handler: nil)
     }

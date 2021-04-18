@@ -1,11 +1,8 @@
-/**
- View of weather info of a location.
-*/
-
 import SwiftUI
 import CoreLocation
 import URLImage
 
+/// View of weather info of a location.
 struct WeatherSectionView: View {
     @ObservedObject var viewModel: WeatherSectionViewModel
 

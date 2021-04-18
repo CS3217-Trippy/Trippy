@@ -1,9 +1,7 @@
-/**
- Model of the itinerary.
- */
 import Combine
 import CoreLocation
 
+/// Model of the itinerary.
 class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.StoredType == ItineraryItem {
     @Published private(set) var itineraryItems: [ItineraryItem] = []
     private let storage: Storage
@@ -18,9 +16,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         fetchItineraryItems()
     }
 
-    /**
-     Fetchs itinerary items from the storage.
-     */
+    /// Fetchs itinerary items from the storage.
     func fetchItineraryItems() {
         guard let userId = userId else {
             return
@@ -29,9 +25,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         storage.fetchWithField(field: field, value: userId, handler: nil)
     }
 
-    /**
-    Add itinerary item to the storage.
-     */
+    /// Add itinerary item to the storage.
     func addItineraryItem(itineraryItem: ItineraryItem) throws {
         guard !itineraryItems.contains(where: { $0.id == itineraryItem.id }) else {
             return
@@ -39,9 +33,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         try storage.add(item: itineraryItem)
     }
 
-    /**
-     Remove itinerary item from the storage.
-     */
+    /// Remove itinerary item from the storage.
     func removeItineraryItem(itineraryItem: ItineraryItem) {
         guard itineraryItems.contains(where: { $0.id == itineraryItem.id }) else {
             return
@@ -49,9 +41,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         storage.remove(item: itineraryItem)
     }
 
-    /**
-     Update itinerary item from the storage.
-     */
+    /// Update itinerary item from the storage.
     func updateItineraryItem(itineraryItem: ItineraryItem) throws {
         guard itineraryItems.contains(where: { $0.id == itineraryItem.id }) else {
             return
@@ -61,14 +51,12 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
 
     private func getDistance(indexI: Int, indexJ: Int) -> Double {
         CLLocation(latitude: itineraryItems[indexI].coordinates.latitude,
-                              longitude: itineraryItems[indexI].coordinates.longitude)
+                   longitude: itineraryItems[indexI].coordinates.longitude)
             .distance(from: CLLocation(latitude: itineraryItems[indexJ].coordinates.latitude,
                                        longitude: itineraryItems[indexJ].coordinates.longitude))
     }
 
-    /**
-     Get the best route for the current itinerary,
-     */
+    /// Get the best route for the current itinerary.
     func getBestRoute() -> BestRouteResult {
         let numOfNodes = itineraryItems.count
         let bestRouteUtil = BestRouteUtil(numOfNodes: numOfNodes)

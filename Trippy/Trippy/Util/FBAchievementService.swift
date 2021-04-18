@@ -38,7 +38,6 @@ class FBAchievementService: AchievementService {
                 id: user.id,
                 email: user.email,
                 username: user.username,
-                friendsId: user.friendsId,
                 levelSystemId: user.levelSystemId,
                 achievements: newCompletedAchievements,
                 imageId: user.imageId

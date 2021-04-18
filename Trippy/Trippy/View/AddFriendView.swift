@@ -26,7 +26,6 @@ struct AddFriendView: View {
     var listView: some View {
         List(viewModel.usersList.filter {
             $0.id != session.currentLoggedInUser?.id
-                && !(session.currentLoggedInUser?.friendsId.contains($0.id ?? "") ?? false)
                 && $0.username.contains(username)
         }) { user in
             HStack {
