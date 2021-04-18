@@ -32,7 +32,6 @@
 		01622D50261FE842004E506F /* FBImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01622D4F261FE842004E506F /* FBImageStorage.swift */; };
 		017FD89C25F7B6E80064EF40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89B25F7B6E80064EF40 /* Assets.xcassets */; };
 		017FD89F25F7B6E80064EF40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FD89E25F7B6E80064EF40 /* Preview Assets.xcassets */; };
-		017FD8B525F7B6E80064EF40 /* TrippyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */; };
 		017FD8C725F7B9020064EF40 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8C625F7B9020064EF40 /* FirebaseFirestore */; };
 		017FD8C925F7B9020064EF40 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8C825F7B9020064EF40 /* FirebaseFirestoreSwift-Beta */; };
 		017FD8CB25F7B9020064EF40 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 017FD8CA25F7B9020064EF40 /* FirebaseAnalytics */; };
@@ -176,13 +175,6 @@
 			remoteGlobalIDString = 017FD89325F7B6E80064EF40;
 			remoteInfo = Trippy;
 		};
-		017FD8B125F7B6E80064EF40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 017FD88C25F7B6E70064EF40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 017FD89325F7B6E80064EF40;
-			remoteInfo = Trippy;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -216,7 +208,6 @@
 		017FD8A025F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017FD8A525F7B6E80064EF40 /* TrippyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD8AB25F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrippyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FD8B425F7B6E80064EF40 /* TrippyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippyUITests.swift; sourceTree = "<group>"; };
 		017FD8B625F7B6E80064EF40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01CAFEDD2625F35100294587 /* RaisedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaisedButton.swift; sourceTree = "<group>"; };
@@ -368,13 +359,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		017FD8AD25F7B6E80064EF40 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -411,7 +395,6 @@
 			children = (
 				017FD89425F7B6E80064EF40 /* Trippy.app */,
 				017FD8A525F7B6E80064EF40 /* TrippyTests.xctest */,
-				017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -702,24 +685,6 @@
 			productReference = 017FD8A525F7B6E80064EF40 /* TrippyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		017FD8AF25F7B6E80064EF40 /* TrippyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 017FD8BF25F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "TrippyUITests" */;
-			buildPhases = (
-				017FD8AC25F7B6E80064EF40 /* Sources */,
-				017FD8AD25F7B6E80064EF40 /* Frameworks */,
-				017FD8AE25F7B6E80064EF40 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				017FD8B225F7B6E80064EF40 /* PBXTargetDependency */,
-			);
-			name = TrippyUITests;
-			productName = TrippyUITests;
-			productReference = 017FD8B025F7B6E80064EF40 /* TrippyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -733,10 +698,6 @@
 						CreatedOnToolsVersion = 12.3;
 					};
 					017FD8A425F7B6E80064EF40 = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = 017FD89325F7B6E80064EF40;
-					};
-					017FD8AF25F7B6E80064EF40 = {
 						CreatedOnToolsVersion = 12.3;
 						TestTargetID = 017FD89325F7B6E80064EF40;
 					};
@@ -761,7 +722,6 @@
 			targets = (
 				017FD89325F7B6E80064EF40 /* Trippy */,
 				017FD8A425F7B6E80064EF40 /* TrippyTests */,
-				017FD8AF25F7B6E80064EF40 /* TrippyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -778,13 +738,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		017FD8A325F7B6E80064EF40 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		017FD8AE25F7B6E80064EF40 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -977,14 +930,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		017FD8AC25F7B6E80064EF40 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				017FD8B525F7B6E80064EF40 /* TrippyUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -992,11 +937,6 @@
 			isa = PBXTargetDependency;
 			target = 017FD89325F7B6E80064EF40 /* Trippy */;
 			targetProxy = 017FD8A625F7B6E80064EF40 /* PBXContainerItemProxy */;
-		};
-		017FD8B225F7B6E80064EF40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 017FD89325F7B6E80064EF40 /* Trippy */;
-			targetProxy = 017FD8B125F7B6E80064EF40 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1203,44 +1143,6 @@
 			};
 			name = Release;
 		};
-		017FD8C025F7B6E80064EF40 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TrippyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Trippy;
-			};
-			name = Debug;
-		};
-		017FD8C125F7B6E80064EF40 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TrippyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = CS3217.TrippyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Trippy;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1267,15 +1169,6 @@
 			buildConfigurations = (
 				017FD8BD25F7B6E80064EF40 /* Debug */,
 				017FD8BE25F7B6E80064EF40 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		017FD8BF25F7B6E80064EF40 /* Build configuration list for PBXNativeTarget "TrippyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				017FD8C025F7B6E80064EF40 /* Debug */,
-				017FD8C125F7B6E80064EF40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
