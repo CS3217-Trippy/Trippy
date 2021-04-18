@@ -88,10 +88,9 @@ final class FBSessionStore: ObservableObject, SessionStore {
             fatalError("User should have id generated from firebase auth")
         }
         let achievementService = FBAchievementService()
+        self.userStorage.fetchWithId(id: id, handler: nil)
         do {
-            try self.userStorage.add(item: user) { _ in
-                _ = self.signOut()
-            }
+            try self.userStorage.add(item: user, handler: nil)
             self.friendStorage = FBStorage<FBFriend>()
             self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
             self.levelSystemService?.createLevelSystem(userId: id)
@@ -118,16 +117,8 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 let userModel = self.translateFromFirebaseAuthToUser(user: user)
                 switch self.authState {
                 case .SignUp:
-                    user.sendEmailVerification { error in
-                        print(error?.localizedDescription ?? "")
-                    }
                     self.prepareInformationAfterSuccessfulSignUp(user: userModel)
                 case .LogIn:
-                    if !user.isEmailVerified {
-                        print("Email has not been verified")
-                        _ = self.signOut()
-                        return
-                    }
                     self.prepareInformationAfterSuccessfulLogIn(user: userModel)
                 case .NoUser:
                     self.userStorage.flushLocalItems()
