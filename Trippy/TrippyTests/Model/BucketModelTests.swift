@@ -9,7 +9,11 @@ import CoreLocation
         let userId = "userId"
         let locationId = "1"
         let item = constructBucketItem(locationId: locationId)
-        storage.add(item: item)
+        do {
+            try storage.add(item: item, handler: nil)
+        } catch {
+            XCTFail("The mock storage should not have thrown an error")
+        }
         let model = BucketModel<MockStorage<FBBucketItem>>(storage: storage, userId: userId)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 1)

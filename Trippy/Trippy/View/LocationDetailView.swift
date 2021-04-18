@@ -25,6 +25,30 @@ struct LocationDetailView: View {
         }.padding(10)
     }
 
+    var ratingSection: some View {
+        HStack {
+            Text(viewModel.averageRatingDescription)
+            .font(.caption)
+            .fontWeight(.black)
+            .foregroundColor(.secondary)
+
+            if let locationId = viewModel.location.id, let user = session.currentLoggedInUser?.id {
+                Button(action: { showSubmitRatingSheet.toggle() }) {
+                    Text("Submit rating")
+                    .font(.caption)
+                }
+                .padding()
+                .sheet(isPresented: $showSubmitRatingSheet) {
+                    SubmitRatingView(viewModel: SubmitRatingViewModel(
+                                        locationId: locationId,
+                                        userId: user,
+                                        ratingModel: viewModel.ratingModel
+                    ))
+                }
+            }
+        }
+    }
+
     var pageContent: some View {
         VStack(alignment: .leading) {
             Text(viewModel.category)
@@ -36,24 +60,8 @@ struct LocationDetailView: View {
             .fontWeight(.black)
             .foregroundColor(.primary)
 
-            HStack {
-                Text(viewModel.averageRatingDescription)
-                .font(.caption)
-                .fontWeight(.black)
-                .foregroundColor(.secondary)
+            ratingSection
 
-                if let locationId = viewModel.location.id, let user = session.currentLoggedInUser?.id {
-                    Button(action: { showSubmitRatingSheet.toggle() }) {
-                        Text("Submit rating")
-                        .font(.caption)
-                    }
-                    .padding()
-                    .sheet(isPresented: $showSubmitRatingSheet) {
-                        SubmitRatingView(viewModel: SubmitRatingViewModel(locationId: locationId, userId: user,
-                                                                          ratingModel: viewModel.ratingModel))
-                    }
-                }
-            }
             Text(viewModel.address)
             .font(.caption)
             .foregroundColor(.secondary)

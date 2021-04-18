@@ -9,7 +9,6 @@
 import Combine
 
 class MockStorage<Storable>: StorageProtocol where Storable: FBStorable {
-
     var storedItems: Published<[Storable.ModelType]>.Publisher {
         $_storedItems
     }
@@ -39,10 +38,8 @@ class MockStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
-    func fetchWithFieldOnce(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
-        if let handler = handler {
-            handler(_storedItems)
-        }
+    func fetchWithFieldAndDiscard(field: String, value: String, handler: @escaping (([Storable.ModelType]) -> Void)) {
+        handler(_storedItems)
     }
 
     func fetchWithId(id: String, handler: ((Storable.ModelType) -> Void)?) {
@@ -54,7 +51,7 @@ class MockStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
-    func add(item: Storable.ModelType) {
+    func add(item: Storable.ModelType, handler: ((Storable.ModelType) -> Void)?) throws {
         _storedItems.append(item)
     }
 
@@ -67,7 +64,7 @@ class MockStorage<Storable>: StorageProtocol where Storable: FBStorable {
         _storedItems.removeAll { $0.id == item.id }
     }
 
-    func removeStoredItems() {
+    func flushLocalItems() {
         self._storedItems.removeAll()
     }
 
