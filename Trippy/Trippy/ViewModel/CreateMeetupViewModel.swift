@@ -76,7 +76,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         let userPhotos = getUserPhotosFromUsers(friends: friends)
         let coordinates = bucketItem.coordinates
         let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds,
-                            userProfilePhotoIds: userPhotos,hostUserId: userId,
+                            userProfilePhotoIds: userPhotos, hostUserId: userId,
                             locationImageId: imageId, locationName: bucketItem.locationName,
                             locationCategory: bucketItem.locationCategory, locationId: locationId,
                             meetupDate: meetupDate, dateAdded: Date(),
