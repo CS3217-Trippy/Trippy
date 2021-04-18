@@ -61,7 +61,6 @@
 		01F4638A25FD1FBE00BBB8E9 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4638925FD1FBE00BBB8E9 /* DateManager.swift */; };
 		01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639125FD1FCB00BBB8E9 /* String+Extensions.swift */; };
 		01F4639E25FD203900BBB8E9 /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4639D25FD203900BBB8E9 /* DateManagerTests.swift */; };
-		01F8435B25FDC6ED00080ED5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 01F8435A25FDC6ED00080ED5 /* URLImage */; };
 		01F8436825FDDF4F00080ED5 /* BucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8436725FDDF4F00080ED5 /* BucketModel.swift */; };
 		01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437425FDE05100080ED5 /* FBBucketItem.swift */; };
 		01F8437E25FDED3800080ED5 /* BucketModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8437D25FDED3800080ED5 /* BucketModelTests.swift */; };
@@ -356,7 +355,6 @@
 				017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */,
 				017FD8D125F7B9020064EF40 /* FirebaseFunctions in Frameworks */,
 				017FD8CF25F7B9020064EF40 /* FirebaseStorage in Frameworks */,
-				01F8435B25FDC6ED00080ED5 /* URLImage in Frameworks */,
 				017FD8CB25F7B9020064EF40 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,7 +676,6 @@
 				017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */,
 				017FD8D425F7B9020064EF40 /* FirebaseMessaging */,
 				017FD8D625F7B9020064EF40 /* FirebaseAuth */,
-				01F8435A25FDC6ED00080ED5 /* URLImage */,
 			);
 			productName = Trippy;
 			productReference = 017FD89425F7B6E80064EF40 /* Trippy.app */;
@@ -753,7 +750,6 @@
 			mainGroup = 017FD88B25F7B6E70064EF40;
 			packageReferences = (
 				017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				01F8435925FDC6ED00080ED5 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 017FD89525F7B6E80064EF40 /* Products */;
 			projectDirPath = "";
@@ -1291,14 +1287,6 @@
 				minimumVersion = 7.7.0;
 			};
 		};
-		01F8435925FDC6ED00080ED5 /* XCRemoteSwiftPackageReference "url-image" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1346,11 +1334,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		01F8435A25FDC6ED00080ED5 /* URLImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 01F8435925FDC6ED00080ED5 /* XCRemoteSwiftPackageReference "url-image" */;
-			productName = URLImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
