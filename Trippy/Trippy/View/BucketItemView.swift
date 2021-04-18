@@ -1,5 +1,4 @@
 import SwiftUI
-import URLImage
 
 struct BucketItemView: View {
     @State private var visited = false

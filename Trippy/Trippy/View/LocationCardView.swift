@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CoreLocation
-import URLImage
 
 struct LocationCardView: View {
     @ObservedObject var viewModel: LocationCardViewModel

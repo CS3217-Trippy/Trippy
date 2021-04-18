@@ -1,5 +1,4 @@
 import SwiftUI
-import URLImage
 
 /// View of an itinerary item.
 struct ItineraryItemView: View {

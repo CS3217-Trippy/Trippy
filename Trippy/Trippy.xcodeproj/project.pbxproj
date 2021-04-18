@@ -13,6 +13,7 @@
 		0106B37E2622FFCC00574097 /* FBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B37D2622FFCC00574097 /* FBStorage.swift */; };
 		0106B38C262300E200574097 /* StorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106B38B262300E200574097 /* StorageProtocol.swift */; };
 		01088F5C2606442F00579707 /* BucketListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01088F5B2606442F00579707 /* BucketListError.swift */; };
+		010E307E262CA6A50048CEF9 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 010E307D262CA6A50048CEF9 /* URLImage */; };
 		011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C32605B22A0028F971 /* AddBucketItemViewModel.swift */; };
 		011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011172C82605BBCE0028F971 /* AddBucketItemView.swift */; };
 		0112EEA326248A8400F420E2 /* Meetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112EEA226248A8400F420E2 /* Meetup.swift */; };
@@ -355,6 +356,7 @@
 				017FD8D325F7B9020064EF40 /* FirebaseCrashlytics in Frameworks */,
 				017FD8D125F7B9020064EF40 /* FirebaseFunctions in Frameworks */,
 				017FD8CF25F7B9020064EF40 /* FirebaseStorage in Frameworks */,
+				010E307E262CA6A50048CEF9 /* URLImage in Frameworks */,
 				017FD8CB25F7B9020064EF40 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,6 +678,7 @@
 				017FD8D225F7B9020064EF40 /* FirebaseCrashlytics */,
 				017FD8D425F7B9020064EF40 /* FirebaseMessaging */,
 				017FD8D625F7B9020064EF40 /* FirebaseAuth */,
+				010E307D262CA6A50048CEF9 /* URLImage */,
 			);
 			productName = Trippy;
 			productReference = 017FD89425F7B6E80064EF40 /* Trippy.app */;
@@ -750,6 +753,7 @@
 			mainGroup = 017FD88B25F7B6E70064EF40;
 			packageReferences = (
 				017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				010E307C262CA6A40048CEF9 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 017FD89525F7B6E80064EF40 /* Products */;
 			projectDirPath = "";
@@ -1279,6 +1283,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		010E307C262CA6A40048CEF9 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.3;
+			};
+		};
 		017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1290,6 +1302,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		010E307D262CA6A50048CEF9 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 010E307C262CA6A40048CEF9 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
 		017FD8C625F7B9020064EF40 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 017FD8C525F7B9020064EF40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
