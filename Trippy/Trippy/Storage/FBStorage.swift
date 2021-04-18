@@ -102,7 +102,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
             }
     }
 
-    func fetchWithFieldOnce(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
+    func fetchWithFieldAndDiscard(field: String, value: String, handler: @escaping (([Storable.ModelType]) -> Void)) {
         store.collection(Storable.path).whereField(field, isEqualTo: value).getDocuments { snapshot, error in
             if let error = error {
                 print(error)
@@ -114,11 +114,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
                 }
                 return fbItem.convertToModelType()
             } ?? []
-            if let handler = handler {
-                handler(result)
-            } else {
-                self._storedItems = result
-            }
+            handler(result)
         }
     }
 
@@ -181,7 +177,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         store.collection(Storable.path).document(id).delete()
     }
 
-    func removeStoredItems() {
+    func flushLocalItems() {
         self._storedItems.removeAll()
     }
 

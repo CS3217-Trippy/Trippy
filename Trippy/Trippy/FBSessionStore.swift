@@ -121,11 +121,11 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 case .LogIn:
                     self.prepareInformationAfterSuccessfulLogIn(user: user)
                 case .NoUser:
-                    self.userStorage.removeStoredItems()
+                    self.userStorage.flushLocalItems()
                     print("no user")
                 }
             } else {
-                self.userStorage.removeStoredItems()
+                self.userStorage.flushLocalItems()
                 self.session = []
                 self.username = ""
             }
@@ -192,7 +192,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         guard let id = user.id else {
             fatalError("User should have id")
         }
-        friendStorage?.fetchWithFieldOnce(field: "userId", value: id) { friends in
+        friendStorage?.fetchWithFieldAndDiscard(field: "userId", value: id) { friends in
             for friend in friends {
                 friend.username = user.username
                 friend.userProfilePhoto = user.imageId
@@ -203,7 +203,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
                 }
             }
         }
-        friendStorage?.fetchWithFieldOnce(field: "friendId", value: id) { friendList in
+        friendStorage?.fetchWithFieldAndDiscard(field: "friendId", value: id) { friendList in
             for associatedFriend in friendList {
                 associatedFriend.friendUsername = user.username
                 associatedFriend.friendProfilePhoto = user.imageId

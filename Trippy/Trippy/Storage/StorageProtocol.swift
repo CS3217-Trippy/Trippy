@@ -22,7 +22,7 @@ protocol StorageProtocol: ObservableObject {
 
     func fetchWithFieldNotIn(field: String, value: [String], handler: (([StoredType]) -> Void)?)
 
-    func fetchWithFieldOnce(field: String, value: String, handler: (([StoredType]) -> Void)?)
+    func fetchWithFieldAndDiscard(field: String, value: String, handler: @escaping (([StoredType]) -> Void))
 
     func add(item: StoredType) throws
 
@@ -30,5 +30,5 @@ protocol StorageProtocol: ObservableObject {
 
     func remove(item: StoredType)
 
-    func removeStoredItems()
+    func flushLocalItems()
 }
