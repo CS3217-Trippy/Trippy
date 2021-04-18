@@ -48,10 +48,6 @@ class MeetupDetailViewModel: ObservableObject {
         meetup.userIds.count + 1
     }
 
-    var host: String {
-        meetup.hostUsername
-    }
-
     var category: String {
         meetup.locationCategory.rawValue.capitalized
     }

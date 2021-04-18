@@ -8,7 +8,6 @@ struct FBMeetup: FBStorable {
     var meetupPrivacy: MeetupPrivacy
     @DocumentID var id: String?
     var userIds: [String]
-    var hostUsername: String
     var hostUserId: String
     var locationName: String
     var userProfilePhotoIds: [String]
@@ -26,7 +25,6 @@ struct FBMeetup: FBStorable {
         self.id = item.id
         self.userIds = item.userIds
         self.userProfilePhotoIds = item.userProfilePhotoIds
-        self.hostUsername = item.hostUsername
         self.hostUserId = item.hostUserId
         self.locationName = item.locationName
         self.locationCategory = item.locationCategory
@@ -50,7 +48,6 @@ struct FBMeetup: FBStorable {
                             meetupPrivacy: meetupPrivacy,
                             userIds: userIds,
                             userProfilePhotoIds: userProfilePhotoIds,
-                            hostUsername: hostUsername,
                             hostUserId: hostUserId,
                             locationImageId: locationImageId,
                             locationName: locationName,
