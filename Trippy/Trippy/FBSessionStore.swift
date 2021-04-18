@@ -66,6 +66,9 @@ final class FBSessionStore: ObservableObject, SessionStore {
 
     func retrievePreviousLogInSession() {
         if let user = Auth.auth().currentUser {
+            if !user.isEmailVerified {
+                return
+            }
             self.authState = .LogIn
             let modelUser = self.translateFromFirebaseAuthToUser(user: user)
             prepareInformationAfterSuccessfulLogIn(user: modelUser)
@@ -88,7 +91,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
             fatalError("User should have id generated from firebase auth")
         }
         let achievementService = FBAchievementService()
-        self.userStorage.fetchWithId(id: id, handler: nil)
         do {
             try self.userStorage.add(item: user)
             self.friendStorage = FBStorage<FBFriend>()
@@ -114,12 +116,20 @@ final class FBSessionStore: ObservableObject, SessionStore {
         handle = Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
                 self.userStorage.storedItems.assign(to: \.session, on: self).store(in: &self.cancellables)
-                let user = self.translateFromFirebaseAuthToUser(user: user)
+                let userModel = self.translateFromFirebaseAuthToUser(user: user)
                 switch self.authState {
                 case .SignUp:
-                    self.prepareInformationAfterSuccessfulSignUp(user: user)
+                    user.sendEmailVerification { error in
+                        print(error?.localizedDescription ?? "")
+                    }
+                    self.prepareInformationAfterSuccessfulSignUp(user: userModel)
                 case .LogIn:
-                    self.prepareInformationAfterSuccessfulLogIn(user: user)
+                    if !user.isEmailVerified {
+                        print("Email has not been verified")
+                        _ = self.signOut()
+                        return
+                    }
+                    self.prepareInformationAfterSuccessfulLogIn(user: userModel)
                 case .NoUser:
                     self.userStorage.flushLocalItems()
                     print("no user")
@@ -136,7 +146,9 @@ final class FBSessionStore: ObservableObject, SessionStore {
         self.username = username
         self.authState = .SignUp
         Auth.auth().createUser(withEmail: email, password: password) { _, error in
-            handler(error?.localizedDescription)
+            if let error = error {
+                handler(error.localizedDescription)
+            }
         }
     }
 
