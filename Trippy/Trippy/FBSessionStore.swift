@@ -132,18 +132,18 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
     }
 
-    func signUp(email: String, password: String, username: String, handler: @escaping (Error?) -> Void) {
+    func signUp(email: String, password: String, username: String, handler: @escaping (String?) -> Void) {
         self.username = username
         self.authState = .SignUp
         Auth.auth().createUser(withEmail: email, password: password) { _, error in
-            handler(error)
+            handler(error?.localizedDescription)
         }
     }
 
-    func logIn(email: String, password: String, handler: @escaping (Error?) -> Void) {
+    func logIn(email: String, password: String, handler: @escaping (String?) -> Void) {
         self.authState = .LogIn
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
-            handler(error)
+            handler(error?.localizedDescription)
         }
     }
 
