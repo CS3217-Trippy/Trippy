@@ -18,18 +18,19 @@ struct ContentView: View {
     @State var completedLocation = ""
     @State private var showSubmitRatingSheet = false
 
+    func constructHomePageVM() -> HomepageViewModel {
+        HomepageViewModel(
+            session: session, locationCoordinator: locationCoordinator,
+            notificationManager: notificationManager, showLocationAlert: $showLocationAlert,
+            completedLocation: $completedLocation, alertTitle: $alertTitle,
+            alertContent: $alertContent
+        )
+    }
+
     var body: some View {
         Group {
             if let user = session.currentLoggedInUser {
-                let homepageViewModel = HomepageViewModel(
-                    session: session,
-                    locationCoordinator: locationCoordinator,
-                    notificationManager: notificationManager,
-                    showLocationAlert: $showLocationAlert,
-                    completedLocation: $completedLocation,
-                    alertTitle: $alertTitle,
-                    alertContent: $alertContent
-                )
+                let homepageViewModel = constructHomePageVM()
                 HomepageView(
                     homepageViewModel: homepageViewModel,
                     user: user
@@ -42,8 +43,7 @@ struct ContentView: View {
                     )
                 }.sheet(isPresented: $showSubmitRatingSheet) {
                     SubmitRatingView(viewModel: SubmitRatingViewModel(
-                                        locationId: completedLocation,
-                                        userId: user.id ?? "",
+                                        locationId: completedLocation, userId: user.id ?? "",
                                         ratingModel: homepageViewModel.ratingModel
                     ))
                 }

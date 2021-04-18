@@ -20,7 +20,8 @@ final class HomepageViewModel: ObservableObject {
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
 
-    init(session: SessionStore, locationCoordinator: LocationCoordinator,
+    init(session: SessionStore,
+         locationCoordinator: LocationCoordinator,
          notificationManager: NotificationManager, showLocationAlert: Binding<Bool>,
          completedLocation: Binding<String>, alertTitle: Binding<String>, alertContent: Binding<String>) {
         let imageStorage = FBImageStorage()
@@ -36,50 +37,36 @@ final class HomepageViewModel: ObservableObject {
             recommender: FBLocationRecommender(userId: session.currentLoggedInUser?.id))
         self.locationModel = locationModel
         let bucketStorage = FBStorage<FBBucketItem>()
-
         let bucketModel = BucketModel<FBStorage<FBBucketItem>>(
             storage: bucketStorage,
             userId: session.currentLoggedInUser?.id
         )
         self.bucketModel = bucketModel
-
         let friendStorage = FBStorage<FBFriend>()
-        let friendsModel = FriendsListModel<FBStorage<FBFriend>>(
+        self.friendsModel = FriendsListModel<FBStorage<FBFriend>>(
             storage: friendStorage,
             userId: session.currentLoggedInUser?.id
         )
-        self.friendsModel = friendsModel
-
         let achievementStorage = FBStorage<FBAchievement>()
-        let achievementsModel = AchievementModel<FBStorage<FBAchievement>>(
+        self.achievementsModel = AchievementModel<FBStorage<FBAchievement>>(
             storage: achievementStorage
         )
-        self.achievementsModel = achievementsModel
-
         visitTracker = VisitTracker(
-            locationCoordinator: locationCoordinator,
-            notificationManager: notificationManager,
-            locationModel: locationModel,
-            bucketModel: bucketModel,
-            showLocationAlert: showLocationAlert,
-            completedLocation: completedLocation,
-            alertTitle: alertTitle,
-            alertContent: alertContent,
-            levelSystemService: session.levelSystemService,
-            ratingModel: ratingModel
+            locationCoordinator: locationCoordinator, notificationManager: notificationManager,
+            locationModel: locationModel, bucketModel: bucketModel,
+            showLocationAlert: showLocationAlert, completedLocation: completedLocation,
+            alertTitle: alertTitle, alertContent: alertContent,
+            levelSystemService: session.levelSystemService, ratingModel: ratingModel
         )
 
         let meetupStorage = FBStorage<FBMeetup>()
-        let meetupModel = MeetupModel<FBStorage<FBMeetup>>(
+        self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(
             storage: meetupStorage,
             userId: session.currentLoggedInUser?.id
         )
-        self.meetupModel = meetupModel
-
         let itineraryStorage = FBStorage<FBItineraryItem>()
-        let itineraryModel = ItineraryModel<FBStorage<FBItineraryItem>>(
+        self.itineraryModel = ItineraryModel<FBStorage<FBItineraryItem>>(
             storage: itineraryStorage, userId: session.currentLoggedInUser?.id
         )
-        self.itineraryModel = itineraryModel
     }
 }
