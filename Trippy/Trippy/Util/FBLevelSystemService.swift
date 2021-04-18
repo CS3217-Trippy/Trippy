@@ -39,6 +39,7 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             bucketItemsAddedBefore: [],
             meetupsJoinedBefore: []
         )
+        retrieveLevelSystem()
         do {
             try levelSystemStorage.add(item: newLevelSystemForUser, handler: nil)
         } catch {
