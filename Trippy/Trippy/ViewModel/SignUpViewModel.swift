@@ -28,7 +28,7 @@ final class SignUpViewModel: ObservableObject, Identifiable {
         }
         session.signUp(email: email, password: password, username: username) { error in
             if let error = error {
-                self.errorMessage = error.localizedDescription
+                self.errorMessage = error
                 return
             }
             self.email = ""

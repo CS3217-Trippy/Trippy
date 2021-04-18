@@ -21,7 +21,7 @@ final class LogInViewModel: ObservableObject, Identifiable {
     func login() {
         session.logIn(email: email, password: password) { error in
             if let error = error {
-                self.errorMessage = error.localizedDescription
+                self.errorMessage = error
                 return
             }
             self.email = ""

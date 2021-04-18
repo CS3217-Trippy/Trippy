@@ -34,7 +34,7 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
     /// Adds a meetup to storage
     /// - Throws: StorageError.saveFailure
     func addMeetup(meetup: Meetup) throws {
-        try storage.add(item: meetup)
+        try storage.add(item: meetup, handler: nil)
     }
 
     /// Updates the given meetup

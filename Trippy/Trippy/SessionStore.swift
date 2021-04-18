@@ -19,9 +19,9 @@ protocol SessionStore {
 
     func listen()
 
-    func signUp(email: String, password: String, username: String, handler: @escaping (Error?) -> Void)
+    func signUp(email: String, password: String, username: String, handler: @escaping (String?) -> Void)
 
-    func logIn(email: String, password: String, handler: @escaping (Error?) -> Void)
+    func logIn(email: String, password: String, handler: @escaping (String?) -> Void)
 
     func signOut() -> Bool
 

@@ -29,7 +29,7 @@ class RatingModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
             return
         }
 
-        try storage.add(item: rating)
+        try storage.add(item: rating, handler: nil)
     }
 
     func remove(rating: Rating) {

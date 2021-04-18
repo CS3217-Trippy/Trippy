@@ -39,9 +39,8 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             bucketItemsAddedBefore: [],
             meetupsJoinedBefore: []
         )
-        retrieveLevelSystem()
         do {
-            try levelSystemStorage.add(item: newLevelSystemForUser)
+            try levelSystemStorage.add(item: newLevelSystemForUser, handler: nil)
         } catch {
             print(error.localizedDescription)
         }
@@ -86,9 +85,9 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         var expToAdd = LevelSystemUtil.getExperienceFrom(action: action)
         var experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
         while currentExperience + expToAdd >= experienceToNextLevel {
+            expToAdd -= experienceToNextLevel - currentExperience
             userLevelSystem.level += 1
             currentExperience = 0
-            expToAdd -= experienceToNextLevel - currentExperience
             experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
         }
         userLevelSystem.experience = expToAdd
@@ -99,9 +98,9 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
         var expToAdd = toAdd
         var experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
         while currentExperience + expToAdd >= experienceToNextLevel {
+            expToAdd -= experienceToNextLevel - currentExperience
             userLevelSystem.level += 1
             currentExperience = 0
-            expToAdd -= experienceToNextLevel - currentExperience
             experienceToNextLevel = LevelSystemUtil.generateExperienceToLevelUp(currentLevel: userLevelSystem.level)
         }
         userLevelSystem.experience = expToAdd
