@@ -8,6 +8,8 @@
 import Foundation
 
 protocol LevelSystemService {
+    var achievementService: AchievementService { get set }
+
     func createLevelSystem(userId: String)
 
     func getUserLevelSystem() -> LevelSystem
