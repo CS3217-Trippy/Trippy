@@ -1,9 +1,7 @@
 import Foundation
 import CoreLocation
 
-/**
- Model representation of an itinerary item.
- */
+/// Model representation of an itinerary item.
 class ItineraryItem: Model {
     var id: String?
     let locationName: String

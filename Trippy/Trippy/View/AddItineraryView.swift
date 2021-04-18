@@ -1,8 +1,6 @@
 import SwiftUI
 
-/**
- View for adding itinerary items.
-*/
+/// View for adding itinerary items.
 struct AddItineraryView: View {
     let viewModel: AddItineraryItemViewModel
     @State private var showStorageError = false

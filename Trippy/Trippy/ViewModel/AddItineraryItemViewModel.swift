@@ -12,9 +12,7 @@ class AddItineraryItemViewModel {
         self.user = user
     }
 
-    /**
-     Converts the current information to an itinerary item and saves to the itinerary model.
-     */
+    /// Converts the current information to an itinerary item and saves to the itinerary model.
     func save() throws {
         if let itineraryItem = buildItineraryItem() {
             try itineraryModel.addItineraryItem(itineraryItem: itineraryItem)

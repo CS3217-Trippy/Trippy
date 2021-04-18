@@ -1,8 +1,6 @@
 import SwiftUI
 
-/**
- View of a itinerary list..
-*/
+/// View of a itinerary list..
 struct ItineraryListView: View {
     @ObservedObject var viewModel: ItineraryListViewModel
     @State private var showingBestRoute = false

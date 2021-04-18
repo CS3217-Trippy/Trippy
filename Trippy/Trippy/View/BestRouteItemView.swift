@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-/**
- View of a best route item.
-*/
+/// View of a best route item.
 struct BestRouteItemView: View {
     @ObservedObject var viewModel: ItineraryItemViewModel
     @EnvironmentObject var session: FBSessionStore

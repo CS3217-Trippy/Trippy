@@ -1,9 +1,7 @@
 import SwiftUI
 import URLImage
 
-/**
- View of an itinerary item.
-*/
+/// View of an itinerary item.
 struct ItineraryItemView: View {
     @ObservedObject var viewModel: ItineraryItemViewModel
     @EnvironmentObject var session: FBSessionStore

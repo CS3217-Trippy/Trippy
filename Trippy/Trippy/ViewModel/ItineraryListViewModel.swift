@@ -1,8 +1,6 @@
-/**
- View model of an itinerary list.
-*/
 import Combine
 
+/// View model of an itinerary list.
 final class ItineraryListViewModel: ObservableObject {
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     @Published var itineraryItemViewModels: [ItineraryItemViewModel] = []
@@ -28,16 +26,12 @@ final class ItineraryListViewModel: ObservableObject {
         .store(in: &cancellables)
     }
 
-    /**
-     Fetch itinerary items from the model.
-     */
+    /// Fetch itinerary items from the model.
     func fetch() {
         itineraryModel.fetchItineraryItems()
     }
 
-    /**
-     Get the best route for the current itinerary,
-     */
+    /// Get the best route for the current itinerary.
     func getBestRoute() {
         let result = itineraryModel.getBestRoute()
 

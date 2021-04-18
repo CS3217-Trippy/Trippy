@@ -37,7 +37,7 @@ enum AchievementType {
         }
     }
 
-    /// Generate a new instanc eof AchievementType
+    /// Generate a new instance of AchievementType
     /// - parameters:
     /// type: A string describing the achievement type to be generated
     /// completion: The current count for completion of achievement
