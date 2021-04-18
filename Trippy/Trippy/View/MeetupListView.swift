@@ -28,7 +28,7 @@ struct MeetupListView: View {
                     }
                 }
 
-                Text("Upcoming Meetups")
+                Text("Meetups Joined")
 
                 ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
                     MeetupItemView(viewModel: meetupViewModel,
