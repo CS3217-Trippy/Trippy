@@ -78,7 +78,7 @@ class VisitTracker {
             .store(in: &cancellables)
     }
 
-    func didUpdateLocations(location: CLLocationCoordinate2D?) {
+    private func didUpdateLocations(location: CLLocationCoordinate2D?) {
         guard let location = location else {
             return
         }
@@ -96,7 +96,7 @@ class VisitTracker {
         }
     }
 
-    func establishGeofences() {
+    private func establishGeofences() {
         guard let currentLocation = locationCoordinator.currentLocation else {
             return
         }
@@ -126,7 +126,7 @@ class VisitTracker {
         }
     }
 
-    func trackVisit(for bucketItemId: String?) {
+    private func trackVisit(for bucketItemId: String?) {
         guard let id = bucketItemId else {
             return
         }
@@ -169,7 +169,7 @@ class VisitTracker {
         notifyUser(for: bucketItem)
     }
 
-    func removeOutdatedVisits() {
+    private func removeOutdatedVisits() {
         for visit in visits {
             if !locationCoordinator.monitoredRegions
                 .contains(where: { $0.identifier == visit.bucketItemId }) {

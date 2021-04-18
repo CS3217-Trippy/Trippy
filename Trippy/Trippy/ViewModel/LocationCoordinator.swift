@@ -15,7 +15,6 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
     @Published var exitedRegion: CLRegion?
     @Published var authorizationStatus: CLAuthorizationStatus = .denied
     private let approximateDistanceFilter = 500.0
-    private var notificationManager = NotificationManager()
 
     override init() {
         super.init()
