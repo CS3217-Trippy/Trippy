@@ -151,14 +151,12 @@ class VisitTracker {
         }
         let currentDate = Date()
         guard currentDate.timeIntervalSince(visit.arrivalTime) > minimumVisitDuration else {
-            print("Visit was too short to be counted")
             visitModel.remove(visit)
             return
         }
         locationCoordinator.stopMonitoring(for: id)
         bucketItem.dateVisited = visit.arrivalTime
         do {
-            print("bucketitem visited")
             try bucketModel.updateBucketItem(bucketItem: bucketItem)
             levelSystemService?.generateExperienceFromFinishingBucketItem(bucketItem: bucketItem)
         } catch {

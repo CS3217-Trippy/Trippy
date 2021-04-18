@@ -44,7 +44,6 @@ class Meetup: Model {
         let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         CLGeocoder().reverseGeocodeLocation(location) { placemark, error in
             guard let placemark = placemark?.first, error == nil else {
-                print("Unable to retrieve placemark")
                 return
             }
             self.placemark = placemark

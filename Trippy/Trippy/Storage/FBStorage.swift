@@ -21,7 +21,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     func fetch(handler: (([Storable.ModelType]) -> Void)?) {
         store.collection(Storable.path).addSnapshotListener { snapshot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             let result: [Storable.ModelType] = snapshot?.documents.compactMap {
@@ -41,7 +41,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     func fetchWithField(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
         store.collection(Storable.path).whereField(field, isEqualTo: value).addSnapshotListener { snapshot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             let result: [Storable.ModelType] = snapshot?.documents.compactMap {
@@ -63,7 +63,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
             .whereField(field, in: value)
             .addSnapshotListener { snapshot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             let result: [Storable.ModelType] = snapshot?.documents.compactMap {
@@ -85,7 +85,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
             .whereField(field, notIn: value)
             .addSnapshotListener { snapshot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             let result: [Storable.ModelType] = snapshot?.documents.compactMap {
@@ -105,7 +105,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     func fetchWithFieldAndDiscard(field: String, value: String, handler: @escaping (([Storable.ModelType]) -> Void)) {
         store.collection(Storable.path).whereField(field, isEqualTo: value).getDocuments { snapshot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             let result: [Storable.ModelType] = snapshot?.documents.compactMap {
@@ -121,7 +121,7 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
     func fetchWithId(id: String, handler: ((Storable.ModelType) -> Void)?) {
         store.collection(Storable.path).document(id).addSnapshotListener { document, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
             guard let fbItem = try? document?.data(as: Storable.self) else {

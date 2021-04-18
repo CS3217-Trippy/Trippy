@@ -22,9 +22,8 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate, Observabl
 
     private func sendNotificationRequest(content: UNMutableNotificationContent) {
         let center = UNUserNotificationCenter.current()
-        let uuidString = UUID().uuidString
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: Date().description, content: content, trigger: trigger)
         center.add(request, withCompletionHandler: nil)
     }
 
