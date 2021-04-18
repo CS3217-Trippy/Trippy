@@ -179,9 +179,16 @@ final class FBSessionStore: ObservableObject, SessionStore {
             if let id = updatedUser.imageId, let image = image {
                 let trippyImage = TrippyImage(id: id, image: image)
                 let model = ImageModel(storage: FBImageStorage())
-                model.add(with: [trippyImage])
+                model.add(with: [trippyImage]) { _ in
+                    do {
+                        try self.userStorage.update(item: updatedUser, handler: nil)
+                    } catch {
+                        print("Updating user failed")
+                    }
+                }
+            } else {
+                try self.userStorage.update(item: updatedUser, handler: nil)
             }
-            try self.userStorage.update(item: updatedUser, handler: nil)
         } catch {
             print("Updating user failed")
         }
