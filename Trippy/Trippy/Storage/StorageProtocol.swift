@@ -24,7 +24,7 @@ protocol StorageProtocol: ObservableObject {
 
     func fetchWithFieldAndDiscard(field: String, value: String, handler: @escaping (([StoredType]) -> Void))
 
-    func add(item: StoredType) throws
+    func add(item: StoredType, handler: ((StoredType) -> Void)?) throws
 
     func update(item: StoredType, handler: ((StoredType) -> Void)?) throws
 

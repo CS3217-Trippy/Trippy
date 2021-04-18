@@ -30,7 +30,7 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         guard !itineraryItems.contains(where: { $0.id == itineraryItem.id }) else {
             return
         }
-        try storage.add(item: itineraryItem)
+        try storage.add(item: itineraryItem, handler: nil)
     }
 
     /// Remove itinerary item from the storage.

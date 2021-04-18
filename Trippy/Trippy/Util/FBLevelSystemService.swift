@@ -40,7 +40,7 @@ final class FBLevelSystemService: LevelSystemService, ObservableObject {
             meetupsJoinedBefore: []
         )
         do {
-            try levelSystemStorage.add(item: newLevelSystemForUser)
+            try levelSystemStorage.add(item: newLevelSystemForUser, handler: nil)
         } catch {
             print(error.localizedDescription)
         }

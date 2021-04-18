@@ -34,7 +34,7 @@ class VisitModel<Storage: StorageProtocol>: ObservableObject where Storage.Store
         guard !visits.contains(where: { $0.id == visit.id }) else {
             return
         }
-        try storage.add(item: visit)
+        try storage.add(item: visit, handler: nil)
     }
 
     func remove(_ visit: Visit) {

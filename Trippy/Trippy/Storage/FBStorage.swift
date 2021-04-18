@@ -137,11 +137,18 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
-    func add(item: Storable.ModelType) throws {
+    func add(item: Storable.ModelType, handler: ((Storable.ModelType) -> Void)?) throws {
         let fbItem = Storable(item: item)
         do {
             if let id = item.id {
-                try store.collection(Storable.path).document(id).setData(from: fbItem)
+                try store.collection(Storable.path).document(id).setData(from: fbItem) { error in
+                    if error != nil {
+                        return
+                    }
+                    if let handler = handler {
+                        handler(fbItem.convertToModelType())
+                    }
+                }
             } else {
                 item.id = try store.collection(Storable.path).addDocument(from: fbItem).documentID
             }

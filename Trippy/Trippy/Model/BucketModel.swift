@@ -30,7 +30,7 @@ class BucketModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
         guard !bucketItems.contains(where: { $0.id == bucketItem.id }) else {
             return
         }
-        try storage.add(item: bucketItem)
+        try storage.add(item: bucketItem, handler: nil)
     }
 
     /// Removes a bucket item from storage

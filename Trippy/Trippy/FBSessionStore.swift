@@ -66,9 +66,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
 
     func retrievePreviousLogInSession() {
         if let user = Auth.auth().currentUser {
-            if !user.isEmailVerified {
-                return
-            }
             self.authState = .LogIn
             let modelUser = self.translateFromFirebaseAuthToUser(user: user)
             prepareInformationAfterSuccessfulLogIn(user: modelUser)
@@ -92,7 +89,9 @@ final class FBSessionStore: ObservableObject, SessionStore {
         }
         let achievementService = FBAchievementService()
         do {
-            try self.userStorage.add(item: user)
+            try self.userStorage.add(item: user) { _ in
+                _ = self.signOut()
+            }
             self.friendStorage = FBStorage<FBFriend>()
             self.levelSystemService = FBLevelSystemService(userId: id, achievementService: achievementService)
             self.levelSystemService?.createLevelSystem(userId: id)

@@ -43,13 +43,13 @@ class LocationModel<Storage: StorageProtocol>: ObservableObject where Storage.St
             let trippyImage = TrippyImage(id: id, image: image)
             imageModel.add(with: [trippyImage]) { _ in
                 do {
-                    try self.storage.add(item: location)
+                    try self.storage.add(item: location, handler: nil)
                 } catch {
                     print("unable to save location")
                 }
             }
         } else {
-            try storage.add(item: location)
+            try storage.add(item: location, handler: nil)
         }
     }
 

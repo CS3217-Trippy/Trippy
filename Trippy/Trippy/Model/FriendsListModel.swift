@@ -30,7 +30,7 @@ final class FriendsListModel<Storage: StorageProtocol> where Storage.StoredType 
     }
 
     func addFriend(friend: Friend) throws {
-        try storage.add(item: friend)
+        try storage.add(item: friend, handler: nil)
     }
 
     func updateFriend(friend: Friend) throws {
