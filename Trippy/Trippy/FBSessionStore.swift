@@ -122,7 +122,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
                     self.prepareInformationAfterSuccessfulLogIn(user: userModel)
                 case .NoUser:
                     self.userStorage.flushLocalItems()
-                    print("no user")
                 }
             } else {
                 self.userStorage.flushLocalItems()

@@ -15,6 +15,7 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
     @Published var exitedRegion: CLRegion?
     @Published var authorizationStatus: CLAuthorizationStatus = .denied
     private let approximateDistanceFilter = 500.0
+    private let accurateDistanceFilter = 10.0
 
     override init() {
         super.init()
@@ -37,7 +38,7 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate, ObservableObject
     }
 
     func enableAccurateLocation() {
-        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.distanceFilter = accurateDistanceFilter
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
     }

@@ -36,10 +36,8 @@ struct TrippyApp: App {
         .onChange(of: scenePhase) { phase in
             switch phase {
             case .active:
-                print("ScenePhase: active")
                 locationCoordinator.enableAccurateLocation()
             case .background:
-                print("ScenePhase: background")
                 locationCoordinator.enableApproximateLocation()
             default:
                 return

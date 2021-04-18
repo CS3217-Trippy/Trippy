@@ -53,7 +53,6 @@ class FBAchievementService: AchievementService {
     func checkForCompletions(type: AchievementType, completion: Int) -> [Achievement] {
         var completedAchievements = [Achievement]()
         for achievement in trippyAchievements {
-            print("Achievement: \(achievement.name)")
             let achievementTypeName = achievement.achievementType.getTypeDescription()
             let achievementCompletion = achievement.achievementType.getCompletion()
             let typeNameToCompare = type.getTypeDescription()

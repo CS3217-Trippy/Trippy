@@ -24,7 +24,6 @@ class WeatherSectionViewModel: ObservableObject {
         WeatherService.shared.getWeather(coordinates: coordinates, completionHandler: { result in
             switch result {
             case .success(let data):
-                print(data)
                 self.title = data.weather[0].main
                 self.description = data.weather[0].description
                 self.iconUrl = self.BASE_ICON_URL + data.weather[0].icon + "@2x.png"
@@ -33,7 +32,7 @@ class WeatherSectionViewModel: ObservableObject {
                 self.cloudiness = data.clouds.all
                 self.windSpeed = data.wind.speed
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         })
     }
