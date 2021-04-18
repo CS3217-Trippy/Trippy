@@ -66,9 +66,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         guard let userId = user?.id else {
             throw MeetupError.invalidUser
         }
-        guard let username = user?.username else {
-            throw MeetupError.invalidUser
-        }
+
         guard let privacy = MeetupPrivacy(rawValue: meetupPrivacy) else {
             throw MeetupError.invalidPrivacy
         }
@@ -78,8 +76,8 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         let userPhotos = getUserPhotosFromUsers(friends: friends)
         let coordinates = bucketItem.coordinates
         let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds,
-                            userProfilePhotoIds: userPhotos, hostUsername: username,
-                            hostUserId: userId, locationImageId: imageId, locationName: bucketItem.locationName,
+                            userProfilePhotoIds: userPhotos, hostUserId: userId,
+                            locationImageId: imageId, locationName: bucketItem.locationName,
                             locationCategory: bucketItem.locationCategory, locationId: locationId,
                             meetupDate: meetupDate, dateAdded: Date(),
                             userDescription: userDescription, coordinates: coordinates)

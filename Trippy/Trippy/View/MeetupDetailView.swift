@@ -29,9 +29,6 @@ struct MeetupDetailView: View {
             .font(.headline)
             .foregroundColor(.secondary)
 
-            Text("Hosted by \(viewModel.host)")
-            .font(.body)
-                .foregroundColor(Color(.black))
         }
     }
 
