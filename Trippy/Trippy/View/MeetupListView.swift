@@ -15,7 +15,7 @@ struct MeetupListView: View {
 
                 if !viewModel.publicMeetupViewModels.isEmpty {
                     VStack(alignment: .leading) {
-                        Text("Recommended").font(.title2).fontWeight(.bold).foregroundColor(.green)
+                        Text("Public meetups").font(.title2).fontWeight(.bold).foregroundColor(.green)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
