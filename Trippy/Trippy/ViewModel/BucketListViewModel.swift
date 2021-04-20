@@ -14,13 +14,13 @@ final class BucketListViewModel: ObservableObject {
         self.bucketModel = bucketModel
         self.imageModel = imageModel
 
-//        bucketModel.$bucketItems.map { bucketItem in
-//            bucketItem.filter({ $0.dateVisited != nil }).map { bucketItem in
-//                BucketItemViewModel(bucketItem: bucketItem, bucketModel: bucketModel, imageModel: imageModel)
-//            }
-//        }
-//        .assign(to: \.visitedBucketItemViewModels, on: self)
-//        .store(in: &cancellables)
+        bucketModel.$bucketItems.map { bucketItem in
+            bucketItem.filter({ $0.dateVisited != nil }).map { bucketItem in
+                BucketItemViewModel(bucketItem: bucketItem, bucketModel: bucketModel, imageModel: imageModel)
+            }
+        }
+        .assign(to: \.visitedBucketItemViewModels, on: self)
+        .store(in: &cancellables)
 
         bucketModel.$bucketItems.map { bucketItem in
             bucketItem.filter({ $0.dateVisited == nil }).map { bucketItem in
