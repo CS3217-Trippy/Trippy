@@ -11,11 +11,11 @@ import SwiftUI
 struct MeetupListView: View {
     @ObservedObject var viewModel: MeetupListViewModel
     var body: some View {
-        VStack {
             List {
+
                 if !viewModel.publicMeetupViewModels.isEmpty {
-                    Text("Public Meetups")
                     VStack(alignment: .leading) {
+                        Text("Recommended").font(.title2).fontWeight(.bold).foregroundColor(.green)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
@@ -27,16 +27,35 @@ struct MeetupListView: View {
                         }.frame(height: 200)
                     }
                 }
-
-                Text("Meetups Joined")
-
                 ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
                     MeetupItemView(viewModel: meetupViewModel,
                                    showFullDetails: true,
-                                   isHorizontal: false).frame(height: 200)
+                                   isHorizontal: true).frame(height: 200)
                 }
-            }
-        }
-        .navigationTitle("Meetups")
+
+//                if !viewModel.publicMeetupViewModels.isEmpty {
+//                    Text("Public Meetups")
+//                    VStack(alignment: .leading) {
+//                        ScrollView(.horizontal, showsIndicators: false) {
+//                            HStack {
+//                                ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
+//                                    MeetupItemView(viewModel: meetupViewModel,
+//                                                   showFullDetails: false,
+//                                                   isHorizontal: true)
+//                                }
+//                            }
+//                        }.frame(height: 200)
+//                    }
+//                }
+//
+//                // Text("Meetups Joined")
+//
+//                ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
+//                    MeetupItemView(viewModel: meetupViewModel,
+//                                   showFullDetails: true,
+//                                   isHorizontal: false).frame(height: 200)
+//                }
+            }.navigationTitle("Meetups")
+
     }
 }

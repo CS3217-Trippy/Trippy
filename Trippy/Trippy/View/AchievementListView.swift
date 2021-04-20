@@ -10,9 +10,9 @@ import SwiftUI
 struct AchievementListView: View {
     @ObservedObject var viewModel: AchievementListViewModel
     var body: some View {
-        VStack {
-            CollectionView(data: $viewModel.achievementItemViewModels, cols: 1, spacing: 10) { achievementViewModel in
-                AchievementItemView(viewModel: achievementViewModel)
+        List {
+            ForEach(viewModel.achievementItemViewModels, id: \.id) { achievementViewModel in
+                AchievementItemView(viewModel: achievementViewModel).frame(height: 200)
             }
         }
         .navigationTitle("ACHIEVEMENTS")

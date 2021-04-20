@@ -10,10 +10,10 @@ import SwiftUI
 struct FriendsListView: View {
     @ObservedObject var viewModel: FriendsListViewModel
     var body: some View {
-        VStack {
+        List {
             Text("Friends List")
-            CollectionView(data: $viewModel.friendsList, cols: 1, spacing: 10) { friendsItemViewModel in
-                FriendsItemView(friendsItemViewModel: friendsItemViewModel)
+            ForEach(viewModel.friendsList, id: \.id) { friendsItemViewModel in
+                FriendsItemView(friendsItemViewModel: friendsItemViewModel).frame(height: 200)
             }
         }
     }

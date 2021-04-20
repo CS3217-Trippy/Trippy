@@ -52,7 +52,6 @@
 		01EFA3882612F93A002FEA23 /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EFA3872612F93A002FEA23 /* LocationCategory.swift */; };
 		01F4634625FD1E4200BBB8E9 /* BucketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */; };
 		01F4634E25FD1E5200BBB8E9 /* BucketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */; };
-		01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4635225FD1E6200BBB8E9 /* CollectionView.swift */; };
 		01F4635825FD1E7300BBB8E9 /* RectangularCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */; };
 		01F4636125FD1EA200BBB8E9 /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4636025FD1EA200BBB8E9 /* BucketItem.swift */; };
 		01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */; };
@@ -221,7 +220,6 @@
 		01EFA3872612F93A002FEA23 /* LocationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCategory.swift; sourceTree = "<group>"; };
 		01F4634525FD1E4200BBB8E9 /* BucketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemView.swift; sourceTree = "<group>"; };
 		01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListView.swift; sourceTree = "<group>"; };
-		01F4635225FD1E6200BBB8E9 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularCard.swift; sourceTree = "<group>"; };
 		01F4636025FD1EA200BBB8E9 /* BucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItem.swift; sourceTree = "<group>"; };
 		01F4637025FD1EDF00BBB8E9 /* BucketItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItemViewModel.swift; sourceTree = "<group>"; };
@@ -457,7 +455,6 @@
 				01F4634D25FD1E5200BBB8E9 /* BucketListView.swift */,
 				DB8EAC9B262B10F300BB170E /* ItineraryListView.swift */,
 				011172C82605BBCE0028F971 /* AddBucketItemView.swift */,
-				01F4635225FD1E6200BBB8E9 /* CollectionView.swift */,
 				01F4635725FD1E7300BBB8E9 /* RectangularCard.swift */,
 				7694E9D225FDEDC700AF9E63 /* LogInView.swift */,
 				7694EA3726015AB700AF9E63 /* AccountPageView.swift */,
@@ -849,7 +846,6 @@
 				7617D160262183A600D94782 /* FBAchievement.swift in Sources */,
 				7617D1A62625B51B00D94782 /* AchievementItemView.swift in Sources */,
 				011172C92605BBCE0028F971 /* AddBucketItemView.swift in Sources */,
-				01F4635325FD1E6200BBB8E9 /* CollectionView.swift in Sources */,
 				01E5AA6F2625BB3900A8D9C6 /* CreateMeetupView.swift in Sources */,
 				0106B3442622F87400574097 /* TrippyImage.swift in Sources */,
 				76E74BE526137DA5004BA414 /* LevelSystemConstants.swift in Sources */,

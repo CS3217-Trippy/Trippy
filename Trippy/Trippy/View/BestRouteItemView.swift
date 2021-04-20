@@ -12,15 +12,6 @@ struct BestRouteItemView: View {
     @ObservedObject var viewModel: ItineraryItemViewModel
     @EnvironmentObject var session: FBSessionStore
 
-    var imageView: some View {
-        if let image = viewModel.image {
-            return AnyView(Image(uiImage: image).cardImageModifier()
-            )
-        } else {
-            return AnyView(Image("Placeholder").cardImageModifier())
-        }
-    }
-
     var textView: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text(viewModel.locationName)
@@ -30,14 +21,16 @@ struct BestRouteItemView: View {
     }
 
     var body: some View {
-        GeometryReader { geo in
-            RectangularCard(width: geo.frame(in: .global).width - 10, height: 210, viewBuilder: {
+        GeometryReader { _ in
+            RectangularCard(
+                            image: viewModel.image,
+                            isHorizontal: false
+                            ) {
                 HStack(alignment: .center) {
-                    imageView
                     textView
                     Spacer()
                 }
-            })
+            }
         }
     }
 }
