@@ -32,29 +32,6 @@ struct MeetupListView: View {
                                    showFullDetails: true,
                                    isHorizontal: true).frame(height: 200)
                 }
-
-//                if !viewModel.publicMeetupViewModels.isEmpty {
-//                    Text("Public Meetups")
-//                    VStack(alignment: .leading) {
-//                        ScrollView(.horizontal, showsIndicators: false) {
-//                            HStack {
-//                                ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
-//                                    MeetupItemView(viewModel: meetupViewModel,
-//                                                   showFullDetails: false,
-//                                                   isHorizontal: true)
-//                                }
-//                            }
-//                        }.frame(height: 200)
-//                    }
-//                }
-//
-//                // Text("Meetups Joined")
-//
-//                ForEach(viewModel.meetupItemViewModels, id: \.id) { meetupViewModel in
-//                    MeetupItemView(viewModel: meetupViewModel,
-//                                   showFullDetails: true,
-//                                   isHorizontal: false).frame(height: 200)
-//                }
             }.navigationTitle("Meetups")
 
     }
