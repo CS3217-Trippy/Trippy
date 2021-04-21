@@ -2,15 +2,29 @@ import SwiftUI
 
 struct BucketListView: View {
     @ObservedObject var viewModel: BucketListViewModel
-    var body: some View {
-        VStack {
-            if viewModel.isEmpty {
-                Text("No items in bucket list!")
+
+    func buildListView(viewModels: [BucketItemViewModel]) -> some View {
+        List {
+            if viewModels.isEmpty {
+                Text("No bucket items!")
             }
-            CollectionView(data: $viewModel.bucketItemViewModels, cols: 1, spacing: 10) { bucketViewModel in
-                BucketItemView(viewModel: bucketViewModel)
+            ForEach(viewModels, id: \.id) { bucketViewModel in
+                BucketItemView(viewModel: bucketViewModel).frame(height: 200)
             }
         }
-        .navigationTitle("Bucket List")
+    }
+
+    var body: some View {
+            TabView {
+                self.buildListView(viewModels: viewModel.bucketItemViewModels).tabItem {
+                    Label("Not completed", systemImage: "task")
+                }
+
+                self.buildListView(viewModels: viewModel.visitedBucketItemViewModels).tabItem {
+                    Label("Completed", systemImage: "taskCompleted")
+                }
+
+            }
+            .navigationTitle("Bucket List")
     }
 }

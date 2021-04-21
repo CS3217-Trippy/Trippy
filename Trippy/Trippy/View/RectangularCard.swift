@@ -1,18 +1,37 @@
 import SwiftUI
+import UIKit
 
 struct RectangularCard<Content: View>: View {
-    let width: CGFloat
-    let height: CGFloat
+    var image: UIImage?
+    let isHorizontal: Bool
     let viewBuilder: () -> Content
-    @Environment(\.colorScheme) var colorScheme
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(colorScheme == .dark ? Color(.darkGray) : Color.white)
-                .frame(width: width, height: height)
-            .cornerRadius(16)
-                .shadow(color: Color.black.opacity(0.2), radius: 6, x: 6, y: 6)
-            self.viewBuilder()
+
+    var imageView: some View {
+         if let image = image {
+            return AnyView(
+                Image(uiImage: image).locationImageModifier()
+            )
+        } else {
+            return AnyView(Image("Placeholder")
+            .locationImageModifier())
         }
+    }
+
+    var body: some View {
+            if isHorizontal {
+                HStack {
+                    imageView
+                   self.viewBuilder()
+                    .padding()
+                }
+                .padding([.top, .horizontal])
+            } else {
+                VStack {
+                    imageView
+                    self.viewBuilder()
+                    .padding()
+                }
+                .padding([.top, .horizontal])
+            }
     }
 }

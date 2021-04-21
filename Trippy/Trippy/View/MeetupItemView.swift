@@ -13,16 +13,6 @@ struct MeetupItemView: View {
     let showFullDetails: Bool
     let isHorizontal: Bool
 
-    var imageView: some View {
-        if let image = viewModel.image {
-            return AnyView(
-                Image(uiImage: image).locationImageModifier()
-            )
-        } else {
-            return AnyView(Image("Placeholder").locationImageModifier())
-        }
-    }
-
     var textView: some View {
         let font: Font = showFullDetails ? Font.title : Font.body
         return HStack {
@@ -41,6 +31,7 @@ struct MeetupItemView: View {
                 if showFullDetails {
                     Text(viewModel.dateOfMeetup)
                     .font(.caption)
+                    .fontWeight(.black)
                     .foregroundColor(.secondary)
                 }
             }
@@ -50,22 +41,11 @@ struct MeetupItemView: View {
 
     var body: some View {
         NavigationLink(destination: MeetupDetailView(viewModel: viewModel.meetupDetailViewModel)) {
-            if isHorizontal {
-                VStack {
-                    imageView
-                    textView
-                    .padding()
-                }
-                .padding([.top, .horizontal])
-            } else {
-                    HStack {
-                        imageView
-                        textView
-                        .padding()
-                    }
-                    .padding([.top, .horizontal])
+            RectangularCard(
+            image: viewModel.image,
+            isHorizontal: isHorizontal) {
+                textView.padding()
             }
         }
-
     }
 }

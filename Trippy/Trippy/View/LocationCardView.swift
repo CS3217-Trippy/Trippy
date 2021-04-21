@@ -45,37 +45,15 @@ struct LocationCardView: View {
         }
     }
 
-    var cardBody: some View {
-         if let image = viewModel.image {
-            return AnyView(
-                Image(uiImage: image).locationImageModifier()
-            )
-        } else {
-            return AnyView(Image("Placeholder")
-            .locationImageModifier())
-        }
-    }
-
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location,
                                                                         imageModel: viewModel.imageModel,
                                                                         ratingModel: viewModel.ratingModel))) {
-            if isHorizontal {
-                HStack {
-                    cardBody
-                    locationCardText
-                    .padding()
-                }
-                .padding([.top, .horizontal])
-            } else {
-                VStack {
-                    cardBody
-                    locationCardText
-                    .padding()
-                }
-                .padding([.top, .horizontal])
-            }
+                RectangularCard(image: viewModel.image,
+                                isHorizontal: isHorizontal) {
+                                    locationCardText.padding()
 
+                }
         }
     }
 }

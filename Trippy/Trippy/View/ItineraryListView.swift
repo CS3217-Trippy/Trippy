@@ -24,7 +24,6 @@ struct ItineraryListView: View {
     }
 
     var body: some View {
-        VStack {
             HStack {
                 Spacer()
                 Button("Find best route") {
@@ -37,10 +36,10 @@ struct ItineraryListView: View {
             if viewModel.isEmpty {
                 Text("No items in itinerary list!")
             }
-            CollectionView(data: $viewModel.itineraryItemViewModels, cols: 1, spacing: 10) { itineraryViewModel in
+        List {
+            ForEach(viewModel.itineraryItemViewModels, id: \.id) { itineraryViewModel in
                 ItineraryItemView(viewModel: itineraryViewModel)
             }
-        }
-        .navigationTitle("Itinerary")
+        } .navigationTitle("Itinerary")
     }
 }
