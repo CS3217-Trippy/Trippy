@@ -3,6 +3,7 @@ import Combine
 final class BucketListViewModel: ObservableObject {
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     @Published var bucketItemViewModels: [BucketItemViewModel] = []
+    @Published var visitedBucketItemViewModels: [BucketItemViewModel] = []
     private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
     var isEmpty: Bool {
@@ -12,6 +13,15 @@ final class BucketListViewModel: ObservableObject {
     init(bucketModel: BucketModel<FBStorage<FBBucketItem>>, imageModel: ImageModel) {
         self.bucketModel = bucketModel
         self.imageModel = imageModel
+
+        bucketModel.$bucketItems.map { bucketItem in
+            bucketItem.filter({ $0.dateVisited != nil }).map { bucketItem in
+                BucketItemViewModel(bucketItem: bucketItem, bucketModel: bucketModel, imageModel: imageModel)
+            }
+        }
+        .assign(to: \.visitedBucketItemViewModels, on: self)
+        .store(in: &cancellables)
+
         bucketModel.$bucketItems.map { bucketItem in
             bucketItem.filter({ $0.dateVisited == nil }).map { bucketItem in
                 BucketItemViewModel(bucketItem: bucketItem, bucketModel: bucketModel, imageModel: imageModel)
@@ -19,6 +29,7 @@ final class BucketListViewModel: ObservableObject {
         }
         .assign(to: \.bucketItemViewModels, on: self)
         .store(in: &cancellables)
+        fetch()
     }
 
     /// Fetches list of bucket items owned by the user
