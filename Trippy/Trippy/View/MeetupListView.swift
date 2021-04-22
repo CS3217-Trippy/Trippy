@@ -42,7 +42,7 @@ struct MeetupListView: View {
         NavigationLink(
             destination: LocationListView(viewModel: viewModel.locationListViewModel)
         ) {
-            Text("Create Meetup")
+            Text("Create Meetup").padding(.horizontal)
         }
     }
 
