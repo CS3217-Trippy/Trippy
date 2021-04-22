@@ -1,10 +1,3 @@
-//
-//  AddFriendView.swift
-//  Trippy
-//
-//  Created by Fidella Widjojo on 19/03/21.
-//
-
 import SwiftUI
 
 struct AddFriendView: View {
@@ -18,15 +11,14 @@ struct AddFriendView: View {
         HStack {
             TextField("Enter username...", text: $username)
             Button("Search") {
-                viewModel.getUsers()
+                viewModel.fetchUsers()
             }
         }
     }
 
     var listView: some View {
         List(viewModel.usersList.filter {
-            $0.id != session.currentLoggedInUser?.id
-                && $0.username.contains(username)
+            $0.username.contains(username)
         }) { user in
             HStack {
                 CircleImageView(image: viewModel.images[user.imageId, default: nil])

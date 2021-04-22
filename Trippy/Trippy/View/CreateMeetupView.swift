@@ -13,7 +13,7 @@ struct CreateMeetupView: View {
     @State var username: String = ""
     @State private var userDescription: String = ""
     @State private var showStorageError = false
-    @State private var friendsSelected: [Friend] = []
+    @State private var friendsSelected: [User] = []
     @State private var meetupDate = Date()
     @State private var selectedPrivacy: String = ""
     @Environment(\.presentationMode) var presentationMode
@@ -30,24 +30,24 @@ struct CreateMeetupView: View {
     var listView: some View {
 
             List(viewModel.friendsList.filter {
-                $0.friendUsername.contains(username) || username.isEmpty
+                $0.username.contains(username) || username.isEmpty
             }) { friend in
                 HStack {
                     Button(action: {
-                        if friendsSelected.contains(where: { $0.friendId == friend.friendId }) {
-                            friendsSelected.removeAll { $0.friendId == friend.friendId }
+                        if friendsSelected.contains(where: { $0.id == friend.id }) {
+                            friendsSelected.removeAll { $0.id == friend.id }
                         } else {
                             friendsSelected.append(friend)
                         }
                     }
                     ) {
                         Image(systemName:
-                                friendsSelected.contains { $0.friendId == friend.friendId } ?
+                                friendsSelected.contains { $0.id == friend.id } ?
                                 "checkmark.square": "square").padding(10)
                     }
-                    CircleImageView(image: viewModel.images[friend.friendProfilePhoto, default: nil])
+                    CircleImageView(image: viewModel.images[friend.imageId, default: nil])
                     Spacer()
-                    Text(friend.friendUsername)
+                    Text(friend.username)
                     Spacer()
                 }
             }
