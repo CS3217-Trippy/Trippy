@@ -40,7 +40,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
                     self.currentLoggedInUser = session[0]
                 }
                 self.fetchUserImage()
-                self.syncFriendWithUserInfo()
             }
         }
     }
@@ -190,37 +189,6 @@ final class FBSessionStore: ObservableObject, SessionStore {
             }
         } catch {
             print("Updating user failed")
-        }
-    }
-
-    private func syncFriendWithUserInfo() {
-        guard let user = currentLoggedInUser else {
-            fatalError("User should have logged in")
-        }
-        guard let id = user.id else {
-            fatalError("User should have id")
-        }
-        friendStorage?.fetchWithFieldAndDiscard(field: "userId", value: id) { friends in
-            for friend in friends {
-                friend.username = user.username
-                friend.userProfilePhoto = user.imageId
-                do {
-                    try self.friendStorage?.update(item: friend, handler: nil)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        friendStorage?.fetchWithFieldAndDiscard(field: "friendId", value: id) { friendList in
-            for associatedFriend in friendList {
-                associatedFriend.friendUsername = user.username
-                associatedFriend.friendProfilePhoto = user.imageId
-                do {
-                    try self.friendStorage?.update(item: associatedFriend, handler: nil)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
         }
     }
 

@@ -143,6 +143,7 @@
 		DB2D33582612F003000C2351 /* WeatherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33572612F003000C2351 /* WeatherSectionView.swift */; };
 		DB2D335D2612F0F0000C2351 /* WeatherSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */; };
 		DB2D33622612F3B4000C2351 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D33612612F3B4000C2351 /* CurrentWeather.swift */; };
+		DB7993762630C30200FFC4FD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7993752630C30200FFC4FD /* UserModel.swift */; };
 		DB8EAC74262AE81500BB170E /* FBItineraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC73262AE81500BB170E /* FBItineraryItem.swift */; };
 		DB8EAC79262AE84400BB170E /* ItineraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC78262AE84400BB170E /* ItineraryItem.swift */; };
 		DB8EAC7E262B07E700BB170E /* ItineraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EAC7D262B07E700BB170E /* ItineraryModel.swift */; };
@@ -307,6 +308,7 @@
 		DB2D33572612F003000C2351 /* WeatherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionView.swift; sourceTree = "<group>"; };
 		DB2D335C2612F0F0000C2351 /* WeatherSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionViewModel.swift; sourceTree = "<group>"; };
 		DB2D33612612F3B4000C2351 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		DB7993752630C30200FFC4FD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		DB8EAC73262AE81500BB170E /* FBItineraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBItineraryItem.swift; sourceTree = "<group>"; };
 		DB8EAC78262AE84400BB170E /* ItineraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItem.swift; sourceTree = "<group>"; };
 		DB8EAC7D262B07E700BB170E /* ItineraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryModel.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				7617D15A2621829F00D94782 /* Achievement.swift */,
 				7617D1722622348700D94782 /* AchievementType.swift */,
 				0106B3392622F5B500574097 /* ImageModel.swift */,
+				DB7993752630C30200FFC4FD /* UserModel.swift */,
 				0106B3432622F87400574097 /* TrippyImage.swift */,
 				7617D18E2625AD4600D94782 /* AchievementModel.swift */,
 				0112EEA226248A8400F420E2 /* Meetup.swift */,
@@ -873,6 +876,7 @@
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
 				7152BBB8262AFE4C00D1727D /* FBVisit.swift in Sources */,
 				714B74912600FD8700ADF2FE /* AddLocationMapView.swift in Sources */,
+				DB7993762630C30200FFC4FD /* UserModel.swift in Sources */,
 				7617D15B2621829F00D94782 /* Achievement.swift in Sources */,
 				71565A8425F9F4F40070256A /* StorageError.swift in Sources */,
 				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,

@@ -12,63 +12,45 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     @Published var friend: Friend
     @Published var friendProfilePhoto: UIImage?
     private var friendsModel: FriendsListModel<FBStorage<FBFriend>>
+    private var userModel = UserModel(storage: FBStorage<FBUser>())
     private var imageModel: ImageModel
-    var username: String {
-        friend.friendUsername
-    }
-    var hasAccepted: Bool {
-        friend.hasAccepted
-    }
+    @Published var username: String = ""
+    @Published var hasAccepted: Bool
+    @Published var hasFriendAccepted: Bool = false
 
     init(friend: Friend, model: FriendsListModel<FBStorage<FBFriend>>, imageModel: ImageModel) {
         self.friendsModel = model
         self.imageModel = imageModel
         self.friend = friend
-        fetchImage()
+        self.hasAccepted = friend.hasAccepted
+        userModel.fetchUsers(handler: fetchFriend)
     }
 
-    private func fetchImage() {
-        if let id = friend.friendProfilePhoto {
+    private func fetchFriend(users: [User]) {
+        guard let friendData = users.first(where: { $0.id == friend.friendId }) else {
+            return
+        }
+        if let id = friendData.imageId {
             imageModel.fetch(ids: [id]) { images in
                 if !images.isEmpty {
                     self.friendProfilePhoto = images[0]
                 }
             }
         }
-
+        username = friendData.username
+        self.hasFriendAccepted = friendsModel.friendsList.first(
+            where: { $0.userId == friend.friendId && $0.friendId == friend.userId })?.hasAccepted ?? false
     }
 
     func acceptFriend() throws {
         if friend.hasAccepted {
             return
         }
-        try buildNewFriend()
-        try updateFriendToAccepted()
+        try friendsModel.acceptFriendRequest(friendId: friend.friendId)
     }
 
-    private func buildNewFriend() throws {
-        let newFriend = Friend(
-            userId: friend.friendId,
-            username: friend.friendUsername,
-            userProfilePhoto: friend.friendProfilePhoto,
-            friendId: friend.userId,
-            friendUsername: friend.username,
-            friendProfilePhoto: friend.userProfilePhoto,
-            hasAccepted: true
-        )
-        try friendsModel.addFriend(friend: newFriend)
+    func deleteFriend() {
+        friendsModel.deleteFriends(friendId: friend.friendId)
     }
 
-    private func updateFriendToAccepted() throws {
-        let newFriend = Friend(
-            userId: friend.userId,
-            username: friend.username,
-            userProfilePhoto: friend.userProfilePhoto,
-            friendId: friend.friendId,
-            friendUsername: friend.friendUsername,
-            friendProfilePhoto: friend.friendProfilePhoto,
-            hasAccepted: true
-        )
-        try friendsModel.updateFriend(friend: newFriend)
-    }
 }

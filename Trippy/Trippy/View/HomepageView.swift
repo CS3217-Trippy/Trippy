@@ -48,7 +48,7 @@ struct HomepageView: View {
             accountPageViewModel: accountPageViewModel, user: user)
 
         let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
-                                                imageModel: homepageViewModel.imageModel)
+                                                imageModel: homepageViewModel.imageModel, user: session.currentLoggedInUser)
         let friendListView = FriendsListView(viewModel: friendListVM)
 
         let meetupListVM = MeetupListViewModel(

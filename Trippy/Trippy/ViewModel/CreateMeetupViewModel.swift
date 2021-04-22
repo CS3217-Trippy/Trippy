@@ -16,29 +16,38 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
     private var user: User?
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
     private var imageModel = ImageModel(storage: FBImageStorage())
+    private var userModel = UserModel(storage: FBStorage<FBUser>())
     @Published var images: [String?: UIImage?] = [:]
-    @Published var friendsList: [Friend] = []
+    @Published var friendsList: [User] = []
+    @Published var usernames: [String?: String] = [:]
+    
 
     init(location: Location, session: SessionStore) {
         self.location = location
         self.user = session.currentLoggedInUser
         self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(storage: FBStorage<FBMeetup>(), userId: user?.id)
         self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: FBStorage<FBFriend>(), userId: user?.id)
-        friendsListModel.$friendsList.map {
-            $0.map {
-                self.getImage(friend: $0)
-                return $0
-            }
-        }.assign(to: \.friendsList, on: self).store(in: &cancellables)
-        friendsListModel.getFriendsList()
+        
+        friendsListModel.getFriendsList(handler: nil)
+        userModel.fetchUsers(handler: getUsers)
     }
 
     var privacyOptions: [String] {
         MeetupPrivacy.allCases.map { $0.rawValue }
     }
+    
+    private func getUsers(users: [User]) {
+        friendsListModel.$friendsList.map {
+            $0.compactMap { friend in users.first(where: { $0.id == friend.friendId }) }
+                .map {
+                self.getImage(friend: $0)
+                return $0
+                }
+        }.assign(to: \.friendsList, on: self).store(in: &cancellables)
+    }
 
-    private func getImage(friend: Friend) {
-        if let id = friend.friendProfilePhoto {
+    private func getImage(friend: User) {
+        if let id = friend.imageId {
             imageModel.fetch(ids: [id]) { images in
                 if !images.isEmpty {
                     self.images[id] = images[0]
@@ -48,7 +57,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
     }
 
     /// Saves the form and adds meetup to model
-    func saveForm(meetupDate: Date, userDescription: String, meetupPrivacy: String, friends: [Friend]) throws {
+    func saveForm(meetupDate: Date, userDescription: String, meetupPrivacy: String, friends: [User]) throws {
         let meetup = try buildMeetup(friends: friends,
                                      meetupPrivacy: meetupPrivacy,
                                      meetupDate: meetupDate,
@@ -56,7 +65,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         try meetupModel.addMeetup(meetup: meetup)
     }
 
-    private func buildMeetup(friends: [Friend],
+    private func buildMeetup(friends: [User],
                              meetupPrivacy: String,
                              meetupDate: Date,
                              userDescription: String) throws -> Meetup {
@@ -84,20 +93,26 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         return meetup
     }
 
-    private func getUserPhotosFromUsers(friends: [Friend]) -> [String] {
+    private func getUserPhotosFromUsers(friends: [User]) -> [String] {
         var userPhotos: [String] = []
         for friend in friends {
-            if let userPhoto = friend.friendProfilePhoto {
+            guard let friendData = userModel.users.first(where: { $0.id == friend.id }) else {
+                continue
+            }
+            if let userPhoto = friendData.imageId {
                 userPhotos.append(userPhoto)
             }
         }
         return userPhotos
     }
 
-    private func getUserIdsFromUsers(friends: [Friend]) -> [String] {
+    private func getUserIdsFromUsers(friends: [User]) -> [String] {
         var userIds: [String] = []
         for friend in friends {
-            userIds.append(friend.friendId)
+            guard let userId = friend.id else {
+                continue
+            }
+            userIds.append(userId)
         }
         return userIds
     }
