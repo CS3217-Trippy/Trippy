@@ -33,12 +33,21 @@ struct LocationCardView: View {
                     .font(.caption)
                     .fontWeight(.black)
                     .foregroundColor(.secondary)
-                }
 
-                if showFullDetails {
                     Text(viewModel.caption)
                     .font(.caption)
                     .foregroundColor(.secondary)
+
+                    if viewModel.isInBucketlist {
+                        Text("Added to bucketlist")
+                            .foregroundColor(.green)
+                            .font(.callout)
+                    }
+                    if let date = viewModel.meetupDate {
+                        Text("Upcoming meetup on \(date)")
+                            .foregroundColor(.orange)
+                            .font(.callout)
+                    }
                 }
             }
             Spacer()
