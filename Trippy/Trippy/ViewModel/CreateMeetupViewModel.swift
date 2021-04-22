@@ -20,24 +20,30 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
     @Published var images: [String?: UIImage?] = [:]
     @Published var friendsList: [User] = []
     @Published var usernames: [String?: String] = [:]
+    
 
     init(bucketItem: BucketItem, session: SessionStore) {
         self.bucketItem = bucketItem
         self.user = session.currentLoggedInUser
         self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(storage: FBStorage<FBMeetup>(), userId: user?.id)
         self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: FBStorage<FBFriend>(), userId: user?.id)
+        
+        friendsListModel.getFriendsList(handler: nil)
+        userModel.fetchUsers(handler: getUsers)
+    }
+
+    var privacyOptions: [String] {
+        MeetupPrivacy.allCases.map { $0.rawValue }
+    }
+    
+    private func getUsers(users: [User]) {
         friendsListModel.$friendsList.map {
-            $0.compactMap { friend in self.userModel.users.first(where: { $0.id == friend.friendId }) }
+            $0.compactMap { friend in users.first(where: { $0.id == friend.friendId }) }
                 .map {
                 self.getImage(friend: $0)
                 return $0
                 }
         }.assign(to: \.friendsList, on: self).store(in: &cancellables)
-        friendsListModel.getFriendsList(handler: nil)
-    }
-
-    var privacyOptions: [String] {
-        MeetupPrivacy.allCases.map { $0.rawValue }
     }
 
     private func getImage(friend: User) {
