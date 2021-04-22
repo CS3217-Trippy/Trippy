@@ -17,7 +17,7 @@ struct MeetupItemView: View {
 
     var textView: some View {
         let font: Font = showFullDetails ? Font.title : Font.body
-        return HStack {
+    return HStack {
             VStack(alignment: .leading) {
                 if showFullDetails {
                     Text(viewModel.locationCategory)
@@ -38,7 +38,7 @@ struct MeetupItemView: View {
                 }
             }
             Spacer()
-        }
+    }
     }
 
     var body: some View {
