@@ -53,7 +53,8 @@ struct HomepageView: View {
 
         let meetupListVM = MeetupListViewModel(
             meetupModel: homepageViewModel.meetupModel,
-            imageModel: homepageViewModel.imageModel
+            imageModel: homepageViewModel.imageModel,
+            locationList: locationViewModel
         )
 
         let meetupListView = MeetupListView(viewModel: meetupListVM)

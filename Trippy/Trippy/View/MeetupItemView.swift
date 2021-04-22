@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MeetupItemView: View {
     @ObservedObject var viewModel: MeetupItemViewModel
+    @EnvironmentObject var session: FBSessionStore
+    @Environment(\.presentationMode) var presentationMode
     let font = Font.body
     let showFullDetails: Bool
     let isHorizontal: Bool
@@ -40,12 +42,12 @@ struct MeetupItemView: View {
     }
 
     var body: some View {
-        NavigationLink(destination: MeetupDetailView(viewModel: viewModel.meetupDetailViewModel)) {
             RectangularCard(
             image: viewModel.image,
             isHorizontal: isHorizontal) {
-                textView.padding()
+                VStack(alignment: .leading) {
+                    textView.padding()
+                }
             }
-        }
     }
 }

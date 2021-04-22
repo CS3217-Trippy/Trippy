@@ -12,15 +12,15 @@ import UIKit
 class CreateMeetupViewModel: ObservableObject, Identifiable {
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private var cancellables: Set<AnyCancellable> = []
-    private var bucketItem: BucketItem
+    private var location: Location
     private var user: User?
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
     private var imageModel = ImageModel(storage: FBImageStorage())
     @Published var images: [String?: UIImage?] = [:]
     @Published var friendsList: [Friend] = []
 
-    init(bucketItem: BucketItem, session: SessionStore) {
-        self.bucketItem = bucketItem
+    init(location: Location, session: SessionStore) {
+        self.location = location
         self.user = session.currentLoggedInUser
         self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(storage: FBStorage<FBMeetup>(), userId: user?.id)
         self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: FBStorage<FBFriend>(), userId: user?.id)
@@ -60,7 +60,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
                              meetupPrivacy: String,
                              meetupDate: Date,
                              userDescription: String) throws -> Meetup {
-        guard let locationId = bucketItem.id else {
+        guard let locationId = location.id else {
             throw MeetupError.invalidLocation
         }
         guard let userId = user?.id else {
@@ -71,14 +71,14 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
             throw MeetupError.invalidPrivacy
         }
 
-        let imageId = bucketItem.locationImageId
+        let imageId = location.imageId
         let userIds = getUserIdsFromUsers(friends: friends)
         let userPhotos = getUserPhotosFromUsers(friends: friends)
-        let coordinates = bucketItem.coordinates
+        let coordinates = location.coordinates
         let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds,
                             userProfilePhotoIds: userPhotos, hostUserId: userId,
-                            locationImageId: imageId, locationName: bucketItem.locationName,
-                            locationCategory: bucketItem.locationCategory, locationId: locationId,
+                            locationImageId: imageId, locationName: location.name,
+                            locationCategory: location.category, locationId: locationId,
                             meetupDate: meetupDate, dateAdded: Date(),
                             userDescription: userDescription, coordinates: coordinates)
         return meetup
