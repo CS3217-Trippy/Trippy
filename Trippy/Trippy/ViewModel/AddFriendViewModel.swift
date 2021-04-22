@@ -14,16 +14,28 @@ final class AddFriendViewModel: ObservableObject {
     @Published var images: [String?: UIImage?] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
-    private var userStorage: FBStorage<FBUser>
+    private var userModel = UserModel(storage: FBStorage<FBUser>())
     private var imageModel = ImageModel(storage: FBImageStorage())
     private var user: User?
 
     init(session: SessionStore) {
-        userStorage = session.userStorage
         self.user = session.currentLoggedInUser
         let storage = FBStorage<FBFriend>()
         self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: storage, userId: user?.id)
-        userStorage.storedItems.assign(to: \.usersList, on: self).store(in: &cancellables)
+        self.friendsListModel.getFriendsList(handler: getUsers)
+
+    }
+
+    func getUsers(friendsList: [Friend]) {
+        userModel.$users.map {
+            $0.filter { user in
+                user.id != self.user?.id
+                    && !friendsList.contains(where: { friend in
+                                                                    friend.userId == self.user?.id
+                                                                        && friend.friendId == user.id
+                    })
+            }
+        }.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 
     private func getImage(user: User?) {
@@ -37,21 +49,20 @@ final class AddFriendViewModel: ObservableObject {
         }
     }
 
-    func getUsers() {
-        userStorage.fetch { users in
-            self.usersList = users
-            for user in users {
-                self.getImage(user: user)
-            }
-        }
+    func fetchUsers() {
+        userModel.fetchUsers(handler: {$0.forEach {
+            self.getImage(user: $0)
+        }})
     }
 
     func addFriend(currentUser: User, user: User) throws {
-        let friend = createFriendRequest(from: currentUser, to: user)
+        var friend = createFriendRequest(from: currentUser, to: user, acc: false)
+        try friendsListModel.addFriend(friend: friend)
+        friend = createFriendRequest(from: user, to: currentUser, acc: true)
         try friendsListModel.addFriend(friend: friend)
     }
 
-    private func createFriendRequest(from: User, to: User) -> Friend {
+    private func createFriendRequest(from: User, to: User, acc: Bool) -> Friend {
         guard
             let userId = to.id,
             let friendId = from.id
@@ -60,12 +71,8 @@ final class AddFriendViewModel: ObservableObject {
         }
         return Friend(
             userId: userId,
-            username: to.username,
-            userProfilePhoto: to.imageId,
             friendId: friendId,
-            friendUsername: from.username,
-            friendProfilePhoto: from.imageId,
-            hasAccepted: false
+            hasAccepted: acc
         )
     }
 }

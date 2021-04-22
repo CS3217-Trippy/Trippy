@@ -18,15 +18,11 @@ final class FriendsListModel<Storage: StorageProtocol> where Storage.StoredType 
         self.storage = storage
         self.userId = userId
         storage.storedItems.assign(to: \.friendsList, on: self).store(in: &cancellables)
-        getFriendsList()
+        getFriendsList(handler: nil)
     }
 
-    func getFriendsList() {
-        let field = "userId"
-        guard let id = userId else {
-            return
-        }
-        storage.fetchWithField(field: field, value: id, handler: nil)
+    func getFriendsList(handler: (([Friend]) -> Void)?) {
+        storage.fetch(handler: handler)
     }
 
     func addFriend(friend: Friend) throws {
@@ -34,16 +30,38 @@ final class FriendsListModel<Storage: StorageProtocol> where Storage.StoredType 
     }
 
     func updateFriend(friend: Friend) throws {
-        guard friendsList.contains(where: { $0.id == friend.id }) else {
-            return
-        }
         try storage.update(item: friend, handler: nil)
     }
 
     func removeFriend(friend: Friend) {
-        guard friendsList.contains(where: { $0.id == friend.id }) else {
+        storage.remove(item: friend)
+    }
+
+    func acceptFriendRequest(friendId: String) throws {
+        guard let userId = self.userId else {
             return
         }
-        storage.remove(item: friend)
+
+        if let friendItem = friendsList.first(where: { $0.userId == userId && $0.friendId == friendId }) {
+            friendItem.accept()
+            try updateFriend(friend: friendItem)
+        }
+
+    }
+
+    func deleteFriends(friendId: String) {
+        guard let userId = self.userId else {
+            return
+        }
+
+        if let friendItem = friendsList.first(where: { $0.userId == userId && $0.friendId == friendId }) {
+            friendItem.accept()
+            removeFriend(friend: friendItem)
+        }
+
+        if let friendItem = friendsList.first(where: { $0.userId == friendId && $0.friendId == userId }) {
+            friendItem.accept()
+            removeFriend(friend: friendItem)
+        }
     }
 }
