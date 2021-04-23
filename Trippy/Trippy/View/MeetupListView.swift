@@ -11,20 +11,20 @@ import SwiftUI
 struct MeetupListView: View {
     @ObservedObject var viewModel: MeetupListViewModel
 
-    private func buildItemView(meetupViewModel: MeetupItemViewModel) -> some View {
+    private func buildItemView(meetupViewModel: MeetupItemViewModel, showFullDetails: Bool) -> some View {
         if let detailViewModel = viewModel.getLocationDetailViewModel(locationId: meetupViewModel.locationId ?? "") {
             return AnyView(NavigationLink(
                 destination: LocationDetailView(viewModel: detailViewModel)
 
             ) {
                 MeetupItemView(viewModel: meetupViewModel,
-                               showFullDetails: false,
+                               showFullDetails: showFullDetails,
                                isHorizontal: true)
             })
             } else {
                 return AnyView(MeetupItemView(
                                 viewModel: meetupViewModel,
-                                showFullDetails: false,
+                                showFullDetails: showFullDetails,
                                 isHorizontal: true))
             }
     }
@@ -37,7 +37,7 @@ struct MeetupListView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
-                                buildItemView(meetupViewModel: meetupViewModel)
+                                buildItemView(meetupViewModel: meetupViewModel, showFullDetails: false)
                             }
                         }
                     }.frame(height: 200)
@@ -47,7 +47,7 @@ struct MeetupListView: View {
                 Text("No Meetups joined!")
             }
             ForEach(viewModels, id: \.id) { meetupViewModel in
-                self.buildItemView(meetupViewModel: meetupViewModel).frame(height: 200)
+                self.buildItemView(meetupViewModel: meetupViewModel, showFullDetails: true).frame(height: 200)
             }
         }
     }
