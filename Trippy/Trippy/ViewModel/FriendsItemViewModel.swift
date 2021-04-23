@@ -13,16 +13,21 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     @Published var friendProfilePhoto: UIImage?
     private var friendsModel: FriendsListModel<FBStorage<FBFriend>>
     private var userModel = UserModel(storage: FBStorage<FBUser>())
+    private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private var imageModel: ImageModel
+    private var user: User
     @Published var username: String = ""
     @Published var hasAccepted: Bool
     @Published var hasFriendAccepted: Bool = false
+    @Published var upcomingMeetups = [Meetup]()
 
-    init(friend: Friend, model: FriendsListModel<FBStorage<FBFriend>>, imageModel: ImageModel) {
+    init(friend: Friend, model: FriendsListModel<FBStorage<FBFriend>>, imageModel: ImageModel, user: User) {
+        self.meetupModel = MeetupModel(storage: FBStorage<FBMeetup>(), userId: user.id)
         self.friendsModel = model
         self.imageModel = imageModel
         self.friend = friend
         self.hasAccepted = friend.hasAccepted
+        self.user = user
         userModel.fetchUsers(handler: fetchFriend)
     }
 
@@ -40,6 +45,18 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
         username = friendData.username
         self.hasFriendAccepted = friendsModel.friendsList.first(
             where: { $0.userId == friend.friendId && $0.friendId == friend.userId })?.hasAccepted ?? false
+        fetchUpcomingMeetups()
+    }
+
+    private func fetchUpcomingMeetups() {
+        meetupModel.fetchAllMeetupsWithHandler { [self] meetups in
+            upcomingMeetups = meetups.filter({
+                let hostedByUserAndFriendJoined = $0.hostUserId == user.id && $0.userIds.contains(friend.friendId)
+                let hostedByFriendAndUserJoined = $0.hostUserId == friend.friendId && $0.userIds.contains(user.id ?? "")
+                let joinedByFriendAndUser = $0.userIds.contains(friend.friendId) && $0.userIds.contains(user.id ?? "")
+                return hostedByUserAndFriendJoined || hostedByFriendAndUserJoined || joinedByFriendAndUser
+            })
+        }
     }
 
     func acceptFriend() throws {

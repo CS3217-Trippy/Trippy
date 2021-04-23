@@ -22,15 +22,16 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
     }
 
     /// Fetches public meetups and meetups joined by the logged in user
-   func fetchMeetups() {
-    guard let userId = userId else {
-        return
+    func fetchMeetups() {
+        guard let userId = userId else {
+            return
+        }
+        resetMeetups()
+        fetchPublicMeetups()
+        fetchMeetupsHostedByUser(userId: userId)
+        fetchMeetupsJoinedByUser(userId: userId)
     }
-    resetMeetups()
-    fetchPublicMeetups()
-    fetchMeetupsHostedByUser(userId: userId)
-    fetchMeetupsJoinedByUser(userId: userId)
-   }
+
     /// Adds a meetup to storage
     /// - Throws: StorageError.saveFailure
     func addMeetup(meetup: Meetup) throws {
@@ -51,6 +52,10 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
     ///   meetup: Meetup to be updated
     func removeMeetup(meetup: Meetup) {
         storage.remove(item: meetup)
+    }
+
+    func fetchAllMeetupsWithHandler(handler: @escaping ([Meetup]) -> Void) {
+        storage.fetch(handler: handler)
     }
 
     private func resetMeetups() {
