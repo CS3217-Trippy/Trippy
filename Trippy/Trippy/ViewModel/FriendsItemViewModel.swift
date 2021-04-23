@@ -21,13 +21,19 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     @Published var hasFriendAccepted: Bool = false
     @Published var upcomingMeetups = [Meetup]()
 
-    init(friend: Friend, model: FriendsListModel<FBStorage<FBFriend>>, imageModel: ImageModel, user: User) {
-        self.meetupModel = MeetupModel(storage: FBStorage<FBMeetup>(), userId: user.id)
+    init(
+        friend: Friend,
+        model: FriendsListModel<FBStorage<FBFriend>>,
+        imageModel: ImageModel,
+        meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+        user: User
+    ) {
+        self.meetupModel = meetupModel
         self.friendsModel = model
         self.imageModel = imageModel
         self.friend = friend
-        self.hasAccepted = friend.hasAccepted
         self.user = user
+        self.hasAccepted = friend.hasAccepted
         userModel.fetchUsers(handler: fetchFriend)
     }
 
@@ -69,5 +75,4 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     func deleteFriend() {
         friendsModel.deleteFriends(friendId: friend.friendId)
     }
-
 }

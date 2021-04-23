@@ -53,6 +53,7 @@ struct HomepageView: View {
 
         let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
                                                 imageModel: homepageViewModel.imageModel,
+                                                meetupModel: homepageViewModel.meetupModel,
                                                 user: user)
         let friendListView = FriendsListView(viewModel: friendListVM)
 
