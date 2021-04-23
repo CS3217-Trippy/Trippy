@@ -13,14 +13,10 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
     @Published var meetupItem: Meetup
     var imageModel: ImageModel
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
-    @Published var meetupDetailViewModel: MeetupDetailViewModel
     init(meetupItem: Meetup, meetupModel: MeetupModel<FBStorage<FBMeetup>>, imageModel: ImageModel) {
         self.meetupItem = meetupItem
         self.meetupModel = meetupModel
         self.imageModel = imageModel
-        self.meetupDetailViewModel = MeetupDetailViewModel(meetup: meetupItem,
-                                                           meetupModel: meetupModel,
-                                                           imageModel: imageModel)
         fetchImage()
     }
 
@@ -50,5 +46,4 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
     var locationCategory: String {
         meetupItem.locationCategory.rawValue.capitalized
     }
-
 }
