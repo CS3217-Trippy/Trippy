@@ -12,6 +12,9 @@ class LocationListViewModel: ObservableObject {
     @Published var ratingModel: RatingModel<FBStorage<FBRating>>
     @Published var locationCardViewModels: [LocationCardViewModel] = []
     @Published var recommendedLocationViewModels: [LocationCardViewModel] = []
+    var meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    var userId: String
     private var cancellables: Set<AnyCancellable> = []
     let imageModel: ImageModel
 
@@ -21,10 +24,13 @@ class LocationListViewModel: ObservableObject {
 
     init(locationModel: LocationModel<FBStorage<FBLocation>>, imageModel: ImageModel,
          ratingModel: RatingModel<FBStorage<FBRating>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
-         bucketModel: BucketModel<FBStorage<FBBucketItem>>) {
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, userId: String) {
         self.locationModel = locationModel
         self.imageModel = imageModel
         self.ratingModel = ratingModel
+        self.bucketModel = bucketModel
+        self.meetupModel = meetupModel
+        self.userId = userId
         locationModel.$locations.map { cards in
             cards.map { location in
                 LocationCardViewModel(location: location, imageModel: imageModel,

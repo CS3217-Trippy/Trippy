@@ -57,7 +57,10 @@ struct LocationCardView: View {
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location,
                                                                         imageModel: viewModel.imageModel,
-                                                                        ratingModel: viewModel.ratingModel))) {
+                                                                        ratingModel: viewModel.ratingModel,
+                                                                        bucketModel: viewModel.bucketModel,
+                                                                        meetupModel: viewModel.meetupModel,
+                                                                        userId: viewModel.userId))) {
                 RectangularCard(image: viewModel.image,
                                 isHorizontal: isHorizontal) {
                                     locationCardText.padding()

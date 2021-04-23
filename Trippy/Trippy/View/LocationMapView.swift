@@ -30,7 +30,10 @@ struct LocationMapView: View {
                 NavigationLink(
                     destination: LocationDetailView(viewModel: .init(location: selectedLocation,
                                                                      imageModel: viewModel.imageModel,
-                                                                     ratingModel: viewModel.ratingModel)),
+                                                                     ratingModel: viewModel.ratingModel,
+                                                                     bucketModel: viewModel.bucketModel,
+                                                                     meetupModel: viewModel.meetupModel,
+                                                                     userId: viewModel.userId)),
                     isActive: $showDetailView
                 ) { EmptyView() }
             }

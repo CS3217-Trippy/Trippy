@@ -17,22 +17,19 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
     let imageModel: ImageModel
-    var bucketItems: [BucketItem] = []
-    var meetups: [Meetup] = []
+    let bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     var userId: String
 
     init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>,
-         bucketModel: BucketModel<FBStorage<FBBucketItem>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>, userId: String) {
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+         userId: String) {
         self.location = location
         self.imageModel = imageModel
         self.ratingModel = ratingModel
         self.userId = userId
-        bucketModel.$bucketItems.sink { bucketItems in
-            self.bucketItems = bucketItems
-        }.store(in: &cancellables)
-        meetupModel.$meetupItems.sink { meetups in
-            self.meetups = meetups
-        }.store(in: &cancellables)
+        self.bucketModel = bucketModel
+        self.meetupModel = meetupModel
         $location
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
@@ -41,11 +38,14 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     }
 
     var isInBucketlist: Bool {
-        bucketItems.contains { $0.locationId == location.id }
+        bucketModel.bucketItems.contains { $0.locationId == location.id }
     }
 
     var meetupDate: Date? {
-        meetups.first(where: { $0.locationId == location.id && $0.userIds.contains(userId) })?.meetupDate
+        meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
+            .first(where: {
+                    $0.locationId == location.id && $0.meetupDate > Date() && $0.userIds.contains(userId)
+            })?.meetupDate
     }
 
     private func fetchImage() {
