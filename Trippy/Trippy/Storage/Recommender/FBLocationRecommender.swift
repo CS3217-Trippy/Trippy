@@ -106,7 +106,8 @@ class FBLocationRecommender: LocationRecommender {
 
     /// Given an array of bucket items, gets the unique categories of these bucket items
     private func getCategoriesFromBucketList(bucketItems: [BucketItem]) -> Set<String> {
-        Set(bucketItems.map { $0.locationCategory.rawValue })
+        // Set(bucketItems.map { $0.locationCategory.rawValue })
+        []
     }
 
     /// Given a Set of categories, gets the locations with similar categories

@@ -11,31 +11,35 @@ import UIKit
 
 final class MeetupItemViewModel: ObservableObject, Identifiable {
     @Published var meetupItem: Meetup
+    @Published var location: Location?
+    @Published var image: UIImage?
     var imageModel: ImageModel
+    private let locationModel: LocationModel<FBStorage<FBLocation>>
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
-    init(meetupItem: Meetup, meetupModel: MeetupModel<FBStorage<FBMeetup>>, imageModel: ImageModel) {
+    init(meetupItem: Meetup, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+         imageModel: ImageModel,
+         locationModel: LocationModel<FBStorage<FBLocation>>) {
         self.meetupItem = meetupItem
         self.meetupModel = meetupModel
         self.imageModel = imageModel
-        fetchImage()
+        self.locationModel = locationModel
+        locationModel.fetchLocationWithId(id: meetupItem.locationId, handler: fetchLocation)
     }
 
-    private func fetchImage() {
-        let id = meetupItem.locationImageId
-        guard let imageId = id else {
-            return
-        }
-        imageModel.fetch(ids: [imageId]) { images in
-            if !images.isEmpty {
-                self.image = images[0]
+    private func fetchLocation(location: Location) {
+        if let id = location.imageId {
+            imageModel.fetch(ids: [id]) { images in
+                if !images.isEmpty {
+                    self.image = images[0]
+                }
             }
         }
+        self.location = location
     }
 
-    @Published var image: UIImage?
     private var cancellables: Set<AnyCancellable> = []
-    var locationName: String {
-        meetupItem.locationName
+    var locationName: String? {
+        location?.name
     }
     var userDescription: String {
         meetupItem.userDescription
@@ -43,8 +47,8 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
     var dateOfMeetup: String {
         meetupItem.meetupDate.dateTimeStringFromDate
     }
-    var locationCategory: String {
-        meetupItem.locationCategory.rawValue.capitalized
+    var locationCategory: String? {
+        location?.category.rawValue.capitalized
     }
 
     func remove(userId: String?) throws {

@@ -195,7 +195,7 @@ class VisitTracker {
 
     private func notifyUser(for bucketItem: BucketItem) {
         let state = UIApplication.shared.applicationState
-        let title = "Congrats! You have visited \(bucketItem.locationName)"
+        let title = "Congrats! You have visited \(bucketItem)"
         let alertBody = "Please leave a rating!"
         let notificationBody = "Tap and hold to leave a rating!"
         switch state {

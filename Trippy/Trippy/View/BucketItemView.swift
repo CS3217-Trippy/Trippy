@@ -8,7 +8,7 @@ struct BucketItemView: View {
     var textView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(viewModel.locationName)
+                Text(viewModel.locationName ?? "")
                     .bold()
                     .font(.headline)
                 Text(viewModel.userDescription).fontWeight(.light)

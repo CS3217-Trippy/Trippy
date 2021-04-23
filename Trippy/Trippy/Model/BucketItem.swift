@@ -3,42 +3,22 @@ import CoreLocation
 
 class BucketItem: Model {
     var id: String?
-    var locationName: String
-    let locationCategory: LocationCategory
     let userId: String
     var locationId: String
     var dateVisited: Date?
     let dateAdded: Date
-    let locationImageId: String?
     let userDescription: String
-    let coordinates: CLLocationCoordinate2D
-    var placemark: CLPlacemark?
 
-    init(locationName: String,
-         locationCategory: LocationCategory,
-         locationImageId: String?,
-         userId: String,
+    init(userId: String,
          locationId: String,
          dateVisited: Date?,
          dateAdded: Date,
-         userDescription: String,
-         coordinates: CLLocationCoordinate2D) {
+         userDescription: String) {
         self.id = userId + locationId
-        self.locationName = locationName
-        self.locationCategory = locationCategory
-        self.locationImageId = locationImageId
         self.userId = userId
         self.locationId = locationId
         self.dateVisited = dateVisited
         self.dateAdded = dateAdded
         self.userDescription = userDescription
-        self.coordinates = coordinates
-        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
-        CLGeocoder().reverseGeocodeLocation(location) { placemark, error in
-            guard let placemark = placemark?.first, error == nil else {
-                return
-            }
-            self.placemark = placemark
-        }
     }
 }

@@ -20,12 +20,12 @@ struct MeetupItemView: View {
     return HStack {
             VStack(alignment: .leading) {
                 if showFullDetails {
-                    Text(viewModel.locationCategory)
+                    Text(viewModel.locationCategory ?? "")
                     .font(.headline)
                     .foregroundColor(.secondary)
                 }
 
-                Text(viewModel.locationName)
+                Text(viewModel.locationName ?? "")
                 .font(font)
                 .foregroundColor(.primary)
                 .lineLimit(1)

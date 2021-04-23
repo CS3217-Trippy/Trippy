@@ -19,17 +19,19 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     let imageModel: ImageModel
     let bucketModel: BucketModel<FBStorage<FBBucketItem>>
     let meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    let locationModel: LocationModel<FBStorage<FBLocation>>
     var userId: String
 
     init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>,
          bucketModel: BucketModel<FBStorage<FBBucketItem>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
-         userId: String) {
+         userId: String, locationModel: LocationModel<FBStorage<FBLocation>>) {
         self.location = location
         self.imageModel = imageModel
         self.ratingModel = ratingModel
         self.userId = userId
         self.bucketModel = bucketModel
         self.meetupModel = meetupModel
+        self.locationModel = locationModel
         $location
           .compactMap { $0.id }
           .assign(to: \.id, on: self)

@@ -31,16 +31,12 @@ class AddBucketItemViewModel {
         guard let userUnwrapped = user else {
             throw BucketListError.invalidUser
         }
-        let imageId = location.imageId
-        let bucketItem = BucketItem(locationName: location.name,
-                                    locationCategory: location.category,
-                                    locationImageId: imageId,
+        let bucketItem = BucketItem(
                                     userId: userUnwrapped.id ?? "",
                                     locationId: locationId,
                                     dateVisited: nil,
                                     dateAdded: Date(),
-                                    userDescription: userDescription,
-                                    coordinates: location.coordinates
+                                    userDescription: userDescription
                                     )
         return bucketItem
     }

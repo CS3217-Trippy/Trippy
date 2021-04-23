@@ -60,6 +60,7 @@ struct LocationCardView: View {
                                                                         ratingModel: viewModel.ratingModel,
                                                                         bucketModel: viewModel.bucketModel,
                                                                         meetupModel: viewModel.meetupModel,
+                                                                        locationModel: viewModel.locationModel,
                                                                         userId: viewModel.userId))) {
                 RectangularCard(image: viewModel.image,
                                 isHorizontal: isHorizontal) {

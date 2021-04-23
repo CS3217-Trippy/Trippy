@@ -11,7 +11,6 @@ class Meetup: Model {
     var meetupPrivacy: MeetupPrivacy
     var id: String?
     var userIds: [String]
-    var userProfilePhotoIds: [String]
     var hostUserId: String
     var locationId: String
     var meetupDate: Date
@@ -19,12 +18,11 @@ class Meetup: Model {
     var userDescription: String
 
     init(id: String?, meetupPrivacy: MeetupPrivacy, userIds: [String],
-         userProfilePhotoIds: [String], hostUserId: String,
-         locationId: String, meetupDate: Date, dateAdded: Date,
+         hostUserId: String, locationId: String,
+         meetupDate: Date, dateAdded: Date,
          userDescription: String) {
         self.meetupPrivacy = meetupPrivacy
         self.id = id
-        self.userProfilePhotoIds = userProfilePhotoIds
         self.hostUserId = hostUserId
         self.userIds = userIds
         self.locationId = locationId

@@ -79,16 +79,10 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
             throw MeetupError.invalidPrivacy
         }
 
-        let imageId = location.imageId
         let userIds = getUserIdsFromUsers(friends: friends)
-        let userPhotos = getUserPhotosFromUsers(friends: friends)
-        let coordinates = location.coordinates
-        let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds,
-                            userProfilePhotoIds: userPhotos, hostUserId: userId,
-                            locationImageId: imageId, locationName: location.name,
-                            locationCategory: location.category, locationId: locationId,
-                            meetupDate: meetupDate, dateAdded: Date(),
-                            userDescription: userDescription, coordinates: coordinates)
+        let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds, hostUserId: userId,
+                            locationId: locationId, meetupDate: meetupDate, dateAdded: Date(),
+                            userDescription: userDescription)
         return meetup
     }
 

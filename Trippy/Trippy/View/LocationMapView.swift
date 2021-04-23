@@ -33,6 +33,7 @@ struct LocationMapView: View {
                                                                      ratingModel: viewModel.ratingModel,
                                                                      bucketModel: viewModel.bucketModel,
                                                                      meetupModel: viewModel.meetupModel,
+                                                                     locationModel: viewModel.locationModel,
                                                                      userId: viewModel.userId)),
                     isActive: $showDetailView
                 ) { EmptyView() }
