@@ -12,15 +12,24 @@ import CoreLocation
 
 class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
-    private let imageModel: ImageModel
+    let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
+    var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    var meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    private var userId: String
     let ratingModel: RatingModel<FBStorage<FBRating>>
+
     @Published var image: UIImage?
 
-    init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>) {
+    init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>,
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+         userId: String) {
         self.location = location
         self.imageModel = imageModel
         self.ratingModel = ratingModel
+        self.bucketModel = bucketModel
+        self.meetupModel = meetupModel
+        self.userId = userId
         fetchImage()
     }
 
@@ -68,6 +77,21 @@ class LocationDetailViewModel: ObservableObject {
         }
         let roundedRating = String(format: "%.1f", rating)
         return "Rating: \(roundedRating)/5.0"
+    }
+
+    var isInBucketlist: Bool {
+        bucketModel.bucketItems.contains { $0.locationId == location.id }
+    }
+
+    var upcomingMeetups: [Meetup] {
+        meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
+            .filter {
+                $0.locationId == location.id && $0.meetupDate > Date() && $0.userIds.contains(userId)
+            }
+    }
+
+    var meetupDate: Date? {
+        upcomingMeetups.first?.meetupDate
     }
 
 }

@@ -18,10 +18,11 @@ struct FriendsItemView: View {
             image: friendsItemViewModel.friendProfilePhoto,
             isHorizontal: true
         ) {
-            HStack {
-                Text(friendsItemViewModel.username).padding(10)
-                Spacer()
-                if isFriendRequest {
+            VStack {
+                HStack {
+                    Text(friendsItemViewModel.username).padding(10)
+                    Spacer()
+                    if isFriendRequest {
                         Text("Accept").padding(10)
                             .foregroundColor(.blue)
                             .onTapGesture {
@@ -33,15 +34,23 @@ struct FriendsItemView: View {
                                     print(error)
                                 }
                             }
-                }
-                if isPendingRequest {
-                    Text("Pending friend acceptance.")
-                }
-                Text("Delete").padding(10)
+                    }
+                    if isPendingRequest {
+                        Text("Pending friend acceptance.")
+                    }
+                    Text("Delete").padding(10)
                         .foregroundColor(.blue)
                         .onTapGesture {
-                        friendsItemViewModel.deleteFriend()
+                            friendsItemViewModel.deleteFriend()
                         }
+                }
+                Text("Upcoming Meetups:")
+                ForEach(friendsItemViewModel.upcomingMeetups) { meetup in
+                    HStack {
+                        Text(meetup.locationName)
+                        Text(meetup.meetupDate, style: .date)
+                    }
+                }
             }
         }
     }

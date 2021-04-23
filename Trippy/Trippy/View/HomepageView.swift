@@ -31,12 +31,16 @@ struct HomepageView: View {
     var interactions: some View {
         let hexColor = "001482"
         let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
-                                               imageModel: homepageViewModel.imageModel)
+                                               imageModel: homepageViewModel.imageModel,
+                                               meetupModel: homepageViewModel.meetupModel)
         let bucketListView = BucketListView(viewModel: bucketListVM)
 
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,
                                                       imageModel: homepageViewModel.imageModel,
-                                                      ratingModel: homepageViewModel.ratingModel)
+                                                      ratingModel: homepageViewModel.ratingModel,
+                                                      meetupModel: homepageViewModel.meetupModel,
+                                                      bucketModel: homepageViewModel.bucketModel,
+                                                      userId: homepageViewModel.userId)
         let locationListView = LocationListView(viewModel: locationViewModel)
 
         let accountPageViewModel = AccountPageViewModel(
@@ -48,7 +52,9 @@ struct HomepageView: View {
             accountPageViewModel: accountPageViewModel, user: user)
 
         let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
-                                                imageModel: homepageViewModel.imageModel, user: session.currentLoggedInUser)
+                                                imageModel: homepageViewModel.imageModel,
+                                                meetupModel: homepageViewModel.meetupModel,
+                                                user: user)
         let friendListView = FriendsListView(viewModel: friendListVM)
 
         let meetupListVM = MeetupListViewModel(
@@ -60,7 +66,9 @@ struct HomepageView: View {
         let meetupListView = MeetupListView(viewModel: meetupListVM)
 
         let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
-                                                     imageModel: homepageViewModel.imageModel)
+                                                     imageModel: homepageViewModel.imageModel,
+                                                     meetupModel: homepageViewModel.meetupModel,
+                                                     locationModel: homepageViewModel.locationModel)
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 
         return VStack(spacing: 10) {

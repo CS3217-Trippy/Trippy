@@ -223,8 +223,14 @@ class VisitTracker {
             print("ERROR: Invalid score")
             return
         }
-        let rating = Rating(id: nil, locationId: locationId, userId: userId, score: score, date: Date())
+        let existingRating = ratingModel.ratings
+            .first(where: { $0.locationId == locationId && $0.userId == userId })
+        let rating = Rating(id: existingRating?.id, locationId: locationId, userId: userId, score: score, date: Date())
         do {
+            if existingRating != nil {
+                try ratingModel.updateRating(updatedRating: rating)
+                return
+            }
             try ratingModel.add(rating: rating)
         } catch {
             print("ERROR: Unable to save. \(error.localizedDescription)")

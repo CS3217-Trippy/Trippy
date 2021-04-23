@@ -33,12 +33,19 @@ struct SubmitRatingView: View {
             Text("\(Int(score))")
             .foregroundColor(isEditing ? .blue : .black)
 
-            Button("Submit") {
-                viewModel.submitRating(score: Int(score))
-                presentationMode.wrappedValue.dismiss()
+            if viewModel.hasRated {
+                Button("Update") {
+                    viewModel.updateRating(score: Int(score))
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .padding()
+            } else {
+                Button("Submit") {
+                    viewModel.submitRating(score: Int(score))
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .padding()
             }
-            .padding()
-
             Spacer()
         }
     }

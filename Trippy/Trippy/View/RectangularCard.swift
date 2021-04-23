@@ -18,20 +18,20 @@ struct RectangularCard<Content: View>: View {
     }
 
     var body: some View {
-            if isHorizontal {
-                HStack {
-                    imageView
-                   self.viewBuilder()
-                    .padding()
-                }
-                .padding([.top, .horizontal])
-            } else {
-                VStack {
-                    imageView
-                    self.viewBuilder()
-                    .padding()
-                }
-                .padding([.top, .horizontal])
+        if isHorizontal {
+            HStack {
+                imageView
+               self.viewBuilder()
+                .padding()
             }
+            .padding([.top, .horizontal])
+        } else {
+            VStack {
+                imageView
+                self.viewBuilder()
+                .padding()
+            }
+            .padding([.top, .horizontal])
+        }
     }
 }

@@ -2,7 +2,7 @@ import Foundation
 
 class AddItineraryItemViewModel {
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
-    private var  location: Location
+    private var location: Location
     private var user: User?
 
     init(location: Location, user: User?) {
@@ -26,13 +26,10 @@ class AddItineraryItemViewModel {
         guard let userUnwrapped = user else {
             return nil
         }
-        let imageId = location.imageId
-        let itineraryItem = ItineraryItem(locationName: location.name,
-                                          locationImageId: imageId,
-                                          userId: userUnwrapped.id ?? "",
-                                          locationId: locationId,
-                                          coordinates: location.coordinates
-                                    )
+        let itineraryItem = ItineraryItem(
+            userId: userUnwrapped.id ?? "",
+            locationId: locationId
+        )
         return itineraryItem
     }
 }

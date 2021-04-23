@@ -48,48 +48,4 @@ class ItineraryModel<Storage: StorageProtocol>: ObservableObject where Storage.S
         }
         try storage.update(item: itineraryItem, handler: nil)
     }
-
-    private func getDistance(indexI: Int, indexJ: Int) -> Double {
-        CLLocation(latitude: itineraryItems[indexI].coordinates.latitude,
-                   longitude: itineraryItems[indexI].coordinates.longitude)
-            .distance(from: CLLocation(latitude: itineraryItems[indexJ].coordinates.latitude,
-                                       longitude: itineraryItems[indexJ].coordinates.longitude))
-    }
-
-    /// Get the best route for the current itinerary.
-    func getBestRoute() -> BestRouteResult {
-        let numOfNodes = itineraryItems.count
-        let bestRouteUtil = BestRouteUtil(numOfNodes: numOfNodes)
-
-        if numOfNodes > 1 {
-            for i in 0...numOfNodes - 2 {
-                for j in i + 1...numOfNodes - 1 {
-                    let dist = getDistance(indexI: i, indexJ: j)
-                    bestRouteUtil.addEdge(edge: .init(u: i, v: j, weight: dist))
-                }
-            }
-        }
-
-        let result: [Int]
-
-        if numOfNodes > 0 {
-            result = bestRouteUtil.getBestRoute()
-        } else {
-            result = []
-        }
-        var cost = 0.0
-
-        if numOfNodes > 1 {
-            for i in 0...numOfNodes - 2 {
-                cost += getDistance(indexI: result[i], indexJ: result[i + 1])
-            }
-        }
-
-        return .init(route: result.map { itineraryItems[$0] }, cost: cost)
-    }
-}
-
-struct BestRouteResult {
-    let route: [ItineraryItem]
-    let cost: Double
 }
