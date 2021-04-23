@@ -36,6 +36,15 @@ struct MeetupItemView: View {
                     .fontWeight(.black)
                     .foregroundColor(.secondary)
                 }
+
+                Image(systemName: "trash").foregroundColor(.red).padding(.top).onTapGesture {
+                    do {
+                        try viewModel.remove(userId: session.currentLoggedInUser?.id)
+                    } catch {
+                        print("error while removing")
+                    }
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
             Spacer()
     }

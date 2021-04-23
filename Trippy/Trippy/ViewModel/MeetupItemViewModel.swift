@@ -46,4 +46,19 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
     var locationCategory: String {
         meetupItem.locationCategory.rawValue.capitalized
     }
+
+    func remove(userId: String?) throws {
+        guard let id = userId else {
+            throw MeetupError.invalidUser
+        }
+        let hostId = meetupItem.hostUserId
+        if id == hostId {
+            meetupModel.removeMeetup(meetup: meetupItem)
+        } else {
+            meetupItem.userIds.removeAll {
+                $0 == id
+            }
+            try meetupModel.updateMeetup(meetup: meetupItem, handler: nil)
+        }
+    }
 }
