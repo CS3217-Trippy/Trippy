@@ -15,7 +15,7 @@ struct LocationDetailView: View {
     var addBucketView: some View {
         NavigationLink(
             destination: AddBucketItemView(
-                viewModel: .init(location: viewModel.location, user: session.currentLoggedInUser))
+                viewModel: .init(location: viewModel.location, bucketModel: viewModel.bucketModel, user: session.currentLoggedInUser))
         ) {
             Text("Add to bucketlist")
         }
@@ -84,6 +84,36 @@ struct LocationDetailView: View {
             Text(viewModel.address)
             .font(.caption)
             .foregroundColor(.secondary)
+
+            Divider()
+
+            HStack {
+                if viewModel.isInBucketlist {
+                    Text("You have added this location to your bucketlist.")
+                        .font(.caption)
+                } else {
+                    Text("This location is not in your bucketlist.")
+                        .font(.caption)
+                }
+                NavigationLink(
+                    destination: BucketListView(viewModel: .init(
+                                                    bucketModel: viewModel.bucketModel,
+                                                    imageModel: viewModel.imageModel
+                    ))) {
+                    Text("Manage bucketlist")
+                        .font(.caption)
+                }
+            }
+            HStack {
+                if let date = viewModel.meetupDate {
+                    Text("You have \(viewModel.upcomingMeetups.count) upcoming meetups here including one on \(date)")
+                        .foregroundColor(.orange)
+                        .font(.caption)
+                } else {
+                    Text("You have no upcoming meetup here.")
+                        .font(.caption)
+                }
+            }
 
             Divider()
 

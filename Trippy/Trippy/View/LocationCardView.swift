@@ -33,12 +33,21 @@ struct LocationCardView: View {
                     .font(.caption)
                     .fontWeight(.black)
                     .foregroundColor(.secondary)
-                }
 
-                if showFullDetails {
                     Text(viewModel.caption)
                     .font(.caption)
                     .foregroundColor(.secondary)
+
+                    if viewModel.isInBucketlist {
+                        Text("Added to bucketlist")
+                            .foregroundColor(.green)
+                            .font(.callout)
+                    }
+                    if let date = viewModel.meetupDate {
+                        Text("Upcoming meetup on \(date)")
+                            .foregroundColor(.orange)
+                            .font(.callout)
+                    }
                 }
             }
             Spacer()
@@ -48,7 +57,10 @@ struct LocationCardView: View {
     var body: some View {
         NavigationLink(destination: LocationDetailView(viewModel: .init(location: viewModel.location,
                                                                         imageModel: viewModel.imageModel,
-                                                                        ratingModel: viewModel.ratingModel))) {
+                                                                        ratingModel: viewModel.ratingModel,
+                                                                        bucketModel: viewModel.bucketModel,
+                                                                        meetupModel: viewModel.meetupModel,
+                                                                        userId: viewModel.userId))) {
                 RectangularCard(image: viewModel.image,
                                 isHorizontal: isHorizontal) {
                                     locationCardText.padding()

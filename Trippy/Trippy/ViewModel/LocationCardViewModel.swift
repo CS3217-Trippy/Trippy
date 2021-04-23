@@ -17,16 +17,35 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private(set) var id = ""
     let imageModel: ImageModel
+    let bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    let meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    var userId: String
 
-    init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>) {
+    init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>,
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+         userId: String) {
         self.location = location
         self.imageModel = imageModel
         self.ratingModel = ratingModel
+        self.userId = userId
+        self.bucketModel = bucketModel
+        self.meetupModel = meetupModel
         $location
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
           .store(in: &cancellables)
         fetchImage()
+    }
+
+    var isInBucketlist: Bool {
+        bucketModel.bucketItems.contains { $0.locationId == location.id }
+    }
+
+    var meetupDate: Date? {
+        meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
+            .first(where: {
+                    $0.locationId == location.id && $0.meetupDate > Date() && $0.userIds.contains(userId)
+            })?.meetupDate
     }
 
     private func fetchImage() {
