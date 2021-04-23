@@ -15,6 +15,7 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     private var userModel = UserModel(storage: FBStorage<FBUser>())
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private var imageModel: ImageModel
+    private var locationModel: LocationModel<FBStorage<FBLocation>>
     private var user: User
     @Published var username: String = ""
     @Published var hasAccepted: Bool
@@ -26,11 +27,13 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
         model: FriendsListModel<FBStorage<FBFriend>>,
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+        locationModel: LocationModel<FBStorage<FBLocation>>,
         user: User
     ) {
         self.meetupModel = meetupModel
         self.friendsModel = model
         self.imageModel = imageModel
+        self.locationModel = locationModel
         self.friend = friend
         self.user = user
         self.hasAccepted = friend.hasAccepted

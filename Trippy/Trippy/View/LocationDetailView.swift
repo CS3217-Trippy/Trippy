@@ -118,6 +118,19 @@ struct LocationDetailView: View {
                     Text("You have \(viewModel.upcomingMeetups.count) upcoming meetups here including one on \(date)")
                         .foregroundColor(.orange)
                         .font(.caption)
+                    NavigationLink(
+                        destination: MeetupListView(viewModel: .init(
+                            meetupModel: viewModel.meetupModel, imageModel: viewModel.imageModel,
+                            locationList: .init(locationModel: viewModel.locationModel,
+                                                imageModel: viewModel.imageModel,
+                                                ratingModel: viewModel.ratingModel,
+                                                meetupModel: viewModel.meetupModel,
+                                                bucketModel: viewModel.bucketModel,
+                                                userId: session.currentLoggedInUser?.id)
+                        ))) {
+                        Text("Manage meetups")
+                            .font(.caption)
+                    }
                 } else {
                     Text("You have no upcoming meetup here.")
                         .font(.caption)

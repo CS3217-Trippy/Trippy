@@ -53,6 +53,14 @@ final class MeetupListViewModel: ObservableObject {
         fetch()
     }
 
+    func getLocationDetailViewModel(locationId: String) -> LocationDetailViewModel? {
+        let items = locationListViewModel.locationDetailViewModels.filter { $0.location.id == locationId }
+        if items.isEmpty {
+            return nil
+        }
+        return items[0]
+    }
+
     /// Fetches list of meetups that are public or joined by the user
     func fetch() {
         meetupModel.fetchMeetups()

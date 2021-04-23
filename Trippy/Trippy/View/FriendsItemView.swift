@@ -47,8 +47,7 @@ struct FriendsItemView: View {
                 Text("Upcoming Meetups:")
                 ForEach(friendsItemViewModel.upcomingMeetups) { meetup in
                     HStack {
-                        // Text(meetup.locationName)
-                        Text(meetup.meetupDate, style: .date)
+                         Text(meetup.meetupDate, style: .date)
                     }
                 }
             }

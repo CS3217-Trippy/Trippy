@@ -38,7 +38,7 @@ struct ItineraryListView: View {
             }
         List {
             ForEach(viewModel.itineraryItemViewModels, id: \.id) { itineraryViewModel in
-                ItineraryItemView(viewModel: itineraryViewModel)
+                ItineraryItemView(viewModel: itineraryViewModel).frame(height: 200)
             }
         } .navigationTitle("Itinerary")
     }

@@ -12,6 +12,7 @@ import UIKit
 final class MeetupItemViewModel: ObservableObject, Identifiable {
     @Published var meetupItem: Meetup
     @Published var location: Location?
+    @Published var locationId: String?
     @Published var image: UIImage?
     var imageModel: ImageModel
     private let locationModel: LocationModel<FBStorage<FBLocation>>
@@ -35,6 +36,7 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
             }
         }
         self.location = location
+        self.locationId = location.id
     }
 
     private var cancellables: Set<AnyCancellable> = []
