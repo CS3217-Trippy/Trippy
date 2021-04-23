@@ -31,7 +31,8 @@ struct HomepageView: View {
     var interactions: some View {
         let hexColor = "001482"
         let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
-                                               imageModel: homepageViewModel.imageModel)
+                                               imageModel: homepageViewModel.imageModel,
+                                               meetupModel: homepageViewModel.meetupModel)
         let bucketListView = BucketListView(viewModel: bucketListVM)
 
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,

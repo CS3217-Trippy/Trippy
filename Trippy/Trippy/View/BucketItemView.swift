@@ -14,6 +14,12 @@ struct BucketItemView: View {
                 Text(viewModel.userDescription).fontWeight(.light)
                 Text("Added on " + viewModel.dateAdded.dateTimeStringFromDate)
                     .lineLimit(9)
+                if let upcomingMeetup = viewModel.upcomingMeetup {
+                    Text("Upcoming Meetup")
+                    Text(upcomingMeetup.dateAdded, style: .date)
+                } else {
+                    Text("No upcoming meetups")
+                }
                 Image(systemName: "trash").foregroundColor(.red).onTapGesture {
                     viewModel.remove()
                 }
