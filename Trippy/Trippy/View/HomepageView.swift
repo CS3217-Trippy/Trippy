@@ -66,7 +66,8 @@ struct HomepageView: View {
 
         let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
                                                      imageModel: homepageViewModel.imageModel,
-                                                     meetupModel: homepageViewModel.meetupModel)
+                                                     meetupModel: homepageViewModel.meetupModel,
+                                                     locationModel: homepageViewModel.locationModel)
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 
         return VStack(spacing: 10) {

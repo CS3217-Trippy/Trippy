@@ -1,11 +1,18 @@
 import Combine
+import CoreLocation
 
 /// View model of an itinerary list.
 final class ItineraryListViewModel: ObservableObject {
+    struct BestRouteResult {
+        let route: [ItineraryItem]
+        let cost: Double
+    }
+
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     @Published var itineraryItemViewModels: [ItineraryItemViewModel] = []
     @Published var bestRouteViewModels: [ItineraryItemViewModel] = []
     @Published var bestRouteCost = 0.0
+    private let locationModel: LocationModel<FBStorage<FBLocation>>
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
@@ -13,20 +20,23 @@ final class ItineraryListViewModel: ObservableObject {
         itineraryItemViewModels.isEmpty
     }
 
-    init(
+    init (
         itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>,
         imageModel: ImageModel,
-        meetupModel: MeetupModel<FBStorage<FBMeetup>>
+        meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+        locationModel: LocationModel<FBStorage<FBLocation>>
     ) {
         self.itineraryModel = itineraryModel
         self.imageModel = imageModel
         self.meetupModel = meetupModel
+        self.locationModel = locationModel
         itineraryModel.$itineraryItems.map { itineraryItem in
             itineraryItem.map { itineraryItem in
                 ItineraryItemViewModel(itineraryItem: itineraryItem,
                                        itineraryModel: itineraryModel,
                                        imageModel: imageModel,
-                                       meetupModel: meetupModel)
+                                       meetupModel: meetupModel,
+                                       locationModel: locationModel)
             }
         }
         .assign(to: \.itineraryItemViewModels, on: self)
@@ -40,15 +50,57 @@ final class ItineraryListViewModel: ObservableObject {
 
     /// Get the best route for the current itinerary.
     func getBestRoute() {
-        let result = itineraryModel.getBestRoute()
+        let result = calculateBestRoute()
 
         bestRouteViewModels = result.route.map {
-                        ItineraryItemViewModel(itineraryItem: $0,
-                                               itineraryModel: itineraryModel,
-                                               imageModel: imageModel,
-                                               meetupModel: meetupModel)
+            ItineraryItemViewModel(
+                itineraryItem: $0,
+                itineraryModel: itineraryModel,
+                imageModel: imageModel,
+                meetupModel: meetupModel,
+                locationModel: locationModel
+            )
         }
         bestRouteCost = result.cost
     }
 
+    private func getDistance(indexI: Int, indexJ: Int) -> Double {
+        let latitudeI = itineraryItemViewModels[indexI].location?.coordinates.latitude ?? 0.0
+        let latitudeJ = itineraryItemViewModels[indexJ].location?.coordinates.latitude ?? 0.0
+        let longitudeI = itineraryItemViewModels[indexI].location?.coordinates.longitude ?? 0.0
+        let longitudeJ = itineraryItemViewModels[indexJ].location?.coordinates.longitude ?? 0.0
+        return CLLocation(latitude: latitudeI, longitude: longitudeI)
+            .distance(from: CLLocation(latitude: latitudeJ, longitude: longitudeJ))
+    }
+
+    private func calculateBestRoute() -> BestRouteResult {
+        let numOfNodes = itineraryItemViewModels.count
+        let bestRouteUtil = BestRouteUtil(numOfNodes: numOfNodes)
+
+        if numOfNodes > 1 {
+            for i in 0...numOfNodes - 2 {
+                for j in i + 1...numOfNodes - 1 {
+                    let dist = getDistance(indexI: i, indexJ: j)
+                    bestRouteUtil.addEdge(edge: .init(u: i, v: j, weight: dist))
+                }
+            }
+        }
+
+        let result: [Int]
+
+        if numOfNodes > 0 {
+            result = bestRouteUtil.getBestRoute()
+        } else {
+            result = []
+        }
+        var cost = 0.0
+
+        if numOfNodes > 1 {
+            for i in 0...numOfNodes - 2 {
+                cost += getDistance(indexI: result[i], indexJ: result[i + 1])
+            }
+        }
+
+        return .init(route: result.map { itineraryItemViewModels[$0].itineraryItem }, cost: cost)
+    }
 }

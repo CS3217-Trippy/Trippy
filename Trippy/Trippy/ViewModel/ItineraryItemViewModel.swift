@@ -6,7 +6,11 @@ import UIKit
 final class ItineraryItemViewModel: ObservableObject, Identifiable {
     @Published var itineraryItem: ItineraryItem
     @Published var upcomingMeetup: Meetup?
+    @Published var image: UIImage?
+    @Published var location: Location?
+    private var cancellables: Set<AnyCancellable> = []
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
+    private let locationModel: LocationModel<FBStorage<FBLocation>>
     private let imageModel: ImageModel
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private(set) var id = ""
@@ -14,15 +18,28 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
         itineraryItem: ItineraryItem,
         itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>,
         imageModel: ImageModel,
-        meetupModel: MeetupModel<FBStorage<FBMeetup>>
+        meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+        locationModel: LocationModel<FBStorage<FBLocation>>
     ) {
         self.itineraryItem = itineraryItem
         self.itineraryModel = itineraryModel
         self.imageModel = imageModel
         self.meetupModel = meetupModel
+        self.locationModel = locationModel
         $itineraryItem.compactMap { $0.id }.assign(to: \.id, on: self)
             .store(in: &cancellables)
-        fetchImage()
+        locationModel.fetchLocationWithId(id: itineraryItem.locationId, handler: fetchItinerary)
+    }
+
+    private func fetchItinerary(location: Location) {
+        if let id = location.imageId {
+            imageModel.fetch(ids: [id]) { images in
+                if !images.isEmpty {
+                    self.image = images[0]
+                }
+            }
+        }
+        self.location = location
         fetchUpcomingMeetup()
     }
 
@@ -34,24 +51,6 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
                 upcomingMeetup = meetupsRelatedToBucketItem[0]
             }
         }
-    }
-
-    private func fetchImage() {
-        let id = itineraryItem.locationImageId
-        guard let imageId = id else {
-            return
-        }
-        imageModel.fetch(ids: [imageId]) { images in
-            if !images.isEmpty {
-                self.image = images[0]
-            }
-        }
-    }
-
-    @Published var image: UIImage?
-    private var cancellables: Set<AnyCancellable> = []
-    var locationName: String {
-        itineraryItem.locationName
     }
 
     /// Remove an itinerary item.

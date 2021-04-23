@@ -7,7 +7,7 @@ struct ItineraryItemView: View {
 
     var textView: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text(viewModel.locationName)
+            Text(viewModel.location?.name ?? "")
                 .bold()
                 .font(.headline)
             if let upcomingMeetup = viewModel.upcomingMeetup {
