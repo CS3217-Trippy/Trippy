@@ -13,17 +13,35 @@ struct LocationDetailView: View {
     @State private var showSubmitRatingSheet = false
 
     var addBucketView: some View {
+        NavigationLink(
+            destination: AddBucketItemView(
+                viewModel: .init(location: viewModel.location, user: session.currentLoggedInUser))
+        ) {
+            Text("Add to bucketlist")
+        }
+    }
+
+    var addItineraryView: some View {
+        AddItineraryView(viewModel: .init(location: viewModel.location, user: session.currentLoggedInUser))
+    }
+
+    var addMeetupView: some View {
+        NavigationLink(
+            destination: CreateMeetupView(viewModel: .init(location: viewModel.location, session: session))
+        ) {
+            Text("Create Meetup")
+        }
+    }
+
+    var addViews: some View {
         HStack {
-            NavigationLink(
-                destination: AddBucketItemView(
-                    viewModel: .init(location: viewModel.location, bucketModel: viewModel.bucketModel,
-                                     user: session.currentLoggedInUser))
-            ) {
-                Text("Add to bucketlist")
+            VStack {
+                addBucketView
+                addItineraryView
             }
             Spacer()
-            AddItineraryView(viewModel: .init(location: viewModel.location, user: session.currentLoggedInUser))
-        }.padding(10)
+            addMeetupView
+        }
     }
 
     var ratingSection: some View {
@@ -122,8 +140,7 @@ struct LocationDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-               addBucketView
-
+               addViews
                 if let image = viewModel.image {
                     Image(uiImage: image)
                         .resizable()

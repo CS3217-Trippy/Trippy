@@ -5,35 +5,46 @@
 //  Created by Lim Chun Yong on 12/4/21.
 //
 import Combine
-
+import Foundation
 final class MeetupListViewModel: ObservableObject {
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
-    @Published var meetupItemViewModels: [MeetupItemViewModel] = []
+    @Published var currentMeetupItemViewModels: [MeetupItemViewModel] = []
+    @Published var pastMeetupItemViewModels: [MeetupItemViewModel] = []
     @Published var publicMeetupViewModels: [MeetupItemViewModel] = []
     private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
+    var locationListViewModel: LocationListViewModel
 
-    var hasNoMeetups: Bool {
-        meetupItemViewModels.isEmpty
-    }
+    init(meetupModel: MeetupModel<FBStorage<FBMeetup>>, imageModel: ImageModel, locationList: LocationListViewModel) {
+        let currentDate = Date()
 
-    init(meetupModel: MeetupModel<FBStorage<FBMeetup>>, imageModel: ImageModel) {
         self.meetupModel = meetupModel
         self.imageModel = imageModel
-        meetupModel.$publicMeetupItems.map { meetupItem in
-            meetupItem.map { meetup in
+        self.locationListViewModel = locationList
+        meetupModel.$publicMeetupItems.map { meetup in
+            meetup.filter({ $0.meetupDate > currentDate }).map { meetup in
                 MeetupItemViewModel(meetupItem: meetup, meetupModel: meetupModel, imageModel: imageModel)
             }
         }
         .assign(to: \.publicMeetupViewModels, on: self)
         .store(in: &cancellables)
-        meetupModel.$meetupItems.map { meetupItem in
-            meetupItem.map { meetup in
+
+        meetupModel.$meetupItems.map { meetup in
+            meetup.filter({ $0.meetupDate > currentDate }).map { meetup in
                 MeetupItemViewModel(meetupItem: meetup, meetupModel: meetupModel, imageModel: imageModel)
             }
         }
-        .assign(to: \.meetupItemViewModels, on: self)
+        .assign(to: \.currentMeetupItemViewModels, on: self)
         .store(in: &cancellables)
+
+        meetupModel.$meetupItems.map { meetup in
+            meetup.filter({ $0.meetupDate < currentDate }).map { meetup in
+                MeetupItemViewModel(meetupItem: meetup, meetupModel: meetupModel, imageModel: imageModel)
+            }
+        }
+        .assign(to: \.pastMeetupItemViewModels, on: self)
+        .store(in: &cancellables)
+
         fetch()
     }
 
