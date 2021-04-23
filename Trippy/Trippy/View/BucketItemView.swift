@@ -30,9 +30,9 @@ struct BucketItemView: View {
 
     var body: some View {
         RectangularCard(
-                        image: viewModel.image,
-                        isHorizontal: true
-                        ) {
+            image: viewModel.image,
+            isHorizontal: true
+        ) {
             textView.padding()
         }
     }

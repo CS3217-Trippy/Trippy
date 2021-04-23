@@ -10,6 +10,12 @@ struct ItineraryItemView: View {
             Text(viewModel.locationName)
                 .bold()
                 .font(.headline)
+            if let upcomingMeetup = viewModel.upcomingMeetup {
+                Text("Upcoming Meetup")
+                Text(upcomingMeetup.dateAdded, style: .date)
+            } else {
+                Text("No upcoming meetups")
+            }
             Image(systemName: "trash").foregroundColor(.red).onTapGesture {
                 viewModel.remove()
             }

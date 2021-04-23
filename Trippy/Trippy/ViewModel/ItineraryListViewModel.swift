@@ -6,20 +6,27 @@ final class ItineraryListViewModel: ObservableObject {
     @Published var itineraryItemViewModels: [ItineraryItemViewModel] = []
     @Published var bestRouteViewModels: [ItineraryItemViewModel] = []
     @Published var bestRouteCost = 0.0
+    private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
     var isEmpty: Bool {
         itineraryItemViewModels.isEmpty
     }
 
-    init(itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>, imageModel: ImageModel) {
+    init(
+        itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>,
+        imageModel: ImageModel,
+        meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    ) {
         self.itineraryModel = itineraryModel
         self.imageModel = imageModel
+        self.meetupModel = meetupModel
         itineraryModel.$itineraryItems.map { itineraryItem in
             itineraryItem.map { itineraryItem in
                 ItineraryItemViewModel(itineraryItem: itineraryItem,
                                        itineraryModel: itineraryModel,
-                                       imageModel: imageModel)
+                                       imageModel: imageModel,
+                                       meetupModel: meetupModel)
             }
         }
         .assign(to: \.itineraryItemViewModels, on: self)
@@ -38,7 +45,8 @@ final class ItineraryListViewModel: ObservableObject {
         bestRouteViewModels = result.route.map {
                         ItineraryItemViewModel(itineraryItem: $0,
                                                itineraryModel: itineraryModel,
-                                               imageModel: imageModel)
+                                               imageModel: imageModel,
+                                               meetupModel: meetupModel)
         }
         bestRouteCost = result.cost
     }
