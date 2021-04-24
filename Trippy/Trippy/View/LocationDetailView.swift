@@ -97,20 +97,22 @@ struct LocationDetailView: View {
                     Text("This location is not in your bucketlist.")
                         .font(.caption)
                 }
-                NavigationLink(
-                    destination: BucketListView(viewModel: .init(
-                        bucketModel: viewModel.bucketModel,
-                        imageModel: viewModel.imageModel,
-                        meetupModel: viewModel.meetupModel,
-                        locationList: .init(locationModel: viewModel.locationModel,
-                                            imageModel: viewModel.imageModel,
-                                            ratingModel: viewModel.ratingModel,
-                                            meetupModel: viewModel.meetupModel,
-                                            bucketModel: viewModel.bucketModel,
-                                            userId: session.currentLoggedInUser?.id)
-                    ))) {
-                    Text("Manage bucketlist")
-                        .font(.caption)
+                if let user = session.currentLoggedInUser {
+                    NavigationLink(
+                        destination: BucketListView(viewModel: .init(
+                            bucketModel: viewModel.bucketModel,
+                            imageModel: viewModel.imageModel,
+                            meetupModel: viewModel.meetupModel,
+                            locationList: .init(locationModel: viewModel.locationModel,
+                                                imageModel: viewModel.imageModel,
+                                                ratingModel: viewModel.ratingModel,
+                                                meetupModel: viewModel.meetupModel,
+                                                bucketModel: viewModel.bucketModel,
+                                                userId: user.id), user: user
+                        ))) {
+                        Text("Manage bucketlist")
+                            .font(.caption)
+                    }
                 }
             }
             HStack {

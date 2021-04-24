@@ -12,7 +12,7 @@ struct ItineraryItemView: View {
                 .font(.headline)
             if let upcomingMeetup = viewModel.upcomingMeetup {
                 Text("Upcoming Meetup")
-                Text(upcomingMeetup.dateAdded, style: .date)
+                Text(upcomingMeetup.meetupDate, style: .date)
             } else {
                 Text("No upcoming meetups")
             }

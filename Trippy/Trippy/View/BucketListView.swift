@@ -15,16 +15,16 @@ struct BucketListView: View {
     }
 
     var body: some View {
-            TabView {
-                self.buildListView(viewModels: viewModel.bucketItemViewModels).tabItem {
-                    Label("Not completed", systemImage: "task")
-                }
-
-                self.buildListView(viewModels: viewModel.visitedBucketItemViewModels).tabItem {
-                    Label("Completed", systemImage: "taskCompleted")
-                }
-
+        TabView {
+            self.buildListView(viewModels: viewModel.bucketItemViewModels).tabItem {
+                Label("Not completed", systemImage: "task")
             }
-            .navigationTitle("Bucket List")
+
+            self.buildListView(viewModels: viewModel.visitedBucketItemViewModels).tabItem {
+                Label("Completed", systemImage: "taskCompleted")
+            }
+
+        }
+        .navigationTitle("Bucket List")
     }
 }

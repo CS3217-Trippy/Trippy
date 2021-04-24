@@ -21,12 +21,12 @@ struct MeetupListView: View {
                                showFullDetails: showFullDetails,
                                isHorizontal: true)
             })
-            } else {
-                return AnyView(MeetupItemView(
-                                viewModel: meetupViewModel,
-                                showFullDetails: showFullDetails,
-                                isHorizontal: true))
-            }
+        } else {
+            return AnyView(MeetupItemView(
+                            viewModel: meetupViewModel,
+                            showFullDetails: showFullDetails,
+                            isHorizontal: true))
+        }
     }
 
     func buildListView(viewModels: [MeetupItemViewModel], isUpcoming: Bool) -> some View {
@@ -65,14 +65,14 @@ struct MeetupListView: View {
             createMeetup
             Spacer()
         }
-            TabView {
-                self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
-                    Label("Upcoming", systemImage: "taskCompleted")
-                }
-                self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
-                    Label("Past", systemImage: "taskCompleted")
-                }
+        TabView {
+            self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
+                Label("Upcoming", systemImage: "taskCompleted")
+            }
+            self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
+                Label("Past", systemImage: "taskCompleted")
+            }
 
-            }.navigationTitle("Meetups")
+        }.navigationTitle("Meetups")
     }
 }

@@ -42,7 +42,8 @@ struct HomepageView: View {
         let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
                                                imageModel: homepageViewModel.imageModel,
                                                meetupModel: homepageViewModel.meetupModel,
-                                               locationList: locationViewModel)
+                                               locationList: locationViewModel,
+                                               user: user)
         let bucketListView = BucketListView(viewModel: bucketListVM)
 
         let accountPageViewModel = AccountPageViewModel(
@@ -71,7 +72,8 @@ struct HomepageView: View {
         let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
                                                      imageModel: homepageViewModel.imageModel,
                                                      meetupModel: homepageViewModel.meetupModel,
-                                                     locationModel: homepageViewModel.locationModel)
+                                                     locationModel: homepageViewModel.locationModel,
+                                                     user: user)
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 
         return VStack(spacing: 10) {
