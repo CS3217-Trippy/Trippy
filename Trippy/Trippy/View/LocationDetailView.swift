@@ -133,6 +133,7 @@ struct LocationDetailView: View {
                         Text("Manage meetups")
                             .font(.caption)
                     }
+
                 } else {
                     Text("You have no upcoming meetup here.")
                         .font(.caption)

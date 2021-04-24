@@ -6,6 +6,7 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
     @Published var bucketItem: BucketItem
     @Published var upcomingMeetup: Meetup?
     @Published var location: Location?
+    @Published var locationId: String?
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     private let imageModel: ImageModel
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
@@ -43,6 +44,7 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
             }
         }
         self.location = location
+        self.locationId = location.id
     }
 
     private func fetchUpcomingMeetup() {

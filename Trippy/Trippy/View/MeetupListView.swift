@@ -11,7 +11,7 @@ import SwiftUI
 struct MeetupListView: View {
     @ObservedObject var viewModel: MeetupListViewModel
 
-    private func buildItemView(meetupViewModel: MeetupItemViewModel, showFullDetails: Bool) -> some View {
+    private func buildItemView(meetupViewModel: MeetupItemViewModel, showFullDetails: Bool, isHorizontal: Bool) -> some View {
         if let detailViewModel = viewModel.getLocationDetailViewModel(locationId: meetupViewModel.locationId ?? "") {
             return AnyView(NavigationLink(
                 destination: LocationDetailView(viewModel: detailViewModel)
@@ -19,13 +19,13 @@ struct MeetupListView: View {
             ) {
                 MeetupItemView(viewModel: meetupViewModel,
                                showFullDetails: showFullDetails,
-                               isHorizontal: true)
+                               isHorizontal: isHorizontal)
             })
         } else {
             return AnyView(MeetupItemView(
                             viewModel: meetupViewModel,
                             showFullDetails: showFullDetails,
-                            isHorizontal: true))
+                            isHorizontal: isHorizontal))
         }
     }
 
@@ -37,17 +37,21 @@ struct MeetupListView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
-                                buildItemView(meetupViewModel: meetupViewModel, showFullDetails: false)
+                                buildItemView(meetupViewModel: meetupViewModel,
+                                              showFullDetails: false,
+                                              isHorizontal: false)
                             }
                         }
-                    }.frame(height: 200)
+                    }.frame(height: 300)
                 }
             }
             if viewModels.isEmpty {
                 Text("No Meetups joined!")
             }
             ForEach(viewModels, id: \.id) { meetupViewModel in
-                self.buildItemView(meetupViewModel: meetupViewModel, showFullDetails: true).frame(height: 200)
+                self.buildItemView(meetupViewModel: meetupViewModel,
+                                   showFullDetails: true,
+                                   isHorizontal: true).frame(height: 200)
             }
         }
     }

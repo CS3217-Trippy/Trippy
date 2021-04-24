@@ -55,6 +55,12 @@ final class BucketListViewModel: ObservableObject {
         fetch()
     }
 
+    func getLocationDetailViewModel(locationId: String) -> LocationDetailViewModel? {
+        locationListViewModel.locationDetailViewModels.first {
+            $0.location.id == locationId
+        }
+    }
+
     /// Fetches list of bucket items owned by the user
     func fetch() {
         bucketModel.fetchBucketItems()
