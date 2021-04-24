@@ -47,9 +47,13 @@ struct FriendsItemView: View {
             Text("Upcoming Meetups:").padding(.horizontal, 10)
             ScrollView {
                 ForEach(friendsItemViewModel.upcomingMeetups) { meetup in
-                    HStack {
-                        Text(meetup.meetupDate, style: .date).padding(.horizontal, 10)
+                    let relatedLocation =
+                        friendsItemViewModel.upcomingMeetupsLocation.first(where: { $0.id == meetup.locationId })
+                    HStack(alignment: .lastTextBaseline) {
+                        Text(meetup.meetupDate, style: .date).frame(width: 200, alignment: .leading)
+                        Text(relatedLocation?.name ?? "").frame(width: 200, alignment: .leading)
                     }
+                    .padding(.horizontal, 10)
                 }
             }
         }
