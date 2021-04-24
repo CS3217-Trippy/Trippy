@@ -46,12 +46,12 @@ class LocationCardViewModel: Identifiable, ObservableObject {
         bucketModel.bucketItems.contains { $0.locationId == location.id }
     }
 
-    var meetupDate: Date? {
+    var meetupDate: String? {
         meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
             .first(where: {
                     $0.locationId == location.id && $0.meetupDate > Date()
                         && ($0.hostUserId == userId || $0.userIds.contains(userId))
-            })?.meetupDate
+            })?.meetupDate.dateTimeStringFromDate
     }
 
     private func fetchImage() {

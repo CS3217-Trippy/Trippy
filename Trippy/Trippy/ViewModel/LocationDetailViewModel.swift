@@ -96,8 +96,8 @@ class LocationDetailViewModel: ObservableObject {
             }
     }
 
-    var meetupDate: Date? {
-        upcomingMeetups.first?.meetupDate
+    var meetupDate: String? {
+        upcomingMeetups.first?.meetupDate.dateTimeStringFromDate
     }
 
     var numItinerary: Int {
