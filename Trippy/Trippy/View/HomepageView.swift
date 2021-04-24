@@ -96,9 +96,6 @@ struct HomepageView: View {
             NavigationLink(destination: accountPageView) {
                 RaisedNavigationText(text: "ACCOUNT PAGE", colorHex: hexColor).cornerRadius(10)
             }
-            NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-                RaisedNavigationText(text: "ADD FRIEND", colorHex: hexColor).cornerRadius(10)
-            }
             RaisedButton(child: "SIGN OUT", colorHex: hexColor) {
                 _ = self.session.signOut()
             }.cornerRadius(10)
