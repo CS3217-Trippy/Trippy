@@ -36,7 +36,10 @@ struct HomepageView: View {
 
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,
                                                       imageModel: homepageViewModel.imageModel,
-                                                      ratingModel: homepageViewModel.ratingModel)
+                                                      ratingModel: homepageViewModel.ratingModel,
+                                                      meetupModel: homepageViewModel.meetupModel,
+                                                      bucketModel: homepageViewModel.bucketModel,
+                                                      userId: homepageViewModel.userId)
         let locationListView = LocationListView(viewModel: locationViewModel)
 
         let accountPageViewModel = AccountPageViewModel(
