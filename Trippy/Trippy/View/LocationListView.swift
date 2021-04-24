@@ -18,6 +18,7 @@ struct LocationListView: View {
                                                               ratingModel: viewModel.ratingModel,
                                                               bucketModel: viewModel.bucketModel,
                                                               meetupModel: viewModel.meetupModel,
+                                                              itineraryModel: viewModel.itineraryModel,
                                                               userId: viewModel.userId))
             ) {
                 Text("Map")

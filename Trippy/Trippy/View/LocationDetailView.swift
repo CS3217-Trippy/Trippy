@@ -70,6 +70,93 @@ struct LocationDetailView: View {
         }
     }
 
+    var bucketlistSection: some View {
+        HStack {
+            if viewModel.isInBucketlist {
+                Text("You have added this location to your bucketlist.")
+                    .font(.caption)
+            } else {
+                Text("This location is not in your bucketlist.")
+                    .font(.caption)
+            }
+            NavigationLink(
+                destination: BucketListView(viewModel: .init(
+                    bucketModel: viewModel.bucketModel,
+                    imageModel: viewModel.imageModel,
+                    meetupModel: viewModel.meetupModel,
+                    locationList: .init(locationModel: viewModel.locationModel,
+                                        imageModel: viewModel.imageModel,
+                                        ratingModel: viewModel.ratingModel,
+                                        meetupModel: viewModel.meetupModel,
+                                        bucketModel: viewModel.bucketModel,
+                                        itineraryModel: viewModel.itineraryModel,
+                                        userId: session.currentLoggedInUser?.id)
+                ))) {
+                Text("Manage bucketlist")
+                    .font(.caption)
+            }
+        }
+    }
+
+    var meetupSection: some View {
+        HStack {
+            if let date = viewModel.meetupDate {
+                if viewModel.upcomingMeetups.count > 1 {
+                    Text("You have \(viewModel.upcomingMeetups.count) upcoming meetups here including one on \(date).")
+                        .foregroundColor(.orange)
+                        .font(.caption)
+                } else {
+                    Text("You have an upcoming meetup here on \(date).")
+                        .foregroundColor(.orange)
+                        .font(.caption)
+                }
+            } else {
+                Text("You have no upcoming meetups here.")
+                    .font(.caption)
+            }
+            NavigationLink(
+                destination: MeetupListView(viewModel: .init(
+                    meetupModel: viewModel.meetupModel, imageModel: viewModel.imageModel,
+                    locationList: .init(locationModel: viewModel.locationModel,
+                                        imageModel: viewModel.imageModel,
+                                        ratingModel: viewModel.ratingModel,
+                                        meetupModel: viewModel.meetupModel,
+                                        bucketModel: viewModel.bucketModel,
+                                        itineraryModel: viewModel.itineraryModel,
+                                        userId: session.currentLoggedInUser?.id)
+                ))) {
+                Text("Manage meetups")
+                    .font(.caption)
+            }
+        }
+    }
+
+    var itinerarySection: some View {
+        HStack {
+            if viewModel.numItinerary > 1 {
+                Text("You have \(viewModel.numItinerary) itineraries with this location.")
+                    .font(.caption)
+
+            } else if viewModel.numItinerary == 1 {
+                Text("You have an itinerary with this location.")
+                    .font(.caption)
+            } else {
+                Text("You have no itineraries with this location.")
+                    .font(.caption)
+            }
+            NavigationLink(
+                destination: ItineraryListView(viewModel: .init(
+                                                itineraryModel: viewModel.itineraryModel,
+                                                imageModel: viewModel.imageModel,
+                                                meetupModel: viewModel.meetupModel,
+                                                locationModel: viewModel.locationModel
+                ))) {
+                Text("Manage itineraries")
+                    .font(.caption)
+            }
+        }
+    }
+
     var pageContent: some View {
         VStack(alignment: .leading) {
             Text(viewModel.category)
@@ -89,52 +176,10 @@ struct LocationDetailView: View {
 
             Divider()
 
-            HStack {
-                if viewModel.isInBucketlist {
-                    Text("You have added this location to your bucketlist.")
-                        .font(.caption)
-                } else {
-                    Text("This location is not in your bucketlist.")
-                        .font(.caption)
-                }
-                NavigationLink(
-                    destination: BucketListView(viewModel: .init(
-                        bucketModel: viewModel.bucketModel,
-                        imageModel: viewModel.imageModel,
-                        meetupModel: viewModel.meetupModel,
-                        locationList: .init(locationModel: viewModel.locationModel,
-                                            imageModel: viewModel.imageModel,
-                                            ratingModel: viewModel.ratingModel,
-                                            meetupModel: viewModel.meetupModel,
-                                            bucketModel: viewModel.bucketModel,
-                                            userId: session.currentLoggedInUser?.id)
-                    ))) {
-                    Text("Manage bucketlist")
-                        .font(.caption)
-                }
-            }
-            HStack {
-                if let date = viewModel.meetupDate {
-                    Text("You have \(viewModel.upcomingMeetups.count) upcoming meetups here including one on \(date)")
-                        .foregroundColor(.orange)
-                        .font(.caption)
-                    NavigationLink(
-                        destination: MeetupListView(viewModel: .init(
-                            meetupModel: viewModel.meetupModel, imageModel: viewModel.imageModel,
-                            locationList: .init(locationModel: viewModel.locationModel,
-                                                imageModel: viewModel.imageModel,
-                                                ratingModel: viewModel.ratingModel,
-                                                meetupModel: viewModel.meetupModel,
-                                                bucketModel: viewModel.bucketModel,
-                                                userId: session.currentLoggedInUser?.id)
-                        ))) {
-                        Text("Manage meetups")
-                            .font(.caption)
-                    }
-                } else {
-                    Text("You have no upcoming meetup here.")
-                        .font(.caption)
-                }
+            Group {
+                bucketlistSection
+                meetupSection
+                itinerarySection
             }
 
             Divider()
@@ -146,6 +191,7 @@ struct LocationDetailView: View {
             Text(viewModel.description)
             .font(.body)
             .foregroundColor(.primary)
+
         }
     }
 
