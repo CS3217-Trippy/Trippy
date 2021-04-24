@@ -79,21 +79,24 @@ struct LocationDetailView: View {
                 Text("This location is not in your bucketlist.")
                     .font(.caption)
             }
-            NavigationLink(
-                destination: BucketListView(viewModel: .init(
-                    bucketModel: viewModel.bucketModel,
-                    imageModel: viewModel.imageModel,
-                    meetupModel: viewModel.meetupModel,
-                    locationList: .init(locationModel: viewModel.locationModel,
-                                        imageModel: viewModel.imageModel,
-                                        ratingModel: viewModel.ratingModel,
-                                        meetupModel: viewModel.meetupModel,
-                                        bucketModel: viewModel.bucketModel,
-                                        itineraryModel: viewModel.itineraryModel,
-                                        userId: session.currentLoggedInUser?.id)
-                ))) {
-                Text("Manage bucketlist")
-                    .font(.caption)
+            if let user = session.currentLoggedInUser {
+                NavigationLink(
+                    destination: BucketListView(viewModel: .init(
+                        bucketModel: viewModel.bucketModel,
+                        imageModel: viewModel.imageModel,
+                        meetupModel: viewModel.meetupModel,
+                        locationList: .init(locationModel: viewModel.locationModel,
+                                            imageModel: viewModel.imageModel,
+                                            ratingModel: viewModel.ratingModel,
+                                            meetupModel: viewModel.meetupModel,
+                                            bucketModel: viewModel.bucketModel,
+                                            itineraryModel: viewModel.itineraryModel,
+                                            userId: user.id
+                        ), user: user
+                    ))) {
+                    Text("Manage bucketlist")
+                        .font(.caption)
+                }
             }
         }
     }
@@ -144,15 +147,18 @@ struct LocationDetailView: View {
                 Text("You have no itineraries with this location.")
                     .font(.caption)
             }
-            NavigationLink(
-                destination: ItineraryListView(viewModel: .init(
-                                                itineraryModel: viewModel.itineraryModel,
-                                                imageModel: viewModel.imageModel,
-                                                meetupModel: viewModel.meetupModel,
-                                                locationModel: viewModel.locationModel
-                ))) {
-                Text("Manage itineraries")
-                    .font(.caption)
+            if let user = session.currentLoggedInUser {
+                NavigationLink(
+                    destination: ItineraryListView(viewModel: .init(
+                                                    itineraryModel: viewModel.itineraryModel,
+                                                    imageModel: viewModel.imageModel,
+                                                    meetupModel: viewModel.meetupModel,
+                                                    locationModel: viewModel.locationModel,
+                                                    user: user
+                    ))) {
+                    Text("Manage itineraries")
+                        .font(.caption)
+                }
             }
         }
     }
