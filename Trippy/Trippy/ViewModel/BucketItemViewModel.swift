@@ -5,53 +5,67 @@ import UIKit
 final class BucketItemViewModel: ObservableObject, Identifiable {
     @Published var bucketItem: BucketItem
     @Published var upcomingMeetup: Meetup?
+    @Published var location: Location?
+    @Published var locationId: String?
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     private let imageModel: ImageModel
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    private let locationModel: LocationModel<FBStorage<FBLocation>>
+    private var user: User
     private(set) var id = ""
+    @Published var image: UIImage?
+    private var cancellables: Set<AnyCancellable> = []
     init(
         bucketItem: BucketItem,
         bucketModel: BucketModel<FBStorage<FBBucketItem>>,
         imageModel: ImageModel,
-        meetupModel: MeetupModel<FBStorage<FBMeetup>>
+        meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+        locationModel: LocationModel<FBStorage<FBLocation>>,
+        user: User
     ) {
         self.bucketItem = bucketItem
         self.bucketModel = bucketModel
         self.imageModel = imageModel
         self.meetupModel = meetupModel
+        self.locationModel = locationModel
+        self.user = user
         $bucketItem.compactMap { $0.id }.assign(to: \.id, on: self)
             .store(in: &cancellables)
-        fetchImage()
+        locationModel.fetchLocationWithId(id: bucketItem.locationId, handler: fetchLocation)
         fetchUpcomingMeetup()
+    }
+
+    private func fetchLocation(location: Location) {
+        if let id = location.imageId {
+            imageModel.fetch(ids: [id]) { images in
+                if !images.isEmpty {
+                    self.image = images[0]
+                }
+            }
+        }
+        self.location = location
+        self.locationId = location.id
     }
 
     private func fetchUpcomingMeetup() {
         meetupModel.fetchAllMeetupsWithHandler { [self] meetups in
-            let meetupsRelatedToBucketItem = meetups.filter({ $0.locationId == bucketItem.locationId })
-                .sorted(by: { $0.meetupDate < $1.meetupDate })
+            let meetupsRelatedToBucketItem = meetups.filter({
+                let isIdEqual = $0.locationId == bucketItem.locationId
+                let isPublic = $0.meetupPrivacy == .publicMeetup
+                let isUserJoined = $0.hostUserId == user.id || $0.userIds.contains(user.id ?? "")
+                return isIdEqual && (isPublic || isUserJoined)
+            })
+            .sorted(by: { $0.meetupDate < $1.meetupDate })
             if !meetupsRelatedToBucketItem.isEmpty {
                 upcomingMeetup = meetupsRelatedToBucketItem[0]
             }
         }
     }
 
-    private func fetchImage() {
-        let id = bucketItem.locationImageId
-        guard let imageId = id else {
-            return
-        }
-        imageModel.fetch(ids: [imageId]) { images in
-            if !images.isEmpty {
-                self.image = images[0]
-            }
-        }
+    var locationName: String? {
+        location?.name
     }
 
-    @Published var image: UIImage?
-    private var cancellables: Set<AnyCancellable> = []
-    var locationName: String {
-        bucketItem.locationName
-    }
     var userDescription: String {
         bucketItem.userDescription
     }

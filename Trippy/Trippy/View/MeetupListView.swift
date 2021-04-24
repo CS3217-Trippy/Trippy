@@ -11,6 +11,24 @@ import SwiftUI
 struct MeetupListView: View {
     @ObservedObject var viewModel: MeetupListViewModel
 
+    private func buildItemView(meetupViewModel: MeetupItemViewModel, showFullDetails: Bool, isHorizontal: Bool) -> some View {
+        if let detailViewModel = viewModel.getLocationDetailViewModel(locationId: meetupViewModel.locationId ?? "") {
+            return AnyView(NavigationLink(
+                destination: LocationDetailView(viewModel: detailViewModel)
+
+            ) {
+                MeetupItemView(viewModel: meetupViewModel,
+                               showFullDetails: showFullDetails,
+                               isHorizontal: isHorizontal)
+            })
+        } else {
+            return AnyView(MeetupItemView(
+                            viewModel: meetupViewModel,
+                            showFullDetails: showFullDetails,
+                            isHorizontal: isHorizontal))
+        }
+    }
+
     func buildListView(viewModels: [MeetupItemViewModel], isUpcoming: Bool) -> some View {
         List {
             if isUpcoming {
@@ -19,21 +37,21 @@ struct MeetupListView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(viewModel.publicMeetupViewModels, id: \.id) { meetupViewModel in
-                                MeetupItemView(viewModel: meetupViewModel,
-                                               showFullDetails: false,
-                                               isHorizontal: true)
+                                buildItemView(meetupViewModel: meetupViewModel,
+                                              showFullDetails: false,
+                                              isHorizontal: false)
                             }
                         }
-                    }.frame(height: 200)
+                    }.frame(height: 300)
                 }
             }
             if viewModels.isEmpty {
                 Text("No Meetups joined!")
             }
             ForEach(viewModels, id: \.id) { meetupViewModel in
-                MeetupItemView(viewModel: meetupViewModel,
-                               showFullDetails: true,
-                               isHorizontal: true).frame(height: 200)
+                self.buildItemView(meetupViewModel: meetupViewModel,
+                                   showFullDetails: true,
+                                   isHorizontal: true).frame(height: 200)
             }
         }
     }
@@ -51,14 +69,14 @@ struct MeetupListView: View {
             createMeetup
             Spacer()
         }
-            TabView {
-                self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
-                    Label("Upcoming", systemImage: "taskCompleted")
-                }
-                self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
-                    Label("Past", systemImage: "taskCompleted")
-                }
+        TabView {
+            self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
+                Label("Upcoming", systemImage: "taskCompleted")
+            }
+            self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
+                Label("Past", systemImage: "taskCompleted")
+            }
 
-            }.navigationTitle("Meetups")
+        }.navigationTitle("Meetups")
     }
 }

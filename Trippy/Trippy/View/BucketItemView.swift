@@ -8,7 +8,7 @@ struct BucketItemView: View {
     var textView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(viewModel.locationName)
+                Text(viewModel.locationName ?? "")
                     .bold()
                     .font(.headline)
                 Text(viewModel.userDescription).fontWeight(.light)
@@ -16,7 +16,7 @@ struct BucketItemView: View {
                     .lineLimit(9)
                 if let upcomingMeetup = viewModel.upcomingMeetup {
                     Text("Upcoming Meetup")
-                    Text(upcomingMeetup.dateAdded, style: .date)
+                    Text(upcomingMeetup.meetupDate, style: .date)
                 } else {
                     Text("No upcoming meetups")
                 }

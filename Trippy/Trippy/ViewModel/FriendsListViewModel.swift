@@ -14,24 +14,27 @@ final class FriendsListViewModel: ObservableObject {
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private var user: User
+    private var locationModel: LocationModel<FBStorage<FBLocation>>
     let imageModel: ImageModel
 
     init(
         friendsListModel: FriendsListModel<FBStorage<FBFriend>>,
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+        locationModel: LocationModel<FBStorage<FBLocation>>,
         user: User
     ) {
         self.friendsListModel = friendsListModel
         self.imageModel = imageModel
         self.meetupModel = meetupModel
+        self.locationModel = locationModel
         self.user = user
         friendsListModel.$friendsList.map {
             $0.filter {
                 $0.userId == self.user.id
             }.map {
                 FriendsItemViewModel(
-                    friend: $0, model: friendsListModel, imageModel: imageModel, meetupModel: meetupModel, user: user)
+                    friend: $0, model: friendsListModel, imageModel: imageModel, meetupModel: meetupModel, locationModel: locationModel, user: user)
             }
         }.assign(to: \.friendsList, on: self).store(in: &cancellables)
     }

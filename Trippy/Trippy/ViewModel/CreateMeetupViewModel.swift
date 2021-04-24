@@ -27,22 +27,23 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(storage: FBStorage<FBMeetup>(), userId: user?.id)
         self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: FBStorage<FBFriend>(), userId: user?.id)
 
-        friendsListModel.getFriendsList(handler: nil)
-        userModel.fetchUsers(handler: getUsers)
+        friendsListModel.getFriendsList { friends in
+            self.userModel.fetchUsers {users in
+                self.getUsers(users: users, friends: friends)
+            }
+        }
     }
 
     var privacyOptions: [String] {
         MeetupPrivacy.allCases.map { $0.rawValue }
     }
 
-    private func getUsers(users: [User]) {
-        friendsListModel.$friendsList.map {
-            $0.compactMap { friend in users.first(where: { $0.id == friend.friendId }) }
-                .map {
-                self.getImage(friend: $0)
-                return $0
-                }
-        }.assign(to: \.friendsList, on: self).store(in: &cancellables)
+    private func getUsers(users: [User], friends: [Friend]) {
+        self.friendsList = users.filter { user in
+            friends.contains {
+                $0.friendId == user.id
+            }
+        }
     }
 
     private func getImage(friend: User) {
@@ -79,16 +80,10 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
             throw MeetupError.invalidPrivacy
         }
 
-        let imageId = location.imageId
         let userIds = getUserIdsFromUsers(friends: friends)
-        let userPhotos = getUserPhotosFromUsers(friends: friends)
-        let coordinates = location.coordinates
-        let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds,
-                            userProfilePhotoIds: userPhotos, hostUserId: userId,
-                            locationImageId: imageId, locationName: location.name,
-                            locationCategory: location.category, locationId: locationId,
-                            meetupDate: meetupDate, dateAdded: Date(),
-                            userDescription: userDescription, coordinates: coordinates)
+        let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds, hostUserId: userId,
+                            locationId: locationId, meetupDate: meetupDate, dateAdded: Date(),
+                            userDescription: userDescription)
         return meetup
     }
 

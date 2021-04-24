@@ -15,22 +15,26 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     private var userModel = UserModel(storage: FBStorage<FBUser>())
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private var imageModel: ImageModel
+    private var locationModel: LocationModel<FBStorage<FBLocation>>
     private var user: User
     @Published var username: String = ""
     @Published var hasAccepted: Bool
     @Published var hasFriendAccepted: Bool = false
     @Published var upcomingMeetups = [Meetup]()
+    @Published var upcomingMeetupsLocation = [Location]()
 
     init(
         friend: Friend,
         model: FriendsListModel<FBStorage<FBFriend>>,
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+        locationModel: LocationModel<FBStorage<FBLocation>>,
         user: User
     ) {
         self.meetupModel = meetupModel
         self.friendsModel = model
         self.imageModel = imageModel
+        self.locationModel = locationModel
         self.friend = friend
         self.user = user
         self.hasAccepted = friend.hasAccepted
@@ -60,9 +64,19 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
                 let hostedByUserAndFriendJoined = $0.hostUserId == user.id && $0.userIds.contains(friend.friendId)
                 let hostedByFriendAndUserJoined = $0.hostUserId == friend.friendId && $0.userIds.contains(user.id ?? "")
                 let joinedByFriendAndUser = $0.userIds.contains(friend.friendId) && $0.userIds.contains(user.id ?? "")
-                return hostedByUserAndFriendJoined || hostedByFriendAndUserJoined || joinedByFriendAndUser
-            })
+                let isNotExpired = $0.meetupDate >= Date()
+                return (hostedByUserAndFriendJoined || hostedByFriendAndUserJoined || joinedByFriendAndUser) && isNotExpired
+            }).sorted(by: { $0.meetupDate < $1.meetupDate })
+            fetchLocationRelatedToMeetup()
         }
+    }
+
+    private func fetchLocationRelatedToMeetup() {
+        _ = upcomingMeetups.map({
+            locationModel.fetchLocationWithId(id: $0.locationId) { [self] location in
+                upcomingMeetupsLocation.append(location)
+            }
+        })
     }
 
     func acceptFriend() throws {

@@ -11,42 +11,23 @@ class Meetup: Model {
     var meetupPrivacy: MeetupPrivacy
     var id: String?
     var userIds: [String]
-    var userProfilePhotoIds: [String]
     var hostUserId: String
-    var locationName: String
-    var locationCategory: LocationCategory
-    var locationImageId: String?
     var locationId: String
     var meetupDate: Date
     var dateAdded: Date
     var userDescription: String
-    let coordinates: CLLocationCoordinate2D
-    var placemark: CLPlacemark?
 
     init(id: String?, meetupPrivacy: MeetupPrivacy, userIds: [String],
-         userProfilePhotoIds: [String], hostUserId: String, locationImageId: String?,
-         locationName: String, locationCategory: LocationCategory,
-         locationId: String, meetupDate: Date, dateAdded: Date,
-         userDescription: String, coordinates: CLLocationCoordinate2D) {
+         hostUserId: String, locationId: String,
+         meetupDate: Date, dateAdded: Date,
+         userDescription: String) {
         self.meetupPrivacy = meetupPrivacy
         self.id = id
-        self.userProfilePhotoIds = userProfilePhotoIds
-        self.locationName = locationName
-        self.locationCategory = locationCategory
-        self.locationImageId = locationImageId
         self.hostUserId = hostUserId
         self.userIds = userIds
         self.locationId = locationId
         self.meetupDate = meetupDate
         self.dateAdded = dateAdded
         self.userDescription = userDescription
-        self.coordinates = coordinates
-        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
-        CLGeocoder().reverseGeocodeLocation(location) { placemark, error in
-            guard let placemark = placemark?.first, error == nil else {
-                return
-            }
-            self.placemark = placemark
-        }
     }
 }

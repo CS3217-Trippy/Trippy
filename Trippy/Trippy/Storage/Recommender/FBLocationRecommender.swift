@@ -39,8 +39,9 @@ class FBLocationRecommender: LocationRecommender {
         }
         let field = "userId"
         bucketItemStore.fetchWithField(field: field, value: userId) { bucketItems in
-            let categories = self.getCategoriesFromBucketList(bucketItems: bucketItems)
-            self.getLocationsWithSameCategory(categories: categories)
+            self.getCategoriesFromBucketList(bucketItems: bucketItems) { categories in
+                self.getLocationsWithSameCategory(locations: categories)
+            }
         }
     }
 
@@ -105,17 +106,19 @@ class FBLocationRecommender: LocationRecommender {
     }
 
     /// Given an array of bucket items, gets the unique categories of these bucket items
-    private func getCategoriesFromBucketList(bucketItems: [BucketItem]) -> Set<String> {
-        Set(bucketItems.map { $0.locationCategory.rawValue })
+    private func getCategoriesFromBucketList(bucketItems: [BucketItem], handler: @escaping ([Location]) -> Void) {
+        let field = "locationId"
+        let locationIdArray = bucketItems.map { $0.locationId }
+        locationItemStore.fetchWithFieldContainsAny(field: field, value: locationIdArray, handler: handler)
     }
 
     /// Given a Set of categories, gets the locations with similar categories
-    private func getLocationsWithSameCategory(categories: Set<String>) {
-        let arr = Array(categories)
+    private func getLocationsWithSameCategory(locations: [Location]) {
+        let field = "category"
+        let arr = locations.map { $0.category.rawValue }
         guard !arr.isEmpty else {
             return
         }
-        let field = "category"
         locationItemStore.fetchWithFieldContainsAny(field: field, value: arr) { locations in
             self.addLocationArray(locations: locations)
         }

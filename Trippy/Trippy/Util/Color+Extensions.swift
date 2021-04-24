@@ -4,6 +4,7 @@ extension Color {
     static let darkGrey = "#121212"
     static let lightGrey = "#ebebeb"
     static let buttonBlue = "#287bf7"
+    static let buttonRed = "#c73c00"
     static var darkBackground = Color(hex: darkGrey)
     static var lightBackground = Color(hex: lightGrey)
     init(hex: String) {

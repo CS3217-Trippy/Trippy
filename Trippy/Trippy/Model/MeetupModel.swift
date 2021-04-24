@@ -73,7 +73,7 @@ class MeetupModel<Storage: StorageProtocol>: ObservableObject where Storage.Stor
 
     private func fetchMeetupsJoinedByUser(userId: String) {
         let usersField = "userIds"
-        storage.fetchWithFieldContainsAny(field: usersField, value: [userId]) { meetups in
+        storage.fetchArrayContainsAny(field: usersField, value: [userId]) { meetups in
             self.meetupItems.removeAll { $0.hostUserId != userId }
             self.meetupItems.append(contentsOf: meetups)
         }
