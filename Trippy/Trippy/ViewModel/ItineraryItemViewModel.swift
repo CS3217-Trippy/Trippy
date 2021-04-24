@@ -10,6 +10,7 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
     @Published var location: Location?
     private var cancellables: Set<AnyCancellable> = []
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
+    private var user: User
     private let locationModel: LocationModel<FBStorage<FBLocation>>
     private let imageModel: ImageModel
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
@@ -19,13 +20,15 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
         itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>,
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
-        locationModel: LocationModel<FBStorage<FBLocation>>
+        locationModel: LocationModel<FBStorage<FBLocation>>,
+        user: User
     ) {
         self.itineraryItem = itineraryItem
         self.itineraryModel = itineraryModel
         self.imageModel = imageModel
         self.meetupModel = meetupModel
         self.locationModel = locationModel
+        self.user = user
         $itineraryItem.compactMap { $0.id }.assign(to: \.id, on: self)
             .store(in: &cancellables)
         locationModel.fetchLocationWithId(id: itineraryItem.locationId, handler: fetchItinerary)
@@ -45,8 +48,13 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
 
     private func fetchUpcomingMeetup() {
         meetupModel.fetchAllMeetupsWithHandler { [self] meetups in
-            let meetupsRelatedToBucketItem = meetups.filter({ $0.locationId == itineraryItem.locationId })
-                .sorted(by: { $0.meetupDate < $1.meetupDate })
+            let meetupsRelatedToBucketItem = meetups.filter({
+                let isIdEqual = $0.locationId == itineraryItem.locationId
+                let isPublic = $0.meetupPrivacy == .publicMeetup
+                let isUserJoined = $0.hostUserId == user.id || $0.userIds.contains(user.id ?? "")
+                return isIdEqual && (isPublic || isUserJoined)
+            })
+            .sorted(by: { $0.meetupDate < $1.meetupDate })
             if !meetupsRelatedToBucketItem.isEmpty {
                 upcomingMeetup = meetupsRelatedToBucketItem[0]
             }

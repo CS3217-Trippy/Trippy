@@ -21,6 +21,7 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     @Published var hasAccepted: Bool
     @Published var hasFriendAccepted: Bool = false
     @Published var upcomingMeetups = [Meetup]()
+    @Published var upcomingMeetupsLocation = [Location]()
 
     init(
         friend: Friend,
@@ -63,9 +64,19 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
                 let hostedByUserAndFriendJoined = $0.hostUserId == user.id && $0.userIds.contains(friend.friendId)
                 let hostedByFriendAndUserJoined = $0.hostUserId == friend.friendId && $0.userIds.contains(user.id ?? "")
                 let joinedByFriendAndUser = $0.userIds.contains(friend.friendId) && $0.userIds.contains(user.id ?? "")
-                return hostedByUserAndFriendJoined || hostedByFriendAndUserJoined || joinedByFriendAndUser
-            })
+                let isNotExpired = $0.meetupDate >= Date()
+                return (hostedByUserAndFriendJoined || hostedByFriendAndUserJoined || joinedByFriendAndUser) && isNotExpired
+            }).sorted(by: { $0.meetupDate < $1.meetupDate })
+            fetchLocationRelatedToMeetup()
         }
+    }
+
+    private func fetchLocationRelatedToMeetup() {
+        _ = upcomingMeetups.map({
+            locationModel.fetchLocationWithId(id: $0.locationId) { [self] location in
+                upcomingMeetupsLocation.append(location)
+            }
+        })
     }
 
     func acceptFriend() throws {

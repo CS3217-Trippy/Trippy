@@ -67,4 +67,27 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
             try meetupModel.updateMeetup(meetup: meetupItem, handler: nil)
         }
     }
+
+    func joinMeetup(userId: String?, levelSystemService: LevelSystemService?) throws {
+        guard let id = userId else {
+            throw MeetupError.invalidUser
+        }
+        let hostId = meetupItem.hostUserId
+        let isMeetupOwner = id == hostId
+        let isInMeetup = meetupItem.userIds.contains(id)
+        if isMeetupOwner || isInMeetup {
+            return
+        }
+        meetupItem.userIds.append(id)
+        try meetupModel.updateMeetup(meetup: meetupItem) { meetup in
+            levelSystemService?.generateExperienceFromJoiningMeetup(meetup: meetup)
+        }
+    }
+
+    func userJoinedMeetup(userId: String?) -> Bool {
+        guard let id = userId else {
+            return false
+        }
+        return id == meetupItem.hostUserId || meetupItem.userIds.contains(id)
+    }
 }

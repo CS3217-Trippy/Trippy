@@ -20,6 +20,8 @@ protocol StorageProtocol: ObservableObject {
 
     func fetchWithFieldContainsAny(field: String, value: [String], handler: (([StoredType]) -> Void)?)
 
+    func fetchArrayContainsAny(field: String, value: [String], handler: (([StoredType]) -> Void)?)
+
     func fetchWithFieldNotIn(field: String, value: [String], handler: (([StoredType]) -> Void)?)
 
     func fetchWithFieldAndDiscard(field: String, value: String, handler: @escaping (([StoredType]) -> Void))

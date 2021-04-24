@@ -16,7 +16,11 @@ struct AccountPageView: View {
 
     var userInfoSection: some View {
         Section {
-            CircleImageView(image: session.userImage)
+            if let image = session.userImage {
+                Image(uiImage: image).locationImageModifier()
+            } else {
+                Image("Placeholder").locationImageModifier()
+            }
             Text("\(user.username)")
                 .bold()
                 .font(.title)

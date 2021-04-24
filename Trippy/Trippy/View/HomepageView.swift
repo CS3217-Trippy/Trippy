@@ -29,7 +29,7 @@ struct HomepageView: View {
     }
 
     var interactions: some View {
-        let hexColor = "001482"
+        let hexColor = Color.buttonBlue
 
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,
                                                       imageModel: homepageViewModel.imageModel,
@@ -43,7 +43,8 @@ struct HomepageView: View {
         let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
                                                imageModel: homepageViewModel.imageModel,
                                                meetupModel: homepageViewModel.meetupModel,
-                                               locationList: locationViewModel)
+                                               locationList: locationViewModel,
+                                               user: user)
         let bucketListView = BucketListView(viewModel: bucketListVM)
 
         let accountPageViewModel = AccountPageViewModel(
@@ -72,7 +73,8 @@ struct HomepageView: View {
         let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
                                                      imageModel: homepageViewModel.imageModel,
                                                      meetupModel: homepageViewModel.meetupModel,
-                                                     locationModel: homepageViewModel.locationModel)
+                                                     locationModel: homepageViewModel.locationModel,
+                                                     user: user)
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 
         return VStack(spacing: 10) {
@@ -95,10 +97,7 @@ struct HomepageView: View {
             NavigationLink(destination: accountPageView) {
                 RaisedNavigationText(text: "ACCOUNT PAGE", colorHex: hexColor).cornerRadius(10)
             }
-            NavigationLink(destination: AddFriendView(viewModel: AddFriendViewModel(session: session))) {
-                RaisedNavigationText(text: "ADD FRIEND", colorHex: hexColor).cornerRadius(10)
-            }
-            RaisedButton(child: "SIGN OUT", colorHex: hexColor) {
+            RaisedButton(child: "SIGN OUT", colorHex: hexColor, width: 400) {
                 _ = self.session.signOut()
             }.cornerRadius(10)
         }.zIndex(100)

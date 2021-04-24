@@ -17,7 +17,8 @@ final class BucketListViewModel: ObservableObject {
         bucketModel: BucketModel<FBStorage<FBBucketItem>>,
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
-        locationList: LocationListViewModel
+        locationList: LocationListViewModel,
+        user: User
     ) {
         self.bucketModel = bucketModel
         self.imageModel = imageModel
@@ -31,7 +32,8 @@ final class BucketListViewModel: ObservableObject {
                     bucketModel: bucketModel,
                     imageModel: imageModel,
                     meetupModel: meetupModel,
-                    locationModel: locationList.locationModel)
+                    locationModel: locationList.locationModel,
+                    user: user)
             }
         }
         .assign(to: \.visitedBucketItemViewModels, on: self)
@@ -44,12 +46,19 @@ final class BucketListViewModel: ObservableObject {
                     bucketModel: bucketModel,
                     imageModel: imageModel,
                     meetupModel: meetupModel,
-                    locationModel: self.locationModel)
+                    locationModel: self.locationModel,
+                    user: user)
             }
         }
         .assign(to: \.bucketItemViewModels, on: self)
         .store(in: &cancellables)
         fetch()
+    }
+
+    func getLocationDetailViewModel(locationId: String) -> LocationDetailViewModel? {
+        locationListViewModel.locationDetailViewModels.first {
+            $0.location.id == locationId
+        }
     }
 
     /// Fetches list of bucket items owned by the user

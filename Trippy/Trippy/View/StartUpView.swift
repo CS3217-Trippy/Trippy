@@ -32,7 +32,7 @@ struct StartUpView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Text(logInViewModel.errorMessage)
                     .foregroundColor(.red)
-                RaisedButton(child: "LOGIN", colorHex: "287bf7") {
+                RaisedButton(child: "LOGIN", colorHex: Color.buttonBlue, width: 400) {
                     self.logInViewModel.login()
                 }.cornerRadius(10)
                 Text("")
