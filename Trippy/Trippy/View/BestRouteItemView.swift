@@ -14,7 +14,7 @@ struct BestRouteItemView: View {
 
     var textView: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text(viewModel.locationName)
+            Text(viewModel.location?.name ?? "")
                 .bold()
                 .font(.headline)
         }
@@ -23,9 +23,9 @@ struct BestRouteItemView: View {
     var body: some View {
         GeometryReader { _ in
             RectangularCard(
-                            image: viewModel.image,
-                            isHorizontal: false
-                            ) {
+                image: viewModel.image,
+                isHorizontal: false
+            ) {
                 HStack(alignment: .center) {
                     textView
                     Spacer()

@@ -15,7 +15,9 @@ struct LocationDetailView: View {
     var addBucketView: some View {
         NavigationLink(
             destination: AddBucketItemView(
-                viewModel: .init(location: viewModel.location, bucketModel: viewModel.bucketModel, user: session.currentLoggedInUser))
+                viewModel: .init(location: viewModel.location,
+                                 bucketModel: viewModel.bucketModel,
+                                 user: session.currentLoggedInUser))
         ) {
             Text("Add to bucketlist")
         }
@@ -97,8 +99,9 @@ struct LocationDetailView: View {
                 }
                 NavigationLink(
                     destination: BucketListView(viewModel: .init(
-                                                    bucketModel: viewModel.bucketModel,
-                                                    imageModel: viewModel.imageModel
+                        bucketModel: viewModel.bucketModel,
+                        imageModel: viewModel.imageModel,
+                        meetupModel: viewModel.meetupModel
                     ))) {
                     Text("Manage bucketlist")
                         .font(.caption)
