@@ -41,7 +41,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
     private func getUsers(users: [User], friends: [Friend]) {
         self.friendsList = users.filter { user in
             friends.contains {
-                $0.friendId == user.id
+                $0.friendId == user.id && $0.userId == self.user?.id
             }
         }
     }
