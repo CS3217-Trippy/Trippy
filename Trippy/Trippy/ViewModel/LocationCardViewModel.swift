@@ -20,11 +20,13 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     let bucketModel: BucketModel<FBStorage<FBBucketItem>>
     let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     let locationModel: LocationModel<FBStorage<FBLocation>>
+    let itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     var userId: String
 
     init(location: Location, imageModel: ImageModel, ratingModel: RatingModel<FBStorage<FBRating>>,
          bucketModel: BucketModel<FBStorage<FBBucketItem>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
-         userId: String, locationModel: LocationModel<FBStorage<FBLocation>>) {
+         userId: String, locationModel: LocationModel<FBStorage<FBLocation>>,
+         itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>) {
         self.location = location
         self.imageModel = imageModel
         self.ratingModel = ratingModel
@@ -32,6 +34,7 @@ class LocationCardViewModel: Identifiable, ObservableObject {
         self.bucketModel = bucketModel
         self.meetupModel = meetupModel
         self.locationModel = locationModel
+        self.itineraryModel = itineraryModel
         $location
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
@@ -43,11 +46,12 @@ class LocationCardViewModel: Identifiable, ObservableObject {
         bucketModel.bucketItems.contains { $0.locationId == location.id }
     }
 
-    var meetupDate: Date? {
+    var meetupDate: String? {
         meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
             .first(where: {
-                    $0.locationId == location.id && $0.meetupDate > Date() && $0.userIds.contains(userId)
-            })?.meetupDate
+                    $0.locationId == location.id && $0.meetupDate > Date()
+                        && ($0.hostUserId == userId || $0.userIds.contains(userId))
+            })?.meetupDate.dateTimeStringFromDate
     }
 
     private func fetchImage() {
