@@ -20,7 +20,7 @@ struct BucketItemView: View {
                 } else {
                     Text("No upcoming meetups")
                 }
-                Image(systemName: "trash").foregroundColor(.red).onTapGesture {
+                ButtonWithConfirmation(buttonName: nil, warning: nil, image: "trash") {
                     viewModel.remove()
                 }
             }

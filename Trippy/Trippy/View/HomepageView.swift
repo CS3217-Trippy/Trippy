@@ -28,7 +28,7 @@ struct HomepageView: View {
         }
     }
 
-    var interactions: some View {
+    var body: some View {
         let hexColor = Color.buttonBlue
 
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,
@@ -77,40 +77,28 @@ struct HomepageView: View {
                                                      user: user)
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 
-        return VStack(spacing: 10) {
-            information
-            NavigationLink(destination: bucketListView) {
-                RaisedNavigationText(text: "BUCKET LIST", colorHex: hexColor).cornerRadius(10)
+        return TabView {
+            locationListView.tabItem {
+                Label("Locations", systemImage: "mostRecent")
             }
-            NavigationLink(destination: meetupListView) {
-                RaisedNavigationText(text: "MEETUPS", colorHex: hexColor).cornerRadius(10)
+            bucketListView.tabItem {
+                Label("Bucket List", systemImage: "mostRecent")
             }
-            NavigationLink(destination: locationListView) {
-                RaisedNavigationText(text: "LOCATIONS", colorHex: hexColor).cornerRadius(10)
+
+            meetupListView.tabItem {
+                Label("Meetups", systemImage: "mostRecent")
             }
-            NavigationLink(destination: itineraryListView) {
-                RaisedNavigationText(text: "ITINERARY", colorHex: hexColor).cornerRadius(10)
+
+            itineraryListView.tabItem {
+                Label("Itinerary", systemImage: "history")
             }
-            NavigationLink(destination: friendListView) {
-                RaisedNavigationText(text: "FRIENDS", colorHex: hexColor).cornerRadius(10)
+            friendListView.tabItem {
+                Label("Friends", systemImage: "history")
             }
-            NavigationLink(destination: accountPageView) {
-                RaisedNavigationText(text: "ACCOUNT PAGE", colorHex: hexColor).cornerRadius(10)
+            accountPageView.tabItem {
+                Label("Account", systemImage: "history")
             }
-            RaisedButton(child: "SIGN OUT", colorHex: hexColor, width: 400) {
-                _ = self.session.signOut()
-            }.cornerRadius(10)
-        }.zIndex(100)
+        }
     }
 
-    var body: some View {
-
-        NavigationView {
-            ZStack {
-                image
-                interactions
-
-            }
-        }.navigationViewStyle(StackNavigationViewStyle())
-    }
 }

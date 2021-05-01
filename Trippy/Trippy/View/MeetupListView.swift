@@ -56,18 +56,22 @@ struct MeetupListView: View {
     }
 
     var body: some View {
-        HStack {
-            createMeetup
-            Spacer()
-        }
-        TabView {
-            self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
-                Label("Upcoming", systemImage: "mostRecent")
-            }
-            self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
-                Label("Past", systemImage: "history")
-            }
+        NavigationView {
+            VStack {
+                HStack {
+                    createMeetup
+                    Spacer()
+                }
+                TabView {
+                    self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
+                        Label("Upcoming", systemImage: "mostRecent")
+                    }
+                    self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
+                        Label("Past", systemImage: "history")
+                    }
 
-        }.navigationTitle("Meetups")
+                }
+            }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

@@ -79,12 +79,17 @@ struct AccountPageView: View {
         }
     }
 
-    var updateDeleteAccountButtons: some View {
+    var accountInteractions: some View {
         Section {
+            Button("SIGN OUT") {
+                _ = self.session.signOut()
+            }
             Button("UPDATE ACCOUNT") {
                 accountPageViewModel.updateUserData()
             }
-            Button("DELETE ACCOUNT") {
+            ButtonWithConfirmation(
+                buttonName: "DELETE ACCOUNT",
+                warning: "Are you sure you want to delete your account?", image: nil) {
                 accountPageViewModel.deleteUser()
             }.foregroundColor(.red)
             Text(accountPageViewModel.errorMessage)
@@ -113,25 +118,27 @@ struct AccountPageView: View {
     }
 
     var body: some View {
-        VStack(spacing: 10) {
-            userInfoSection
-            Spacer().frame(height: 25)
-            LevelProgressionView(viewModel: LevelProgressionViewModel(session: session))
-            Spacer().frame(height: 25)
-            toAchievementsPage
-            Spacer().frame(height: 25)
-            changeUsernameSection
-            changeProfilePictureSection
-                .fullScreenCover(item: $imageSource) { item in
-                    ImagePicker(sourceType: item, selectedImage: $accountPageViewModel.selectedImage)
-                }
-                .alert(isPresented: $showCameraError, content: {
-                    Alert(title: Text("No camera detected"))
-                })
-            Spacer().frame(height: 25)
-            updateDeleteAccountButtons
-        }
-        .padding()
+        NavigationView {
+            VStack(spacing: 10) {
+                userInfoSection
+                Spacer().frame(height: 25)
+                LevelProgressionView(viewModel: LevelProgressionViewModel(session: session))
+                Spacer().frame(height: 25)
+                toAchievementsPage
+                Spacer().frame(height: 25)
+                changeUsernameSection
+                changeProfilePictureSection
+                    .fullScreenCover(item: $imageSource) { item in
+                        ImagePicker(sourceType: item, selectedImage: $accountPageViewModel.selectedImage)
+                    }
+                    .alert(isPresented: $showCameraError, content: {
+                        Alert(title: Text("No camera detected"))
+                    })
+                Spacer().frame(height: 25)
+                accountInteractions
+            }
+            .padding()
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

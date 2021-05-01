@@ -24,22 +24,26 @@ struct ItineraryListView: View {
     }
 
     var body: some View {
-        HStack {
-            Spacer()
-                Button("Find best route") {
-                    viewModel.getBestRoute()
-                    showingBestRoute = true
-                }.sheet(isPresented: $showingBestRoute) {
-                    bestRouteView
+        NavigationView {
+            VStack {
+                HStack {
+                    Spacer()
+                        Button("Find best route") {
+                            viewModel.getBestRoute()
+                            showingBestRoute = true
+                        }.sheet(isPresented: $showingBestRoute) {
+                            bestRouteView
+                        }
+                }.padding()
+                if viewModel.isEmpty {
+                    Text("No items in itinerary list!")
                 }
-        }.padding()
-        if viewModel.isEmpty {
-            Text("No items in itinerary list!")
-        }
-        List {
-            ForEach(viewModel.itineraryItemViewModels, id: \.id) { itineraryViewModel in
-                ItineraryItemView(viewModel: itineraryViewModel).frame(height: 200)
+                List {
+                    ForEach(viewModel.itineraryItemViewModels, id: \.id) { itineraryViewModel in
+                        ItineraryItemView(viewModel: itineraryViewModel).frame(height: 200)
+                    }
+                }
             }
-        } .navigationTitle("Itinerary")
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

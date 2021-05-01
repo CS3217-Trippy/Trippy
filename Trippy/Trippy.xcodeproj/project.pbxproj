@@ -24,6 +24,7 @@
 		0118657B25F9D8BA00BAA267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */; };
 		012CE5C926121E0E00039A25 /* LocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5C826121E0E00039A25 /* LocationRecommender.swift */; };
 		012CE5D126121E7E00039A25 /* FBLocationRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */; };
+		0136805C263D60C600843F25 /* ButtonWithConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136805B263D60C600843F25 /* ButtonWithConfirmation.swift */; };
 		01385D182626A0C60086358D /* MeetupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01385D172626A0C60086358D /* MeetupError.swift */; };
 		01385D202626A32A0086358D /* MeetupPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01385D1F2626A32A0086358D /* MeetupPrivacy.swift */; };
 		01483A452610728D00D840EA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01483A442610728D00D840EA /* Friend.swift */; };
@@ -192,6 +193,7 @@
 		0118657A25F9D8BA00BAA267 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		012CE5C826121E0E00039A25 /* LocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRecommender.swift; sourceTree = "<group>"; };
 		012CE5D026121E7E00039A25 /* FBLocationRecommender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLocationRecommender.swift; sourceTree = "<group>"; };
+		0136805B263D60C600843F25 /* ButtonWithConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithConfirmation.swift; sourceTree = "<group>"; };
 		01385D172626A0C60086358D /* MeetupError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupError.swift; sourceTree = "<group>"; };
 		01385D1F2626A32A0086358D /* MeetupPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupPrivacy.swift; sourceTree = "<group>"; };
 		01483A442610728D00D840EA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */,
 				01CAFEDD2625F35100294587 /* RaisedButton.swift */,
 				7617D1B62626075500D94782 /* RaisedNavigationText.swift */,
+				0136805B263D60C600843F25 /* ButtonWithConfirmation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				0106B33F2622F76A00574097 /* ImageStorage.swift in Sources */,
 				7152017E25FCC5D700F0ABAC /* LocationListViewModel.swift in Sources */,
 				7617D18F2625AD4600D94782 /* AchievementModel.swift in Sources */,
+				0136805C263D60C600843F25 /* ButtonWithConfirmation.swift in Sources */,
 				714A9A1925FFDA050030C2F9 /* DisplayLocationsMapView.swift in Sources */,
 				714B74832600FC6500ADF2FE /* DisplayLocationsMapCoordinator.swift in Sources */,
 				DB8EAC74262AE81500BB170E /* FBItineraryItem.swift in Sources */,

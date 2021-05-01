@@ -38,7 +38,7 @@ struct MeetupItemView: View {
     }
 
         var leave: some View {
-            Image(systemName: "trash").foregroundColor(.red).onTapGesture {
+            ButtonWithConfirmation(buttonName: nil, warning: nil, image: "trash") {
                 do {
                     try viewModel.remove(userId: session.currentLoggedInUser?.id)
                 } catch {
