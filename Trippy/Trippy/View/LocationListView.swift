@@ -15,12 +15,13 @@ struct LocationListView: View {
             VStack {
                 HStack {
                     NavigationLink(
-                        destination: LocationMapView(viewModel: .init(locationModel: viewModel.locationModel,
-                                                                      imageModel: viewModel.imageModel,
-                                                                      ratingModel: viewModel.ratingModel,
-                                                                      bucketModel: viewModel.bucketModel,
-                                                                      meetupModel: viewModel.meetupModel,
-                                                                      userId: viewModel.userId))
+                destination: LocationMapView(viewModel: .init(locationModel: viewModel.locationModel,
+                                                              imageModel: viewModel.imageModel,
+                                                              ratingModel: viewModel.ratingModel,
+                                                              bucketModel: viewModel.bucketModel,
+                                                              meetupModel: viewModel.meetupModel,
+                                                              itineraryModel: viewModel.itineraryModel,
+                                                              userId: viewModel.userId))
                     ) {
                         Text("Map")
                     }

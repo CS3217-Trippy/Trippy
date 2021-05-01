@@ -15,17 +15,20 @@ class LocationMapViewModel: ObservableObject {
     let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     let bucketModel: BucketModel<FBStorage<FBBucketItem>>
     let userId: String?
+    let itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     private var cancellables: Set<AnyCancellable> = []
 
     init(locationModel: LocationModel<FBStorage<FBLocation>>, imageModel: ImageModel,
          ratingModel: RatingModel<FBStorage<FBRating>>, bucketModel: BucketModel<FBStorage<FBBucketItem>>,
-         meetupModel: MeetupModel<FBStorage<FBMeetup>>, userId: String?) {
+         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
+         itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>, userId: String?) {
         self.locationModel = locationModel
         self.imageModel = imageModel
         self.ratingModel = ratingModel
         self.meetupModel = meetupModel
         self.bucketModel = bucketModel
         self.userId = userId
+        self.itineraryModel = itineraryModel
 
         $locationModel
           .compactMap { $0.locations }

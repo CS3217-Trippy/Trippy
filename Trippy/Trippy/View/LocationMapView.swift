@@ -34,6 +34,7 @@ struct LocationMapView: View {
                                                                      bucketModel: viewModel.bucketModel,
                                                                      meetupModel: viewModel.meetupModel,
                                                                      locationModel: viewModel.locationModel,
+                                                                     itineraryModel: viewModel.itineraryModel,
                                                                      userId: viewModel.userId)),
                     isActive: $showDetailView
                 ) { EmptyView() }

@@ -15,6 +15,7 @@ class LocationListViewModel: ObservableObject {
     @Published var recommendedLocationViewModels: [LocationCardViewModel] = []
     var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     var userId: String?
     private var cancellables: Set<AnyCancellable> = []
     let imageModel: ImageModel
@@ -31,18 +32,21 @@ class LocationListViewModel: ObservableObject {
 
     init(locationModel: LocationModel<FBStorage<FBLocation>>, imageModel: ImageModel,
          ratingModel: RatingModel<FBStorage<FBRating>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
-         bucketModel: BucketModel<FBStorage<FBBucketItem>>, userId: String?) {
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>,
+         itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>, userId: String?) {
         self.locationModel = locationModel
         self.imageModel = imageModel
         self.ratingModel = ratingModel
         self.bucketModel = bucketModel
         self.meetupModel = meetupModel
+        self.itineraryModel = itineraryModel
         self.userId = userId
         locationModel.$locations.map { cards in
             cards.map { location in
                 LocationCardViewModel(location: location, imageModel: imageModel,
                                       ratingModel: ratingModel, bucketModel: bucketModel,
-                                      meetupModel: meetupModel, userId: bucketModel.userId ?? "", locationModel: locationModel)
+                                      meetupModel: meetupModel, userId: bucketModel.userId ?? "",
+                                      locationModel: locationModel, itineraryModel: itineraryModel)
             }
         }.assign(to: \.locationCardViewModels, on: self)
         .store(in: &cancellables)
@@ -51,7 +55,8 @@ class LocationListViewModel: ObservableObject {
             cards.map { location in
                 LocationDetailViewModel(location: location, imageModel: imageModel,
                                       ratingModel: ratingModel, bucketModel: bucketModel,
-                                      meetupModel: meetupModel, locationModel: locationModel, userId: bucketModel.userId ?? "")
+                                      meetupModel: meetupModel, locationModel: locationModel,
+                                      itineraryModel: itineraryModel, userId: bucketModel.userId ?? "")
             }
         }.assign(to: \.locationDetailViewModels, on: self)
         .store(in: &cancellables)
@@ -60,7 +65,8 @@ class LocationListViewModel: ObservableObject {
             cards.map { location in
                 LocationCardViewModel(location: location, imageModel: imageModel,
                                       ratingModel: ratingModel, bucketModel: bucketModel,
-                                      meetupModel: meetupModel, userId: bucketModel.userId ?? "", locationModel: locationModel)
+                                      meetupModel: meetupModel, userId: bucketModel.userId ?? "",
+                                      locationModel: locationModel, itineraryModel: itineraryModel)
             }
         }.assign(to: \.recommendedLocationViewModels, on: self)
         .store(in: &cancellables)
