@@ -14,8 +14,8 @@ class LocationDetailViewModel: ObservableObject {
     @Published var location: Location
     let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
-    var bucketModel: BucketModel<FBStorage<FBBucketItem>>
-    var meetupModel: MeetupModel<FBStorage<FBMeetup>>
+    @Published var bucketModel: BucketModel<FBStorage<FBBucketItem>>
+    @Published var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private var userId: String?
     let ratingModel: RatingModel<FBStorage<FBRating>>
     var locationModel: LocationModel<FBStorage<FBLocation>>
@@ -88,12 +88,12 @@ class LocationDetailViewModel: ObservableObject {
     var upcomingMeetups: [Meetup] {
         meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
             .filter {
-                $0.locationId == location.id && $0.meetupDate > Date() && $0.userIds.contains(userId ?? "")
+                $0.locationId == location.id && $0.meetupDate > Date() && ($0.userIds.contains(userId ?? "") || $0.hostUserId == userId)
             }
     }
 
-    var meetupDate: Date? {
-        upcomingMeetups.first?.meetupDate
+    var meetupDate: String? {
+        upcomingMeetups.first?.meetupDate.dateTimeStringFromDate
     }
 
 }

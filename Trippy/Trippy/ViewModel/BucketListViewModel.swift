@@ -8,7 +8,7 @@ final class BucketListViewModel: ObservableObject {
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private var cancellables: Set<AnyCancellable> = []
     private let locationModel: LocationModel<FBStorage<FBLocation>>
-    var locationListViewModel: LocationListViewModel
+    private var locationListViewModel: LocationListViewModel
     var isEmpty: Bool {
         bucketItemViewModels.isEmpty
     }
@@ -27,12 +27,14 @@ final class BucketListViewModel: ObservableObject {
         self.locationModel = locationList.locationModel
         bucketModel.$bucketItems.map { bucketItem in
             bucketItem.filter({ $0.dateVisited != nil }).map { bucketItem in
-                BucketItemViewModel(
+                let detailViewModel = self.getLocationDetailViewModel(locationId: bucketItem.locationId)
+                return BucketItemViewModel(
                     bucketItem: bucketItem,
                     bucketModel: bucketModel,
                     imageModel: imageModel,
                     meetupModel: meetupModel,
                     locationModel: locationList.locationModel,
+                    locationDetailViewModel: detailViewModel,
                     user: user)
             }
         }
@@ -41,12 +43,14 @@ final class BucketListViewModel: ObservableObject {
 
         bucketModel.$bucketItems.map { bucketItem in
             bucketItem.filter({ $0.dateVisited == nil }).map { bucketItem in
-                BucketItemViewModel(
+                let detailViewModel = self.getLocationDetailViewModel(locationId: bucketItem.locationId)
+                return BucketItemViewModel(
                     bucketItem: bucketItem,
                     bucketModel: bucketModel,
                     imageModel: imageModel,
                     meetupModel: meetupModel,
                     locationModel: self.locationModel,
+                    locationDetailViewModel: detailViewModel,
                     user: user)
             }
         }
@@ -56,9 +60,7 @@ final class BucketListViewModel: ObservableObject {
     }
 
     func getLocationDetailViewModel(locationId: String) -> LocationDetailViewModel? {
-        locationListViewModel.locationDetailViewModels.first {
-            $0.location.id == locationId
-        }
+        locationListViewModel.getDetailViewModel(locationId: locationId)
     }
 
     /// Fetches list of bucket items owned by the user

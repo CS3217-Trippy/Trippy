@@ -16,6 +16,10 @@ final class MeetupListViewModel: ObservableObject {
     private let locationModel: LocationModel<FBStorage<FBLocation>>
     var locationListViewModel: LocationListViewModel
 
+    var hasPublicMeetups: Bool {
+        !publicMeetupViewModels.isEmpty
+    }
+
     init(meetupModel: MeetupModel<FBStorage<FBMeetup>>, imageModel: ImageModel, locationList: LocationListViewModel) {
         let currentDate = Date()
 
@@ -25,10 +29,7 @@ final class MeetupListViewModel: ObservableObject {
         self.locationModel = locationList.locationModel
         meetupModel.$publicMeetupItems.map { meetup in
             meetup.filter({ $0.meetupDate > currentDate }).map { meetup in
-                MeetupItemViewModel(meetupItem: meetup,
-                                    meetupModel: meetupModel,
-                                    imageModel: imageModel,
-                                    locationModel: self.locationModel)
+                self.constructDetailViewModel(meetup: meetup)
             }
         }
         .assign(to: \.publicMeetupViewModels, on: self)
@@ -36,7 +37,7 @@ final class MeetupListViewModel: ObservableObject {
 
         meetupModel.$meetupItems.map { meetup in
             meetup.filter({ $0.meetupDate > currentDate }).map { meetup in
-                MeetupItemViewModel(meetupItem: meetup, meetupModel: meetupModel, imageModel: imageModel, locationModel: self.locationModel)
+                self.constructDetailViewModel(meetup: meetup)
             }
         }
         .assign(to: \.currentMeetupItemViewModels, on: self)
@@ -44,7 +45,7 @@ final class MeetupListViewModel: ObservableObject {
 
         meetupModel.$meetupItems.map { meetup in
             meetup.filter({ $0.meetupDate < currentDate }).map { meetup in
-                MeetupItemViewModel(meetupItem: meetup, meetupModel: meetupModel, imageModel: imageModel, locationModel: self.locationModel)
+                self.constructDetailViewModel(meetup: meetup)
             }
         }
         .assign(to: \.pastMeetupItemViewModels, on: self)
@@ -53,12 +54,17 @@ final class MeetupListViewModel: ObservableObject {
         fetch()
     }
 
+    private func constructDetailViewModel(meetup: Meetup) -> MeetupItemViewModel {
+        let detailViewModel = self.getLocationDetailViewModel(locationId: meetup.locationId)
+        return MeetupItemViewModel(meetupItem: meetup,
+                            meetupModel: meetupModel,
+                            imageModel: imageModel,
+                            locationModel: self.locationModel,
+                            locationDetailViewModel: detailViewModel)
+    }
+
     func getLocationDetailViewModel(locationId: String) -> LocationDetailViewModel? {
-        let items = locationListViewModel.locationDetailViewModels.filter { $0.location.id == locationId }
-        if items.isEmpty {
-            return nil
-        }
-        return items[0]
+        locationListViewModel.getDetailViewModel(locationId: locationId)
     }
 
     /// Fetches list of meetups that are public or joined by the user

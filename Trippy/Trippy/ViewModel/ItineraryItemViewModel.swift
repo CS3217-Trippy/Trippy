@@ -8,6 +8,7 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
     @Published var upcomingMeetup: Meetup?
     @Published var image: UIImage?
     @Published var location: Location?
+    @Published var locationDetailViewModel: LocationDetailViewModel?
     private var cancellables: Set<AnyCancellable> = []
     private var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     private var user: User
@@ -21,6 +22,7 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
         locationModel: LocationModel<FBStorage<FBLocation>>,
+        locationDetailViewModel: LocationDetailViewModel?,
         user: User
     ) {
         self.itineraryItem = itineraryItem
@@ -28,6 +30,7 @@ final class ItineraryItemViewModel: ObservableObject, Identifiable {
         self.imageModel = imageModel
         self.meetupModel = meetupModel
         self.locationModel = locationModel
+        self.locationDetailViewModel = locationDetailViewModel
         self.user = user
         $itineraryItem.compactMap { $0.id }.assign(to: \.id, on: self)
             .store(in: &cancellables)

@@ -80,6 +80,10 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
             throw MeetupError.invalidPrivacy
         }
 
+        guard meetupDate > Date() else {
+            throw MeetupError.invalidDate
+        }
+
         let userIds = getUserIdsFromUsers(friends: friends)
         let meetup = Meetup(id: nil, meetupPrivacy: privacy, userIds: userIds, hostUserId: userId,
                             locationId: locationId, meetupDate: meetupDate, dateAdded: Date(),

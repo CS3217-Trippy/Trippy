@@ -11,27 +11,18 @@ import SwiftUI
 struct MeetupListView: View {
     @ObservedObject var viewModel: MeetupListViewModel
 
-    private func buildItemView(meetupViewModel: MeetupItemViewModel, showFullDetails: Bool, isHorizontal: Bool) -> some View {
-        if let detailViewModel = viewModel.getLocationDetailViewModel(locationId: meetupViewModel.locationId ?? "") {
-            return AnyView(NavigationLink(
-                destination: LocationDetailView(viewModel: detailViewModel)
-
-            ) {
-                MeetupItemView(viewModel: meetupViewModel,
-                               showFullDetails: showFullDetails,
-                               isHorizontal: isHorizontal)
-            })
-        } else {
-            return AnyView(MeetupItemView(
-                            viewModel: meetupViewModel,
-                            showFullDetails: showFullDetails,
-                            isHorizontal: isHorizontal))
-        }
+    private func buildItemView(meetupViewModel: MeetupItemViewModel,
+                               showFullDetails: Bool,
+                               isHorizontal: Bool) -> some View {
+        MeetupItemView(
+                        viewModel: meetupViewModel,
+                        showFullDetails: showFullDetails,
+                        isHorizontal: isHorizontal)
     }
 
     func buildListView(viewModels: [MeetupItemViewModel], isUpcoming: Bool) -> some View {
         List {
-            if isUpcoming {
+            if isUpcoming && viewModel.hasPublicMeetups {
                 VStack(alignment: .leading) {
                     Text("Public meetups").font(.title2).fontWeight(.bold).foregroundColor(.green).padding(.horizontal)
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -71,10 +62,10 @@ struct MeetupListView: View {
         }
         TabView {
             self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
-                Label("Upcoming", systemImage: "taskCompleted")
+                Label("Upcoming", systemImage: "mostRecent")
             }
             self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
-                Label("Past", systemImage: "taskCompleted")
+                Label("Past", systemImage: "history")
             }
 
         }.navigationTitle("Meetups")

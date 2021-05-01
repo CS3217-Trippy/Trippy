@@ -15,17 +15,7 @@ struct BucketListView: View {
     }
 
     private func buildItemView(bucketItemViewModel: BucketItemViewModel) -> some View {
-        if let detailViewModel = viewModel.getLocationDetailViewModel(
-            locationId: bucketItemViewModel.locationId ?? "") {
-            return AnyView(NavigationLink(
-                destination: LocationDetailView(viewModel: detailViewModel)
-
-            ) {
-                BucketItemView(viewModel: bucketItemViewModel)
-            })
-        } else {
-            return AnyView(BucketItemView(viewModel: bucketItemViewModel))
-        }
+        BucketItemView(viewModel: bucketItemViewModel)
     }
 
     var body: some View {

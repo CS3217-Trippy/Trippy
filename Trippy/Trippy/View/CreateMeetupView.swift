@@ -16,6 +16,7 @@ struct CreateMeetupView: View {
     @State private var friendsSelected: [User] = []
     @State private var meetupDate = Date()
     @State private var selectedPrivacy: String = ""
+    @State private var errorMessage: String?
     @Environment(\.presentationMode) var presentationMode
     let prompt = "Date of meetup"
 
@@ -78,6 +79,7 @@ struct CreateMeetupView: View {
                                            userDescription: userDescription, meetupPrivacy: selectedPrivacy,
                                            friends: friendsSelected)
                 } catch {
+                    errorMessage = error.localizedDescription
                     showStorageError = true
                 }
                 if !showStorageError {
@@ -85,7 +87,7 @@ struct CreateMeetupView: View {
                 }
             }.alert(isPresented: $showStorageError) {
                 Alert(
-                    title: Text("An error occurred while attempting to save the information.")
+                    title: Text(errorMessage ?? "An error occurred while attempting to save the information.")
                 )
             }
         }.navigationBarTitle("Create meetup")

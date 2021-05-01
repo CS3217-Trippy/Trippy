@@ -14,16 +14,20 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
     @Published var location: Location?
     @Published var locationId: String?
     @Published var image: UIImage?
+    @Published var locationDetailViewModel: LocationDetailViewModel?
     var imageModel: ImageModel
     private let locationModel: LocationModel<FBStorage<FBLocation>>
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     init(meetupItem: Meetup, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
          imageModel: ImageModel,
-         locationModel: LocationModel<FBStorage<FBLocation>>) {
+         locationModel: LocationModel<FBStorage<FBLocation>>,
+         locationDetailViewModel: LocationDetailViewModel?
+         ) {
         self.meetupItem = meetupItem
         self.meetupModel = meetupModel
         self.imageModel = imageModel
         self.locationModel = locationModel
+        self.locationDetailViewModel = locationDetailViewModel
         locationModel.fetchLocationWithId(id: meetupItem.locationId, handler: fetchLocation)
     }
 

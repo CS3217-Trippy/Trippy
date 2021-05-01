@@ -75,11 +75,23 @@ struct MeetupItemView: View {
         }
     }
 
+    var card: some View {
+        RectangularCard(
+        image: viewModel.image,
+        isHorizontal: isHorizontal) {
+            textView.padding()
+        }
+    }
+
     var body: some View {
-            RectangularCard(
-            image: viewModel.image,
-            isHorizontal: isHorizontal) {
-                textView.padding()
-            }
+        if let detailViewModel = viewModel.locationDetailViewModel {
+            AnyView(
+                NavigationLink(destination: LocationDetailView(viewModel: detailViewModel)) {
+                    card
+                }
+            )
+        } else {
+            card
+        }
     }
 }

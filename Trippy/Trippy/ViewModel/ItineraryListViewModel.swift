@@ -16,6 +16,7 @@ final class ItineraryListViewModel: ObservableObject {
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
     private let imageModel: ImageModel
     private var user: User
+    private var locationListViewModel: LocationListViewModel
     private var cancellables: Set<AnyCancellable> = []
     var isEmpty: Bool {
         itineraryItemViewModels.isEmpty
@@ -26,21 +27,18 @@ final class ItineraryListViewModel: ObservableObject {
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
         locationModel: LocationModel<FBStorage<FBLocation>>,
+        locationList: LocationListViewModel,
         user: User
     ) {
         self.itineraryModel = itineraryModel
         self.imageModel = imageModel
         self.meetupModel = meetupModel
         self.locationModel = locationModel
+        self.locationListViewModel = locationList
         self.user = user
         itineraryModel.$itineraryItems.map { itineraryItem in
             itineraryItem.map { itineraryItem in
-                ItineraryItemViewModel(itineraryItem: itineraryItem,
-                                       itineraryModel: itineraryModel,
-                                       imageModel: imageModel,
-                                       meetupModel: meetupModel,
-                                       locationModel: locationModel,
-                                       user: user)
+                self.constructItemViewModel(itineraryItem: itineraryItem)
             }
         }
         .assign(to: \.itineraryItemViewModels, on: self)
@@ -52,19 +50,27 @@ final class ItineraryListViewModel: ObservableObject {
         itineraryModel.fetchItineraryItems()
     }
 
+    func getLocationDetailViewModel(locationId: String) -> LocationDetailViewModel? {
+        locationListViewModel.getDetailViewModel(locationId: locationId)
+    }
+
+    private func constructItemViewModel(itineraryItem: ItineraryItem) -> ItineraryItemViewModel {
+        let detailViewModel = self.getLocationDetailViewModel(locationId: itineraryItem.locationId)
+        return ItineraryItemViewModel(itineraryItem: itineraryItem,
+                               itineraryModel: itineraryModel,
+                               imageModel: imageModel,
+                               meetupModel: meetupModel,
+                               locationModel: locationModel,
+                               locationDetailViewModel: detailViewModel,
+                               user: user)
+    }
+
     /// Get the best route for the current itinerary.
     func getBestRoute() {
         let result = calculateBestRoute()
 
         bestRouteViewModels = result.route.map {
-            ItineraryItemViewModel(
-                itineraryItem: $0,
-                itineraryModel: itineraryModel,
-                imageModel: imageModel,
-                meetupModel: meetupModel,
-                locationModel: locationModel,
-                user: user
-            )
+            self.constructItemViewModel(itineraryItem: $0)
         }
         bestRouteCost = result.cost
     }

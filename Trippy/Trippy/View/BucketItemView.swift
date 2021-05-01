@@ -28,12 +28,24 @@ struct BucketItemView: View {
         }
     }
 
-    var body: some View {
+    var card: some View {
         RectangularCard(
             image: viewModel.image,
             isHorizontal: true
         ) {
             textView.padding()
+        }
+    }
+
+    var body: some View {
+        if let detailViewModel = viewModel.locationDetailViewModel {
+            AnyView(
+                NavigationLink(destination: LocationDetailView(viewModel: detailViewModel)) {
+                    card
+                }
+            )
+        } else {
+            card
         }
     }
 }

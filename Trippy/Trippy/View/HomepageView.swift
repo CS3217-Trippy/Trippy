@@ -73,6 +73,7 @@ struct HomepageView: View {
                                                      imageModel: homepageViewModel.imageModel,
                                                      meetupModel: homepageViewModel.meetupModel,
                                                      locationModel: homepageViewModel.locationModel,
+                                                     locationList: locationViewModel,
                                                      user: user)
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 

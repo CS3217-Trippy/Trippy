@@ -23,6 +23,12 @@ class LocationListViewModel: ObservableObject {
         locationModel.fetchRecommendedLocations()
     }
 
+    func getDetailViewModel(locationId: String) -> LocationDetailViewModel? {
+        locationDetailViewModels.first {
+            $0.location.id == locationId
+        }
+    }
+
     init(locationModel: LocationModel<FBStorage<FBLocation>>, imageModel: ImageModel,
          ratingModel: RatingModel<FBStorage<FBRating>>, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
          bucketModel: BucketModel<FBStorage<FBBucketItem>>, userId: String?) {

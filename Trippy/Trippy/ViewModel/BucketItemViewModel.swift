@@ -7,6 +7,7 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
     @Published var upcomingMeetup: Meetup?
     @Published var location: Location?
     @Published var locationId: String?
+    @Published var locationDetailViewModel: LocationDetailViewModel?
     private var bucketModel: BucketModel<FBStorage<FBBucketItem>>
     private let imageModel: ImageModel
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
@@ -21,6 +22,7 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
         imageModel: ImageModel,
         meetupModel: MeetupModel<FBStorage<FBMeetup>>,
         locationModel: LocationModel<FBStorage<FBLocation>>,
+        locationDetailViewModel: LocationDetailViewModel?,
         user: User
     ) {
         self.bucketItem = bucketItem
@@ -28,6 +30,7 @@ final class BucketItemViewModel: ObservableObject, Identifiable {
         self.imageModel = imageModel
         self.meetupModel = meetupModel
         self.locationModel = locationModel
+        self.locationDetailViewModel = locationDetailViewModel
         self.user = user
         $bucketItem.compactMap { $0.id }.assign(to: \.id, on: self)
             .store(in: &cancellables)

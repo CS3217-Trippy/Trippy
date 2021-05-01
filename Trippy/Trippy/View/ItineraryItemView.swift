@@ -22,13 +22,25 @@ struct ItineraryItemView: View {
         }
     }
 
-    var body: some View {
+    var card: some View {
         RectangularCard(
             image: viewModel.image, isHorizontal: true) {
             HStack(alignment: .center) {
                 textView
                 Spacer()
             }
+        }
+    }
+
+    var body: some View {
+        if let detailViewModel = viewModel.locationDetailViewModel {
+            AnyView(
+                NavigationLink(destination: LocationDetailView(viewModel: detailViewModel)) {
+                    card
+                }
+            )
+        } else {
+            card
         }
     }
 }
