@@ -12,7 +12,10 @@ struct AccountPageView: View {
     @ObservedObject var accountPageViewModel: AccountPageViewModel
     @State private var imageSource: UIImagePickerController.SourceType?
     @State private var showCameraError = false
-    var user: User
+
+    init(acccountPageViewModel: AccountPageViewModel) {
+        self.accountPageViewModel = acccountPageViewModel
+    }
 
     var userInfoSection: some View {
         Section {
@@ -21,7 +24,7 @@ struct AccountPageView: View {
             } else {
                 Image("Placeholder").locationImageModifier()
             }
-            Text("\(user.username)")
+            Text("\(accountPageViewModel.username)")
                 .bold()
                 .font(.title)
             Text(accountPageViewModel.email)
@@ -97,7 +100,7 @@ struct AccountPageView: View {
         }
     }
 
-    var toAchievementsPage: some View {
+    func toAchievementsPage(user: User) -> some View {
         let achievementListViewModel = AchievementListViewModel(
             achievementModel: accountPageViewModel.achievementModel,
             imageModel: accountPageViewModel.imageModel,
@@ -118,14 +121,19 @@ struct AccountPageView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack(spacing: 10) {
-                userInfoSection
+        VStack(spacing: 10) {
+            userInfoSection
+            Spacer().frame(height: 25)
+
+            LevelProgressionView(viewModel: LevelProgressionViewModel(session: session))
+            Spacer().frame(height: 25)
+
+            if let user = accountPageViewModel.user {
+                toAchievementsPage(user: user)
                 Spacer().frame(height: 25)
-                LevelProgressionView(viewModel: LevelProgressionViewModel(session: session))
-                Spacer().frame(height: 25)
-                toAchievementsPage
-                Spacer().frame(height: 25)
+            }
+
+            if accountPageViewModel.isOwner {
                 changeUsernameSection
                 changeProfilePictureSection
                     .fullScreenCover(item: $imageSource) { item in
@@ -137,48 +145,7 @@ struct AccountPageView: View {
                 Spacer().frame(height: 25)
                 accountInteractions
             }
+        }.navigationTitle("Account")
             .padding()
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
     }
-}
-
-struct AccountPageView_Previews: PreviewProvider {
-    static func setSession() -> FBSessionStore {
-        let sessionStore = FBSessionStore()
-        var userArray = [User]()
-        userArray.append(
-            User(
-                id: "1",
-                email: "1",
-                username: "CAT",
-                levelSystemId: "1",
-                achievements: [],
-                imageId: "1"
-            )
-        )
-        sessionStore.session = userArray
-        return sessionStore
-    }
-
-    static func setUser() -> User {
-        User(
-            id: "1",
-            email: "1",
-            username: "CAT",
-            levelSystemId: "1",
-            achievements: [],
-            imageId: "1"
-        )
-    }
-
-    static var previews: some View {
-        AccountPageView(
-            accountPageViewModel: AccountPageViewModel(
-                session: setSession(),
-                achievementModel: AchievementModel(storage: FBStorage<FBAchievement>()),
-                imageModel: ImageModel(storage: FBImageStorage())
-            ),
-            user: setUser())
-            .environmentObject(setSession())
-    }
-}

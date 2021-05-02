@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Creates an image button or text button that prompts user for confirmation
+/// Use this for destructive actions that require user confirmation
 struct ButtonWithConfirmation: View {
     let buttonName: String?
     let warning: String?

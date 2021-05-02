@@ -15,24 +15,31 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var selectedImage: UIImage?
     @Published var achievementModel: AchievementModel<FBStorage<FBAchievement>>
     @Published var imageModel: ImageModel
+    @Published var user: User?
+    private var userId: String?
 
     private var session: SessionStore
+
+    var isOwner: Bool {
+        session.currentLoggedInUser?.id == userId
+    }
 
     init(
         session: SessionStore,
         achievementModel: AchievementModel<FBStorage<FBAchievement>>,
+        user: User?,
         imageModel: ImageModel
     ) {
         self.session = session
         self.achievementModel = achievementModel
         self.imageModel = imageModel
-        guard let user = session.currentLoggedInUser else {
-            self.email = ""
-            self.username = ""
+        guard let user = user else {
             return
         }
+        self.user = user
         self.email = user.email
         self.username = user.username
+        self.userId = user.id
     }
 
     func updateUserData() {

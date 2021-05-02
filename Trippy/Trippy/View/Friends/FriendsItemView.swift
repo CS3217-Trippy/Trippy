@@ -33,29 +33,45 @@ struct FriendsItemView: View {
             if isPendingRequest {
                 Text("Pending friend acceptance.")
             }
-            Text("Delete").padding(10)
-                .foregroundColor(.blue)
-                .onTapGesture {
-                    friendsItemViewModel.deleteFriend()
-                }
+            ButtonWithConfirmation(buttonName: nil, warning: nil, image: "trash") {
+                friendsItemViewModel.deleteFriend()
+            }
         }
     }
 
     var innerView: some View {
         VStack(alignment: .leading) {
             friendDetail
-            Text("Upcoming Meetups:").padding(.horizontal, 10)
-            ScrollView {
-                ForEach(friendsItemViewModel.upcomingMeetups) { meetup in
-                    let relatedLocation =
-                        friendsItemViewModel.upcomingMeetupsLocation.first(where: { $0.id == meetup.locationId })
-                    HStack(alignment: .lastTextBaseline) {
-                        Text(meetup.meetupDate, style: .date).frame(width: 200, alignment: .leading)
-                        Text(relatedLocation?.name ?? "").frame(width: 200, alignment: .leading)
+
+            if friendsItemViewModel.upcomingMeetups.isEmpty {
+                Text("No Upcoming Meetups").padding(.horizontal, 10)
+            } else {
+                Text("Upcoming Meetups:").padding(.horizontal, 10)
+                ScrollView {
+                    ForEach(friendsItemViewModel.upcomingMeetups) { meetup in
+                        let relatedLocation =
+                            friendsItemViewModel.upcomingMeetupsLocation.first(where: { $0.id == meetup.locationId })
+                        HStack(alignment: .lastTextBaseline) {
+                            Text(meetup.meetupDate, style: .date).frame(width: 200, alignment: .leading)
+                            Text(relatedLocation?.name ?? "").frame(width: 200, alignment: .leading)
+                        }
+                        .padding(.horizontal, 10)
                     }
-                    .padding(.horizontal, 10)
                 }
             }
+
+        }
+    }
+
+    var linkedView: some View {
+        if let user = friendsItemViewModel.friendUser {
+            let viewModel = AccountPageViewModel(session: session, achievementModel: friendsItemViewModel.achievementModel,
+                                                 user: user, imageModel: friendsItemViewModel.imageModel)
+            return AnyView(NavigationLink(destination: AccountPageView(acccountPageViewModel: viewModel)) {
+                innerView
+            })
+        } else {
+            return AnyView(innerView)
         }
     }
 
@@ -64,7 +80,7 @@ struct FriendsItemView: View {
             image: friendsItemViewModel.friendProfilePhoto,
             isHorizontal: true
         ) {
-            innerView
+            linkedView
         }
     }
 }

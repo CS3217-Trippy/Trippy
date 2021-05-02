@@ -16,9 +16,12 @@ struct ItineraryItemView: View {
             } else {
                 Text("No upcoming meetups")
             }
-            Image(systemName: "trash").foregroundColor(.red).onTapGesture {
-                viewModel.remove()
-            }
+        }
+    }
+
+    var leave: some View {
+        ButtonWithConfirmation(buttonName: nil, warning: nil, image: "trash") {
+            viewModel.remove()
         }
     }
 
@@ -28,6 +31,7 @@ struct ItineraryItemView: View {
             HStack(alignment: .center) {
                 textView
                 Spacer()
+                leave
             }
         }
     }

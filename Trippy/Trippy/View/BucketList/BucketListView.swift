@@ -2,7 +2,7 @@ import SwiftUI
 
 struct BucketListView: View {
     @ObservedObject var viewModel: BucketListViewModel
-
+    @State private var selectedTab = 0
     func buildListView(viewModels: [BucketItemViewModel]) -> some View {
         List {
             if viewModels.isEmpty {
@@ -19,17 +19,15 @@ struct BucketListView: View {
     }
 
     var body: some View {
-        NavigationView {
-            TabView {
-                self.buildListView(viewModels: viewModel.bucketItemViewModels).tabItem {
-                    Label("Not completed", systemImage: "task")
-                }
-
-                self.buildListView(viewModels: viewModel.visitedBucketItemViewModels).tabItem {
-                    Label("Completed", systemImage: "taskCompleted")
-                }
-
+        VStack {
+            TopTabBar(tabs: .constant(["Current", "Completed"]),
+                 selection: $selectedTab,
+                 underlineColor: .blue)
+            if selectedTab == 0 {
+                self.buildListView(viewModels: viewModel.bucketItemViewModels)
+            } else {
+                self.buildListView(viewModels: viewModel.visitedBucketItemViewModels)
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }.navigationTitle("Bucket List")
     }
 }

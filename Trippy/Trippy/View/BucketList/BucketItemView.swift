@@ -20,11 +20,11 @@ struct BucketItemView: View {
                 } else {
                     Text("No upcoming meetups")
                 }
-                ButtonWithConfirmation(buttonName: nil, warning: nil, image: "trash") {
-                    viewModel.remove()
-                }
             }
             Spacer()
+            ButtonWithConfirmation(buttonName: nil, warning: nil, image: "trash") {
+                viewModel.remove()
+            }
         }
     }
 

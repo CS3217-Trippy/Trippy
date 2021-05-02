@@ -150,11 +150,18 @@ struct LocationDetailView: View {
             if let user = session.currentLoggedInUser {
                 NavigationLink(
                     destination: ItineraryListView(viewModel: .init(
-                                                    itineraryModel: viewModel.itineraryModel,
-                                                    imageModel: viewModel.imageModel,
-                                                    meetupModel: viewModel.meetupModel,
-                                                    locationModel: viewModel.locationModel,
-                                                    user: user
+                        itineraryModel: viewModel.itineraryModel,
+                        imageModel: viewModel.imageModel,
+                        meetupModel: viewModel.meetupModel,
+                        locationModel: viewModel.locationModel,
+                        locationList: .init(locationModel: viewModel.locationModel,
+                                            imageModel: viewModel.imageModel,
+                                            ratingModel: viewModel.ratingModel,
+                                            meetupModel: viewModel.meetupModel,
+                                            bucketModel: viewModel.bucketModel,
+                                            itineraryModel: viewModel.itineraryModel,
+                                            userId: session.currentLoggedInUser?.id),
+                        user: user
                     ))) {
                     Text("Manage itineraries")
                         .font(.caption)

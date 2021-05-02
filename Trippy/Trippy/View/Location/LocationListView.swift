@@ -11,7 +11,6 @@ struct LocationListView: View {
     @ObservedObject var viewModel: LocationListViewModel
 
     var body: some View {
-        NavigationView {
             VStack {
                 HStack {
                     NavigationLink(
@@ -52,10 +51,10 @@ struct LocationListView: View {
                                          showFullDetails: true,
                                          isHorizontal: true).frame(height: 200)
                     }
-                }
+                }.navigationTitle("Locations")
                 .padding(.horizontal)
                 .onAppear(perform: viewModel.fetchRecommendedLocations)
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+
     }
 }

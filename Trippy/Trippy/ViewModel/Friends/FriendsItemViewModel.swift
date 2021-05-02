@@ -14,7 +14,8 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     private var friendsModel: FriendsListModel<FBStorage<FBFriend>>
     private var userModel = UserModel(storage: FBStorage<FBUser>())
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
-    private var imageModel: ImageModel
+    var imageModel: ImageModel
+    var achievementModel: AchievementModel<FBStorage<FBAchievement>>
     private var locationModel: LocationModel<FBStorage<FBLocation>>
     private var user: User
     @Published var username: String = ""
@@ -22,6 +23,7 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
     @Published var hasFriendAccepted: Bool = false
     @Published var upcomingMeetups = [Meetup]()
     @Published var upcomingMeetupsLocation = [Location]()
+    @Published var friendUser: User?
 
     init(
         friend: Friend,
@@ -38,6 +40,7 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
         self.friend = friend
         self.user = user
         self.hasAccepted = friend.hasAccepted
+        self.achievementModel = AchievementModel(storage: FBStorage<FBAchievement>())
         userModel.fetchUsers(handler: fetchFriend)
     }
 
@@ -52,6 +55,7 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
                 }
             }
         }
+        friendUser = friendData
         username = friendData.username
         self.hasFriendAccepted = friendsModel.friendsList.first(
             where: { $0.userId == friend.friendId && $0.friendId == friend.userId })?.hasAccepted ?? false

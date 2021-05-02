@@ -10,7 +10,8 @@ import SwiftUI
 
 final class AchievementListViewModel: ObservableObject {
     private var achievementModel: AchievementModel<FBStorage<FBAchievement>>
-    @Published var achievementItemViewModels: [AchievementItemViewModel] = []
+    @Published var achievementItems: [AchievementItemViewModel] = []
+    @Published var completedAchievementItems: [AchievementItemViewModel] = []
     private var user: User
     private let imageModel: ImageModel
     private var cancellables: Set<AnyCancellable> = []
@@ -29,7 +30,19 @@ final class AchievementListViewModel: ObservableObject {
                 )
             }
         }
-        .assign(to: \.achievementItemViewModels, on: self)
+        .assign(to: \.completedAchievementItems, on: self)
+        .store(in: &cancellables)
+
+        achievementModel.$achievements.map { achievements in
+            achievements.filter({ !userAchievements.contains($0.id ?? "") }).map { achievement in
+                AchievementItemViewModel(
+                    achievement: achievement,
+                    achievementModel: achievementModel,
+                    imageModel: imageModel
+                )
+            }
+        }
+        .assign(to: \.achievementItems, on: self)
         .store(in: &cancellables)
     }
 }

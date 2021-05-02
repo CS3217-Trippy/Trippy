@@ -10,6 +10,7 @@ import Combine
 
 final class FriendsListViewModel: ObservableObject {
     @Published var friendsList: [FriendsItemViewModel] = []
+    @Published var friendRequests: [FriendsItemViewModel] = []
     private var cancellables: Set<AnyCancellable> = []
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
     private let meetupModel: MeetupModel<FBStorage<FBMeetup>>
@@ -31,12 +32,21 @@ final class FriendsListViewModel: ObservableObject {
         self.user = user
         friendsListModel.$friendsList.map {
             $0.filter {
-                $0.userId == self.user.id
+                $0.userId == self.user.id && $0.hasAccepted
             }.map {
                 FriendsItemViewModel(
                     friend: $0, model: friendsListModel, imageModel: imageModel, meetupModel: meetupModel, locationModel: locationModel, user: user)
             }
         }.assign(to: \.friendsList, on: self).store(in: &cancellables)
+
+        friendsListModel.$friendsList.map {
+            $0.filter {
+                $0.userId == self.user.id && !$0.hasAccepted
+            }.map {
+                FriendsItemViewModel(
+                    friend: $0, model: friendsListModel, imageModel: imageModel, meetupModel: meetupModel, locationModel: locationModel, user: user)
+            }
+        }.assign(to: \.friendRequests, on: self).store(in: &cancellables)
     }
 
     func fetch() {

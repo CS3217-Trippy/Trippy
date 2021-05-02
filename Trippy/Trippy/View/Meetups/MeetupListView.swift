@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MeetupListView: View {
     @ObservedObject var viewModel: MeetupListViewModel
+    @State private var selectedTab = 0
 
     private func buildItemView(meetupViewModel: MeetupItemViewModel,
                                showFullDetails: Bool,
@@ -56,22 +57,20 @@ struct MeetupListView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    createMeetup
-                    Spacer()
-                }
-                TabView {
-                    self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true).tabItem {
-                        Label("Upcoming", systemImage: "mostRecent")
-                    }
-                    self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false).tabItem {
-                        Label("Past", systemImage: "history")
-                    }
-
-                }
+        VStack {
+            HStack {
+                createMeetup
+                Spacer()
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+            TopTabBar(tabs: .constant(["Upcoming", "Past"]),
+                      selection: $selectedTab,
+                      underlineColor: .blue)
+            Divider()
+            if selectedTab == 0 {
+                self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true)
+            } else {
+                self.buildListView(viewModels: viewModel.pastMeetupItemViewModels, isUpcoming: false)
+            }
+        }.navigationTitle("Meetups")
     }
 }

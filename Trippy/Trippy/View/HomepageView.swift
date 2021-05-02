@@ -29,8 +29,6 @@ struct HomepageView: View {
     }
 
     var body: some View {
-        let hexColor = Color.buttonBlue
-
         let locationViewModel = LocationListViewModel(locationModel: homepageViewModel.locationModel,
                                                       imageModel: homepageViewModel.imageModel,
                                                       ratingModel: homepageViewModel.ratingModel,
@@ -40,20 +38,13 @@ struct HomepageView: View {
                                                       userId: homepageViewModel.userId)
         let locationListView = LocationListView(viewModel: locationViewModel)
 
-        let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
-                                               imageModel: homepageViewModel.imageModel,
-                                               meetupModel: homepageViewModel.meetupModel,
-                                               locationList: locationViewModel,
-                                               user: user)
-        let bucketListView = BucketListView(viewModel: bucketListVM)
-
         let accountPageViewModel = AccountPageViewModel(
             session: session,
-            achievementModel: homepageViewModel.achievementsModel,
+            achievementModel: homepageViewModel.achievementsModel, user: session.currentLoggedInUser,
             imageModel: homepageViewModel.imageModel
         )
         let accountPageView = AccountPageView(
-            accountPageViewModel: accountPageViewModel, user: user)
+            acccountPageViewModel: accountPageViewModel)
 
         let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
                                                 imageModel: homepageViewModel.imageModel,
@@ -68,6 +59,13 @@ struct HomepageView: View {
             locationList: locationViewModel
         )
 
+        let bucketListVM = BucketListViewModel(bucketModel: homepageViewModel.bucketModel,
+                                               imageModel: homepageViewModel.imageModel,
+                                               meetupModel: homepageViewModel.meetupModel,
+                                               locationList: locationViewModel,
+                                               user: user)
+        let bucketListView = BucketListView(viewModel: bucketListVM)
+
         let meetupListView = MeetupListView(viewModel: meetupListVM)
 
         let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
@@ -79,25 +77,45 @@ struct HomepageView: View {
         let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
 
         return TabView {
-            locationListView.tabItem {
-                Label("Locations", systemImage: "mostRecent")
-            }
-            bucketListView.tabItem {
-                Label("Bucket List", systemImage: "mostRecent")
-            }
-
-            meetupListView.tabItem {
-                Label("Meetups", systemImage: "mostRecent")
+            NavigationView {
+                locationListView
+            }.navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Label("Locations", systemImage: "list.dash")
             }
 
-            itineraryListView.tabItem {
-                Label("Itinerary", systemImage: "history")
+            NavigationView {
+                bucketListView
+            }.navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Label("Bucket List", systemImage: "heart")
             }
-            friendListView.tabItem {
-                Label("Friends", systemImage: "history")
+
+            NavigationView {
+                meetupListView
+            }.navigationViewStyle(StackNavigationViewStyle()).tabItem {
+                Label("Meetups", systemImage: "figure.walk")
             }
-            accountPageView.tabItem {
-                Label("Account", systemImage: "history")
+
+            NavigationView {
+                itineraryListView
+            }.navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Label("Itinerary", systemImage: "location")
+            }
+
+            NavigationView {
+                friendListView
+            }.navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Label("Friends", systemImage: "person.3.fill")
+            }
+
+            NavigationView {
+                accountPageView
+            }.navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Label("Account", systemImage: "person")
             }
         }
     }
