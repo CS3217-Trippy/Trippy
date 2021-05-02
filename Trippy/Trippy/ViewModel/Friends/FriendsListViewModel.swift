@@ -35,7 +35,9 @@ final class FriendsListViewModel: ObservableObject {
                 $0.userId == self.user.id && $0.hasAccepted
             }.map {
                 FriendsItemViewModel(
-                    friend: $0, model: friendsListModel, imageModel: imageModel, meetupModel: meetupModel, locationModel: locationModel, user: user)
+                    friend: $0, model: friendsListModel,
+                    imageModel: imageModel, meetupModel: meetupModel,
+                    locationModel: locationModel, user: user)
             }
         }.assign(to: \.friendsList, on: self).store(in: &cancellables)
 
@@ -44,7 +46,9 @@ final class FriendsListViewModel: ObservableObject {
                 $0.userId == self.user.id && !$0.hasAccepted
             }.map {
                 FriendsItemViewModel(
-                    friend: $0, model: friendsListModel, imageModel: imageModel, meetupModel: meetupModel, locationModel: locationModel, user: user)
+                    friend: $0, model: friendsListModel,
+                    imageModel: imageModel, meetupModel: meetupModel,
+                    locationModel: locationModel, user: user)
             }
         }.assign(to: \.friendRequests, on: self).store(in: &cancellables)
     }

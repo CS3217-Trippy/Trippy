@@ -13,6 +13,7 @@ struct TopTabBar: View {
         }
       }.padding(.horizontal)
     }
+    Divider().padding(.horizontal)
   }
 
   private func tab(title: String) -> some View {

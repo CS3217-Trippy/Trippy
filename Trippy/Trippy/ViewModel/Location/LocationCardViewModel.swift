@@ -49,7 +49,8 @@ class LocationCardViewModel: Identifiable, ObservableObject {
     var meetupDate: String? {
         meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
             .first(where: {
-                $0.locationId == location.id && $0.meetupDate > Date() && ($0.userIds.contains(userId) || $0.hostUserId == userId)
+                $0.locationId == location.id
+                    && $0.meetupDate > Date() && ($0.userIds.contains(userId) || $0.hostUserId == userId)
             })?.meetupDate.dateTimeStringFromDate
     }
 

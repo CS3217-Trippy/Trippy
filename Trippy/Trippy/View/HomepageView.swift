@@ -36,22 +36,37 @@ struct HomepageView: View {
                                                       bucketModel: homepageViewModel.bucketModel,
                                                       itineraryModel: homepageViewModel.itineraryModel,
                                                       userId: homepageViewModel.userId)
-        let locationListView = LocationListView(viewModel: locationViewModel)
+
+        let locationListView = NavigationView {
+            LocationListView(viewModel: locationViewModel)
+        }.navigationViewStyle(StackNavigationViewStyle())
+        .tabItem {
+            Label("Locations", systemImage: "list.dash")
+        }
 
         let accountPageViewModel = AccountPageViewModel(
             session: session,
             achievementModel: homepageViewModel.achievementsModel, user: session.currentLoggedInUser,
             imageModel: homepageViewModel.imageModel
         )
-        let accountPageView = AccountPageView(
-            acccountPageViewModel: accountPageViewModel)
+        let accountPageView = NavigationView {
+            AccountPageView(acccountPageViewModel: accountPageViewModel)
+        }.navigationViewStyle(StackNavigationViewStyle())
+        .tabItem {
+            Label("Account", systemImage: "person")
+        }
 
         let friendListVM = FriendsListViewModel(friendsListModel: homepageViewModel.friendsModel,
                                                 imageModel: homepageViewModel.imageModel,
                                                 meetupModel: homepageViewModel.meetupModel,
                                                 locationModel: homepageViewModel.locationModel,
                                                 user: user)
-        let friendListView = FriendsListView(viewModel: friendListVM)
+        let friendListView = NavigationView {
+            FriendsListView(viewModel: friendListVM)
+        }.navigationViewStyle(StackNavigationViewStyle())
+        .tabItem {
+        Label("Friends", systemImage: "person.3.fill")
+        }
 
         let meetupListVM = MeetupListViewModel(
             meetupModel: homepageViewModel.meetupModel,
@@ -64,9 +79,18 @@ struct HomepageView: View {
                                                meetupModel: homepageViewModel.meetupModel,
                                                locationList: locationViewModel,
                                                user: user)
-        let bucketListView = BucketListView(viewModel: bucketListVM)
+        let bucketListView = NavigationView {
+            BucketListView(viewModel: bucketListVM)
+        }.navigationViewStyle(StackNavigationViewStyle())
+        .tabItem {
+            Label("Bucket List", systemImage: "heart")
+        }
 
-        let meetupListView = MeetupListView(viewModel: meetupListVM)
+        let meetupListView = NavigationView {
+            MeetupListView(viewModel: meetupListVM)
+        }.navigationViewStyle(StackNavigationViewStyle()).tabItem {
+            Label("Meetups", systemImage: "figure.walk")
+        }
 
         let itineraryListVM = ItineraryListViewModel(itineraryModel: homepageViewModel.itineraryModel,
                                                      imageModel: homepageViewModel.imageModel,
@@ -74,50 +98,21 @@ struct HomepageView: View {
                                                      locationModel: homepageViewModel.locationModel,
                                                      locationList: locationViewModel,
                                                      user: user)
-        let itineraryListView = ItineraryListView(viewModel: itineraryListVM)
+
+        let itineraryListView = NavigationView {
+            ItineraryListView(viewModel: itineraryListVM)
+        }.navigationViewStyle(StackNavigationViewStyle())
+        .tabItem {
+            Label("Itinerary", systemImage: "location")
+        }
 
         return TabView {
-            NavigationView {
-                locationListView
-            }.navigationViewStyle(StackNavigationViewStyle())
-            .tabItem {
-                Label("Locations", systemImage: "list.dash")
-            }
-
-            NavigationView {
-                bucketListView
-            }.navigationViewStyle(StackNavigationViewStyle())
-            .tabItem {
-                Label("Bucket List", systemImage: "heart")
-            }
-
-            NavigationView {
-                meetupListView
-
-            }.navigationViewStyle(StackNavigationViewStyle()).tabItem {
-                Label("Meetups", systemImage: "figure.walk")
-            }
-
-            NavigationView {
-                itineraryListView
-            }.navigationViewStyle(StackNavigationViewStyle())
-            .tabItem {
-                Label("Itinerary", systemImage: "location")
-            }
-
-            NavigationView {
-                friendListView
-            }.navigationViewStyle(StackNavigationViewStyle())
-            .tabItem {
-                Label("Friends", systemImage: "person.3.fill")
-            }
-
-            NavigationView {
-                accountPageView
-            }.navigationViewStyle(StackNavigationViewStyle())
-            .tabItem {
-                Label("Account", systemImage: "person")
-            }
+            locationListView
+            bucketListView
+            meetupListView
+            itineraryListView
+            friendListView
+            accountPageView
         }
     }
 

@@ -14,7 +14,7 @@ struct FriendsItemView: View {
     var friendDetail: some View {
         let isFriendRequest = !friendsItemViewModel.hasAccepted
         let isPendingRequest = friendsItemViewModel.hasAccepted && !friendsItemViewModel.hasFriendAccepted
-        return HStack {
+        return HStack(alignment: .bottom) {
             Text(friendsItemViewModel.username).padding(10)
             Spacer()
             if isFriendRequest {
@@ -40,31 +40,27 @@ struct FriendsItemView: View {
     }
 
     var innerView: some View {
-        VStack {
+        VStack(alignment: .leading) {
             friendDetail
-            if friendsItemViewModel.upcomingMeetups.isEmpty {
-                Text("No Upcoming Meetups").padding(.horizontal, 10)
-            } else {
-                Text("Upcoming Meetups:").padding(.horizontal, 10)
-                ScrollView {
-                    ForEach(friendsItemViewModel.upcomingMeetups) { meetup in
-                        let relatedLocation =
-                            friendsItemViewModel.upcomingMeetupsLocation.first(where: { $0.id == meetup.locationId })
-                        HStack(alignment: .lastTextBaseline) {
-                            Text(meetup.meetupDate, style: .date).frame(width: 200, alignment: .leading)
-                            Text(relatedLocation?.name ?? "").frame(width: 200, alignment: .leading)
-                        }
-                        .padding(.horizontal, 10)
+            Text("Upcoming Meetups:").padding(.horizontal, 10)
+            ScrollView {
+                ForEach(friendsItemViewModel.upcomingMeetups) { meetup in
+                    let relatedLocation =
+                        friendsItemViewModel.upcomingMeetupsLocation.first(where: { $0.id == meetup.locationId })
+                    HStack(alignment: .lastTextBaseline) {
+                        Text(meetup.meetupDate, style: .date).frame(width: 200, alignment: .leading)
+                        Text(relatedLocation?.name ?? "").frame(width: 200, alignment: .leading)
                     }
+                    .padding(.horizontal, 10)
                 }
             }
-
         }
     }
 
     var linkedView: some View {
         if let user = friendsItemViewModel.friendUser {
-            let viewModel = AccountPageViewModel(session: session, achievementModel: friendsItemViewModel.achievementModel,
+            let viewModel = AccountPageViewModel(session: session,
+                                                 achievementModel: friendsItemViewModel.achievementModel,
                                                  user: user, imageModel: friendsItemViewModel.imageModel)
             return AnyView(NavigationLink(destination: AccountPageView(acccountPageViewModel: viewModel)) {
                 innerView

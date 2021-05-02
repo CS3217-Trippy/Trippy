@@ -55,11 +55,12 @@ final class MeetupListViewModel: ObservableObject {
 
     private func constructDetailViewModel(meetup: Meetup) -> MeetupItemViewModel {
         let detailViewModel = self.getLocationDetailViewModel(locationId: meetup.locationId)
-        return MeetupItemViewModel(meetupItem: meetup,
-                            meetupModel: meetupModel,
-                            imageModel: imageModel,
-                            locationModel: self.locationModel,
-                            locationDetailViewModel: detailViewModel)
+        return MeetupItemViewModel(
+            meetupItem: meetup,
+            meetupModel: meetupModel,
+            imageModel: imageModel,
+            locationModel: self.locationModel,
+            locationDetailViewModel: detailViewModel)
     }
 
     func getLocationDetailViewModel(locationId: String) -> LocationDetailViewModel? {

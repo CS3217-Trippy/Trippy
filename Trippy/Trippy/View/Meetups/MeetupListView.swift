@@ -48,24 +48,11 @@ struct MeetupListView: View {
         }
     }
 
-    var createMeetup: some View {
-        NavigationLink(
-            destination: LocationListView(viewModel: viewModel.locationListViewModel)
-        ) {
-            Text("Create Meetup").padding(.horizontal)
-        }
-    }
-
     var body: some View {
         VStack {
-            HStack {
-                createMeetup
-                Spacer()
-            }
             TopTabBar(tabs: .constant(["Upcoming", "Past"]),
                       selection: $selectedTab,
                       underlineColor: .blue)
-            Divider()
             if selectedTab == 0 {
                 self.buildListView(viewModels: viewModel.currentMeetupItemViewModels, isUpcoming: true)
             } else {

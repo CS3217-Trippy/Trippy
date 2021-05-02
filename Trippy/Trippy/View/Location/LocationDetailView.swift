@@ -77,11 +77,9 @@ struct LocationDetailView: View {
     var bucketlistSection: some View {
         HStack {
             if viewModel.isInBucketlist {
-                Text("You have added this location to your bucketlist.")
-                    .font(.caption)
+                Text("You have added this location to your bucketlist.").font(.caption)
             } else {
-                Text("This location is not in your bucketlist.")
-                    .font(.caption)
+                Text("This location is not in your bucketlist.").font(.caption)
             }
             if let user = session.currentLoggedInUser {
                 NavigationLink(
@@ -98,15 +96,14 @@ struct LocationDetailView: View {
                                             userId: user.id
                         ), user: user
                     ))) {
-                    Text("Manage bucketlist")
-                        .font(.caption)
+                    Text("Manage bucketlist").font(.caption)
                 }
             }
         }
     }
 
-    var meetupSection: some View {
-        HStack {
+    var meetupInfo: some View {
+        Group {
             if let date = viewModel.meetupDate {
                 if viewModel.upcomingMeetups.count > 1 {
                     Text("You have \(viewModel.upcomingMeetups.count) upcoming meetups here including one on \(date).")
@@ -121,25 +118,35 @@ struct LocationDetailView: View {
                 Text("You have no upcoming meetups here.")
                     .font(.caption)
             }
-            NavigationLink(
-                destination: MeetupListView(viewModel: .init(
-                    meetupModel: viewModel.meetupModel, imageModel: viewModel.imageModel,
-                    locationList: .init(locationModel: viewModel.locationModel,
-                                        imageModel: viewModel.imageModel,
-                                        ratingModel: viewModel.ratingModel,
-                                        meetupModel: viewModel.meetupModel,
-                                        bucketModel: viewModel.bucketModel,
-                                        itineraryModel: viewModel.itineraryModel,
-                                        userId: session.currentLoggedInUser?.id)
-                ))) {
-                Text("Manage meetups")
-                    .font(.caption)
-            }
         }
     }
 
-    var itinerarySection: some View {
+    var manageMeetup: some View {
+        NavigationLink(
+            destination: MeetupListView(viewModel: .init(
+                meetupModel: viewModel.meetupModel, imageModel: viewModel.imageModel,
+                locationList: .init(locationModel: viewModel.locationModel,
+                                    imageModel: viewModel.imageModel,
+                                    ratingModel: viewModel.ratingModel,
+                                    meetupModel: viewModel.meetupModel,
+                                    bucketModel: viewModel.bucketModel,
+                                    itineraryModel: viewModel.itineraryModel,
+                                    userId: session.currentLoggedInUser?.id)
+            ))) {
+            Text("Manage meetups")
+                .font(.caption)
+        }
+    }
+
+    var meetupSection: some View {
         HStack {
+            meetupInfo
+            manageMeetup
+        }
+    }
+
+    var itineraryInfo: some View {
+        Group {
             if viewModel.numItinerary > 1 {
                 Text("You have \(viewModel.numItinerary) itineraries with this location.")
                     .font(.caption)
@@ -151,6 +158,12 @@ struct LocationDetailView: View {
                 Text("You have no itineraries with this location.")
                     .font(.caption)
             }
+        }
+    }
+
+    var itinerarySection: some View {
+        HStack {
+            itineraryInfo
             if let user = session.currentLoggedInUser {
                 NavigationLink(
                     destination: ItineraryListView(viewModel: .init(
@@ -174,8 +187,8 @@ struct LocationDetailView: View {
         }
     }
 
-    var pageContent: some View {
-        VStack(alignment: .leading) {
+    var info: some View {
+        Group {
             Text(viewModel.category)
             .font(.headline)
             .foregroundColor(.secondary)
@@ -190,25 +203,35 @@ struct LocationDetailView: View {
             Text(viewModel.address)
             .font(.caption)
             .foregroundColor(.secondary)
+        }
+    }
 
-            Divider()
+    var interactions: some View {
+        Group {
+            bucketlistSection
+            meetupSection
+            itinerarySection
+        }
+    }
 
-            Group {
-                bucketlistSection
-                meetupSection
-                itinerarySection
-            }
-
-            Divider()
-
+    var additionalInfo: some View {
+        Group {
             Text("About")
             .font(.title2)
             .fontWeight(.bold)
-
             Text(viewModel.description)
             .font(.body)
             .foregroundColor(.primary)
+        }
+    }
 
+    var pageContent: some View {
+        VStack(alignment: .leading) {
+            info
+            Divider()
+            interactions
+            Divider()
+            additionalInfo
         }
     }
 

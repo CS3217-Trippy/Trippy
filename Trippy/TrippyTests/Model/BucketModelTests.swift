@@ -107,7 +107,8 @@ import CoreLocation
         let userId = "userId"
         let description = "description"
         let dateAdded = Date()
-        return BucketItem(userId: userId, locationId: locationId, dateVisited: nil, dateAdded: dateAdded, userDescription: description)
+        return BucketItem(userId: userId, locationId: locationId, dateVisited: nil,
+                          dateAdded: dateAdded, userDescription: description)
     }
 
  }

@@ -20,9 +20,10 @@ struct BucketListView: View {
 
     var body: some View {
         VStack {
-            TopTabBar(tabs: .constant(["Current", "Completed"]),
-                 selection: $selectedTab,
-                 underlineColor: .blue)
+            TopTabBar(
+                tabs: .constant(["Current", "Completed"]),
+                selection: $selectedTab,
+                underlineColor: .blue)
             if selectedTab == 0 {
                 self.buildListView(viewModels: viewModel.bucketItemViewModels)
             } else {

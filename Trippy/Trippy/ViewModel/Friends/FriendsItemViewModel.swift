@@ -69,7 +69,8 @@ final class FriendsItemViewModel: ObservableObject, Identifiable {
                 let hostedByFriendAndUserJoined = $0.hostUserId == friend.friendId && $0.userIds.contains(user.id ?? "")
                 let joinedByFriendAndUser = $0.userIds.contains(friend.friendId) && $0.userIds.contains(user.id ?? "")
                 let isNotExpired = $0.meetupDate >= Date()
-                return (hostedByUserAndFriendJoined || hostedByFriendAndUserJoined || joinedByFriendAndUser) && isNotExpired
+                return (hostedByUserAndFriendJoined || hostedByFriendAndUserJoined
+                            || joinedByFriendAndUser) && isNotExpired
             }).sorted(by: { $0.meetupDate < $1.meetupDate })
             fetchLocationRelatedToMeetup()
         }

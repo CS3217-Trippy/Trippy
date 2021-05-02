@@ -56,13 +56,14 @@ final class ItineraryListViewModel: ObservableObject {
 
     private func constructItemViewModel(itineraryItem: ItineraryItem) -> ItineraryItemViewModel {
         let detailViewModel = self.getLocationDetailViewModel(locationId: itineraryItem.locationId)
-        return ItineraryItemViewModel(itineraryItem: itineraryItem,
-                               itineraryModel: itineraryModel,
-                               imageModel: imageModel,
-                               meetupModel: meetupModel,
-                               locationModel: locationModel,
-                               locationDetailViewModel: detailViewModel,
-                               user: user)
+        return ItineraryItemViewModel(
+            itineraryItem: itineraryItem,
+            itineraryModel: itineraryModel,
+            imageModel: imageModel,
+            meetupModel: meetupModel,
+            locationModel: locationModel,
+            locationDetailViewModel: detailViewModel,
+            user: user)
     }
 
     /// Get the best route for the current itinerary.

@@ -13,16 +13,18 @@ struct SubmitRatingView: View {
     @State private var isEditing = false
     var viewModel: SubmitRatingViewModel
 
-    var body: some View {
-        VStack {
-            HStack {
-                Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                Spacer()
+    var topButton: some View {
+        HStack {
+            Button("Cancel") {
+                presentationMode.wrappedValue.dismiss()
             }
-            .padding()
+            Spacer()
+        }
+        .padding()
+    }
 
+    var picker: some View {
+        VStack {
             Text("Please give a score of 1-5")
             Slider(value: $score, in: 1...5, step: 1, onEditingChanged: { editing in
                 isEditing = editing
@@ -32,7 +34,11 @@ struct SubmitRatingView: View {
             .padding()
             Text("\(Int(score))")
             .foregroundColor(isEditing ? .blue : .black)
+        }
+    }
 
+    var submitButton: some View {
+        VStack {
             if viewModel.hasRated {
                 Button("Update") {
                     viewModel.updateRating(score: Int(score))
@@ -46,6 +52,14 @@ struct SubmitRatingView: View {
                 }
                 .padding()
             }
+        }
+    }
+
+    var body: some View {
+        VStack {
+            topButton
+            picker
+            submitButton
             Spacer()
         }
     }

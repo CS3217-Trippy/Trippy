@@ -91,7 +91,8 @@ class LocationDetailViewModel: ObservableObject {
     var upcomingMeetups: [Meetup] {
         meetupModel.meetupItems.sorted(by: { $0.meetupDate < $1.meetupDate })
             .filter {
-                $0.locationId == location.id && $0.meetupDate > Date() && ($0.userIds.contains(userId ?? "") || $0.hostUserId == userId)
+                $0.locationId == location.id && $0.meetupDate > Date()
+                    && ($0.userIds.contains(userId ?? "") || $0.hostUserId == userId)
             }
     }
 

@@ -28,9 +28,10 @@ struct AchievementListView: View {
 
     var body: some View {
         VStack {
-            TopTabBar(tabs: .constant(["Completed", "Uncompleted"]),
-                 selection: $selectedTab,
-                 underlineColor: .blue)
+            TopTabBar(
+                tabs: .constant(["Completed", "Uncompleted"]),
+                selection: $selectedTab,
+                underlineColor: .blue)
             if selectedTab == 0 {
                 completedAchievements
             } else {

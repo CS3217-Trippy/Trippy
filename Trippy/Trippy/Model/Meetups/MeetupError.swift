@@ -18,25 +18,13 @@ extension MeetupError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidLocation:
-            return NSLocalizedString(
-                "Please select a location",
-                comment: ""
-            )
+            return "Please select a location"
         case .invalidUser:
-            return NSLocalizedString(
-                "You are not authorized",
-                comment: ""
-            )
+            return "You are not authorized"
         case .invalidPrivacy:
-            return NSLocalizedString(
-                "Please select a privacy option",
-                comment: ""
-            )
+            return "Please select a privacy option"
         case .invalidDate:
-            return NSLocalizedString(
-                "Please select a date in the future",
-                comment: ""
-            )
+            return "Please select a date in the future"
         }
     }
 }

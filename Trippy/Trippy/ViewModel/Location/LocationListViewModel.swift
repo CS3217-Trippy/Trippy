@@ -53,10 +53,11 @@ class LocationListViewModel: ObservableObject {
 
         locationModel.$locations.map { cards in
             cards.map { location in
-                LocationDetailViewModel(location: location, imageModel: imageModel,
-                                      ratingModel: ratingModel, bucketModel: bucketModel,
-                                      meetupModel: meetupModel, locationModel: locationModel,
-                                      itineraryModel: itineraryModel, userId: bucketModel.userId ?? "")
+                LocationDetailViewModel(
+                    location: location, imageModel: imageModel,
+                    ratingModel: ratingModel, bucketModel: bucketModel,
+                    meetupModel: meetupModel, locationModel: locationModel,
+                    itineraryModel: itineraryModel, userId: bucketModel.userId ?? "")
             }
         }.assign(to: \.locationDetailViewModels, on: self)
         .store(in: &cancellables)
