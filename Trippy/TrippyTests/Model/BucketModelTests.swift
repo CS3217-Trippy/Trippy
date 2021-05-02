@@ -69,14 +69,14 @@ import CoreLocation
         let item = constructBucketItem(locationId: locationId)
         let newItem = constructBucketItem(locationId: locationId)
         newItem.id = "newId"
-        let oldLocation = item.locationName
+        let oldLocation = item.locationId
         let newLocation = "New location"
-        newItem.locationName = newLocation
+        newItem.locationId = newLocation
         try model.addBucketItem(bucketItem: item)
         try model.updateBucketItem(bucketItem: newItem)
         let items = model.bucketItems
         XCTAssertEqual(items.count, 1)
-        XCTAssertEqual(model.bucketItems[0].locationName, oldLocation)
+        XCTAssertEqual(model.bucketItems[0].locationId, oldLocation)
     }
 
     func testRemove() throws {
@@ -104,18 +104,10 @@ import CoreLocation
     }
 
     private func constructBucketItem(locationId: String) -> BucketItem {
-        let locationName = "location"
         let userId = "userId"
         let description = "description"
         let dateAdded = Date()
-        return BucketItem(locationName: locationName, locationCategory: LocationCategory.adventure,
-                          locationImageId: nil,
-                          userId: userId,
-                          locationId: locationId, dateVisited: nil,
-                          dateAdded: dateAdded,
-                          userDescription: description,
-                          coordinates: CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                          )
+        return BucketItem(userId: userId, locationId: locationId, dateVisited: nil, dateAdded: dateAdded, userDescription: description)
     }
 
  }
