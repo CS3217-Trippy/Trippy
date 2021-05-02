@@ -9,6 +9,13 @@
 import Combine
 
 class MockStorage<Storable>: StorageProtocol where Storable: FBStorable {
+
+    func fetchArrayContainsAny(field: String, value: [String], handler: (([Storable.ModelType]) -> Void)?) {
+        if let handler = handler {
+            handler(_storedItems)
+        }
+    }
+
     var storedItems: Published<[Storable.ModelType]>.Publisher {
         $_storedItems
     }

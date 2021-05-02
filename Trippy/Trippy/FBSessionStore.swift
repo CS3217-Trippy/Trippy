@@ -12,6 +12,11 @@ import FirebaseFirestoreSwift
 import Combine
 
 final class FBSessionStore: ObservableObject, SessionStore {
+
+    var userImage: UIImage? {
+        userProfileImage
+    }
+
     private enum AuthStates {
         case SignUp, LogIn, NoUser
     }
@@ -20,7 +25,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         retrievePreviousLogInSession()
     }
 
-    @Published var userImage: UIImage?
+    @Published var userProfileImage: UIImage?
 
     var didChange = PassthroughSubject<FBSessionStore, Never>()
     @Published var currentLoggedInUser: User?
@@ -58,7 +63,7 @@ final class FBSessionStore: ObservableObject, SessionStore {
         let model = ImageModel(storage: FBImageStorage())
         model.fetch(ids: [id]) { images in
             if !images.isEmpty {
-                self.userImage = images[0]
+                self.userProfileImage = images[0]
             }
         }
     }

@@ -7,6 +7,8 @@ extension Color {
     static let buttonRed = "#c73c00"
     static var darkBackground = Color(hex: darkGrey)
     static var lightBackground = Color(hex: lightGrey)
+    static let chatMessageBody = Color(hex: "#f0f0f0")
+
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0

@@ -11,6 +11,8 @@ import UIKit
 protocol SessionStore {
     var levelSystemService: LevelSystemService? { get set }
 
+    var userImage: UIImage? { get }
+
     var session: [User] { get set }
 
     var currentLoggedInUser: User? { get set }

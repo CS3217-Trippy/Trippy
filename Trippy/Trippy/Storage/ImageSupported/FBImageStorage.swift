@@ -34,7 +34,6 @@ class FBImageStorage: ImageStorage {
             let maxSizeInBytes: Int64 = 20_971_520
             imageRef.getData(maxSize: maxSizeInBytes) {data, error in
                 guard let data = data, error == nil else {
-                    print("unable to retrieve image")
                     return
                 }
                 let image = UIImage(data: data)
