@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CircleImageView: View {
     var image: UIImage?
-    let defaultPictureName = "cat"
+    let defaultPictureName = "Placeholder"
 
     var body: some View {
         if let image = image {

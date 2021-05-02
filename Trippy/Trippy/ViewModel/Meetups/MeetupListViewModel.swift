@@ -22,7 +22,6 @@ final class MeetupListViewModel: ObservableObject {
 
     init(meetupModel: MeetupModel<FBStorage<FBMeetup>>, imageModel: ImageModel, locationList: LocationListViewModel) {
         let currentDate = Date()
-
         self.meetupModel = meetupModel
         self.imageModel = imageModel
         self.locationListViewModel = locationList

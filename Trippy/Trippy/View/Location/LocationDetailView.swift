@@ -38,11 +38,15 @@ struct LocationDetailView: View {
     var addViews: some View {
         HStack {
             VStack {
-                addBucketView
+                if !viewModel.isInBucketlist {
+                    addBucketView
+                }
+                if viewModel.numItinerary == 0 {
                 addItineraryView
             }
             Spacer()
             addMeetupView
+            }
         }
     }
 

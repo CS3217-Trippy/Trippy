@@ -45,6 +45,12 @@
 		01CAFEDE2625F35100294587 /* RaisedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CAFEDD2625F35100294587 /* RaisedButton.swift */; };
 		01D59C99262ACA9E00D09794 /* MockStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D59C98262ACA9E00D09794 /* MockStorage.swift */; };
 		01E344E6263E602800503957 /* TopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E344E5263E602800503957 /* TopTabBar.swift */; };
+		01E34518263E9D4A00503957 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E34517263E9D4A00503957 /* ChatMessage.swift */; };
+		01E3451C263E9DD300503957 /* FBChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3451B263E9DD300503957 /* FBChatMessage.swift */; };
+		01E34520263E9E7E00503957 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3451F263E9E7E00503957 /* ChatModel.swift */; };
+		01E34524263E9F8600503957 /* MeetupChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E34523263E9F8600503957 /* MeetupChatViewModel.swift */; };
+		01E34528263EA0AF00503957 /* ChatMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E34527263EA0AF00503957 /* ChatMessageViewModel.swift */; };
+		01E3452C263EA36F00503957 /* MeetupChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3452B263EA36F00503957 /* MeetupChatView.swift */; };
 		01E5AA672625AEF400A8D9C6 /* CreateMeetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA662625AEF400A8D9C6 /* CreateMeetupViewModel.swift */; };
 		01E5AA6F2625BB3900A8D9C6 /* CreateMeetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA6E2625BB3900A8D9C6 /* CreateMeetupView.swift */; };
 		01E5AA742625D87A00A8D9C6 /* MeetupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */; };
@@ -214,6 +220,12 @@
 		01CAFEDD2625F35100294587 /* RaisedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaisedButton.swift; sourceTree = "<group>"; };
 		01D59C98262ACA9E00D09794 /* MockStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorage.swift; sourceTree = "<group>"; };
 		01E344E5263E602800503957 /* TopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBar.swift; sourceTree = "<group>"; };
+		01E34517263E9D4A00503957 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		01E3451B263E9DD300503957 /* FBChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBChatMessage.swift; sourceTree = "<group>"; };
+		01E3451F263E9E7E00503957 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		01E34523263E9F8600503957 /* MeetupChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupChatViewModel.swift; sourceTree = "<group>"; };
+		01E34527263EA0AF00503957 /* ChatMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewModel.swift; sourceTree = "<group>"; };
+		01E3452B263EA36F00503957 /* MeetupChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupChatView.swift; sourceTree = "<group>"; };
 		01E5AA662625AEF400A8D9C6 /* CreateMeetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetupViewModel.swift; sourceTree = "<group>"; };
 		01E5AA6E2625BB3900A8D9C6 /* CreateMeetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetupView.swift; sourceTree = "<group>"; };
 		01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupListView.swift; sourceTree = "<group>"; };
@@ -462,6 +474,7 @@
 			children = (
 				01E5AA6E2625BB3900A8D9C6 /* CreateMeetupView.swift */,
 				01E5AA782625D8A100A8D9C6 /* MeetupItemView.swift */,
+				01E3452B263EA36F00503957 /* MeetupChatView.swift */,
 				01E5AA732625D87A00A8D9C6 /* MeetupListView.swift */,
 			);
 			path = Meetups;
@@ -582,6 +595,8 @@
 				0112EEB126248FF700F420E2 /* MeetupListViewModel.swift */,
 				0112EEB6262492DD00F420E2 /* MeetupItemViewModel.swift */,
 				01E5AA662625AEF400A8D9C6 /* CreateMeetupViewModel.swift */,
+				01E34523263E9F8600503957 /* MeetupChatViewModel.swift */,
+				01E34527263EA0AF00503957 /* ChatMessageViewModel.swift */,
 			);
 			path = Meetups;
 			sourceTree = "<group>";
@@ -602,6 +617,8 @@
 				0112EEAC26248DE400F420E2 /* MeetupModel.swift */,
 				01385D172626A0C60086358D /* MeetupError.swift */,
 				01385D1F2626A32A0086358D /* MeetupPrivacy.swift */,
+				01E34517263E9D4A00503957 /* ChatMessage.swift */,
+				01E3451F263E9E7E00503957 /* ChatModel.swift */,
 			);
 			path = Meetups;
 			sourceTree = "<group>";
@@ -691,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				0112EEA726248BF200F420E2 /* FBMeetup.swift */,
+				01E3451B263E9DD300503957 /* FBChatMessage.swift */,
 			);
 			path = Meetups;
 			sourceTree = "<group>";
@@ -1030,8 +1048,10 @@
 				76E74BDB26137B94004BA414 /* ExperienceAction.swift in Sources */,
 				01E5AA792625D8A100A8D9C6 /* MeetupItemView.swift in Sources */,
 				DB92737B26001BCE00B898AE /* FriendsItemViewModel.swift in Sources */,
+				01E3452C263EA36F00503957 /* MeetupChatView.swift in Sources */,
 				DB927371260019A400B898AE /* FriendsListView.swift in Sources */,
 				76E74BD62613692F004BA414 /* LevelSystemService.swift in Sources */,
+				01E3451C263E9DD300503957 /* FBChatMessage.swift in Sources */,
 				DB2D33532612EE6C000C2351 /* NetworkError.swift in Sources */,
 				7694E9F125FEA73900AF9E63 /* StartUpView.swift in Sources */,
 				DB8EAC7E262B07E700BB170E /* ItineraryModel.swift in Sources */,
@@ -1061,6 +1081,7 @@
 				0112EEA326248A8400F420E2 /* Meetup.swift in Sources */,
 				76E74BE026137BFF004BA414 /* LevelSystemUtil.swift in Sources */,
 				01F4637C25FD1F4900BBB8E9 /* Color+Extensions.swift in Sources */,
+				01E34524263E9F8600503957 /* MeetupChatViewModel.swift in Sources */,
 				01F8437525FDE05100080ED5 /* FBBucketItem.swift in Sources */,
 				714BFF762622F1AC00ABA11B /* RatingModel.swift in Sources */,
 				DB2D335D2612F0F0000C2351 /* WeatherSectionViewModel.swift in Sources */,
@@ -1102,6 +1123,7 @@
 				DB8EAC74262AE81500BB170E /* FBItineraryItem.swift in Sources */,
 				0106B37E2622FFCC00574097 /* FBStorage.swift in Sources */,
 				714B7496260100F400ADF2FE /* AddLocationMapCoordinator.swift in Sources */,
+				01E34520263E9E7E00503957 /* ChatModel.swift in Sources */,
 				01F4637625FD1EF700BBB8E9 /* BucketListViewModel.swift in Sources */,
 				01F4637125FD1EDF00BBB8E9 /* BucketItemViewModel.swift in Sources */,
 				71FB973225F893750083C6F5 /* LocationMapView.swift in Sources */,
@@ -1113,6 +1135,7 @@
 				011172C42605B22A0028F971 /* AddBucketItemViewModel.swift in Sources */,
 				76E74BCE26136350004BA414 /* FBLevelSystemService.swift in Sources */,
 				01E344E6263E602800503957 /* TopTabBar.swift in Sources */,
+				01E34518263E9D4A00503957 /* ChatMessage.swift in Sources */,
 				DB2D334E2612E1DF000C2351 /* WeatherService.swift in Sources */,
 				71FB972D25F87C420083C6F5 /* Location.swift in Sources */,
 				7152018325FCD00D00F0ABAC /* LocationCardViewModel.swift in Sources */,
@@ -1130,6 +1153,7 @@
 				7617D1A12625B49500D94782 /* AchievementListView.swift in Sources */,
 				01E5AA672625AEF400A8D9C6 /* CreateMeetupViewModel.swift in Sources */,
 				7694EA4A2602ED1300AF9E63 /* HomepageView.swift in Sources */,
+				01E34528263EA0AF00503957 /* ChatMessageViewModel.swift in Sources */,
 				714DFD4B26006CF800711204 /* LocationPin.swift in Sources */,
 				714A9A1E25FFDB4F0030C2F9 /* LocationMapViewModel.swift in Sources */,
 				01F4639225FD1FCB00BBB8E9 /* String+Extensions.swift in Sources */,
@@ -1288,7 +1312,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 82TT594S5W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1296,7 +1320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippy;
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippyyy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1310,7 +1334,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Trippy/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 82TT594S5W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Trippy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1318,7 +1342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippy;
+				PRODUCT_BUNDLE_IDENTIFIER = CS3217.Trippyyy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;

@@ -16,7 +16,7 @@ struct MeetupItemView: View {
     let isHorizontal: Bool
 
     var details: some View {
-        VStack(alignment: .leading) {
+        VStack {
             if showFullDetails {
                 Text(viewModel.locationCategory ?? "")
                 .font(.headline)
@@ -61,7 +61,7 @@ struct MeetupItemView: View {
     }
 
     var textView: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 details
                 Spacer()
@@ -70,7 +70,7 @@ struct MeetupItemView: View {
                 }
             }
             if !viewModel.userJoinedMeetup(userId: session.currentLoggedInUser?.id) {
-                join.padding()
+                join.padding(.vertical)
             }
         }
     }
@@ -84,13 +84,9 @@ struct MeetupItemView: View {
     }
 
     var body: some View {
-        if let detailViewModel = viewModel.locationDetailViewModel {
-            AnyView(
-                NavigationLink(destination: LocationDetailView(viewModel: detailViewModel)) {
-                    card
-                }
-            )
-        } else {
+        NavigationLink(destination: MeetupChatView(viewModel: .init(meetupItem: viewModel.meetupItem, chatModel: viewModel.chatModel,
+                                                                    location: viewModel.location,
+                                                                    image: viewModel.image))) {
             card
         }
     }

@@ -16,4 +16,12 @@ class UserModel<Storage: StorageProtocol> where Storage.StoredType == User {
     func fetchUsers(handler: (([User]) -> Void)?) {
         storage.fetch(handler: handler)
     }
+
+    func fetchSpecificUser(userId: String?, handler: ((User) -> Void)?) {
+        guard let id = userId else {
+            return
+        }
+        storage.fetchWithId(id: id, handler: handler)
+    }
+
 }

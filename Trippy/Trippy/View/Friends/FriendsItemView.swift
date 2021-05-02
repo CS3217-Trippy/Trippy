@@ -40,9 +40,8 @@ struct FriendsItemView: View {
     }
 
     var innerView: some View {
-        VStack(alignment: .leading) {
+        VStack {
             friendDetail
-
             if friendsItemViewModel.upcomingMeetups.isEmpty {
                 Text("No Upcoming Meetups").padding(.horizontal, 10)
             } else {
