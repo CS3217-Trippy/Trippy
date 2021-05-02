@@ -31,30 +31,29 @@ struct LocationListView: View {
                     }
                 }
                 .padding()
-                List {
-                    if !viewModel.recommendedLocationViewModels.isEmpty {
-                        VStack(alignment: .leading) {
-                            Text("Recommended").font(.title2).fontWeight(.bold).foregroundColor(.green)
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack {
-                                    ForEach(viewModel.recommendedLocationViewModels, id: \.id) { locationCardViewModel in
-                                        LocationCardView(viewModel: locationCardViewModel,
-                                                         showFullDetails: false,
-                                                         isHorizontal: false)
-                                    }
+                if !viewModel.recommendedLocationViewModels.isEmpty {
+                    VStack(alignment: .leading) {
+                        Text("Recommended").font(.title2).fontWeight(.bold).foregroundColor(.green).padding(.horizontal)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(viewModel.recommendedLocationViewModels, id: \.id) { locationCardViewModel in
+                                    LocationCardView(viewModel: locationCardViewModel,
+                                                     showFullDetails: false,
+                                                     isHorizontal: false)
                                 }
-                            }.frame(height: 200)
-                        }
+                            }
+                        }.frame(height: 200)
                     }
+                }
+                List {
                     ForEach(viewModel.locationCardViewModels, id: \.id) { locationCardViewModel in
                         LocationCardView(viewModel: locationCardViewModel,
                                          showFullDetails: true,
                                          isHorizontal: true).frame(height: 200)
                     }
-                }.navigationTitle("Locations")
-                .padding(.horizontal)
-                .onAppear(perform: viewModel.fetchRecommendedLocations)
+                }
             }
+            .onAppear(perform: viewModel.fetchRecommendedLocations)
 
     }
 }

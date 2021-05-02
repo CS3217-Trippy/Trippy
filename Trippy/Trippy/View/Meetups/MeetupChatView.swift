@@ -62,7 +62,9 @@ struct MessageView: View {
     var currentMessage: ChatMessageViewModel
     var body: some View {
         HStack(alignment: .bottom, spacing: 15) {
-            Spacer()
+            if !currentMessage.isCurrentUser(userId: session.currentLoggedInUser?.id) {
+                Spacer()
+            }
             ContentMessageView(contentMessage: currentMessage.message,
                                isCurrentUser: currentMessage.isCurrentUser(userId: session.currentLoggedInUser?.id))
         }

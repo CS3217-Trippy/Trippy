@@ -19,7 +19,7 @@ struct AccountPageView: View {
 
     var userInfoSection: some View {
         Section {
-            if let image = session.userImage {
+            if let image = accountPageViewModel.image {
                 Image(uiImage: image).locationImageModifier()
             } else {
                 Image("Placeholder").locationImageModifier()

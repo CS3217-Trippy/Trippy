@@ -16,7 +16,9 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
     @Published var achievementModel: AchievementModel<FBStorage<FBAchievement>>
     @Published var imageModel: ImageModel
     @Published var user: User?
+    @Published var image: UIImage?
     private var userId: String?
+    private var userImageId: String?
 
     private var session: SessionStore
 
@@ -36,10 +38,24 @@ final class AccountPageViewModel: ObservableObject, Identifiable {
         guard let user = user else {
             return
         }
+        self.userImageId = user.imageId
         self.user = user
         self.email = user.email
         self.username = user.username
         self.userId = user.id
+        getImage()
+    }
+
+    private func getImage() {
+        if isOwner {
+            image = session.userImage
+        } else if let id = userImageId {
+            imageModel.fetch(ids: [id]) { images in
+                if !images.isEmpty {
+                    self.image = images[0]
+                }
+            }
+        }
     }
 
     func updateUserData() {

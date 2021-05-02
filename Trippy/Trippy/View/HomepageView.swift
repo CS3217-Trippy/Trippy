@@ -93,6 +93,7 @@ struct HomepageView: View {
 
             NavigationView {
                 meetupListView
+
             }.navigationViewStyle(StackNavigationViewStyle()).tabItem {
                 Label("Meetups", systemImage: "figure.walk")
             }

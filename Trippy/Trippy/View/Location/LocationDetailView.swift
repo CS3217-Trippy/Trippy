@@ -44,9 +44,9 @@ struct LocationDetailView: View {
                 if viewModel.numItinerary == 0 {
                 addItineraryView
             }
+            }
             Spacer()
             addMeetupView
-            }
         }
     }
 
