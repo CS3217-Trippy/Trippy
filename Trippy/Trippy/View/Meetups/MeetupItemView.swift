@@ -84,11 +84,16 @@ struct MeetupItemView: View {
     }
 
     var body: some View {
-        NavigationLink(destination: MeetupChatView(viewModel: .init(meetupItem: viewModel.meetupItem,
-                                                                    chatModel: viewModel.chatModel,
-                                                                    location: viewModel.location,
-                                                                    image: viewModel.image))) {
+        if viewModel.userJoinedMeetup(userId: session.currentLoggedInUser?.id) {
+            NavigationLink(destination: MeetupChatView(viewModel: .init(meetupItem: viewModel.meetupItem,
+                                                                        chatModel: viewModel.chatModel,
+                                                                        location: viewModel.location,
+                                                                        image: viewModel.image))) {
+                card
+            }
+        } else {
             card
         }
+
     }
 }
