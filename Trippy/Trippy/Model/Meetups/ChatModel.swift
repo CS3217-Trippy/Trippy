@@ -14,15 +14,17 @@ class ChatModel<Storage: StorageProtocol>: ObservableObject where Storage.Stored
         fetchMessages(handler: nil)
     }
 
+    /// Retrieves array of messages for a particular meetup
     func fetchMessages(handler: ((ChatMessage) -> Void)?) {
         guard let id = meetupId else {
             return
         }
         let field = "meetupId"
         let orderBy = "dateSent"
-        storage.fetchWithFieldOrderBy(field: field, value: id, orderBy: orderBy, handler: handler)
+        storage.fetchWithFieldOrderBy(field: field, value: id, orderBy: orderBy, desc: false, handler: handler)
     }
 
+    /// Sends a message
     func sendMessage(message: ChatMessage) throws {
         try storage.add(item: message, handler: nil)
     }

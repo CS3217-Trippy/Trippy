@@ -43,11 +43,13 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
         locationModel.fetchLocationWithId(id: meetupItem.locationId, handler: fetchLocation)
     }
 
+    /// Maps message from model into a ChatMessageViewModel
     private func mapMessages(message: ChatMessage) {
         let viewModel = ChatMessageViewModel(message: message)
         messages.append(viewModel)
     }
 
+    /// Fetches location for a meetup
     private func fetchLocation(location: Location) {
         if let id = location.imageId {
             imageModel.fetch(ids: [id]) { images in
@@ -59,6 +61,7 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
         self.location = location
     }
 
+    /// Sends a message for a particular meetup
     func sendMessage(message: String, user: User?) throws {
         let trimmed = message.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty {
