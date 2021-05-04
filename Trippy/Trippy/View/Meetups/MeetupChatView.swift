@@ -15,9 +15,29 @@ struct MeetupChatView: View {
     @EnvironmentObject var session: FBSessionStore
     @State var showError = false
 
+    var topBody: some View {
+        HStack {
+            if let image = viewModel.image {
+                Image(uiImage: image).resizable()
+                    .clipShape(Circle())
+                    .frame(width: 50, height: 50)
+            }
+            Text(viewModel.locationName).lineLimit(1)
+        }
+    }
+
+    var barView: some View {
+        if let detailViewModel = viewModel.detailViewModel {
+            return AnyView(NavigationLink(destination: LocationDetailView(viewModel: detailViewModel)) {
+                topBody
+            })
+        } else {
+            return AnyView(topBody)
+        }
+    }
+
     var body: some View {
         VStack {
-            CircleImageView(image: viewModel.image)
            List {
             ForEach(viewModel.messages, id: \.id) { msg in
                 MessageView(currentMessage: msg)
@@ -40,7 +60,7 @@ struct MeetupChatView: View {
             Alert(
                 title: Text("An error occurred while attempting to send the message.")
             )
-        }
+        } .navigationBarItems(leading: barView)
     }
 }
 

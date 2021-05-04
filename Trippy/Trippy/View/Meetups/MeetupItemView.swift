@@ -87,8 +87,9 @@ struct MeetupItemView: View {
         if viewModel.userJoinedMeetup(userId: session.currentLoggedInUser?.id) {
             NavigationLink(destination: MeetupChatView(viewModel: .init(meetupItem: viewModel.meetupItem,
                                                                         chatModel: viewModel.chatModel,
-                                                                        location: viewModel.location,
-                                                                        image: viewModel.image))) {
+                                                                        imageModel: viewModel.imageModel,
+                                                                        locationModel: viewModel.locationModel,
+                                                                        detailViewModel: viewModel.locationDetailViewModel))) {
                 card
             }
         } else {
