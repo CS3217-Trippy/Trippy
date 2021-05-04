@@ -12,18 +12,16 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var locationCoordinator: LocationCoordinator
     @EnvironmentObject var notificationManager: NotificationManager
-    @State var showLocationAlert = false
-    @State var alertTitle = ""
-    @State var alertContent = ""
+    @State var showAlert = false
     @State var completedLocation = ""
-    @State private var showSubmitRatingSheet = false
+    @State var showSubmitRatingSheet = false
+    @State var alert = Alert(title: Text(""))
 
     func constructHomePageVM() -> HomepageViewModel {
         HomepageViewModel(
             session: session, locationCoordinator: locationCoordinator,
-            notificationManager: notificationManager, showLocationAlert: $showLocationAlert,
-            completedLocation: $completedLocation, alertTitle: $alertTitle,
-            alertContent: $alertContent
+            notificationManager: notificationManager, showAlert: $showAlert,
+            completedLocation: $completedLocation, alert: $alert, showSubmitRatingSheet: $showSubmitRatingSheet
         )
     }
 
@@ -34,14 +32,8 @@ struct ContentView: View {
                 HomepageView(
                     homepageViewModel: homepageViewModel,
                     user: user
-                ).alert(isPresented: $showLocationAlert) {
-                    Alert(
-                        title: Text(alertTitle),
-                        message: Text(alertContent),
-                        primaryButton: .default(Text("Rate now"), action: { showSubmitRatingSheet.toggle() }),
-                        secondaryButton: .cancel()
-                    )
-                }.sheet(isPresented: $showSubmitRatingSheet) {
+                ).alert(isPresented: $showAlert) { alert }
+                .sheet(isPresented: $showSubmitRatingSheet) {
                     SubmitRatingView(viewModel: SubmitRatingViewModel(
                                         locationId: completedLocation, userId: user.id ?? "",
                                         ratingModel: homepageViewModel.ratingModel

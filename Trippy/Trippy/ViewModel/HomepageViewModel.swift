@@ -25,8 +25,8 @@ final class HomepageViewModel: ObservableObject {
 
     init(session: SessionStore,
          locationCoordinator: LocationCoordinator,
-         notificationManager: NotificationManager, showLocationAlert: Binding<Bool>,
-         completedLocation: Binding<String>, alertTitle: Binding<String>, alertContent: Binding<String>) {
+         notificationManager: NotificationManager, showAlert: Binding<Bool>,
+         completedLocation: Binding<String>, alert: Binding<Alert>, showSubmitRatingSheet: Binding<Bool>) {
         userId = session.currentLoggedInUser?.id ?? ""
         let imageStorage = FBImageStorage()
         let imageModel = ImageModel(storage: imageStorage)
@@ -58,8 +58,8 @@ final class HomepageViewModel: ObservableObject {
         visitTracker = VisitTracker(
             locationCoordinator: locationCoordinator, notificationManager: notificationManager,
             locationModel: locationModel, bucketModel: bucketModel,
-            showLocationAlert: showLocationAlert, completedLocation: completedLocation,
-            alertTitle: alertTitle, alertContent: alertContent,
+            showAlert: showAlert, completedLocation: completedLocation,
+            alert: alert, showSubmitRatingSheet: showSubmitRatingSheet,
             levelSystemService: session.levelSystemService, ratingModel: ratingModel
         )
 
@@ -77,7 +77,7 @@ final class HomepageViewModel: ObservableObject {
         self.meetupNotificationModel = meetupNotificationModel
         self.meetupNotificationTracker = MeetupNotificationTracker(notificationManager: notificationManager,
                                                                    meetupNotificationModel: meetupNotificationModel,
-                                                                   meetupModel: meetupModel)
+                                                                   meetupModel: meetupModel, showAlert: showAlert, alert: alert)
 
         let itineraryStorage = FBStorage<FBItineraryItem>()
         self.itineraryModel = ItineraryModel<FBStorage<FBItineraryItem>>(

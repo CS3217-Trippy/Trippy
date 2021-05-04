@@ -24,10 +24,10 @@ class VisitTracker {
     private var cancellables: Set<AnyCancellable> = []
     private var levelSystemService: LevelSystemService?
     private var referenceLocation: CLLocation?
-    @Binding private var showLocationAlert: Bool
+    @Binding private var showAlert: Bool
     @Binding private var completedLocation: String
-    @Binding private var alertTitle: String
-    @Binding private var alertContent: String
+    @Binding private var showSubmitRatingSheet: Bool
+    @Binding private var alert: Alert
 
     // Defaults
     private let minimumVisitDuration = 300.0
@@ -43,9 +43,9 @@ class VisitTracker {
 
     init(locationCoordinator: LocationCoordinator, notificationManager: NotificationManager,
          locationModel: LocationModel<FBStorage<FBLocation>>,
-         bucketModel: BucketModel<FBStorage<FBBucketItem>>, showLocationAlert: Binding<Bool>,
+         bucketModel: BucketModel<FBStorage<FBBucketItem>>, showAlert: Binding<Bool>,
          completedLocation: Binding<String>,
-         alertTitle: Binding<String>, alertContent: Binding<String>, levelSystemService: LevelSystemService?,
+         alert: Binding<Alert>, showSubmitRatingSheet: Binding<Bool>, levelSystemService: LevelSystemService?,
          ratingModel: RatingModel<FBStorage<FBRating>>) {
         self.locationModel = locationModel
         self.bucketModel = bucketModel
@@ -53,10 +53,10 @@ class VisitTracker {
         self.locationCoordinator = locationCoordinator
         self.notificationManager = notificationManager
         self.levelSystemService = levelSystemService
-        self._showLocationAlert = showLocationAlert
+        self._showAlert = showAlert
         self._completedLocation = completedLocation
-        self._alertTitle = alertTitle
-        self._alertContent = alertContent
+        self._alert = alert
+        self._showSubmitRatingSheet = showSubmitRatingSheet
         guard let userId = bucketModel.userId else {
             fatalError("There should be a userid after login")
         }
@@ -238,8 +238,12 @@ class VisitTracker {
     }
 
     private func sendAlert(title: String, body: String) {
-        alertTitle = title
-        alertContent = body
-        showLocationAlert = true
+        alert = Alert(
+            title: Text(title),
+            message: Text(body),
+            primaryButton: .default(Text("Rate now"), action: { self.showSubmitRatingSheet.toggle() }),
+            secondaryButton: .cancel()
+        )
+        showAlert = true
     }
  }
