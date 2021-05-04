@@ -43,7 +43,7 @@ struct MeetupChatView: View {
             ForEach(viewModel.messages, id: \.id) { msg in
                 MessageView(currentMessage: msg)
             }
-           }.id(UUID())
+           }
            HStack {
                TextField("Message...", text: $typingMessage)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
