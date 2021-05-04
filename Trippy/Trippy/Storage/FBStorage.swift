@@ -38,7 +38,8 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
-    func fetchWithFieldOrderBy(field: String, value: String, orderBy: String, desc: Bool, handler: ((StoredType) -> Void)?) {
+    func fetchWithFieldOrderBy(field: String, value: String, orderBy: String,
+                               desc: Bool, handler: ((StoredType) -> Void)?) {
         store.collection(Storable.path).whereField(field, isEqualTo: value)
             .order(by: orderBy, descending: desc)
             .addSnapshotListener { snapshot, _ in
