@@ -39,11 +39,14 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
         self.chatModel = chatModel
         self.imageModel = imageModel
 
-        chatModel.$messages.map {messages in
-            messages.map {
-                ChatMessageViewModel(message: $0)
-            }
-        }.assign(to: &$messages)
+        DispatchQueue.main.async {
+            chatModel.$messages.map {messages in
+                messages.map {
+                    ChatMessageViewModel(message: $0)
+                }
+            }.assign(to: &self.$messages)
+        }
+
          chatModel.fetchMessages()
         locationModel.fetchLocationWithId(id: meetupItem.locationId, handler: fetchLocation)
     }
