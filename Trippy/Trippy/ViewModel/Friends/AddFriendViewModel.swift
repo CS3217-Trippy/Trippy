@@ -28,13 +28,16 @@ final class AddFriendViewModel: ObservableObject {
 
     func getUsers(friendsList: [Friend]) {
         userModel.$users.map {
-            $0.filter { user in
+            let filteredUsers = $0.filter { user in
                 user.id != self.user?.id
                     && !friendsList.contains(where: { friend in
-                                                                    friend.userId == self.user?.id
-                                                                        && friend.friendId == user.id
+                        friend.userId == self.user?.id && friend.friendId == user.id
                     })
             }
+            for user in filteredUsers {
+                self.getImage(user: user)
+            }
+            return filteredUsers
         }.assign(to: \.usersList, on: self).store(in: &cancellables)
     }
 

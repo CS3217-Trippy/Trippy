@@ -16,31 +16,35 @@ struct AddFriendView: View {
         }
     }
 
+    func interactions(user: User) -> some View {
+        Group {
+            Text(user.username)
+            Spacer()
+            Button(action: {
+                if let currentUser = session.currentLoggedInUser {
+                    do {
+                        try viewModel.addFriend(currentUser: currentUser, user: user)
+                    } catch {
+                        showStorageError = true
+                    }
+                    if !showStorageError {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+            ) {
+                Text("Add")
+                    .foregroundColor(.blue)
+            }
+        }
+    }
+
     var listView: some View {
         List(viewModel.usersList.filter {
             $0.username.contains(username)
         }) { user in
-            HStack {
-                CircleImageView(image: viewModel.images[user.imageId, default: nil])
-                Spacer()
-                Text(user.username)
-                Spacer()
-                Button(action: {
-                    if let currentUser = session.currentLoggedInUser {
-                        do {
-                            try viewModel.addFriend(currentUser: currentUser, user: user)
-                        } catch {
-                            showStorageError = true
-                        }
-                        if !showStorageError {
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                    }
-                }
-                ) {
-                    Text("Add")
-                        .foregroundColor(.blue)
-                }
+            RectangularCard(image: viewModel.images[user.imageId, default: nil], isHorizontal: true) {
+                interactions(user: user)
             }
         }
     }
