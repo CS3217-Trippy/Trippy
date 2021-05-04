@@ -19,6 +19,7 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
     private let locationModel: LocationModel<FBStorage<FBLocation>>
     @Published var messages: [ChatMessageViewModel] = []
     @Published var detailViewModel: LocationDetailViewModel?
+    var didChange = PassthroughSubject<Void, Never>()
 
     var locationName: String {
         location?.name ?? ""
@@ -39,16 +40,13 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
         self.chatModel = chatModel
         self.imageModel = imageModel
 
-        DispatchQueue.main.async {
-            chatModel.$messages.map {messages in
-                messages.map {
-                    ChatMessageViewModel(message: $0)
-                }
-            }.assign(to: &self.$messages)
-        }
-
-         chatModel.fetchMessages()
+        chatModel.fetchMessages(handler: mapMessages)
         locationModel.fetchLocationWithId(id: meetupItem.locationId, handler: fetchLocation)
+    }
+
+    private func mapMessages(message: ChatMessage) {
+        let viewModel = ChatMessageViewModel(message: message)
+        messages.append(viewModel)
     }
 
     private func fetchLocation(location: Location) {

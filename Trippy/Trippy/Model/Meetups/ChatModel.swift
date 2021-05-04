@@ -11,16 +11,16 @@ class ChatModel<Storage: StorageProtocol>: ObservableObject where Storage.Stored
         self.storage = storage
         storage.storedItems.assign(to: \.messages, on: self)
             .store(in: &cancellables)
-        fetchMessages()
+        fetchMessages(handler: nil)
     }
 
-    func fetchMessages() {
+    func fetchMessages(handler: ((ChatMessage) -> Void)?) {
         guard let id = meetupId else {
             return
         }
         let field = "meetupId"
         let orderBy = "dateSent"
-        storage.fetchWithFieldOrderBy(field: field, value: id, orderBy: orderBy, handler: nil)
+        storage.fetchWithFieldOrderBy(field: field, value: id, orderBy: orderBy, handler: handler)
     }
 
     func sendMessage(message: ChatMessage) throws {
