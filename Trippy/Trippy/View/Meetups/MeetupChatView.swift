@@ -64,30 +64,37 @@ struct MeetupChatView: View {
     }
 }
 
-struct ContentMessageView: View {
-    var contentMessage: String
-    var isCurrentUser: Bool
-
-    var body: some View {
-        Text(contentMessage)
-            .padding(10)
-            .foregroundColor(isCurrentUser ? Color.white : Color.black)
-            .background(isCurrentUser ? Color.blue : Color.chatMessageBody)
-            .cornerRadius(10)
-    }
-}
-
 struct MessageView: View {
     @EnvironmentObject var session: FBSessionStore
-    var currentMessage: ChatMessageViewModel
+    @ObservedObject var currentMessage: ChatMessageViewModel
     var body: some View {
         HStack(alignment: .bottom, spacing: 15) {
             if !currentMessage.isCurrentUser(userId: session.currentLoggedInUser?.id) {
                 Spacer()
             }
             ContentMessageView(contentMessage: currentMessage.message,
+                               username: currentMessage.username,
                                isCurrentUser: currentMessage.isCurrentUser(userId: session.currentLoggedInUser?.id))
         }
     }
 
+}
+
+struct ContentMessageView: View {
+    var contentMessage: String
+    var username: String
+    var isCurrentUser: Bool
+
+    var body: some View {
+        VStack {
+            if !isCurrentUser {
+                Text(username).font(.footnote)
+            }
+            Text(contentMessage)
+                .padding(10)
+                .foregroundColor(isCurrentUser ? Color.white : Color.black)
+                .background(isCurrentUser ? Color.blue : Color.chatMessageBody)
+                .cornerRadius(10)
+        }
+    }
 }
