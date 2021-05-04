@@ -30,7 +30,7 @@ class VisitTracker {
     @Binding private var alert: Alert
 
     // Defaults
-    private let minimumVisitDuration = 300.0
+    private let minimumVisitDuration = 30.0
     private let maxDistanceThreshhold = 500.0
     private let notificationCategoryName = "rateAfterVisit"
     private let ratingActions = [
@@ -195,7 +195,10 @@ class VisitTracker {
 
     private func notifyUser(for bucketItem: BucketItem) {
         let state = UIApplication.shared.applicationState
-        let title = "Congrats! You have visited \(bucketItem)"
+        guard let locationName = locations.first(where: {$0.id == bucketItem.locationId})?.name else {
+            return
+        }
+        let title = "Congrats! You have visited \(locationName)"
         let alertBody = "Please leave a rating!"
         let notificationBody = "Tap and hold to leave a rating!"
         switch state {
