@@ -19,7 +19,6 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
     private let locationModel: LocationModel<FBStorage<FBLocation>>
     @Published var messages: [ChatMessageViewModel] = []
     @Published var detailViewModel: LocationDetailViewModel?
-    var didChange = PassthroughSubject<Void, Never>()
 
     var locationName: String {
         location?.name ?? ""
