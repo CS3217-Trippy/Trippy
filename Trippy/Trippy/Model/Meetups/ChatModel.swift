@@ -19,7 +19,8 @@ class ChatModel<Storage: StorageProtocol>: ObservableObject where Storage.Stored
             return
         }
         let field = "meetupId"
-        storage.fetchWithField(field: field, value: id, handler: nil)
+        let orderBy = "dateSent"
+        storage.fetchWithFieldOrderBy(field: field, value: id, orderBy: orderBy, handler: nil)
     }
 
     func sendMessage(message: ChatMessage) throws {

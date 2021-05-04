@@ -38,6 +38,7 @@ struct MeetupChatView: View {
 
     var body: some View {
         VStack {
+            Divider()
            List {
             ForEach(viewModel.messages, id: \.id) { msg in
                 MessageView(currentMessage: msg)

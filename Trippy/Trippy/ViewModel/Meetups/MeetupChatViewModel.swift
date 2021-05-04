@@ -19,6 +19,7 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
     private let locationModel: LocationModel<FBStorage<FBLocation>>
     @Published var messages: [ChatMessageViewModel] = []
     @Published var detailViewModel: LocationDetailViewModel?
+
     var locationName: String {
         location?.name ?? ""
     }
@@ -38,16 +39,11 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
         self.chatModel = chatModel
         self.imageModel = imageModel
 
-        chatModel.$messages.map { messages in
-           var arr = messages.filter { $0.meetupId == meetupItem.id }.map {
+        chatModel.$messages.map {messages in
+            messages.map {
                 ChatMessageViewModel(message: $0)
-           }
-            arr.sort {
-                $0.dateSent < $1.dateSent
             }
-            return arr
-        }.assign(to: \.messages, on: self)
-        .store(in: &cancellables)
+        }.assign(to: &$messages)
          chatModel.fetchMessages()
         locationModel.fetchLocationWithId(id: meetupItem.locationId, handler: fetchLocation)
     }
@@ -64,7 +60,11 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
     }
 
     func sendMessage(message: String, user: User?) throws {
-        let message = buildChatMessage(message: message, user: user)
+        let trimmed = message.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            return
+        }
+        let message = buildChatMessage(message: trimmed, user: user)
         guard let chatMessage = message else {
             return
         }
