@@ -17,6 +17,7 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
     private var friendsListModel: FriendsListModel<FBStorage<FBFriend>>
     private var imageModel = ImageModel(storage: FBImageStorage())
     private var userModel = UserModel(storage: FBStorage<FBUser>())
+    private var meetupNotificationModel: MeetupNotificationModel<FBStorage<FBMeetupNotification>>
     @Published var images: [String?: UIImage?] = [:]
     @Published var friendsList: [User] = []
     @Published var usernames: [String?: String] = [:]
@@ -26,7 +27,9 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
         self.user = session.currentLoggedInUser
         self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(storage: FBStorage<FBMeetup>(), userId: user?.id)
         self.friendsListModel = FriendsListModel<FBStorage<FBFriend>>(storage: FBStorage<FBFriend>(), userId: user?.id)
-
+        self.meetupNotificationModel = MeetupNotificationModel
+        <FBStorage<FBMeetupNotification>>(storage: FBStorage<FBMeetupNotification>(),
+                                          userId: user?.id)
         friendsListModel.getFriendsList { friends in
             self.userModel.fetchUsers {users in
                 self.getUsers(users: users, friends: friends)
@@ -63,6 +66,18 @@ class CreateMeetupViewModel: ObservableObject, Identifiable {
                                      meetupDate: meetupDate,
                                      userDescription: userDescription)
         try meetupModel.addMeetup(meetup: meetup)
+        try sendNotifications(meetup: meetup)
+    }
+
+    private func sendNotifications(meetup: Meetup) throws {
+        guard let meetupId = meetup.id else {
+            return
+        }
+        let users = meetup.userIds
+        for user in users {
+            let meetupNotification = MeetupNotification(meetupId: meetupId, userId: user, isNotified: false)
+            try meetupNotificationModel.addNotification(item: meetupNotification)
+        }
     }
 
     private func buildMeetup(friends: [User],

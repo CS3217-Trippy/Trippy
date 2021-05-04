@@ -17,9 +17,11 @@ final class HomepageViewModel: ObservableObject {
     @Published var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     @Published var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     @Published var ratingModel: RatingModel<FBStorage<FBRating>>
+    @Published var meetupNotificationModel: MeetupNotificationModel<FBStorage<FBMeetupNotification>>
     let userId: String
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
+    private let meetupNotificationTracker: MeetupNotificationTracker
 
     init(session: SessionStore,
          locationCoordinator: LocationCoordinator,
@@ -62,10 +64,21 @@ final class HomepageViewModel: ObservableObject {
         )
 
         let meetupStorage = FBStorage<FBMeetup>()
-        self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(
+        let meetupModel = MeetupModel<FBStorage<FBMeetup>>(
             storage: meetupStorage,
             userId: session.currentLoggedInUser?.id
         )
+        self.meetupModel = meetupModel
+
+        let meetupNotificationStorage = FBStorage<FBMeetupNotification>()
+        let meetupNotificationModel = MeetupNotificationModel
+        <FBStorage<FBMeetupNotification>>(storage: meetupNotificationStorage,
+                                          userId: session.currentLoggedInUser?.id)
+        self.meetupNotificationModel = meetupNotificationModel
+        self.meetupNotificationTracker = MeetupNotificationTracker(notificationManager: notificationManager,
+                                                                   meetupNotificationModel: meetupNotificationModel,
+                                                                   meetupModel: meetupModel)
+
         let itineraryStorage = FBStorage<FBItineraryItem>()
         self.itineraryModel = ItineraryModel<FBStorage<FBItineraryItem>>(
             storage: itineraryStorage, userId: session.currentLoggedInUser?.id
