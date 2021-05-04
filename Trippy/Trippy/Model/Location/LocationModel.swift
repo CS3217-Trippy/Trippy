@@ -35,7 +35,10 @@ class LocationModel<Storage: StorageProtocol>: ObservableObject where Storage.St
     }
 
     func fetchLocationWithId(id: String, handler: @escaping (Location) -> Void) {
-        storage.fetchWithId(id: id, handler: handler)
+        let location = locations.first { $0.id == id }
+        if let location = location {
+            handler(location)
+        }
     }
 
     func addLocation(location: Location, image: UIImage? = nil) throws {
