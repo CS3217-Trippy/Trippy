@@ -5,7 +5,7 @@ import UIKit
 final class ChatMessageViewModel: ObservableObject, Identifiable {
     private var chatMessage: ChatMessage
     @Published var username: String = ""
-    private var userModel = UserModel(storage: FBStorage<FBUser>())
+    private let userModel = UserModel(storage: FBStorage<FBUser>())
 
     init(message: ChatMessage) {
         self.chatMessage = message

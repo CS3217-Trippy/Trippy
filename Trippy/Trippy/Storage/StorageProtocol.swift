@@ -14,6 +14,9 @@ protocol StorageProtocol: ObservableObject {
 
     func fetch(handler: (([StoredType]) -> Void)?)
 
+    func fetchWithFieldOrderBy(field: String, value: String, orderBy: String,
+                               desc: Bool, handler: ((StoredType) -> Void)?)
+
     func fetchWithId(id: String, handler: ((StoredType) -> Void)?)
 
     func fetchWithField(field: String, value: String, handler: (([StoredType]) -> Void)?)

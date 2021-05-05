@@ -14,10 +14,10 @@ final class MeetupItemViewModel: ObservableObject, Identifiable {
     @Published var location: Location?
     @Published var locationId: String?
     @Published var image: UIImage?
-    var chatModel: ChatModel<FBStorage<FBChatMessage>>
+    let chatModel: ChatModel<FBStorage<FBChatMessage>>
     @Published var locationDetailViewModel: LocationDetailViewModel?
-    var imageModel: ImageModel
-    private let locationModel: LocationModel<FBStorage<FBLocation>>
+    let imageModel: ImageModel
+    let locationModel: LocationModel<FBStorage<FBLocation>>
     private var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     init(meetupItem: Meetup, meetupModel: MeetupModel<FBStorage<FBMeetup>>,
          imageModel: ImageModel,

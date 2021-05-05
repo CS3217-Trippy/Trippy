@@ -11,11 +11,15 @@ import UIKit
 
 final class MeetupChatViewModel: ObservableObject, Identifiable {
     private var meetupItem: Meetup
-    private var location: Location?
-    var image: UIImage?
+    @Published var location: Location?
+    @Published var image: UIImage?
+    var imageModel: ImageModel
     private var chatModel: ChatModel<FBStorage<FBChatMessage>>
     private var cancellables: Set<AnyCancellable> = []
+    private let locationModel: LocationModel<FBStorage<FBLocation>>
     @Published var messages: [ChatMessageViewModel] = []
+    @Published var detailViewModel: LocationDetailViewModel?
+
     var locationName: String {
         location?.name ?? ""
     }
@@ -24,27 +28,46 @@ final class MeetupChatViewModel: ObservableObject, Identifiable {
         meetupItem.meetupDate.dateStringFromDate
     }
 
-    init(meetupItem: Meetup, chatModel: ChatModel<FBStorage<FBChatMessage>>, location: Location?, image: UIImage?) {
+    init(meetupItem: Meetup,
+         chatModel: ChatModel<FBStorage<FBChatMessage>>,
+         imageModel: ImageModel,
+         locationModel: LocationModel<FBStorage<FBLocation>>,
+         detailViewModel: LocationDetailViewModel?) {
+        self.detailViewModel = detailViewModel
+        self.locationModel = locationModel
         self.meetupItem = meetupItem
-        self.location = location
-        self.image = image
         self.chatModel = chatModel
+        self.imageModel = imageModel
 
-        chatModel.$messages.map { messages in
-           var arr = messages.filter { $0.meetupId == meetupItem.id }.map {
-                ChatMessageViewModel(message: $0)
-           }
-            arr.sort {
-                $0.dateSent < $1.dateSent
-            }
-            return arr
-        }.assign(to: \.messages, on: self)
-        .store(in: &cancellables)
-         chatModel.fetchMessages()
+        chatModel.fetchMessages(handler: mapMessages)
+        locationModel.fetchLocationWithId(id: meetupItem.locationId, handler: fetchLocation)
     }
 
+    /// Maps message from model into a ChatMessageViewModel
+    private func mapMessages(message: ChatMessage) {
+        let viewModel = ChatMessageViewModel(message: message)
+        messages.append(viewModel)
+    }
+
+    /// Fetches location for a meetup
+    private func fetchLocation(location: Location) {
+        if let id = location.imageId {
+            imageModel.fetch(ids: [id]) { images in
+                if !images.isEmpty {
+                    self.image = images[0]
+                }
+            }
+        }
+        self.location = location
+    }
+
+    /// Sends a message for a particular meetup
     func sendMessage(message: String, user: User?) throws {
-        let message = buildChatMessage(message: message, user: user)
+        let trimmed = message.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            return
+        }
+        let message = buildChatMessage(message: trimmed, user: user)
         guard let chatMessage = message else {
             return
         }

@@ -38,6 +38,26 @@ class FBStorage<Storable>: StorageProtocol where Storable: FBStorable {
         }
     }
 
+    func fetchWithFieldOrderBy(field: String, value: String, orderBy: String,
+                               desc: Bool, handler: ((StoredType) -> Void)?) {
+        store.collection(Storable.path).whereField(field, isEqualTo: value)
+            .order(by: orderBy, descending: desc)
+            .addSnapshotListener { snapshot, _ in
+                snapshot?.documentChanges.forEach { diff in
+                    if diff.type == .added {
+                        guard let model = try? diff.document.data(as: Storable.self)?.convertToModelType() else {
+                            return
+                        }
+                        if let handler = handler {
+                            handler(model)
+                        } else {
+                            self._storedItems.append(model)
+                        }
+                    }
+                }
+            }
+    }
+
     func fetchWithField(field: String, value: String, handler: (([Storable.ModelType]) -> Void)?) {
         store.collection(Storable.path).whereField(field, isEqualTo: value).addSnapshotListener { snapshot, error in
             if let error = error {
