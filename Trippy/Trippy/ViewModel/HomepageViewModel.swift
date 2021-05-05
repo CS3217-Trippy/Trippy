@@ -17,14 +17,16 @@ final class HomepageViewModel: ObservableObject {
     @Published var meetupModel: MeetupModel<FBStorage<FBMeetup>>
     @Published var itineraryModel: ItineraryModel<FBStorage<FBItineraryItem>>
     @Published var ratingModel: RatingModel<FBStorage<FBRating>>
+    @Published var meetupNotificationModel: MeetupNotificationModel<FBStorage<FBMeetupNotification>>
     let userId: String
     let imageModel: ImageModel
     private let visitTracker: VisitTracker
+    private let meetupNotificationTracker: MeetupNotificationTracker
 
     init(session: SessionStore,
          locationCoordinator: LocationCoordinator,
-         notificationManager: NotificationManager, showLocationAlert: Binding<Bool>,
-         completedLocation: Binding<String>, alertTitle: Binding<String>, alertContent: Binding<String>) {
+         notificationManager: NotificationManager, showAlert: Binding<Bool>,
+         completedLocation: Binding<String>, alert: Binding<Alert>, showSubmitRatingSheet: Binding<Bool>) {
         userId = session.currentLoggedInUser?.id ?? ""
         let imageStorage = FBImageStorage()
         let imageModel = ImageModel(storage: imageStorage)
@@ -56,16 +58,27 @@ final class HomepageViewModel: ObservableObject {
         visitTracker = VisitTracker(
             locationCoordinator: locationCoordinator, notificationManager: notificationManager,
             locationModel: locationModel, bucketModel: bucketModel,
-            showLocationAlert: showLocationAlert, completedLocation: completedLocation,
-            alertTitle: alertTitle, alertContent: alertContent,
+            showAlert: showAlert, completedLocation: completedLocation,
+            alert: alert, showSubmitRatingSheet: showSubmitRatingSheet,
             levelSystemService: session.levelSystemService, ratingModel: ratingModel
         )
 
         let meetupStorage = FBStorage<FBMeetup>()
-        self.meetupModel = MeetupModel<FBStorage<FBMeetup>>(
+        let meetupModel = MeetupModel<FBStorage<FBMeetup>>(
             storage: meetupStorage,
             userId: session.currentLoggedInUser?.id
         )
+        self.meetupModel = meetupModel
+
+        let meetupNotificationStorage = FBStorage<FBMeetupNotification>()
+        let meetupNotificationModel = MeetupNotificationModel
+        <FBStorage<FBMeetupNotification>>(storage: meetupNotificationStorage,
+                                          userId: session.currentLoggedInUser?.id)
+        self.meetupNotificationModel = meetupNotificationModel
+        self.meetupNotificationTracker = MeetupNotificationTracker(notificationManager: notificationManager,
+                                                                   meetupNotificationModel: meetupNotificationModel,
+                                                                   meetupModel: meetupModel, showAlert: showAlert, alert: alert)
+
         let itineraryStorage = FBStorage<FBItineraryItem>()
         self.itineraryModel = ItineraryModel<FBStorage<FBItineraryItem>>(
             storage: itineraryStorage, userId: session.currentLoggedInUser?.id

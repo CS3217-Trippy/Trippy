@@ -37,7 +37,7 @@ struct LocationCardView: View {
     }
 
     var additionalDetails: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(viewModel.averageRatingDescription)
             .font(.caption)
             .fontWeight(.black)
